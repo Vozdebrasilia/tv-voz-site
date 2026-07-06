@@ -1,0 +1,11 @@
+<div class="hidden lg:flex items-center space-x-8">
+    <a href="#inicio" class="text-sm font-medium hover:text-accent transition">Início</a>
+    <a href="#autoridade" class="text-sm font-medium hover:text-accent transition">Autoridade</a>
+    <a href="tv-ao-vivo.html" class="text-sm font-medium hover:text-accent transition font-bold text-accent">TV Ao Vivo</a>
+    <a href="#entrevistas" class="text-sm font-medium hover:text-accent transition">Entrevistas</a>
+    <a href="#numeros" class="text-sm font-medium hover:text-accent transition">Números</a>
+    <a href="#servicos" class="text-sm font-medium hover:text-accent transition">Serviços</a>
+    <a href="#contato" class="gradient-gold text-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-yellow-500/30 transition">
+        Quero Divulgar
+    </a>
+</div>
