@@ -3,68 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Voz de Brasília</title>
+    <title>TV Voz de Brasília - 40 Anos de Autoridade</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%);
+            color: white;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            transition: all 0.3s;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body>
 
-<nav class="fixed top-0 w-full bg-gray-900/90 p-4">
-    <div class="container mx-auto flex justify-between">
-        <h1 class="text-2xl font-bold text-yellow-500">TV VOZ DE BRASÍLIA</h1>
-        <div class="space-x-4">
-            <a href="#inicio" class="hover:text-yellow-500">Início</a>
-            <a href="#categorias" class="hover:text-yellow-500">Categorias</a>
-            <a href="tv-ao-vivo.html" class="text-yellow-500 font-bold">TV Ao Vivo</a>
+<!-- Header -->
+<header class="fixed w-full top-0 z-50 glass border-b border-white/10">
+    <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center">
+                    <i data-lucide="tv" class="w-7 h-7 text-gray-900"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">TV VOZ DE BRASÍLIA</h1>
+                    <p class="text-xs text-yellow-500">40 ANOS DE HISTÓRIA</p>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="#inicio" class="hover:text-yellow-500">Início</a>
+                <a href="#categorias" class="hover:text-yellow-500">Categorias</a>
+                <a href="#entrevistas" class="hover:text-yellow-500">Entrevistas</a>
+                <a href="#numeros" class="hover:text-yellow-500">Números</a>
+                <a href="#contato" class="gradient-gold text-gray-900 px-6 py-2 rounded-full font-bold">Quero Divulgar</a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
 
-<section id="inicio" class="min-h-screen flex items-center justify-center pt-20">
-    <div class="container mx-auto px-6 text-center">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6">
-            A maior <span class="text-yellow-500">vitrine empresarial</span> de Brasília
-        </h1>
-        <p class="text-xl text-gray-300 mb-8">40 anos de história</p>
+<!-- Hero Section -->
+<section id="inicio" class="min-h-screen flex items-center pt-20">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl lg:text-7xl font-bold mb-6">
+                A maior <span class="text-yellow-500">vitrine empresarial</span> de Brasília
+            </h1>
+            <p class="text-xl text-gray-300 mb-8">
+                Mais de 500 entrevistas no YouTube, quase 100 mil seguidores no Instagram e 160 milhões de interações mensais.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <a href="https://wa.me/5561999812341" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold">
+                    Quero divulgar minha empresa
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- Categorias Section -->
 <section id="categorias" class="py-20 px-6">
     <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-12">Assista por Categoria</h2>
+        <h2 class="text-4xl font-bold text-center mb-4 text-yellow-500">Assista por Categoria</h2>
+        <p class="text-center text-gray-400 mb-12">Escolha o tipo de entrevista que deseja assistir</p>
         
         <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <!-- EMPRESARIAL - DESTAQUE -->
-            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-yellow-500/20 border-4 border-yellow-500 hover:scale-105 transition">
+            <!-- EMPRESARIAL -->
+            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-yellow-500/20 border-4 border-yellow-500 hover-lift">
                 <div class="text-5xl mb-4">🏢</div>
                 <h3 class="text-2xl font-bold text-yellow-400 mb-2">EMPRESARIAL</h3>
-                <p class="text-gray-300">Entrevistas com empresários e CEOs</p>
-                <button class="mt-4 px-6 py-2 bg-yellow-500 text-gray-900 rounded-full font-bold">
-                    Assistir →
-                </button>
+                <p class="text-gray-300 mb-4">Entrevistas com empresários e CEOs</p>
+                <span class="text-yellow-500 font-bold">Assistir →</span>
             </a>
 
             <!-- POLÍTICA -->
-            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-gray-800 border-2 border-gray-600 hover:border-blue-500 hover:scale-105 transition">
+            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl glass border-2 border-blue-500 hover:border-blue-400 hover-lift">
                 <div class="text-5xl mb-4">🏛️</div>
                 <h3 class="text-2xl font-bold mb-2">Política</h3>
-                <p class="text-gray-300">Deputados, senadores e autoridades</p>
-                <button class="mt-4 px-6 py-2 bg-blue-600 rounded-full font-bold">
-                    Assistir →
-                </button>
+                <p class="text-gray-300 mb-4">Deputados, senadores e autoridades</p>
+                <span class="text-blue-500 font-bold">Assistir →</span>
             </a>
 
             <!-- INTERNACIONAL -->
-            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-gray-800 border-2 border-gray-600 hover:border-purple-500 hover:scale-105 transition">
+            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl glass border-2 border-purple-500 hover:border-purple-400 hover-lift">
                 <div class="text-5xl mb-4">🌍</div>
                 <h3 class="text-2xl font-bold mb-2">Internacional</h3>
-                <p class="text-gray-300">Embaixadores e representantes</p>
-                <button class="mt-4 px-6 py-2 bg-purple-600 rounded-full font-bold">
-                    Assistir 🌐 →
-                </button>
+                <p class="text-gray-300 mb-4">Embaixadores e representantes</p>
+                <span class="text-purple-500 font-bold">Assistir 🌐 →</span>
             </a>
         </div>
     </div>
 </section>
+
+<!-- Autoridade Section -->
+<section id="autoridade" class="py-20 px-6">
+    <div class="container mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Autoridade Comprovada</h2>
+            <p class="text-gray-400">40 anos conectando Brasília ao Brasil e ao Mundo</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div class="glass rounded-2xl p-8 text-center">
+                <div class="text-4xl mb-2">📅</div>
+                <h3 class="text-2xl font-bold mb-2">40 Anos</h3>
+                <p class="text-gray-400">De história</p>
+            </div>
+            <div class="glass rounded-2xl p-8 text-center">
+                <div class="text-4xl mb-2">🎥</div>
+                <h3 class="text-2xl font-bold mb-2">500+ Entrevistas</h3>
+                <p class="text-gray-400">No YouTube</p>
+            </div>
+            <div class="glass rounded-2xl p-8 text-center">
+                <div class="text-4xl mb-2">📊</div>
+                <h3 class="text-2xl font-bold mb-2">160 Milhões</h3>
+                <p class="text-gray-400">Interações/mês</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 px-6 border-t border-white/10">
+    <div class="container mx-auto text-center">
+        <p class="text-gray-400">© 2024 TV Voz de Brasília. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    lucide.createIcons();
+</script>
 
 </body>
 </html>
