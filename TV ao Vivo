@@ -8,113 +8,112 @@
     <style>
         body { 
             margin: 0; 
-            padding: 0; 
+            padding: 20px; 
             background: #0a0e27; 
             color: white; 
             font-family: 'Inter', sans-serif; 
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
         
-        .video-container {
+        .video-wrapper {
             position: relative;
-            width: 100%;
             padding-bottom: 56.25%;
+            height: 0;
             background: #000;
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 30px;
         }
-        .video-container iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
         }
         
-        .filters {
+        .filtros {
             display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 10px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
         }
-        .filter-btn {
-            padding: 12px 24px;
+        .filtro-btn {
+            padding: 10px 20px;
             border: 2px solid #fbbf24;
             background: transparent;
             color: #fbbf24;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
             transition: all 0.3s;
         }
-        .filter-btn:hover {
+        .filtro-btn:hover {
             background: rgba(251, 191, 36, 0.2);
         }
-        .filter-btn.active {
+        .filtro-btn.ativo {
             background: #fbbf24;
             color: #0a0e27;
         }
-        .filter-btn.destaque {
+        .filtro-btn.destaque {
             background: #fbbf24;
             color: #0a0e27;
             font-size: 16px;
-            padding: 14px 28px;
+            padding: 12px 24px;
         }
         
-        .playlist {
+        .lista-videos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
         }
-        .video-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .video-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
             padding: 12px;
             cursor: pointer;
-            transition: all 0.3s;
             display: flex;
             gap: 12px;
+            transition: all 0.3s;
         }
-        .video-item:hover {
+        .video-card:hover {
             background: rgba(251, 191, 36, 0.1);
             border-color: #fbbf24;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
-        .video-item.active {
+        .video-card.ativo {
             background: rgba(251, 191, 36, 0.2);
             border-color: #fbbf24;
         }
-        .video-item img {
-            width: 160px;
-            height: 90px;
+        .video-card img {
+            width: 140px;
+            height: 80px;
             object-fit: cover;
             border-radius: 8px;
         }
-        .video-item h3 {
+        .video-card h3 {
             margin: 0 0 8px 0;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
         }
-        .video-item p {
+        .video-card p {
             margin: 0;
-            font-size: 13px;
+            font-size: 12px;
             color: #94a3b8;
         }
-        .badge {
+        .categoria-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
         }
-        .badge-empresarial { background: #10b981; color: white; }
-        .badge-politica { background: #3b82f6; color: white; }
-        .badge-internacional { background: #8b5cf6; color: white; }
+        .cat-empresarial { background: #10b981; color: white; }
+        .cat-politica { background: #3b82f6; color: white; }
+        .cat-internacional { background: #8b5cf6; color: white; }
         
         .header {
             display: flex;
@@ -122,177 +121,146 @@
             align-items: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .logo {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 15px;
         }
-        .logo-box {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%);
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #fbbf24, #d4af37);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 28px;
         }
         .btn-voltar {
             padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
             color: white;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="logo">
-                <div class="logo-box">📺</div>
+                <div class="logo-icon">📺</div>
                 <div>
-                    <h1 style="margin: 0; font-size: 28px; font-weight: bold;">TV VOZ DE BRASÍLIA</h1>
-                    <p style="margin: 0; color: #fbbf24; font-size: 14px;">40 ANOS DE HISTÓRIA</p>
+                    <h1 style="margin:0; font-size:24px;">TV VOZ DE BRASÍLIA</h1>
+                    <p style="margin:0; color:#fbbf24; font-size:12px;">40 ANOS DE HISTÓRIA</p>
                 </div>
             </div>
             <a href="index.html" class="btn-voltar">← Voltar ao Site</a>
         </div>
 
-        <!-- Player de Vídeo -->
-        <div class="video-container">
+        <div class="video-wrapper">
             <div id="player"></div>
         </div>
 
-        <!-- Filtros -->
-        <div class="filters">
-            <button class="filter-btn destaque" onclick="filtrar('empresarial')">🏢 EMPRESARIAL</button>
-            <button class="filter-btn" onclick="filtrar('politica')">🏛️ Política</button>
-            <button class="filter-btn" onclick="filtrar('internacional')">🌍 Internacional</button>
-            <button class="filter-btn" onclick="filtrar('todas')">Todas</button>
+        <div class="filtros">
+            <button class="filtro-btn destaque" onclick="filtrar('empresarial')">🏢 EMPRESARIAL</button>
+            <button class="filtro-btn" onclick="filtrar('politica')">🏛️ Política</button>
+            <button class="filtro-btn" onclick="filtrar('internacional')">🌍 Internacional</button>
+            <button class="filtro-btn" onclick="filtrar('todas')">Todas</button>
         </div>
 
-        <!-- Playlist -->
-        <div class="playlist" id="playlist"></div>
+        <div class="lista-videos" id="playlist"></div>
     </div>
 
     <script>
-        // Lista de vídeos - ADICIONE OS IDs REAIS DOS VÍDEOS DO YOUTUBE
         const videos = [
-            // EMPRESARIAL
-            { id: '5QWMLQjrV4c', title: 'Instituto de Medicina da Visão', category: 'empresarial' },
-            { id: 'b5t8TEEJdiU', title: 'Andrezza Bentes - Kumon', category: 'empresarial' },
-            { id: 'tB84ssWNLYg', title: 'Thiago Manzoni - Empresarial', category: 'empresarial' },
-            
-            // POLÍTICA
-            { id: 'mFX7ZEVbjrI', title: 'Igor Popov', category: 'politica' },
-            { id: 'rkLjp5Loue8', title: 'Senador Dr. Hiran', category: 'politica' },
-            { id: 'SWgHKS_i1UM', title: 'Representante ONU', category: 'politica' },
-            
-            // INTERNACIONAL
-            { id: '8FBjQfoH8o8', title: 'Embaixadora do Egito', category: 'internacional' },
-            { id: 'AugustoCarvalho', title: 'Augusto Carvalho - ANABB', category: 'internacional' }
+            { id: '5QWMLQjrV4c', titulo: 'Instituto de Medicina', cat: 'empresarial' },
+            { id: 'b5t8TEEJdiU', titulo: 'Andrezza Bentes - Kumon', cat: 'empresarial' },
+            { id: 'tB84ssWNLYg', titulo: 'Thiago Manzoni', cat: 'empresarial' },
+            { id: 'mFX7ZEVbjrI', titulo: 'Igor Popov', cat: 'politica' },
+            { id: 'rkLjp5Loue8', titulo: 'Senador Dr. Hiran', cat: 'politica' },
+            { id: 'SWgHKS_i1UM', titulo: 'Representante ONU', cat: 'politica' },
+            { id: '8FBjQfoH8o8', titulo: 'Embaixadora do Egito', cat: 'internacional' }
         ];
 
-        let currentCategory = 'empresarial';
-        let currentIndex = 0;
+        let categoriaAtual = 'empresarial';
+        let indiceAtual = 0;
         let player;
-        let filteredVideos = [...videos];
+        let videosFiltrados = [];
 
-        // Carrega API do YouTube
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        document.head.appendChild(tag);
 
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '100%',
-                width: '100%',
-                videoId: filteredVideos[0].id,
-                playerVars: {
-                    'autoplay': 1,
-                    'controls': 1,
-                    'rel': 0
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
             filtrar('empresarial');
         }
 
-        function onPlayerReady(event) {
-            player.playVideo();
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                // Toca o próximo vídeo automaticamente
-                currentIndex = (currentIndex + 1) % filteredVideos.length;
-                player.loadVideoById(filteredVideos[currentIndex].id);
-                renderPlaylist();
-            }
-        }
-
         function filtrar(categoria) {
-            currentCategory = categoria;
+            categoriaAtual = categoria;
             
-            // Atualiza botões
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(categoria) || 
-                    (categoria === 'todas' && btn.textContent.includes('Todas'))) {
-                    btn.classList.add('active');
-                }
-            });
+            document.querySelectorAll('.filtro-btn').forEach(btn => btn.classList.remove('ativo'));
+            event.target.classList.add('ativo');
 
-            // Filtra vídeos
             if (categoria === 'todas') {
-                filteredVideos = [...videos];
+                videosFiltrados = [...videos];
             } else {
-                filteredVideos = videos.filter(v => v.category === categoria);
+                videosFiltrados = videos.filter(v => v.cat === categoria);
             }
 
-            // Toca o primeiro vídeo da categoria
-            if (filteredVideos.length > 0) {
-                currentIndex = 0;
-                player.loadVideoById(filteredVideos[0].id);
+            indiceAtual = 0;
+            if (videosFiltrados.length > 0) {
+                if (!player) {
+                    player = new YT.Player('player', {
+                        height: '100%',
+                        width: '100%',
+                        videoId: videosFiltrados[0].id,
+                        playerVars: { 'autoplay': 1, 'controls': 1 },
+                        events: {
+                            'onReady': () => player.playVideo(),
+                            'onStateChange': (e) => {
+                                if (e.data === YT.PlayerState.ENDED) {
+                                    indiceAtual = (indiceAtual + 1) % videosFiltrados.length;
+                                    player.loadVideoById(videosFiltrados[indiceAtual].id);
+                                    renderizar();
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    player.loadVideoById(videosFiltrados[0].id);
+                }
             }
-            
-            renderPlaylist();
+            renderizar();
         }
 
-        function renderPlaylist() {
-            const playlistEl = document.getElementById('playlist');
-            playlistEl.innerHTML = filteredVideos.map((video, index) => {
-                const badges = {
-                    'empresarial': '<span class="badge badge-empresarial">EMPRESARIAL</span>',
-                    'politica': '<span class="badge badge-politica">POLÍTICA</span>',
-                    'internacional': '<span class="badge badge-internacional">INTERNACIONAL</span>'
-                };
-                
-                return `
-                <div class="video-item ${index === currentIndex ? 'active' : ''}" onclick="tocarVideo(${index})">
-                    <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}">
-                    <div style="flex: 1;">
-                        ${badges[video.category]}
-                        <h3>${video.title}</h3>
-                        <p>${index === currentIndex ? '▶ Tocando agora' : 'Clique para assistir'}</p>
+        function renderizar() {
+            const container = document.getElementById('playlist');
+            const badges = {
+                'empresarial': '<span class="categoria-badge cat-empresarial">Empresarial</span>',
+                'politica': '<span class="categoria-badge cat-politica">Política</span>',
+                'internacional': '<span class="categoria-badge cat-internacional">Internacional</span>'
+            };
+
+            container.innerHTML = videosFiltrados.map((v, i) => `
+                <div class="video-card ${i === indiceAtual ? 'ativo' : ''}" onclick="tocar(${i})">
+                    <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg">
+                    <div>
+                        ${badges[v.cat]}
+                        <h3>${v.titulo}</h3>
+                        <p>${i === indiceAtual ? '▶ Tocando agora' : 'Clique para assistir'}</p>
                     </div>
                 </div>
-            `}).join('');
+            `).join('');
         }
 
-        function tocarVideo(index) {
-            currentIndex = index;
-            player.loadVideoById(filteredVideos[currentIndex].id);
-            renderPlaylist();
+        function tocar(index) {
+            indiceAtual = index;
+            player.loadVideoById(videosFiltrados[indiceAtual].id);
+            renderizar();
         }
     </script>
 </body>
