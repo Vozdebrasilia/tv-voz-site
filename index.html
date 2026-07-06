@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Voz IA - A Maior Vitrine Empresarial de Brasília</title>
+    <title>TV Voz de Brasília - 40 Anos de Autoridade e Credibilidade</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -16,8 +16,10 @@
                         secondary: '#1a1f3a',
                         accent: '#fbbf24',
                         'accent-hover': '#f59e0b',
+                        gold: '#d4af37',
                     },
                     fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
                         sans: ['Inter', 'sans-serif'],
                     }
                 }
@@ -25,163 +27,296 @@
         }
     </script>
     <style>
+        * {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%);
             color: white;
+            overflow-x: hidden;
         }
         .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-gold {
+            background: rgba(251, 191, 36, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
         }
         .gradient-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 50%, #f59e0b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .hover-scale {
-            transition: transform 0.3s ease;
+        .gradient-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%);
         }
-        .hover-scale:hover {
-            transform: translateY(-5px);
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out;
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+        }
+        .animate-pulse-gold {
+            animation: pulse-gold 2s infinite;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+        .social-badge {
+            background: linear-gradient(135deg, rgba(225, 48, 108, 0.2) 0%, rgba(193, 53, 132, 0.2) 100%);
+            border: 1px solid rgba(225, 48, 108, 0.4);
+        }
+        .youtube-badge {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(200, 0, 0, 0.2) 100%);
+            border: 1px solid rgba(255, 0, 0, 0.4);
         }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="antialiased">
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50 glass">
+    <header class="fixed w-full top-0 z-50 glass border-b border-white/10">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <i data-lucide="tv" class="w-8 h-8 text-accent"></i>
-                    <span class="text-xl font-bold">TV VOZ IA <span class="text-accent">BLUEPRINT</span></span>
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center">
+                        <i data-lucide="tv" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
+                        <p class="text-xs text-accent tracking-widest">40 ANOS DE HISTÓRIA</p>
+                    </div>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="hover:text-accent transition">Início</a>
-                    <a href="#sobre" class="hover:text-accent transition">Sobre</a>
-                    <a href="#servicos" class="hover:text-accent transition">Serviços</a>
-                    <a href="#estatisticas" class="hover:text-accent transition">Estatísticas</a>
-                    <a href="#contato" class="bg-accent hover:bg-accent-hover text-primary px-6 py-2 rounded-full font-semibold transition">
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#inicio" class="text-sm font-medium hover:text-accent transition">Início</a>
+                    <a href="#autoridade" class="text-sm font-medium hover:text-accent transition">Autoridade</a>
+                    <a href="#numeros" class="text-sm font-medium hover:text-accent transition">Números</a>
+                    <a href="#servicos" class="text-sm font-medium hover:text-accent transition">Serviços</a>
+                    <a href="#contato" class="gradient-gold text-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-yellow-500/30 transition">
                         Quero Divulgar
                     </a>
                 </div>
 
-                <button onclick="toggleMenu()" class="md:hidden">
+                <button onclick="toggleMenu()" class="lg:hidden p-2 hover:bg-white/5 rounded-lg transition">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 space-y-3">
                 <a href="#inicio" class="block py-2 hover:text-accent">Início</a>
-                <a href="#sobre" class="block py-2 hover:text-accent">Sobre</a>
-                <a href="#servicos" class="block py-2 hover:text-accent">Serviços</a>
+                <a href="#autoridade" class="block py-2 hover:text-accent">Autoridade</a>
+                <a href="#numeros" class="block py-2 hover:text-accent">Números</a>
                 <a href="#contato" class="block py-2 text-accent">Quero Divulgar</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="pt-32 pb-20 px-6">
-        <div class="container mx-auto">
-            <div class="max-w-4xl mx-auto text-center animate-fade-in">
-                <div class="inline-block mb-4 px-4 py-1 glass rounded-full text-sm">
-                    <i data-lucide="award" class="inline w-4 h-4 mr-2 text-accent"></i>
-                    40+ anos de atuação
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    A maior vitrine empresarial de <span class="gradient-text">Brasília</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    Mais de 140 mil seguidores, mais de 160 milhões de interações mensais, 
-                    entrevistas, reportagens, marketing institucional e posicionamento de autoridade 
-                    para empresas, marcas, autoridades e projetos sociais.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="https://wa.me/5561999812341" target="_blank" 
-                       class="bg-accent hover:bg-accent-hover text-primary px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
-                        Quero divulgar minha empresa
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </a>
-                    <button onclick="scrollToContact()" 
-                            class="border-2 border-accent text-accent hover:bg-accent hover:text-primary px-8 py-4 rounded-full font-bold text-lg transition">
-                        Receber mídia kit agora
-                    </button>
+    <section id="inicio" class="relative min-h-screen flex items-center pt-20 hero-pattern">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-fade-in-up">
+                        <div class="inline-flex items-center gap-2 glass-gold px-4 py-2 rounded-full mb-6 animate-pulse-gold">
+                            <i data-lucide="award" class="w-5 h-5 text-accent"></i>
+                            <span class="text-sm font-semibold">40 anos construindo autoridade</span>
+                        </div>
+                        
+                        <h1 class="text-5xl lg:text-7xl font-serif font-black leading-tight mb-6">
+                            A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
+                        </h1>
+                        
+                        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                            Mais de <span class="text-accent font-semibold">500 entrevistas</span> no YouTube, 
+                            quase <span class="text-accent font-semibold">100 mil seguidores</span> no Instagram 
+                            e <span class="text-accent font-semibold">160 milhões</span> de interações mensais.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                            <a href="https://wa.me/5561999812341" target="_blank" 
+                               class="gradient-gold text-primary px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-yellow-500/30 transition flex items-center justify-center gap-2 group">
+                                Quero divulgar minha empresa
+                                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition"></i>
+                            </a>
+                            <button onclick="scrollToContact()" 
+                                    class="glass border border-accent/50 text-accent hover:bg-accent/10 px-8 py-4 rounded-full font-bold text-lg transition">
+                                Receber mídia kit
+                            </button>
+                        </div>
+
+                        <!-- Social Proof -->
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://instagram.com/tvvozdebrasilia" target="_blank" 
+                               class="social-badge px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                                <span class="text-sm font-semibold">99.5K seguidores</span>
+                            </a>
+                            <a href="https://youtube.com/@tvvozdebrasilia" target="_blank" 
+                               class="youtube-badge px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
+                                <i data-lucide="youtube" class="w-5 h-5"></i>
+                                <span class="text-sm font-semibold">500+ entrevistas</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block animate-float">
+                        <div class="relative">
+                            <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
+                            <div class="relative glass rounded-3xl p-8 border border-white/10">
+                                <div class="aspect-square gradient-gold rounded-2xl flex items-center justify-center mb-6">
+                                    <i data-lucide="trophy" class="w-32 h-32 text-primary"></i>
+                                </div>
+                                <div class="text-center">
+                                    <h3 class="text-2xl font-serif font-bold mb-2">Autoridade Comprovada</h3>
+                                    <p class="text-gray-300">40 anos conectando Brasília ao Brasil e ao Mundo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Statistics -->
-    <section id="estatisticas" class="py-20 px-6">
+    <!-- Authority Section -->
+    <section id="autoridade" class="py-20 px-6 relative">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass rounded-3xl p-8 text-center hover-scale">
-                    <i data-lucide="users" class="w-12 h-12 text-accent mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2 counter" data-target="140">0</div>
-                    <div class="text-gray-400">mil seguidores</div>
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">
+                    Quatro décadas de <span class="gradient-text">credibilidade</span>
+                </h2>
+                <p class="text-xl text-gray-300">
+                    Desde 1984, a TV Voz de Brasília é referência em jornalismo de qualidade, 
+                    entrevistas exclusivas e conteúdo que transforma marcas em autoridades.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass rounded-3xl p-8 hover-lift">
+                    <div class="w-16 h-16 gradient-gold rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="calendar" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">40 Anos</h3>
+                    <p class="text-gray-400">De história construindo credibilidade e confiança no mercado brasiliense</p>
                 </div>
-                <div class="glass rounded-3xl p-8 text-center hover-scale">
+
+                <div class="glass rounded-3xl p-8 hover-lift">
+                    <div class="w-16 h-16 gradient-gold rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="video" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">500+ Entrevistas</h3>
+                    <p class="text-gray-400">Conteúdo exclusivo no YouTube com as principais autoridades do DF</p>
+                </div>
+
+                <div class="glass rounded-3xl p-8 hover-lift">
+                    <div class="w-16 h-16 gradient-gold rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">160 Milhões</h3>
+                    <p class="text-gray-400">De interações mensais nas redes sociais e plataformas digitais</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="numeros" class="py-20 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 gradient-gold opacity-5"></div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">
+                    Números que <span class="gradient-text">comprovam</span> nossa autoridade
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
+                    <i data-lucide="instagram" class="w-12 h-12 text-pink-500 mx-auto mb-4"></i>
+                    <div class="text-4xl font-bold mb-2 counter" data-target="99.5">0</div>
+                    <div class="text-gray-400 text-sm">mil seguidores no Instagram</div>
+                </div>
+
+                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
+                    <i data-lucide="youtube" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
+                    <div class="text-4xl font-bold mb-2 counter" data-target="500">0</div>
+                    <div class="text-gray-400 text-sm">entrevistas no YouTube</div>
+                </div>
+
+                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
                     <i data-lucide="trending-up" class="w-12 h-12 text-accent mx-auto mb-4"></i>
                     <div class="text-4xl font-bold mb-2 counter" data-target="160">0</div>
-                    <div class="text-gray-400">milhões de interações/mês</div>
+                    <div class="text-gray-400 text-sm">milhões de interações/mês</div>
                 </div>
-                <div class="glass rounded-3xl p-8 text-center hover-scale">
-                    <i data-lucide="video" class="w-12 h-12 text-accent mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2 counter" data-target="500">0</div>
-                    <div class="text-gray-400">entrevistas realizadas</div>
-                </div>
-                <div class="glass rounded-3xl p-8 text-center hover-scale">
-                    <i data-lucide="award" class="w-12 h-12 text-accent mx-auto mb-4"></i>
+
+                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
+                    <i data-lucide="award" class="w-12 h-12 text-gold mx-auto mb-4"></i>
                     <div class="text-4xl font-bold mb-2 counter" data-target="40">0</div>
-                    <div class="text-gray-400">anos de atuação</div>
+                    <div class="text-gray-400 text-sm">anos de atuação</div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- About -->
-    <section id="sobre" class="py-20 px-6">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Plataforma empresarial de autoridade, mídia e conversão</h2>
-                    <p class="text-gray-300 mb-6 text-lg">
-                        A TV Voz de Brasília é a maior vitrine empresarial da capital federal, 
-                        conectando marcas, empresas e autoridades a um público engajado e qualificado.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i>
-                            <span>Alto alcance e engajamento</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i>
-                            <span>Conteúdo de qualidade e credibilidade</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i>
-                            <span>Estratégias personalizadas de marketing</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i>
-                            <span>Posicionamento de autoridade</span>
-                        </li>
-                    </ul>
+            <!-- Additional Stats -->
+            <div class="mt-12 grid md:grid-cols-3 gap-6">
+                <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                    <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold">Anuário Brasileiro 2026</div>
+                        <div class="text-sm text-gray-400">Reconhecimento nacional</div>
+                    </div>
                 </div>
-                <div class="glass rounded-3xl p-8">
-                    <div class="aspect-video bg-gradient-to-br from-accent to-accent-hover rounded-2xl flex items-center justify-center">
-                        <i data-lucide="tv" class="w-24 h-24 text-primary"></i>
+
+                <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                    <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="globe" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold">Alcance Global</div>
+                        <div class="text-sm text-gray-400">Ligando você ao Brasil e ao Mundo</div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                    <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold">Estúdio Park Sul</div>
+                        <div class="text-sm text-gray-400">Estrutura profissional no DF</div>
                     </div>
                 </div>
             </div>
@@ -191,38 +326,86 @@
     <!-- Services -->
     <section id="servicos" class="py-20 px-6">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">Como sua empresa pode aparecer na TV Voz</h2>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">
+                    Como sua empresa pode <span class="gradient-text">aparecer</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Aproveite nossa autoridade de 40 anos para posicionar sua marca 
+                    como referência no mercado
+                </p>
+            </div>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass rounded-3xl p-8 hover-scale cursor-pointer group">
-                    <i data-lucide="building-2" class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Logo da empresa em destaque</h3>
-                    <p class="text-gray-400">Espaço premium na vitrine comercial fixa</p>
+                <div class="glass rounded-3xl p-8 hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 gradient-gold rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="building-2" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Logo em Destaque</h3>
+                    <p class="text-gray-400">Espaço premium na vitrine comercial fixa da TV Voz</p>
                 </div>
-                <div class="glass rounded-3xl p-8 hover-scale cursor-pointer group">
-                    <i data-lucide="mic" class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Entrevista institucional</h3>
-                    <p class="text-gray-400">Conte sua história e fortaleça sua marca</p>
+
+                <div class="glass rounded-3xl p-8 hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 gradient-gold rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="mic" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Entrevista Exclusiva</h3>
+                    <p class="text-gray-400">Conte sua história em vídeo para nosso canal no YouTube</p>
                 </div>
-                <div class="glass rounded-3xl p-8 hover-scale cursor-pointer group">
-                    <i data-lucide="share-2" class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Divulgação nas redes sociais</h3>
-                    <p class="text-gray-400">Alcance milhares de pessoas</p>
+
+                <div class="glass rounded-3xl p-8 hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 gradient-gold rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="share-2" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Redes Sociais</h3>
+                    <p class="text-gray-400">Divulgação para 99.5K seguidores no Instagram</p>
                 </div>
-                <div class="glass rounded-3xl p-8 hover-scale cursor-pointer group">
-                    <i data-lucide="file-text" class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Matéria comercial</h3>
-                    <p class="text-gray-400">Reportagens completas sobre seu negócio</p>
+
+                <div class="glass rounded-3xl p-8 hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 gradient-gold rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="file-text" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Reportagem Completa</h3>
+                    <p class="text-gray-400">Matéria institucional sobre seu negócio</p>
                 </div>
-                <div class="glass rounded-3xl p-8 hover-scale cursor-pointer group">
-                    <i data-lucide="megaphone" class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Campanhas e patrocínios</h3>
-                    <p class="text-gray-400">Ações promocionais estratégicas</p>
+
+                <div class="glass rounded-3xl p-8 hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 gradient-gold rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="megaphone" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Campanhas</h3>
+                    <p class="text-gray-400">Ações promocionais estratégicas e patrocínios</p>
                 </div>
-                <div class="glass rounded-3xl p-8 hover-scale cursor-pointer group">
-                    <i data-lucide="book-open" class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Página no Anuário</h3>
-                    <p class="text-gray-400">Presença no anuário digital</p>
+
+                <div class="glass rounded-3xl p-8 hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 gradient-gold rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="book" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Anuário 2026</h3>
+                    <p class="text-gray-400">Presença no Anuário Brasileiro de Brasília</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 gradient-gold opacity-10"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="glass-gold rounded-3xl p-12 lg:p-20 text-center">
+                <h2 class="text-4xl lg:text-6xl font-serif font-bold mb-6">
+                    Pronto para elevar sua marca?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Junte-se às centenas de empresas que já construíram autoridade 
+                    com a TV Voz de Brasília
+                </p>
+                <a href="https://wa.me/5561999812341" target="_blank" 
+                   class="inline-flex items-center gap-3 gradient-gold text-primary px-10 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:shadow-yellow-500/30 transition animate-pulse-gold">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    Falar no WhatsApp agora
+                </a>
+                <p class="mt-6 text-gray-400">(61) 99981-2341</p>
             </div>
         </div>
     </section>
@@ -230,99 +413,86 @@
     <!-- Contact Form -->
     <section id="contato" class="py-20 px-6">
         <div class="container mx-auto max-w-4xl">
-            <div class="glass rounded-3xl p-8 md:p-12">
-                <h2 class="text-4xl font-bold text-center mb-4">Escolha como sua empresa quer aparecer na TV Voz</h2>
-                <p class="text-center text-gray-400 mb-8">Preencha as informações e envie seu interesse diretamente pelo WhatsApp</p>
+            <div class="glass rounded-3xl p-8 lg:p-12 border border-white/10">
+                <h2 class="text-4xl font-serif font-bold text-center mb-4">
+                    Envie seu interesse
+                </h2>
+                <p class="text-center text-gray-400 mb-8">
+                    Preencha o formulário e receba uma proposta personalizada
+                </p>
                 
                 <form id="contactForm" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block mb-2 font-semibold">Seu nome</label>
+                            <label class="block mb-2 font-semibold text-sm">Seu nome</label>
                             <input type="text" id="nome" required 
-                                   class="w-full px-4 py-3 rounded-xl bg-secondary border border-gray-600 focus:border-accent focus:outline-none transition">
+                                   class="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-white/10 focus:border-accent focus:outline-none transition">
                         </div>
                         <div>
-                            <label class="block mb-2 font-semibold">Nome da empresa</label>
+                            <label class="block mb-2 font-semibold text-sm">Nome da empresa</label>
                             <input type="text" id="empresa" required 
-                                   class="w-full px-4 py-3 rounded-xl bg-secondary border border-gray-600 focus:border-accent focus:outline-none transition">
+                                   class="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-white/10 focus:border-accent focus:outline-none transition">
                         </div>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block mb-2 font-semibold">WhatsApp</label>
+                            <label class="block mb-2 font-semibold text-sm">WhatsApp</label>
                             <input type="tel" id="whatsapp" placeholder="(61) 99999-9999" required 
-                                   class="w-full px-4 py-3 rounded-xl bg-secondary border border-gray-600 focus:border-accent focus:outline-none transition">
+                                   class="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-white/10 focus:border-accent focus:outline-none transition">
                         </div>
                         <div>
-                            <label class="block mb-2 font-semibold">Instagram</label>
+                            <label class="block mb-2 font-semibold text-sm">Instagram</label>
                             <input type="text" id="instagram" 
-                                   class="w-full px-4 py-3 rounded-xl bg-secondary border border-gray-600 focus:border-accent focus:outline-none transition">
+                                   class="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-white/10 focus:border-accent focus:outline-none transition">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block mb-2 font-semibold">Segmento da empresa</label>
+                        <label class="block mb-2 font-semibold text-sm">Segmento</label>
                         <select id="segmento" 
-                                class="w-full px-4 py-3 rounded-xl bg-secondary border border-gray-600 focus:border-accent focus:outline-none transition">
+                                class="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-white/10 focus:border-accent focus:outline-none transition">
                             <option value="">Selecione...</option>
                             <option>Saúde e estética</option>
                             <option>Moda e beleza</option>
                             <option>Restaurantes e gastronomia</option>
                             <option>Educação e cursos</option>
-                            <option>Imobiliário e construção</option>
-                            <option>Direito e advocacia</option>
-                            <option>Política/autoridade pública</option>
-                            <option>Eventos e entretenimento</option>
-                            <option>Turismo e hotelaria</option>
-                            <option>Comércio local</option>
-                            <option>Serviços automotivos</option>
-                            <option>Tecnologia e inovação</option>
-                            <option>Projetos sociais/ONG</option>
+                            <option>Imobiliário</option>
+                            <option>Direito</option>
+                            <option>Política</option>
+                            <option>Eventos</option>
+                            <option>Turismo</option>
+                            <option>Comércio</option>
+                            <option>Tecnologia</option>
+                            <option>Projetos sociais</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block mb-4 font-semibold">O que deseja divulgar?</label>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
+                        <label class="block mb-4 font-semibold text-sm">O que deseja divulgar?</label>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary/30 cursor-pointer hover:bg-secondary/50 transition">
                                 <input type="checkbox" name="divulgacao" value="Minha empresa" class="w-5 h-5 accent-accent">
                                 <span>Minha empresa</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Um produto" class="w-5 h-5 accent-accent">
-                                <span>Um produto</span>
+                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary/30 cursor-pointer hover:bg-secondary/50 transition">
+                                <input type="checkbox" name="divulgacao" value="Produto" class="w-5 h-5 accent-accent">
+                                <span>Produto</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Um serviço" class="w-5 h-5 accent-accent">
-                                <span>Um serviço</span>
+                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary/30 cursor-pointer hover:bg-secondary/50 transition">
+                                <input type="checkbox" name="divulgacao" value="Serviço" class="w-5 h-5 accent-accent">
+                                <span>Serviço</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Um evento" class="w-5 h-5 accent-accent">
-                                <span>Um evento</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Uma inauguração" class="w-5 h-5 accent-accent">
-                                <span>Uma inauguração</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Uma promoção" class="w-5 h-5 accent-accent">
-                                <span>Uma promoção</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Uma entrevista" class="w-5 h-5 accent-accent">
-                                <span>Uma entrevista</span>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary cursor-pointer hover:bg-secondary/80 transition">
-                                <input type="checkbox" name="divulgacao" value="Uma autoridade/personalidade" class="w-5 h-5 accent-accent">
-                                <span>Uma autoridade/personalidade</span>
+                            <label class="flex items-center gap-3 p-4 rounded-xl bg-secondary/30 cursor-pointer hover:bg-secondary/50 transition">
+                                <input type="checkbox" name="divulgacao" value="Evento" class="w-5 h-5 accent-accent">
+                                <span>Evento</span>
                             </label>
                         </div>
                     </div>
 
                     <button type="submit" 
-                            class="w-full bg-accent hover:bg-accent-hover text-primary py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2">
-                        Enviar meu interesse pelo WhatsApp
+                            class="w-full gradient-gold text-primary py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-yellow-500/30">
+                        Enviar pelo WhatsApp
                         <i data-lucide="send" class="w-5 h-5"></i>
                     </button>
                 </form>
@@ -331,85 +501,89 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 py-12 px-6">
+    <footer class="border-t border-white/10 py-12 px-6">
         <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center space-x-2">
-                    <i data-lucide="tv" class="w-8 h-8 text-accent"></i>
-                    <span class="text-xl font-bold">TV VOZ IA</span>
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-gold rounded-lg flex items-center justify-center">
+                        <i data-lucide="tv" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
+                        <p class="text-xs text-gray-400">40 anos de credibilidade</p>
+                    </div>
                 </div>
+                
                 <div class="flex items-center gap-6">
-                    <a href="https://wa.me/5561999812341" target="_blank" class="flex items-center gap-2 hover:text-accent transition">
-                        <i data-lucide="phone" class="w-5 h-5"></i>
-                        (61) 99981-2341
+                    <a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="hover:text-accent transition">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
                     </a>
-                    <span class="text-gray-400">Brasília - DF</span>
+                    <a href="https://youtube.com/@tvvozdebrasilia" target="_blank" class="hover:text-accent transition">
+                        <i data-lucide="youtube" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://wa.me/5561999812341" target="_blank" class="hover:text-accent transition">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </a>
+                </div>
+
+                <div class="text-center lg:text-right">
+                    <p class="text-accent font-semibold">(61) 99981-2341</p>
+                    <p class="text-sm text-gray-400">Brasília - DF</p>
                 </div>
             </div>
-            <div class="text-center mt-8 text-gray-400 text-sm">
-                © 2024 TV Voz IA. Todos os direitos reservados.
+            <div class="text-center mt-8 text-gray-500 text-sm">
+                © 2024 TV Voz de Brasília. Todos os direitos reservados.
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/5561999812341" target="_blank" 
-       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition hover:scale-110 z-50">
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition hover:scale-110 z-50 animate-pulse-gold">
         <i data-lucide="message-circle" class="w-8 h-8"></i>
     </a>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
 
-        // Mobile menu toggle
         function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // Scroll to contact
         function scrollToContact() {
             document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Counter animation
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+        const observerOptions = { threshold: 0.5 };
 
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = target / speed;
-
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 20);
-                } else {
-                    counter.innerText = target + (target > 100 ? ' mil' : target > 10 ? '+' : '');
-                }
-            });
-        };
-
-        // Intersection Observer for counters
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
+        const animateCounters = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
+                    const counter = entry.target;
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target + (target > 100 ? (target === 99.5 ? 'K' : 'M+') : '+');
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                    }, 16);
+
+                    observer.unobserve(counter);
                 }
             });
-        }, observerOptions);
+        };
 
-        const statsSection = document.getElementById('estatisticas');
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
+        const observer = new IntersectionObserver(animateCounters, observerOptions);
+        counters.forEach(counter => observer.observe(counter));
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -424,15 +598,16 @@
             const divulgacaoCheckboxes = document.querySelectorAll('input[name="divulgacao"]:checked');
             const divulgacao = Array.from(divulgacaoCheckboxes).map(cb => cb.value).join(', ');
             
-            const message = Olá! Meu nome é ${nome}, da empresa ${empresa}.%0A%0A +
+            const message = Olá! Vim pelo site da TV Voz de Brasília!%0A%0A +
+                           👤 Nome: ${nome}%0A +
+                           🏢 Empresa: ${empresa}%0A +
                            📱 WhatsApp: ${whatsapp}%0A +
                            📷 Instagram: ${instagram || 'Não informado'}%0A +
-                           🏢 Segmento: ${segmento}%0A +
-                           📢 Desejo divulgar: ${divulgacao}%0A%0A +
-                           Gostaria de saber mais sobre como aparecer na TV Voz!;
+                           📊 Segmento: ${segmento}%0A +
+                           📢 Interesses: ${divulgacao}%0A%0A +
+                           Gostaria de saber mais sobre divulgação!;
             
-            const whatsappURL = https://wa.me/5561999812341?text=${message};
-            window.open(whatsappURL, '_blank');
+            window.open(https://wa.me/5561999812341?text=${message}, '_blank');
         });
 
         // Phone mask
