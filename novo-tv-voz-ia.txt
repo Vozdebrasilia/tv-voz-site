@@ -1,0 +1,52 @@
+Crie site institucional moderno e responsivo para TV Voz de Brasília.
+
+*CORES:*
+- Fundo: Gradiente azul marinho (#0a0e27) a azul petróleo (#1a1f3a)
+- Destaque: Dourado (#fbbf24)
+- Cards: Azul com efeito glassmorphism (transparência + blur)
+- Texto: Branco e cinza claro
+
+*ESTRUTURA:*
+
+1. *HEADER FIXO:* Logo TV VOZ IA | Menu: Início, Sobre, Serviços, Contato | Botão dourado "Quero Divulgar"
+
+2. *HERO SECTION:* 
+   - Título: "A maior vitrine empresarial de Brasília"
+   - Subtítulo: "140 mil seguidores, 160 milhões de interações mensais"
+   - Botões: "Quero divulgar minha empresa" (dourado) | "Receber mídia kit" (outline)
+
+3. *ESTATÍSTICAS (4 cards):*
+   - +140 mil seguidores
+   - +160 milhões interações/mês
+   - +500 entrevistas
+   - +40 anos atuação
+
+4. *SERVIÇOS (6 cards):*
+   - Logo em destaque
+   - Entrevista institucional
+   - Divulgação redes sociais
+   - Matéria comercial
+   - Campanhas e patrocínios
+   - Página no Anuário
+
+5. *FORMULÁRIO CAPTAÇÃO:*
+   - Campos: Nome, Empresa, WhatsApp, Instagram, Segmento
+   - Checkboxes: O que deseja divulgar (empresa, produto, serviço, evento, etc.)
+   - Botão: "Enviar interesse pelo WhatsApp" → Link: https://wa.me/5561999812341
+
+6. *FOOTER:* 
+   - WhatsApp: (61) 99981-2341
+   - Brasília/DF
+
+*FUNCIONALIDADES:*
+- Responsivo mobile-first
+- Animações suaves (fade-in, hover)
+- Glassmorphism nos cards
+- Botão WhatsApp flutuante
+- Integração WhatsApp API
+- Ícones modernos (Lucide ou Heroicons)
+- Fonte: Inter ou Poppins
+
+*TECNOLOGIAS:* React/Next.js + Tailwind CSS + Framer Motion
+
+*WHATSAPP:* 61 99981-2341
