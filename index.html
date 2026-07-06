@@ -3,148 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Voz de Brasília - 40 Anos de Autoridade</title>
+    <title>TV Voz de Brasília</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%);
-            color: white;
-            overflow-x: hidden;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-gold {
-            background: rgba(251, 191, 36, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 50%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .gradient-gold {
-            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%);
-        }
-        .hover-lift {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fadeInUp 1s ease-out; }
-        .hero-pattern {
-            background-image: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
-        }
-    </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-900 text-white">
 
-    <header class="fixed w-full top-0 z-50 glass border-b border-white/10">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 gradient-gold rounded-xl flex items-center justify-center">
-                        <i data-lucide="tv" class="w-7 h-7 text-primary"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-xl lg:text-2xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
-                        <p class="text-xs text-accent tracking-widest">40 ANOS DE HISTÓRIA</p>
-                    </div>
-                </div>
-                <div class="hidden lg:flex items-center space-x-8">
-                    <a href="#inicio" class="text-sm font-medium hover:text-accent">Início</a>
-                    <a href="#autoridade" class="text-sm font-medium hover:text-accent">Autoridade</a>
-                    <a href="#entrevistas" class="text-sm font-medium hover:text-accent">Entrevistas</a>
-                    <a href="#numeros" class="text-sm font-medium hover:text-accent">Números</a>
-                    <a href="#contato" class="gradient-gold text-primary px-6 py-2 rounded-full font-semibold text-sm">Quero Divulgar</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <section id="inicio" class="min-h-screen flex items-center pt-20 hero-pattern">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="inline-flex items-center gap-2 glass-gold px-4 py-2 rounded-full mb-6">
-                    <i data-lucide="award" class="w-5 h-5 text-accent"></i>
-                    <span class="text-sm font-semibold">40 anos construindo autoridade</span>
-                </div>
-                <h1 class="text-5xl lg:text-7xl font-serif font-black leading-tight mb-6">
-                    A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
-                </h1>
-                <p class="text-xl text-gray-300 mb-8">
-                    Mais de <span class="text-accent font-semibold">500 entrevistas</span> no YouTube, 
-                    quase <span class="text-accent font-semibold">100 mil seguidores</span> no Instagram 
-                    e <span class="text-accent font-semibold">160 milhões</span> de interações mensais.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <a href="https://wa.me/5561999812341" target="_blank" 
-                       class="gradient-gold text-primary px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition">
-                        Quero divulgar minha empresa
-                    </a>
-                    <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
-                            class="glass border border-accent/50 text-accent px-8 py-4 rounded-full font-bold text-lg">
-                        Receber mídia kit
-                    </button>
-                </div>
-            </div>
+<nav class="fixed top-0 w-full bg-gray-900/90 p-4">
+    <div class="container mx-auto flex justify-between">
+        <h1 class="text-2xl font-bold text-yellow-500">TV VOZ DE BRASÍLIA</h1>
+        <div class="space-x-4">
+            <a href="#inicio" class="hover:text-yellow-500">Início</a>
+            <a href="#categorias" class="hover:text-yellow-500">Categorias</a>
+            <a href="tv-ao-vivo.html" class="text-yellow-500 font-bold">TV Ao Vivo</a>
         </div>
-    </section>
+    </div>
+</nav>
 
-    <section id="autoridade" class="py-20 px-6">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif font-bold mb-4">Autoridade Comprovada</h2>
-                <p class="text-gray-400">40 anos conectando Brasília ao Brasil e ao Mundo</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div class="glass rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-gold rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="calendar" class="w-8 h-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">40 Anos</h3>
-                    <p class="text-gray-400">De história e credibilidade</p>
-                </div>
-                <div class="glass rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-gold rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="video" class="w-8 h-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">500+ Entrevistas</h3>
-                    <p class="text-gray-400">No YouTube</p>
-                </div>
-                <div class="glass rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 gradient-gold rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="users" class="w-8 h-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">160 Milhões</h3>
-                    <p class="text-gray-400">De interações/mês</p>
-                </div>
-            </div>
+<section id="inicio" class="min-h-screen flex items-center justify-center pt-20">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+            A maior <span class="text-yellow-500">vitrine empresarial</span> de Brasília
+        </h1>
+        <p class="text-xl text-gray-300 mb-8">40 anos de história</p>
+    </div>
+</section>
+
+<section id="categorias" class="py-20 px-6">
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12">Assista por Categoria</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <!-- EMPRESARIAL - DESTAQUE -->
+            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-yellow-500/20 border-4 border-yellow-500 hover:scale-105 transition">
+                <div class="text-5xl mb-4">🏢</div>
+                <h3 class="text-2xl font-bold text-yellow-400 mb-2">EMPRESARIAL</h3>
+                <p class="text-gray-300">Entrevistas com empresários e CEOs</p>
+                <button class="mt-4 px-6 py-2 bg-yellow-500 text-gray-900 rounded-full font-bold">
+                    Assistir →
+                </button>
+            </a>
+
+            <!-- POLÍTICA -->
+            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-gray-800 border-2 border-gray-600 hover:border-blue-500 hover:scale-105 transition">
+                <div class="text-5xl mb-4">🏛️</div>
+                <h3 class="text-2xl font-bold mb-2">Política</h3>
+                <p class="text-gray-300">Deputados, senadores e autoridades</p>
+                <button class="mt-4 px-6 py-2 bg-blue-600 rounded-full font-bold">
+                    Assistir →
+                </button>
+            </a>
+
+            <!-- INTERNACIONAL -->
+            <a href="tv-ao-vivo.html" class="block p-8 rounded-2xl bg-gray-800 border-2 border-gray-600 hover:border-purple-500 hover:scale-105 transition">
+                <div class="text-5xl mb-4">🌍</div>
+                <h3 class="text-2xl font-bold mb-2">Internacional</h3>
+                <p class="text-gray-300">Embaixadores e representantes</p>
+                <button class="mt-4 px-6 py-2 bg-purple-600 rounded-full font-bold">
+                    Assistir 🌐 →
+                </button>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
