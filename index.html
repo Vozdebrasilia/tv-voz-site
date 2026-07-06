@@ -145,7 +145,7 @@
         </nav>
     </header>
 
-    <!-- Hero Section com Destaque 40 Anos -->
+   <!-- Hero Section com TV Ao Vivo -->
     <section id="inicio" class="relative min-h-screen flex items-center pt-20 hero-pattern">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
         
@@ -195,26 +195,31 @@
                                 <i data-lucide="youtube" class="w-5 h-5"></i>
                                 <span class="text-sm font-semibold">500+ entrevistas</span>
                             </a>
-                            <div class="glass px-4 py-2 rounded-full flex items-center gap-2">
-                                <i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i>
-                                <span class="text-sm font-semibold">170M+ interações/mês</span>
-                            </div>
                         </div>
                     </div>
 
-                    <div class="hidden lg:block animate-float">
+                    <!-- TV AO VIVO - Substituindo a caixa amarela -->
+                    <div class="hidden lg:block">
                         <div class="relative">
                             <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
-                            <div class="relative glass rounded-3xl p-8 border border-white/10">
-                                <div class="aspect-square gradient-gold rounded-2xl flex items-center justify-center mb-6">
-                                    <i data-lucide="trophy" class="w-32 h-32 text-gray-900"></i>
+                            <div class="relative glass rounded-3xl p-6 border-4 border-yellow-500">
+                                <!-- Player YouTube -->
+                                <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/live_stream?channel=UCtvvozdebrasilia" 
+                                        title="TV Ao Vivo"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen
+                                        class="w-full h-full">
+                                    </iframe>
                                 </div>
                                 <div class="text-center">
-                                    <h3 class="text-2xl font-serif font-bold mb-2">Autoridade Comprovada</h3>
-                                    <p class="text-gray-300">40 anos conectando Brasília ao Brasil e ao Mundo</p>
-                                    <div class="mt-4 flex justify-center gap-2">
-                                        <span class="premio-badge">Top of Millenium 10ª</span>
+                                    <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full mb-2 animate-pulse">
+                                        <span class="w-2 h-2 bg-white rounded-full"></span>
+                                        <span class="font-bold text-sm">AO VIVO</span>
                                     </div>
+                                    <p class="text-gray-300 text-sm mt-2">Assista agora na TV Voz de Brasília</p>
                                 </div>
                             </div>
                         </div>
