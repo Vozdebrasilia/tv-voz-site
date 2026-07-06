@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Voz de Brasília - TV Ao Vivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .tv-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .video-player {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(251, 191, 36, 0.3);
+        }
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .now-playing {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .playlist {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .playlist-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 12px;
+        }
+        .playlist-item:hover {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: rgba(251, 191, 36, 0.5);
+            transform: translateX(4px);
+        }
+        .playlist-item.active {
+            background: rgba(251, 191, 36, 0.2);
+            border-color: rgba(251, 191, 36, 0.8);
+        }
+        .playlist-item img {
+            width: 120px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .playlist-item-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .playlist-item-info p {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ef4444;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fbbf24;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:hover {
+            background: rgba(251, 191, 36, 0.3);
+            transform: translateY(-2px);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .logo-text p {
+            color: #fbbf24;
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tv-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0a0e27" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                        <polyline points="17 2 12 7 7 2"></polyline>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>TV VOZ DE BRASÍLIA</h1>
+                    <p>40 ANOS DE HISTÓRIA</p>
+                </div>
+            </div>
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                AO VIVO
+            </div>
+        </div>
+
+        <!-- Video Player -->
+        <div class="video-player">
+            <div id="player"></div>
+        </div>
+
+        <!-- Now Playing -->
+        <div class="now-playing">
+            <h2 class="text-xl font-bold mb-2">📺 Assistindo agora:</h2>
+            <p id="currentVideo" class="text-lg">Carregando...</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn" onclick="playPrevious()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                    <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"></line>
+                </svg>
+                Anterior
+            </button>
+            <button class="btn" onclick="togglePlay()">
+                <svg id="playIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Pausar
+            </button>
+            <button class="btn" onclick="playNext()">
+                Próximo
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                    <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"></line>
+                </svg>
+            </button>
+            <button class="btn" onclick="toggleShuffle()">
+                Embaralhar
+            </button>
+            <a href="/" class="btn">
+                Voltar ao site
+            </a>
+        </div>
+
+        <!-- Playlist -->
+        <div class="playlist" id="playlist"></div>
+    </div>
+
+    <script>
+        // Lista de vídeos do canal (você pode adicionar mais)
+        const videos = [
+            { id: 'tB84ssWNLYg', title: 'Entrevista - Thiago Manzoni' },
+            { id: '5QWMLQjrV4c', title: 'Entrevista - Instituto de Medicina' },
+            { id: 'mFX7ZEVbjrI', title: 'Entrevista - Igor Popov' },
+            { id: 'SWgHKS_i1UM', title: 'Entrevista - Representante ONU' },
+            { id: 'b5t8TEEJdiU', title: 'Entrevista Especial' },
+            { id: 'rkLjp5Loue8', title: 'Entrevista Exclusiva' },
+            { id: '8FBjQfoH8o8', title: 'Entrevista - Personalidade' },
+            { id: 'rNem0r8fK_s', title: 'Entrevista - Rôney Nemer' },
+            { id: 'kL9dNem1r8f', title: 'Entrevista - Embaixadora do Egito' },
+            { id: 'mN2pQ3rT4uV', title: 'Entrevista - Senador Dr. Hiran' },
+            { id: 'wX5yZ6aB7cD', title: 'Entrevista - Augusto Carvalho' },
+            { id: 'eF8gH9iJ0kL', title: 'Entrevista - Geraldo Magela' }
+        ];
+
+        let currentIndex = 0;
+        let player;
+        let isShuffle = false;
+
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: videos[currentIndex].id,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 1,
+                    'rel': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            renderPlaylist();
+            updateNowPlaying();
+        }
+
+        function onPlayerReady(event) {
+            player.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                playNext();
+            }
+            updateNowPlaying();
+        }
+
+        function renderPlaylist() {
+            const playlistEl = document.getElementById('playlist');
+            playlistEl.innerHTML = videos.map((video, index) => `
+                <div class="playlist-item ${index === currentIndex ? 'active' : ''}" onclick="playVideo(${index})">
+                    <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}">
+                    <div class="playlist-item-info">
+                        <h4>${video.title}</h4>
+                        <p>${index === currentIndex ? '▶️ Tocando agora' : 'Assistir'}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateNowPlaying() {
+            document.getElementById('currentVideo').textContent = videos[currentIndex].title;
+            renderPlaylist();
+        }
+
+        function playVideo(index) {
+            currentIndex = index;
+            player.loadVideoById(videos[currentIndex].id);
+            updateNowPlaying();
+        }
+
+        function playNext() {
+            if (isShuffle) {
+                currentIndex = Math.floor(Math.random() * videos.length);
+            } else {
+                currentIndex = (currentIndex + 1) % videos.length;
+            }
+            playVideo(currentIndex);
+        }
+
+        function playPrevious() {
+            currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+            playVideo(currentIndex);
+        }
+
+        function togglePlay() {
+            const state = player.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                document.querySelector('#playIcon').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+            } else {
+                player.playVideo();
+                document.querySelector('#playIcon').innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+            }
+        }
+
+        function toggleShuffle() {
+            isShuffle = !isShuffle;
+            event.target.style.background = isShuffle ? 'rgba(251, 191, 36, 0.4)' : 'rgba(251, 191, 36, 0.2)';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlay();
+            } else if (e.code === 'ArrowRight') {
+                playNext();
+            } else if (e.code === 'ArrowLeft') {
+                playPrevious();
+            }
+        });
+    </script>
+</body>
+</html> 
