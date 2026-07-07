@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { scroll-behavior: smooth; }
+        * { scroll-behavior: smooth; margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%);
@@ -42,7 +42,6 @@
             box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
         }
         
-        /* Animação 40 Anos */
         @keyframes celebrate40 {
             0%, 100% { transform: scale(1) rotate(0deg); }
             25% { transform: scale(1.1) rotate(-5deg); }
@@ -86,7 +85,6 @@
             transform: translateY(-5px);
         }
         
-        /* Parceiros Section */
         .parceiro-card {
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
             border: 2px solid rgba(251, 191, 36, 0.4);
@@ -108,22 +106,45 @@
             display: inline-block;
             margin: 5px;
         }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1429 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .video-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(251, 191, 36, 0.3);
+            border-top: 4px solid #fbbf24;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
+    <!-- Header com Logo Única -->
     <header class="fixed w-full top-0 z-50 glass border-b border-white/10">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <!-- Logo TV Voz de Brasília -->
-                    <div class="flex items-center space-x-3">
-                        <img src="logo-tv-voz.png" alt="TV Voz de Brasília" class="h-16 w-auto">
-                        <div>
-                            <h1 class="text-xl lg:text-2xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
-                            <p class="text-xs text-yellow-500 tracking-widest">40 ANOS DE HISTÓRIA</p>
-                        </div>
+                    <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-16 w-auto">
+                    <div class="hidden md:block">
+                        <h1 class="text-xl lg:text-2xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
+                        <p class="text-xs text-yellow-500 tracking-widest">40 ANOS DE HISTÓRIA</p>
                     </div>
                 </div>
                 
@@ -132,6 +153,7 @@
                     <a href="#categorias" class="text-sm font-medium hover:text-yellow-500 transition">Categorias</a>
                     <a href="#parceiros" class="text-sm font-medium hover:text-yellow-500 transition">Parceiros</a>
                     <a href="#numeros" class="text-sm font-medium hover:text-yellow-500 transition">Números</a>
+                    <a href="https://www.institutobraziljust.org" target="_blank" class="text-sm font-medium hover:text-yellow-500 transition text-purple-400">IBJ</a>
                     <a href="#recomecar" class="text-sm font-medium hover:text-yellow-500 transition text-purple-400">Recomeçar</a>
                     <a href="#contato" class="gradient-gold text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition">
                         Quero Divulgar
@@ -145,8 +167,8 @@
         </nav>
     </header>
 
-   <!-- Hero Section com TV Ao Vivo -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-20 hero-pattern">
+    <!-- Hero Section com TV Ao Vivo -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 hero-pattern">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
         
         <div class="container mx-auto px-6 relative z-10">
@@ -162,11 +184,11 @@
                             </div>
                         </div>
                         
-                        <h1 class="text-5xl lg:text-7xl font-serif font-black leading-tight mb-6">
+                        <h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">
                             A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
                         </h1>
                         
-                        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        <p class="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">
                             Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, 
                             mais de <span class="text-yellow-500 font-semibold">150 mil seguidores</span> no Instagram 
                             e mais de <span class="text-yellow-500 font-semibold">170 milhões</span> de interações mensais.
@@ -195,29 +217,39 @@
                                 <i data-lucide="youtube" class="w-5 h-5"></i>
                                 <span class="text-sm font-semibold">500+ entrevistas</span>
                             </a>
+                            <div class="glass px-4 py-2 rounded-full flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i>
+                                <span class="text-sm font-semibold">170M+ interações/mês</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- TV AO VIVO - Substituindo a caixa amarela -->
+                    <!-- TV AO VIVO com Thumbnail -->
                     <div class="hidden lg:block">
                         <div class="relative">
                             <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
                             <div class="relative glass rounded-3xl p-6 border-4 border-yellow-500">
-                                <!-- Player YouTube -->
-                                <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black">
+                                <!-- Player com Thumbnail -->
+                                <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black relative video-container">
+                                    <!-- Thumbnail inicial -->
+                                    <div class="video-placeholder absolute inset-0" id="videoPlaceholder">
+                                        <img src="https://img.youtube.com/vi/5QWMLQjrV4c/maxresdefault.jpg" alt="Entrevista" class="w-full h-full object-cover">
+                                        <div class="loading-spinner"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <div class="w-20 h-20 gradient-gold rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition" onclick="loadVideo()">
+                                                <i data-lucide="play" class="w-10 h-10 text-gray-900 ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Iframe do YouTube (carrega depois) -->
                                     <iframe 
-    src="https://www.youtube.com/embed/5QWMLQjrV4c?autoplay=1&mute=1" 
-    title="TV Ao Vivo"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen
-    class="w-full h-full">
-</iframe>
+                                        id="youtubePlayer"
+                                        src=""
                                         title="TV Ao Vivo"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                         allowfullscreen
-                                        class="w-full h-full">
+                                        class="w-full h-full hidden">
                                     </iframe>
                                 </div>
                                 <div class="text-center">
@@ -225,7 +257,8 @@
                                         <span class="w-2 h-2 bg-white rounded-full"></span>
                                         <span class="font-bold text-sm">AO VIVO</span>
                                     </div>
-                                    <p class="text-gray-300 text-sm mt-2">Assista agora na TV Voz de Brasília</p>
+                                    <p class="text-gray-400 text-xs mt-2">Entrevista realizada em 07 de Janeiro de 2026</p>
+                                    <p class="text-gray-300 text-sm">Assista agora na TV Voz de Brasília</p>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +268,7 @@
         </div>
     </section>
 
-    <!-- Categorias Section com Boxes -->
+    <!-- Categorias Section -->
     <section id="categorias" class="py-20 px-6 bg-gray-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-12">
@@ -252,7 +285,6 @@
                     <h3 class="text-3xl font-bold text-yellow-400 mb-3 text-center">EMPRESARIAL</h3>
                     <p class="text-gray-300 mb-6 text-center">Entrevistas com empresários e CEOs</p>
                     
-                    <!-- Miniaturas -->
                     <div class="space-y-3 mb-6">
                         <a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
                             <div class="aspect-video relative">
@@ -265,6 +297,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Instituto de Medicina</h4>
+                                <p class="text-xs text-gray-400">07/01/2026</p>
                             </div>
                         </a>
                         <a href="https://youtu.be/b5t8TEEJdiU" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
@@ -278,6 +311,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Andrezza Bentes - Kumon</h4>
+                                <p class="text-xs text-gray-400">06/01/2026</p>
                             </div>
                         </a>
                         <a href="https://youtu.be/tB84ssWNLYg" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
@@ -291,6 +325,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Thiago Manzoni</h4>
+                                <p class="text-xs text-gray-400">05/01/2026</p>
                             </div>
                         </a>
                     </div>
@@ -306,7 +341,6 @@
                     <h3 class="text-3xl font-bold text-blue-400 mb-3 text-center">Política</h3>
                     <p class="text-gray-300 mb-2 text-center text-sm">Presidentes, Governadores, Ministros, Deputados, Senadores e Autoridades</p>
                     
-                    <!-- Miniaturas -->
                     <div class="space-y-3 mb-6 mt-4">
                         <a href="https://youtu.be/mFX7ZEVbjrI" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
                             <div class="aspect-video relative">
@@ -319,6 +353,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Igor Popov</h4>
+                                <p class="text-xs text-gray-400">04/01/2026</p>
                             </div>
                         </a>
                         <a href="https://youtu.be/rkLjp5Loue8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
@@ -332,6 +367,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Senador Dr. Hiran</h4>
+                                <p class="text-xs text-gray-400">03/01/2026</p>
                             </div>
                         </a>
                         <a href="https://youtu.be/SWgHKS_i1UM" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
@@ -345,6 +381,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Representante ONU</h4>
+                                <p class="text-xs text-gray-400">02/01/2026</p>
                             </div>
                         </a>
                     </div>
@@ -360,7 +397,6 @@
                     <h3 class="text-3xl font-bold text-purple-400 mb-3 text-center">Internacional</h3>
                     <p class="text-gray-300 mb-2 text-center text-sm">Embaixadores e Organismos Internacionais</p>
                     
-                    <!-- Miniaturas -->
                     <div class="space-y-3 mb-6 mt-4">
                         <a href="https://youtu.be/8FBjQfoH8o8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
                             <div class="aspect-video relative">
@@ -373,6 +409,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Embaixadora do Egito</h4>
+                                <p class="text-xs text-gray-400">01/01/2026</p>
                             </div>
                         </a>
                         <a href="https://youtu.be/AugustoCarvalho" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
@@ -386,6 +423,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Augusto Carvalho - ANABB</h4>
+                                <p class="text-xs text-gray-400">31/12/2025</p>
                             </div>
                         </a>
                         <a href="https://youtu.be/RepresentanteONU" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
@@ -399,6 +437,7 @@
                             </div>
                             <div class="p-3">
                                 <h4 class="font-semibold text-sm">Organismos Internacionais</h4>
+                                <p class="text-xs text-gray-400">30/12/2025</p>
                             </div>
                         </a>
                     </div>
@@ -425,7 +464,7 @@
                 <!-- Anuário Brasileiro -->
                 <div class="parceiro-card">
                     <div class="mb-4">
-                        <img src="capa-anuario-brasileiro.jpg" alt="Anuário Brasileiro 24ª Edição" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover">
+                        <img src="./capa-anuario.jpg" alt="Anuário Brasileiro 24ª Edição" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Anuário Brasileiro</h3>
                     <p class="text-gray-300 mb-4">24ª Edição Impressa</p>
@@ -474,10 +513,7 @@
                 <!-- Diploma Personalidade do Ano -->
                 <div class="parceiro-card">
                     <div class="mb-4">
-                        <div class="w-32 h-40 mx-auto bg-gradient-to-b from-yellow-200 to-yellow-400 rounded-lg flex items-center justify-center mb-4">
-                            <i data-lucide="award" class="w-16 h-16 text-gray-900"></i>
-                        </div>
-                        <span class="premio-badge">DIPLOMA</span>
+                        <img src="./diploma.jpg" alt="Diploma Personalidade do Ano" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Personalidade do Ano</h3>
                     <p class="text-gray-300 mb-4">Certificado de Excelência</p>
@@ -501,15 +537,15 @@
             <!-- Instituto Brazil Just -->
             <div class="max-w-4xl mx-auto">
                 <div class="glass-gold rounded-3xl p-12 text-center">
-                    <div class="flex items-center justify-center gap-6 mb-6">
-                        <img src="logo-ibj.png" alt="Instituto Brazil Just" class="h-20 w-auto">
-                        <div class="h-16 w-px bg-yellow-500"></div>
-                        <img src="logo-tv-voz.png" alt="TV Voz de Brasília" class="h-20 w-auto">
+                    <div class="flex items-center justify-center gap-6 mb-6 flex-wrap">
+                        <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-20 w-auto">
+                        <div class="h-16 w-px bg-yellow-500 hidden md:block"></div>
+                        <img src="./logo-ibj.png" alt="Instituto Brazil Just" class="h-20 w-auto">
                     </div>
                     <h3 class="text-3xl font-bold mb-4">Instituto Brazil Just</h3>
                     <p class="text-xl text-gray-300 mb-6">Oportunidade e Igualdade para Todos!</p>
                     <p class="text-gray-400 mb-8">Parceiro oficial da TV Voz de Brasília na promoção da justiça social e desenvolvimento sustentável</p>
-                    <a href="https://institutobraziljust.org" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition inline-flex items-center gap-2">
+                    <a href="https://www.institutobraziljust.org" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition inline-flex items-center gap-2">
                         Conheça o IBJ
                         <i data-lucide="external-link" class="w-5 h-5"></i>
                     </a>
@@ -659,7 +695,7 @@
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
                 <div class="flex items-center space-x-4">
-                    <img src="logo-tv-voz.png" alt="TV Voz de Brasília" class="h-12 w-auto">
+                    <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-12 w-auto">
                     <div>
                         <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
                         <p class="text-xs text-gray-400">40 anos de credibilidade</p>
@@ -667,7 +703,7 @@
                 </div>
                 
                 <div class="flex items-center gap-4">
-                    <img src="logo-ibj.png" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
+                    <img src="./logo-ibj.png" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
                 </div>
 
                 <div class="flex items-center gap-6">
@@ -683,7 +719,7 @@
                 </div>
             </div>
             <div class="text-center text-gray-500 text-sm">
-                © 2024 TV Voz de Brasília. Todos os direitos reservados. | Instituto Brazil Just - Oportunidade e Igualdade para Todos!
+                © 2026 TV Voz de Brasília. Todos os direitos reservados. | Instituto Brazil Just - Oportunidade e Igualdade para Todos!
             </div>
         </div>
     </footer>
@@ -698,11 +734,20 @@
         lucide.createIcons();
 
         function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
         }
 
         function scrollToContact() {
             document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function loadVideo() {
+            const iframe = document.getElementById('youtubePlayer');
+            const placeholder = document.getElementById('videoPlaceholder');
+            iframe.src = 'https://www.youtube.com/embed/5QWMLQjrV4c?autoplay=1';
+            iframe.classList.remove('hidden');
+            placeholder.classList.add('hidden');
         }
 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
