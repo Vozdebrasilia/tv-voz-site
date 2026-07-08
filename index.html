@@ -62,7 +62,7 @@
                               radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
         }
         .stat-card {
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            background: linear-gradient(135deg,="Vídeo" rgba(251, 191, 36, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
             border: 1px solid rgba(251, 191, 36, 0.2);
         }
         .categoria-box { transition: all 0.3s; }
@@ -70,7 +70,7 @@
         .premio-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
+            border-radius: class="w-full h-full object-cover 16px;
             padding: 30px;
             text-align: center;
             transition: all 0.3s;
@@ -88,6 +88,7 @@
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
+                                ">
                     <img src="./logo-tv-nova.jpg" alt="TV Voz de Brasília" class="h-16 w-auto bg-black rounded-lg p-1">
                 </div>
                 
@@ -115,90 +116,35 @@
                 <a href="#categorias" class="block py-2 hover:text-yellow-500">Categorias</a>
                 <a href="#premios" class="block py-2 hover:text-yellow-500">Prêmios</a>
                 <a href="anunciantes.html" class="block py-2 hover:text-yellow-500">Anunciantes</a>
-                <a href="#contato" class="block py-2 text-yellow-500">Quero Divulgar</a>
+                <a href="#contato" class="block py-2 text-yellow-500">Quero Divulgar<div class="absolute</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 hero-pattern">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-    <div class="text-center lg:text-left">
-        <!-- Selo 40 Anos Centralizado -->
-        <div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos justify-center">
-            <img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-32 w-32 rounded-full object-cover animate-40anos shadow-2xl">
-            <div>
-                <span class="text-3xl font-bold text-yellow-400">40 ANOS</span>
-                <p class="text-sm text-gray-300">Construindo autoridade e credibilidade</p>
-            </div>
-        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
         
-        <h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">
-            A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
-        </h1>
-        
-        <p class="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">
-            Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, 
-            mais de <span class="text-yellow-500 font-semibold">150 mil seguidores</span> no Instagram 
-            e mais de <span class="text-yellow-500 font-semibold">170 milhões</span> de interações mensais.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
-            <a href="https://wa.me/5561999812341" target="_blank" 
-               class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2">
-                Quero divulgar minha empresa
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
-            <button onclick="scrollToContact()" 
-                    class="glass border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500/10 px-8 py-4 rounded-full font-bold text-lg transition">
-                Receber mídia kit
-            </button>
-        </div>
-
-        <div class="flex flex-wrap gap-4 justify-center">
-            <a href="https://instagram.com/tvvozdebrasilia" target="_blank" 
-               class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
-                <i data-lucide="instagram" class="w-5 h-5"></i>
-                <span class="text-sm font-semibold">150K+ seguidores</span>
-            </a>
-            <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" 
-               class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
-                <i data-lucide="youtube" class="w-5 h-5"></i>
-                <span class="text-sm font-semibold">500+ entrevistas</span>
-            </a>
-            <div class="glass px-4 py-2 rounded-full flex items-center gap-2">
-                <i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i>
-                <span class="text-sm font-semibold">170M+ interações/mês</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- LADO DIREITO - VÍDEO -->
-    <div class="hidden lg:block">
-        <div class="relative">
-            <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
-            <div class="relative glass rounded-3xl p-6 border-4 border-yellow-500">
-                <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black relative">
-                    <img src="https://img.youtube.com/vi/5QWMLQjrV4c/maxresdefault.jpg" alt="Entrevista" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40">
-                        <a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="w-20 h-20 gradient-gold rounded-full flex items-center justify-center hover:scale-110 transition">
-                            <i data-lucide="play" class="w-10 h-10 text-gray-900 ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full mb-2 animate-pulse">
-                        <span class="w-2 h-2 bg-white rounded-full"></span>
-                        <span class="font-bold text-sm">AO VIVO</span>
-                    </div>
-                    <p class="text-gray-400 text-xs mt-2">Entrevista realizada em 07 de Janeiro de 2026</p>
-                    <p class="text-gray-300 text-sm">Assista agora na TV Voz de Brasília</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>                            Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, 
-                            mais de <span class="text-yellow-500 font-semibold">150 mil seguidores</span> no Instagram 
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left">
+                        <!-- Selo 40 Anos -->
+                        <div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos justify-center lg:justify-start">
+                            <img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-32 w-32 rounded-full object-cover animate-40anos shadow-2xl">
+                            <div>
+                                <span class="text-3xl font-bold text-yellow-400">40 ANOS</span>
+                                <p class="text-sm text-gray-300">Construindo autoridade e credibilidade</p>
+                            </div>
+                        </div>
+                        
+                        <h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">
+                            A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
+                        </h1>
+                        
+                        <p class="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">
+                            Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, 
+                            mais de <span class="text-yellow-5 inset-0 bg00 font-semibold">150 mil seguidores</span> no Instagram 
                             e mais de <span class="text-yellow-500 font-semibold">170 milhões</span> de interações mensais.
                         </p>
 
@@ -227,7 +173,7 @@
                             </a>
                             <div class="glass px-4 py-2 rounded-full flex items-center gap-2">
                                 <i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i>
-                                <span class="text-sm font-semibold">170M+ interações/mês</span>
+                                <span class="text-sm font-semibold">170M+ interações/mês</-black/50span>
                             </div>
                         </div>
                     </div>
@@ -255,10 +201,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> flex items-center justify
             </div>
         </div>
     </section>
+
     <!-- Categorias Section -->
     <section id="categorias" class="py-20 px-6 bg-gray-900/50">
         <div class="container mx-auto">
@@ -273,9 +220,8 @@
                 <!-- EMPRESARIAL -->
                 <div class="categoria-box glass-gold rounded-3xl p-8 border-4 border-yellow-500">
                     <div class="text-6xl mb-4 text-center">🏢</div>
-                    <h3 class="text-3xl font-bold text-yellow-400 mb-3 text-center">EMPRESARIAL</h3>
+                    <h3 class="text-3xl font-bold text-yellow-400 mb-3 text-center">EMP-center opacity-0RESARIAL</h3>
                     <p class="text-gray-300 mb-6 text-center">Entrevistas com empresários e CEOs</p>
-                    
                     <div class="space-y-3 mb-6">
                         <a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
                             <div class="aspect-video relative">
@@ -320,443 +266,749 @@
                             </div>
                         </a>
                     </div>
-                    
                     <a href="anunciantes.html" class="block w-full gradient-gold text-gray-900 text-center py-3 rounded-full font-bold hover:shadow-lg transition">
-                        Ver todos os anunciantes →
+ group-hover:opacity                        Ver todos os anunciantes →
                     </a>
                 </div>
 
                 <!-- POLÍTICA -->
                 <div class="categoria-box glass rounded-3xl p-8 border-4 border-blue-500">
-                    <div class="text-6xl mb-4 text-center">️</div>
+                    <div class="text-6xl mb-4 text-center">🏛️</div>
                     <h3 class="text-3xl font-bold text-blue-400 mb-3 text-center">Política</h3>
-                    <p class="text-gray-300 mb-2 text-center text-sm">Presidentes, Governadores, Ministros, Deputados, Senadores e Autoridades</p>
-                    
+                    <p class="text-gray-300 mb-2 text-center text-sm">Presidentes, Governadores, Ministros, Deputados, Senadores</p>
                     <div class="space-y-3 mb-6 mt-4">
                         <a href="https://youtu.be/mFX7ZEVbjrI" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
                             <div class="aspect-video relative">
                                 <img src="https://img.youtube.com/vi/mFX7ZEVbjrI/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100-100 transition">
+                                    transition">
+                                    <div class=" <div class="w-12w-12 h-12 h-12 bg-blue-6 bg-blue-600 rounded-full00 rounded-full flex items-center justify flex items-center justify-center">
+                                       -center">
+                                        <i data-l <i data-lucide="playucide="play" class="w" class="w-6 h--6 h-6 text-white ml6 text-white ml-1"></i-1"></i>
+                                    </>
                                     </div>
+                               div>
                                 </div>
+ </div>
+                            </div>                            </div>
+                            <div
+                            <div class="p- class="p-3">
+                               3">
+                                <h4 class <h4 class="font-semibold text="font-semibold text-sm">Igor-sm">Igor Popov</h Popov</h4>
+                               4>
+                                <p class=" <p class="text-xs text-graytext-xs text-gray-400-400">04/">04/01/201/2026</026</p>
+                           p>
                             </div>
-                            <div class="p-3">
-                                <h4 class="font-semibold text-sm">Igor Popov</h4>
-                                <p class="text-xs text-gray-400">04/01/2026</p>
-                            </div>
-                        </a>
-                        <a href="https://youtu.be/rkLjp5Loue8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
-                            <div class="aspect-video relative">
-                                <img src="https://img.youtube.com/vi/rkLjp5Loue8/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+ </div>
+                        </a>                        </a>
+                        <a
+                        <a href="https:// href="https://youtu.be/rkyoutu.be/rkLjp5LouLjp5Loue8" targete8" target="_blank" class="_blank" class="glass rounded-xl="glass rounded-xl overflow-hidden hover-l overflow-hidden hover-lift block group">ift block group">
+                            <div
+                            <div class="aspect-video class="aspect-video relative">
+                                relative">
+                                <img src=" <img src="https://img.youtubehttps://img.youtube.com/vi/r.com/vi/rkLjp5kLjp5Loue8/mLoue8/mqdefault.jpg"qdefault.jpg" alt="Vídeo alt="Vídeo" class="w" class="w-full h-full object-full h-full object-cover">
+                               -cover">
+                                <div class=" <div class="absolute inset-0absolute inset-0 bg-black/5 bg-black/50 flex items-center0 flex items-center justify-center opacity- justify-center opacity-0 group-hover:0 group-hover:opacity-10opacity-100 transition">
+0 transition">
+                                    <div class                                    <div class="w-1="w-12 h-12 h-12 bg-blue-2 bg-blue-600 rounded600 rounded-full flex items-center-full flex items-center justify-center">
+ justify-center">
+                                        <i data                                        <i data-lucide="-lucide="play" class="play" class="w-6 hw-6 h-6 text-white-6 text-white ml-1"></ ml-1"></i>
+                                   i>
                                     </div>
-                                </div>
+ </div>
+                                </div>                                </div>
+                            </div
                             </div>
-                            <div class="p-3">
-                                <h4 class="font-semibold text-sm">Senador Dr. Hiran</h4>
-                                <p class="text-xs text-gray-400">03/01/2026</p>
+                            >
+                            <div class="p<div class="p-3">
+-3">
+                                <h4                                <h4 class="font-semibold class="font-semibold text-sm">Sen text-sm">Senador Dr. Hador Dr. Hiran</h4iran</h4>
+                                >
+                                <p class="text<p class="text-xs text-gray--xs text-gray-400">400">03/003/01/201/2026</p26</p>
+                            </>
                             </div>
+                       div>
                         </a>
-                        <a href="https://youtu.be/SWgHKS_i1UM" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
-                            <div class="aspect-video relative">
-                                <img src="https://img.youtube.com/vi/SWgHKS_i1UM/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+ </a>
+                        <a href                        <a href="https://youtu="https://youtu.be/SWg.be/SWgHKS_i1HKS_i1UM" target="_UM" target="_blank" class="blank" class="glass rounded-xl overflowglass rounded-xl overflow-hidden hover-lift-hidden hover-lift block group">
+ block group">
+                            <div class                            <div class="aspect-video relative="aspect-video relative">
+                                ">
+                                <img src="https<img src="https://img.youtube.com://img.youtube.com/vi/SW/vi/SWgHKS_igHKS_i1UM/mq1UM/mqdefault.jpg" altdefault.jpg" alt="Vídeo"="Vídeo" class="w-full class="w-full h-full object-cover h-full object-cover">
+                                ">
+                                <div class="absolute<div class="absolute inset-0 bg inset-0 bg-black/50-black/50 flex items-center justify flex items-center justify-center opacity-0-center opacity-0 group-hover:opacity group-hover:opacity-100-100 transition">
+                                    transition">
+                                    <div class=" <div class="w-12w-12 h-12 h-12 bg-blue-600 rounded-full bg-blue-600 rounded-full flex items-center justify flex items-center justify-center">
+                                       -center">
+                                        <i data-l <i data-lucide="play" class="wucide="play" class="w-6 h--6 h-6 text-white ml6 text-white ml-1"></i-1"></i>
+                                    </>
                                     </div>
+                               div>
                                 </div>
+ </div>
+                            </div>                            </div>
+                            <div
+                            <div class="p- class="p-3">
+                               3">
+                                <h4 class <h4 class="font-semibold text="font-semibold text-sm">Representante-sm">Representante ONU</h4 ONU</h4>
+                                >
+                                <p class="text<p class="text-xs text-gray--xs text-gray-400">400">02/002/01/201/2026</p26</p>
+                            </>
                             </div>
-                            <div class="p-3">
-                                <h4 class="font-semibold text-sm">Representante ONU</h4>
-                                <p class="text-xs text-gray-400">02/01/2026</p>
-                            </div>
+                       div>
                         </a>
-                    </div>
-                    
-                    <a href="anunciantes.html" class="block w-full bg-blue-600 text-white text-center py-3 rounded-full font-bold hover:bg-blue-700 transition">
-                        Ver todos os anunciantes →
+ </a>
+                    </div>                    </div>
+                    <a
+                    <a href="anunc href="anunciantes.html"iantes.html" class="block w class="block w-full bg-blue--full bg-blue-600 text600 text-white text-center py-white text-center py-3 rounded-full-3 rounded-full font-bold hover:bg font-bold hover:bg-blue-70-blue-700 transition">
+0 transition">
+                        Ver todos os                        Ver todos os anunciantes → anunciantes →
+                    </a
                     </a>
+                </>
                 </div>
 
-                <!-- INTERNACIONAL -->
-                <div class="categoria-box glass rounded-3xl p-8 border-4 border-purple-500">
-                    <div class="text-6xl mb-4 text-center">🌍</div>
-                    <h3 class="text-3xl font-bold text-purple-400 mb-3 text-center">Internacional</h3>
-                    <p class="text-gray-300 mb-2 text-center text-sm">Embaixadores e Organismos Internacionais</p>
-                    
-                    <div class="space-y-3 mb-6 mt-4">
-                        <a href="https://youtu.be/8FBjQfoH8o8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
-                            <div class="aspect-video relative">
-                                <img src="https://img.youtube.com/vi/8FBjQfoH8o8/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+               div>
+
+                <!-- INTERNACIONAL <!-- INTERNACIONAL -->
+                 -->
+                <div class="categoria<div class="categoria-box glass rounded--box glass rounded-3xl p-3xl p-8 border-48 border-4 border-purple-5 border-purple-500">
+00">
+                    <div class                    <div class="text-6="text-6xl mb-4xl mb-4 text-center"> text-center">🌍</div🌍</div>
+                    >
+                    <h3 class="<h3 class="text-3xltext-3xl font-bold text-purple font-bold text-purple-400-400 mb-3 text mb-3 text-center">Internacional-center">Internacional</h3></h3>
+                    <p
+                    <p class="text-gray class="text-gray-300-300 mb-2 text mb-2 text-center text-sm">-center text-sm">EmbaixadoresEmbaixadores e Organismos e Organismos Internacionais</p Internacionais</p>
+                    >
+                    <div class="space<div class="space-y-3 mb-6 mt--y-3 mb-6 mt-4">
+                       4">
+                        <a href=" <a href="https://youtu.behttps://youtu.be/8FBj/8FBjQfoH8QfoH8o8" targeto8" target="_blank" class="_blank" class="glass rounded-xl="glass rounded-xl overflow-hidden hover-l overflow-hidden hover-lift block group">ift block group">
+                            <div
+                            <div class="aspect-video class="aspect-video relative">
+                                relative">
+                                <img src=" <img src="https://img.youtubehttps://img.youtube.com/vi/.com/vi/8FBjQ8FBjQfoH8ofoH8o8/mqdefault8/mqdefault.jpg" alt=".jpg" alt="Vídeo" classVídeo" class="w-full h="w-full h-full object-cover">-full object-cover">
+                                <div
+                                <div class="absolute inset class="absolute inset-0 bg-black-0 bg-black/50 flex/50 flex items-center justify-center items-center justify-center opacity-0 group opacity-0 group-hover:opacity--hover:opacity-100 transition100 transition">
+                                    ">
+                                    <div class="w<div class="w-12 h-12 h-12 bg-12 bg-purple-60-purple-600 rounded-full flex0 rounded-full flex items-center justify-center items-center justify-center">
+                                        ">
+                                        <i data-luc<i data-lucide="play"ide="play" class="w- class="w-6 h-66 h-6 text-white ml- text-white ml-1"></i>1"></i>
+                                    </div
                                     </div>
+                                </>
                                 </div>
+                           div>
                             </div>
-                            <div class="p-3">
-                                <h4 class="font-semibold text-sm">Embaixadora do Egito</h4>
-                                <p class="text-xs text-gray-400">01/01/2026</p>
+ </div>
+                            <div class                            <div class="p-3="p-3">
+                                ">
+                                <h4 class="<h4 class="font-semibold text-smfont-semibold text-sm">Embaix">Embaixadora do Egitoadora do Egito</h4></h4>
+                                <p
+                                <p class="text-xs class="text-xs text-gray-4 text-gray-400">000">01/011/01/202/2026</p>6</p>
+                            </div
                             </div>
+                        </>
                         </a>
-                        <a href="https://youtu.be/AugustoCarvalho" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
-                            <div class="aspect-video relative">
-                                <img src="https://img.youtube.com/vi/AugustoCarvalho/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                       a>
+                        <a href=" <a href="https://youtu.behttps://youtu.be/AugustoCar/AugustoCarvalho" target="_valho" target="_blank" class="blank" class="glass rounded-xl overflowglass rounded-xl overflow-hidden hover-lift-hidden hover-lift block group">
+ block group">
+                            <div class                            <div class="aspect-video relative="aspect-video relative">
+                                ">
+                                <img src="https<img src="https://img.youtube.com://img.youtube.com/vi/Aug/vi/AugustoCarvalho/mustoCarvalho/mqdefault.jpg"qdefault.jpg" alt="Vídeo alt="Vídeo" class="w" class="w-full h-full object-full h-full object-cover">
+                               -cover">
+                                <div class=" <div class="absolute inset-0absolute inset-0 bg-black/5 bg-black/50 flex items-center0 flex items-center justify-center opacity- justify-center opacity-0 group-hover:0 group-hover:opacity-10opacity-100 transition">
+0 transition">
+                                    <div class                                    <div class="w-1="w-12 h-12 h-12 bg-purple-2 bg-purple-600 rounded600 rounded-full flex items-center-full flex items-center justify-center">
+ justify-center">
+                                        <i data                                        <i data-lucide="-lucide="play" class="play" class="w-6 hw-6 h-6 text-white-6 text-white ml-1"></ ml-1"></i>
+                                   i>
                                     </div>
-                                </div>
+ </div>
+                                </div>                                </div>
+                            </div
                             </div>
-                            <div class="p-3">
-                                <h4 class="font-semibold text-sm">Augusto Carvalho - ANABB</h4>
-                                <p class="text-xs text-gray-400">31/12/2025</p>
+                            >
+                            <div class="p<div class="p-3">
+-3">
+                                <h4                                <h4 class="font-semibold class="font-semibold text-sm">August text-sm">Augusto Carvalho - ANo Carvalho - ANABB</h4ABB</h4>
+                                >
+                                <p class="text<p class="text-xs text-gray--xs text-gray-400">400">31/131/12/202/2025</p25</p>
+                            </>
                             </div>
+                       div>
                         </a>
-                        <a href="https://youtu.be/RepresentanteONU" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
-                            <div class="aspect-video relative">
-                                <img src="https://img.youtube.com/vi/RepresentanteONU/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+ </a>
+                        <a href                        <a href="https://youtu="https://youtu.be/Representante.be/RepresentanteONU" target="_ONU" target="_blank" class="blank" class="glass rounded-xl overflowglass rounded-xl overflow-hidden hover-lift-hidden hover-lift block group">
+ block group">
+                            <div class                            <div class="aspect-video relative="aspect-video relative">
+                                ">
+                                <img src="https<img src="https://img.youtube.com://img.youtube.com/vi/Represent/vi/RepresentanteONU/mqanteONU/mqdefault.jpg" altdefault.jpg" alt="Vídeo"="Vídeo" class="w-full class="w-full h-full object-cover h-full object-cover">
+                                ">
+                                <div class="absolute<div class="absolute inset-0 bg inset-0 bg-black/50-black/50 flex items-center justify flex items-center justify-center opacity-0-center opacity-0 group-hover:opacity group-hover:opacity-100-100 transition">
+                                    transition">
+                                    <div class=" <div class="w-12w-12 h-12 h-12 bg-purple-6 bg-purple-600 rounded-full00 rounded-full flex items-center justify flex items-center justify-center">
+                                       -center">
+                                        <i data-l <i data-lucide="playucide="play" class="w" class="w-6 h--6 h-6 text-white ml6 text-white ml-1"></i-1"></i>
+                                    </>
                                     </div>
+                               div>
                                 </div>
-                            </div>
-                            <div class="p-3">
-                                <h4 class="font-semibold text-sm">Organismos Internacionais</h + '\n' +
-                           '📷 Instagram4>
-                                <p class="text-xs text-gray-400">30/12/2025</p>
-                            </div>
+ </div>
+                            </div>                            </div>
+                            <div
+                            <div class="p- class="p-3">
+                               3">
+                                <h4 class <h4 class="font-semibold text="font-semibold text-sm">Organism-sm">Organismos Internacionais</os Internacionais</h4>
+h4>
+                                <p class                                <p class="text-xs text-gray-40="text-xs text-gray-400">300">30/12//12/20252025</p>
+</p>
+                            </div>                            </div>
+                        </a
                         </a>
+                    </>
                     </div>
-                    
-                    <a href="anunciantes.html" class="block w-full bg-purple-600 text-white text-center py-3 rounded-full font-bold hover:bg-purple-700 transition">
-                        Ver todos os anunciantes 🌐 →
+                   div>
+                    <a href=" <a href="anunciantesanunciantes.html" class=".html" class="block w-full bgblock w-full bg-purple-60-purple-600 text-white text0 text-white text-center py-3-center py-3 rounded-full font-bold hover:bg-purple- rounded-full font-bold hover:bg-purple-700 transition700 transition">
+                        Ver">
+                        Ver todos os anunciant todos os anunciantes 🌐es 🌐 →
+                    </ →
                     </a>
+               a>
                 </div>
-            </div>
+ </div>
+            </div>            </div>
+        </div
         </div>
+    </>
     </section>
 
-    <!-- Prêmios Section -->
-    <section id="premios" class="py-20 px-6">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">
-                    O que nossos <span class="gradient-text">anunciantes recebem</span>
+   section>
+
+    <!-- Prêmios <!-- Prêmios Section -->
+    Section -->
+    <section id=" <section id="premios" classpremios" class="py-2="py-20 px-60 px-6">
+        ">
+        <div class="container<div class="container mx-auto">
+ mx-auto">
+            <div class            <div class="text-center mb="text-center mb-16">-16">
+                <h
+                <h2 class="text2 class="text-4xl lg-4xl lg:text-5xl:text-5xl font-serif font-bold font-serif font-bold mb-4"> mb-4">
+                    O que
+                    O que nossos <span class nossos <span class="gradient-text">="gradient-text">anunciantesanunciantes recebem</span> recebem</span>
+                </h
                 </h2>
-                <p class="text-xl text-gray-300">Reconhecimentos que fortalecem sua marca e comprovam sua excelência</p>
+               2>
+                <p class=" <p class="text-xl text-graytext-xl text-gray-300-300">Reconhec">Reconhecimentos que fortalecemimentos que fortalecem sua marca</p sua marca</p>
+            </>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Anuário Brasileiro -->
-                <div class="premio-card">
-                    <div class="mb-6">
-                        <img src="./capa-anuario.jpg" alt="Anuário Brasileiro" class="mx-auto rounded-lg shadow-2xl max-h-80 object-cover w-full">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Anuário Brasileiro</h3>
-                    <p class="text-yellow-500 font-semibold mb-4">24ª Edição Impressa</p>
-                    <ul class="text-left text-sm text-gray-300 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> 300 mil exemplares</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> Distribuição nacional</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> Visibilidade garantida</li>
-                    </ul>
+           div>
+            <div class=" <div class="grid md:gridgrid md:grid-cols-3 gap-cols-3 gap-8 max-w-8 max-w-6xl mx-6xl mx-auto">
+               -auto">
+                <div class=" <div class="premio-card">premio-card">
+                    <img
+                    <img src="./capa src="./capa-anuario.jpg"-anuario.jpg" alt="Anu alt="Anuário Brasileiro" classário Brasileiro" class="mx-auto rounded="mx-auto rounded-lg shadow-2-lg shadow-2xl max-h-xl max-h-80 object-cover80 object-cover w-full mb- w-full mb-6">
+                   6">
+                    <h3 class <h3 class="text-2="text-2xl font-bold mbxl font-bold mb-2">An-2">Anuário Brasileiro</uário Brasileiro</h3>
+h3>
+                    <p class                    <p class="text-yellow-="text-yellow-500 font500 font-semibold mb-4-semibold mb-4">24ª">24ª Edição Impressa</ Edição Impressa</p>
+                   p>
+                    <ul class=" <ul class="text-left text-smtext-left text-sm text-gray-3 text-gray-300 space-y00 space-y-2">
+-2">
+                        <li class                        <li class="flex items-center="flex items-center gap-2"> gap-2"><i data-luc<i data-lucide="check-circleide="check-circle" class="w" class="w-4 h--4 h-4 text-yellow-4 text-yellow-500"></500"></i> 3i> 300 mil exempl00 mil exemplares</li>ares</li>
+                        <li
+                        <li class="flex items class="flex items-center gap-2-center gap-2"><i data-l"><i data-lucide="checkucide="check-circle" class="-circle" class="w-4 hw-4 h-4 text-yellow-4 text-yellow-500-500"></i> Distrib"></i> Distribuição nacional</liuição nacional</li>
+                        >
+                        <li class="flex<li class="flex items-center gap- items-center gap-2"><i data2"><i data-lucide="-lucide="check-circle" classcheck-circle" class="w-4="w-4 h-4 text h-4 text-yellow-50-yellow-500"></i>0"></i> Visibilidade garantida Visibilidade garantida</li>
+</li>
+                    </ul>                    </ul>
+                </div
                 </div>
-
-                <!-- Troféu Top of Millenium -->
-                <div class="premio-card">
-                    <div class="mb-6">
-                        <img src="./logo-trofeu.jpg" alt="Troféu Top of Millenium" class="mx-auto rounded-lg shadow-2xl max-h-80 object-cover w-full">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Prêmio Top of Millenium</h3>
-                    <p class="text-yellow-500 font-semibold mb-4">10ª Edição - Excelência</p>
-                    <ul class="text-left text-sm text-gray-300 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Selo de Excelência</li>
-                        <li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Credibilidade e Prestígio</li>
-                        <li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Reconhecimento de Mercado</li>
+                >
+                <div class="pre<div class="premio-card">
+mio-card">
+                    <img src                    <img src="./logo-tro="./logo-trofeu.jpg" altfeu.jpg" alt="Troféu="Troféu Top of Millen Top of Millenium" class="mx-auto rounded-lgium" class="mx-auto rounded-lg shadow-2xl shadow-2xl max-h-8 max-h-80 object-cover w0 object-cover w-full mb-6-full mb-6">
+                    ">
+                    <h3 class="<h3 class="text-2xltext-2xl font-bold mb- font-bold mb-2">Prêmio2">Prêmio Top of Millen Top of Millenium</h3ium</h3>
+                    >
+                    <p class="text<p class="text-yellow-50-yellow-500 font-semibold mb0 font-semibold mb-4">1-4">10ª Edição -0ª Edição - Excelência</p Excelência</p>
+                    >
+                    <ul class="text<ul class="text-left text-sm text-left text-sm text-gray-30-gray-300 space-y-0 space-y-2">
+                       2">
+                        <li class=" <li class="flex items-center gapflex items-center gap-2"><i-2"><i data-lucide data-lucide="award" class="award" class="w-4="w-4 h-4 text h-4 text-yellow-50-yellow-500"></i>0"></i> Selo de Excel Selo de Excelência</li>ência</li>
+                        <li
+                        <li class="flex items class="flex items-center gap-2-center gap-2"><i data-l"><i data-lucide="awarducide="award" class="w" class="w-4 h--4 h-4 text-yellow-4 text-yellow-500"></500"></i> Credibilidadei> Credibilidade e Prestígio e Prestígio</li>
+</li>
+                        <li class                        <li class="flex items-center="flex items-center gap-2"> gap-2"><i data-luc<i data-lucide="award"ide="award" class="w- class="w-4 h-44 h-4 text-yellow-5 text-yellow-500"></i00"></i> Reconhecimento de> Reconhecimento de Mercado</li> Mercado</li>
+                    </ul
                     </ul>
+                </>
                 </div>
-
-                <!-- Diploma Personalidade do Ano -->
-                <div class="premio-card">
-                    <div class="mb-6">
-                        <img src="./logo-diploma.png" alt="Diploma Personalidade do Ano" class="mx-auto rounded-lg shadow-2xl max-h-80 object-cover w-full">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Personalidade do Ano</h3>
-                    <p class="text-yellow-500 font-semibold mb-4">Diploma de Honra ao Mérito</p>
-                    <ul class="text-left text-sm text-gray-300 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Certificado Oficial</li>
-                        <li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Valorização da Marca</li>
-                        <li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Destaque na Imprensa</li>
+               div>
+                <div class=" <div class="premio-card">premio-card">
+                    <img
+                    <img src="./logo-d src="./logo-diploma.png"iploma.png" alt="Dipl alt="Diploma Personalidade dooma Personalidade do Ano" class=" Ano" class="mx-auto rounded-lgmx-auto rounded-lg shadow-2xl shadow-2xl max-h-8 max-h-80 object-cover w0 object-cover w-full mb-6-full mb-6">
+                    ">
+                    <h3 class="<h3 class="text-2xltext-2xl font-bold mb- font-bold mb-2">Personalidade2">Personalidade do Ano</h do Ano</h3>
+                   3>
+                    <p class=" <p class="text-yellow-5text-yellow-500 font-semibold00 font-semibold mb-4"> mb-4">Diploma deDiploma de Honra ao Mé Honra ao Mérito</p>rito</p>
+                    <ul
+                    <ul class="text-left class="text-left text-sm text-gray text-sm text-gray-300-300 space-y-2 space-y-2">
+                        ">
+                        <li class="flex<li class="flex items-center gap- items-center gap-2"><i data2"><i data-lucide="-lucide="certificate" class="certificate" class="w-4 hw-4 h-4 text-yellow-4 text-yellow-500-500"></i> Certificado"></i> Certificado Oficial</li> Oficial</li>
+                        <li
+                        <li class="flex items class="flex items-center gap-2-center gap-2"><i data-l"><i data-lucide="certificateucide="certificate" class="w" class="w-4 h--4 h-4 text-yellow-4 text-yellow-500"></500"></i> Valorizaçãoi> Valorização da Marca</li da Marca</li>
+                        >
+                        <li class="flex<li class="flex items-center gap- items-center gap-2"><i data2"><i data-lucide="-lucide="certificate" class="certificate" class="w-4 hw-4 h-4 text-yellow-4 text-yellow-500-500"></i> Dest"></i> Destaque na Imprensaaque na Imprensa</li>
+</li>
                     </ul>
+                </div                    </ul>
                 </div>
+            </>
             </div>
+       div>
         </div>
-    </section>
+ </div>
+    </section>    </section>
 
-    <!-- Parceiros - Instituto Brazil Just -->
-    <section id="parceiros" class="py-20 px-6 bg-gray-900/30">
-        <div class="container mx-auto">
-            <div class="max-w-5xl mx-auto">
-                <div class="glass-gold rounded-3xl p-12 text-center border-2 border-yellow-500/30">
-                    <h2 class="text-3xl font-serif font-bold mb-8">Nosso Parceiro Oficial</h2>
-                    
-                    <div class="flex items-center justify-center gap-8 mb-8 flex-wrap">
-                        <img src="./logo-tv-nova.jpg" alt="TV Voz de Brasília" class="h-24 w-auto bg-black rounded-lg p-2">
-                        <div class="text-4xl text-yellow-500 hidden md:block">+</div>
-                        <img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-24 w-auto bg-white rounded-lg p-2 shadow-xl">
+    <!-- Parce
+
+    <!-- Parceiros -->
+    <sectioniros -->
+    <section id="parce id="parceiros" class="iros" class="py-20py-20 px-6 bg px-6 bg-gray-90-gray-900/300/30">
+        ">
+        <div class="container<div class="container mx-auto">
+ mx-auto">
+            <div class            <div class="max-w-="max-w-5xl mx-auto5xl mx-auto">
+                ">
+                <div class="glass<div class="glass-gold rounded--gold rounded-3xl p-3xl p-12 text-center12 text-center border-2 border border-2 border-yellow-50-yellow-500/300/30">
+                    ">
+                    <h2 class="<h2 class="text-3xltext-3xl font-serif font-bold font-serif font-bold mb-8"> mb-8">Nosso ParceiroNosso Parceiro Oficial</h2 Oficial</h2>
+                    >
+                    <div class="flex<div class="flex items-center justify-center items-center justify-center gap-8 mb gap-8 mb-8 flex-wrap-8 flex-wrap">
+                        ">
+                        <img src="./logo<img src="./logo-tv-nova-tv-nova.jpg" alt=".jpg" alt="TV Voz deTV Voz de Brasília" class=" Brasília" class="h-24h-24 w-auto bg-black w-auto bg-black rounded-lg p- rounded-lg p-2">
+                       2">
+                        <div class=" <div class="text-4xltext-4xl text-yellow-5 text-yellow-500 hidden md00 hidden md:block">+</div:block">+</div>
+                        >
+                        <img src="./logo<img src="./logo-ibj.jpg-ibj.jpg" alt="In" alt="Instituto Brazil Just"stituto Brazil Just" class="h- class="h-24 w-auto24 w-auto bg-white rounded-lg bg-white rounded-lg p-2 shadow p-2 shadow-xl">
+                   -xl">
                     </div>
-
-                    <h3 class="text-4xl font-bold mb-4 text-blue-400">Instituto Brazil Just</h3>
-                    <p class="text-xl text-gray-300 mb-2 italic">"Oportunidade e Igualdade para Todos!"</p>
-                    <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Parceiro oficial da TV Voz de Brasília na promoção da justiça social, cidadania e desenvolvimento sustentável.</p>
-                    
-                    <a href="https://www.institutobraziljust.org" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition inline-flex items-center gap-2">
-                        Visite o site do IBJ
-                        <i data-lucide="external-link" class="w-5 h-5"></i>
-                    </a>
+ </div>
+                    <h3                    <h3 class="text- class="text-4xl font-bold4xl font-bold mb-4 text mb-4 text-blue-40-blue-400">Instituto0">Instituto Brazil Just</h Brazil Just</h3>
+                   3>
+                    <p class=" <p class="text-xl text-graytext-xl text-gray-300-300 mb-2 italic mb-2 italic">"Oportun">"Oportunidade e Igualdadeidade e Igualdade para Todos!"</ para Todos!"</p>
+                   p>
+                    <p class=" <p class="text-gray-4text-gray-400 mb-00 mb-8 max-w-8 max-w-2xl mx-auto2xl mx-auto">Parceiro">Parceiro oficial da TV V oficial da TV Voz de Brasília naoz de Brasília na promoção da justiça social promoção da justiça social, cidadania e, cidadania e desenvolvimento sustentável.</ desenvolvimento sustentável.</p>
+                   p>
+                    <a href=" <a href="https://www.inhttps://www.institutobraziljuststitutobraziljust.org" target="_.org" target="_blank" class="blank" class="gradient-gold textgradient-gold text-gray-90-gray-900 px-80 px-8 py-4 rounded py-4 rounded-full font-bold text-full font-bold text-lg hover:shadow-lg hover:shadow-2xl transition-2xl transition inline-flex items-center inline-flex items-center gap-2"> gap-2">
+                        Visite o
+                        Visite o site do IBJ site do IBJ
+                        <i
+                        <i data-lucide data-lucide="external-link"="external-link" class="w- class="w-5 h-55 h-5"></i>
+"></i>
+                    </a>                    </a>
+                </div
                 </div>
+            </>
             </div>
+       div>
         </div>
-    </section>
+ </div>
+    </section>    </section>
 
-    <!-- Números Atualizados -->
-    <section id="numeros" class="py-20 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 gradient-gold opacity-5"></div>
-        
-        <div class="container mx-auto relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">
-                    Números que <span class="gradient-text">comprovam</span> nossa autoridade
+    <!-- N
+
+    <!-- Números -->
+   úmeros -->
+    <section id=" <section id="numeros" classnumeros" class="py-2="py-20 px-60 px-6">
+        ">
+        <div class="container<div class="container mx-auto">
+ mx-auto">
+            <div class            <div class="text-center mb="text-center mb-16">-16">
+                <h
+                <h2 class="text2 class="text-4xl lg-4xl lg:text-5xl:text-5xl font-serif font-bold font-serif font-bold mb-6"> mb-6">
+                    Números
+                    Números que <span class que <span class="gradient-text">="gradient-text">comprovam</comprovam</span> nossa autoridadespan> nossa autoridade
+                </h2>
+           
                 </h2>
             </div>
-
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="instagram" class="w-12 h-12 text-pink-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">150K+</div>
-                    <div class="text-gray-400 text-sm">seguidores no Instagram</div>
+ </div>
+            <div class            <div class="grid grid-cols="grid grid-cols-2 lg:-2 lg:grid-cols-4grid-cols-4 gap-6 max gap-6 max-w-5xl-w-5xl mx-auto">
+ mx-auto">
+                <div class                <div class="stat-card rounded="stat-card rounded-3xl p-3xl p-8 text-center-8 text-center hover-lift"> hover-lift">
+                    <i
+                    <i data-lucide data-lucide="instagram" class="instagram" class="w-1="w-12 h-12 h-12 text-pink2 text-pink-500-500 mx-auto mb- mx-auto mb-4"></i>4"></i>
+                    <div
+                    <div class="text- class="text-4xl font-bold4xl font-bold mb-2"> mb-2">150K150K+</div>
++</div>
+                    <div class="text-gray-                    <div class="text-gray-400 text400 text-sm">seguid-sm">seguidores no Instagram</ores no Instagram</div>
+               div>
                 </div>
-
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="youtube" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">500+</div>
-                    <div class="text-gray-400 text-sm">entrevistas no YouTube</div>
+ </div>
+                <div class                <div class="stat-card rounded="stat-card rounded-3xl p-3xl p-8 text-center-8 text-center hover-lift"> hover-lift">
+                    <i
+                    <i data-lucide data-lucide="youtube" class="youtube" class="w-1="w-12 h-12 h-12 text-red-2 text-red-500 mx500 mx-auto mb-4-auto mb-4"></i>
+"></i>
+                    <div class                    <div class="text-4="text-4xl font-bold mbxl font-bold mb-2">5-2">500+</div00+</div>
+                    >
+                    <div class="text<div class="text-gray-40-gray-400 text-sm">entrevistas no0 text-sm">entrevistas no YouTube</div> YouTube</div>
+                </div
                 </div>
-
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="trending-up" class="w-12 h-12 text-yellow-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">170M+</div>
-                    <div class="text-gray-400 text-sm">interações/mês</div>
+                >
+                <div class="stat<div class="stat-card rounded-3-card rounded-3xl p-8xl p-8 text-center hover-l text-center hover-lift">
+                   ift">
+                    <i data-l <i data-lucide="tucide="trending-up" classrending-up" class="w-1="w-12 h-12 h-12 text-yellow-2 text-yellow-500 mx500 mx-auto mb-4-auto mb-4"></i>
+"></i>
+                    <div class                    <div class="text-4="text-4xl font-bold mbxl font-bold mb-2">1-2">170M+</70M+</div>
+                   div>
+                    <div class=" <div class="text-gray-4text-gray-400 text-sm00 text-sm">interações/m">interações/mês</div>ês</div>
+                </div
                 </div>
-
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="award" class="w-12 h-12 text-yellow-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">40</div>
-                    <div class="text-gray-400 text-sm">anos de atuação</div>
-                </div>
+                >
+                <div class="stat<div class="stat-card rounded-3-card rounded-3xl p-8xl p-8 text-center hover-l text-center hover-lift">
+                   ift">
+                    <i data-l <i data-lucide="awarducide="award" class="w" class="w-12 h-12 h-12 text-12 text-yellow-50-yellow-500 mx-auto mb0 mx-auto mb-4"></i-4"></i>
+                    >
+                    <div class="text<div class="text-4xl font-4xl font-bold mb-2-bold mb-2">40</">40</div>
+                   div>
+                    <div class=" <div class="text-gray-4text-gray-400 text-sm00 text-sm">anos de atuação">anos de atuação</div>
+</div>
+                </div>                </div>
+            </div
             </div>
+        </>
         </div>
+   div>
     </section>
 
-    <!-- Projeto Recomeçar -->
-    <section id="recomecar" class="py-20 px-6 bg-gradient-to-b from-purple-900/20 to-blue-900/20">
-        <div class="container mx-auto">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="w-24 h-24 mx-auto mb-6 gradient-gold rounded-full flex items-center justify-center">
-                    <i data-lucide="heart" class="w-12 h-12 text-gray-900"></i>
+ </section>
+
+    <!-- Projeto Rec    <!-- Projeto Recomeçar -->omeçar -->
+    <section
+    <section id="recome id="recomecar" class="car" class="py-20py-20 px-6 bg px-6 bg-gradient-to-b from-gradient-to-b from-purple-90-purple-900/200/20 to-blue-9 to-blue-900/200/20">
+       0">
+        <div class=" <div class="container mx-auto">container mx-auto">
+            <div
+            <div class="max-w class="max-w-4xl mx-4xl mx-auto text-center">-auto text-center">
+                <div class="w-24 h-24 mx-auto
+                <div class="w-24 h-24 mx-auto mb-6 gradient mb-6 gradient-gold rounded-full-gold rounded-full flex items-center justify flex items-center justify-center">
+                   -center">
+                    <i data-l <i data-lucide="heartucide="heart" class="w" class="w-12 h-12 h-12 text-12 text-gray-90-gray-900"></i>0"></i>
+                </div
                 </div>
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">
-                    Projeto <span class="text-purple-400">Recomeçar</span>
+                >
+                <h2 class="<h2 class="text-4xltext-4xl lg:text-5 lg:text-5xl font-serif fontxl font-serif font-bold mb-4-bold mb-4">
+                    Projeto">
+                    Projeto <span class=" <span class="text-purple-4text-purple-400">Re00">Recomeçar</spancomeçar</span>
+                </>
                 </h2>
-                <p class="text-xl text-gray-300 mb-8">Transformando solidariedade em novos começos</p>
-                <p class="text-lg text-gray-400 mb-8">
-                    Cada doação ajuda famílias a quitarem dívidas, recuperarem crédito e recomeçarem com dignidade.
-                    Impacto social com transparência e benefício fiscal.
+h2>
+                <p class                <p class="text-xl text="text-xl text-gray-30-gray-300 mb-80 mb-8">Transformando solidar">Transformando solidariedade em novos comeiedade em novos começos</p>ços</p>
+                <p
+                <p class="text-lg class="text-lg text-gray-4 text-gray-400 mb-00 mb-8">
+                   8">
+                    Cada doação ajuda Cada doação ajuda famílias a quitarem famílias a quitarem dívidas, dívidas, recuperarem crédito e recuperarem crédito e recomeçarem recomeçarem com dignidade. com dignidade.
+                    Impacto
+                    Impacto social com transparência social com transparência e benefício fiscal. e benefício fiscal.
+                </p
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://recomecar.ibj.org.br" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2">
-                        <i data-lucide="heart" class="w-6 h-6"></i>
+                >
+                <div class="flex<div class="flex flex-col sm:flex flex-col sm:flex-row gap-4-row gap-4 justify-center">
+ justify-center">
+                    <a href                    <a href="https://re="https://recomecar.ibjcomecar.ibj.org.br" target.org.br" target="_blank" class="_blank" class="gradient-gold="gradient-gold text-gray-9 text-gray-900 px-00 px-8 py-48 py-4 rounded-full font-bold rounded-full font-bold text-lg hover: text-lg hover:shadow-2xlshadow-2xl transition flex items-center transition flex items-center justify-center gap- justify-center gap-2">
+                       2">
+                        <i data-l <i data-lucide="heartucide="heart" class="w" class="w-6 h--6 h-6"></i>6"></i>
+                        Quero Rec
                         Quero Recomeçar
+                   omeçar
                     </a>
-                    <a href="https://recomecar.ibj.org.br/ajudar" target="_blank" class="glass border border-purple-500/50 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
-                        <i data-lucide="hand-heart" class="w-6 h-6"></i>
+ </a>
+                    <a href                    <a href="https://re="https://recomecar.ibjcomecar.ibj.org.br/aj.org.br/ajudar" target="_udar" target="_blank" class="blank" class="glass border border-purpleglass border border-purple-500-500/50 text/50 text-purple-40-purple-400 hover:bg-purple0 hover:bg-purple-500-500/10 px/10 px-8 py--8 py-4 rounded-full font4 rounded-full font-bold text-lg transition-bold text-lg transition flex items-center justify flex items-center justify-center gap-2-center gap-2">
+                        ">
+                        <i data-luc<i data-lucide="hand-heartide="hand-heart" class="w" class="w-6 h--6 h-6"></i>6"></i>
+                        Quero A
                         Quero Ajudar
+                   judar
                     </a>
+ </a>
                 </div>
+            </div                </div>
             </div>
+        </>
         </div>
+   div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contato" class="py-20 px-6">
-        <div class="container mx-auto max-w-4xl">
-            <div class="glass rounded-3xl p-8 lg:p-12 border border-white/10">
-                <h2 class="text-4xl font-serif font-bold text-center mb-4">
-                    Envie seu interesse
-                </h2>
-                <p class="text-center text-gray-400 mb-8">
-                    Preencha o formulário e receba uma proposta personalizada
-                </p>
-                
-                <form id="contactForm" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block mb-2 font-semibold text-sm">Seu nome</label>
-                            <input type="text" id="nome" required 
-                                   class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block mb-2 font-semibold text-sm">Nome da empresa</label>
-                            <input type="text" id="empresa" required 
-                                   class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition">
-                        </div>
-                    </div>
+ </section>
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block mb-2 font-semibold text-sm">WhatsApp</label>
-                            <input type="tel" id="whatsapp" placeholder="(61) 99999-9999" required 
-                                   class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition">
+    <!-- Contato    <!-- Contato -->
+     -->
+    <section id="cont<section id="contato" class="ato" class="py-20py-20 px-6"> px-6">
+        <div class="container mx
+        <div class="container mx-auto max-w--auto max-w-4xl">
+4xl">
+            <div class            <div class="glass rounded-="glass rounded-3xl p-3xl p-8 lg:p-8 lg:p-12 border border12 border border-white/10-white/10">
+                ">
+                <h2 class="<h2 class="text-4xltext-4xl font-serif font-bold font-serif font-bold text-center mb- text-center mb-4">Envie4">Envie seu interesse</h seu interesse</h2>
+               2>
+                <p class=" <p class="text-center text-graytext-center text-gray-400-400 mb-8"> mb-8">Preencha oPreencha o formulário e receba formulário e receba uma proposta personalizada</ uma proposta personalizada</p>
+               p>
+                <form id=" <form id="contactForm" classcontactForm" class="space-y-="space-y-6">
+                   6">
+                    <div class=" <div class="grid md:gridgrid md:grid-cols-2 gap-cols-2 gap-6">
+-6">
+                        <div>                        <div>
+                            <label
+                            <label class="block mb class="block mb-2 font-semibold-2 font-semibold text-sm">Se text-sm">Seu nome</labelu nome</label>
+                            >
+                            <input type="text<input type="text" id="nome" id="nome" required class="" required class="w-full px-w-full px-4 py-34 py-3 rounded-xl bg-gray rounded-xl bg-gray-800-800/50 border/50 border border-white/1 border-white/10 focus:border-yellow0 focus:border-yellow-500-500 focus:outline-none focus:outline-none transition">
+                        transition">
                         </div>
-                        <div>
-                            <label class="block mb-2 font-semibold text-sm">Instagram</label>
-                            <input type="text" id="instagram" 
-                                   class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition">
+ </div>
+                        <div>                        <div>
+                            <label
+                            <label class="block mb class="block mb-2 font-semibold-2 font-semibold text-sm">Nome text-sm">Nome da empresa</label da empresa</label>
+                            >
+                            <input type="text<input type="text" id="empresa" id="empresa" required class="" required class="w-full px-w-full px-4 py-34 py-3 rounded-xl bg-gray rounded-xl bg-gray-800-800/50 border/50 border border-white/1 border-white/10 focus:border-yellow0 focus:border-yellow-500-500 focus:outline-none focus:outline-none transition">
+                        transition">
                         </div>
+ </div>
+                    </div>                    </div>
+                    <div
+                    <div class="grid md class="grid md:grid-cols-:grid-cols-2 gap-62 gap-6">
+                        ">
+                        <div>
+                           <div>
+                            <label class=" <label class="block mb-2block mb-2 font-semibold text-sm font-semibold text-sm">WhatsApp</label">WhatsApp</label>
+                            >
+                            <input type="tel<input type="tel" id="wh" id="whatsapp" placeholder="(atsapp" placeholder="(61) 61) 999999999-999-9999" required99" required class="w-full class="w-full px-4 py px-4 py-3 rounded-xl-3 rounded-xl bg-gray-8 bg-gray-800/500/50 border border-white0 border border-white/10 focus/10 focus:border-yellow-5:border-yellow-500 focus:00 focus:outline-none transition">outline-none transition">
+                        </div
+                        </div>
+                        >
+                        <div>
+                           <div>
+                            <label class=" <label class="block mb-2block mb-2 font-semibold text-sm font-semibold text-sm">Instagram</label">Instagram</label>
+                            >
+                            <input type="text<input type="text" id="instagram" id="instagram" class="w" class="w-full px-4-full px-4 py-3 rounded py-3 rounded-xl bg-gray--xl bg-gray-800/800/50 border border50 border border-white/10-white/10 focus:border-yellow- focus:border-yellow-500 focus500 focus:outline-none transition:outline-none transition">
+                        </">
+                        </div>
+                   div>
                     </div>
-
-                    <div>
-                        <label class="block mb-2 font-semibold text-sm">Segmento</label>
-                        <select id="segmento" 
-                                class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition">
-                            <option value="">Selecione...</option>
-                            <option>Turismo e Hotéis</option>
-                            <option>Gastronomia</option>
-                            <option>Móveis</option>
-                            <option>Educação</option>
-                            <option>Saúde e estética</option>
-                            <option>Moda e beleza</option>
-                            <option>Restaurantes e gastronomia</option>
-                            <option>Imobiliário</option>
-                            <option>Direito</option>
-                            <option>Política</option>
-                            <option>Eventos</option>
-                            <option>Tecnologia</option>
-                            <option>Projetos sociais</option>
-                        </select>
+ </div>
+                    <div>                    <div>
+                        <label
+                        <label class="block mb class="block mb-2 font-semibold-2 font-semibold text-sm">Segment text-sm">Segmento</label>o</label>
+                        <select
+                        <select id="segmento id="segmento" class="w" class="w-full px-4-full px-4 py-3 rounded py-3 rounded-xl bg-gray--xl bg-gray-800/800/50 border border50 border border-white/10-white/10 focus:border-yellow- focus:border-yellow-500 focus500 focus:outline-none transition:outline-none transition">
+                            ">
+                            <option value="">Se<option value="">Selecione...</optionlecione...</option>
+                            >
+                            <option>Turismo<option>Turismo e Hotéis</ e Hotéis</option>
+                           option>
+                            <option>Gastronomia</option> <option>Gastronomia</option>
+                            <option
+                            <option>Móveis</>Móveis</option>
+                           option>
+                            <option>Edu <option>Educação</option>cação</option>
+                            <option
+                            <option>Saúde e>Saúde e estética</option> estética</option>
+                            <option
+                            <option>Moda e>Moda e beleza</option> beleza</option>
+                            <option
+                            <option>Imobiliário>Imobiliário</option>
+</option>
+                            <option>D                            <option>Direito</optionireito</option>
+                            >
+                            <option>Política<option>Política</option>
+</option>
+                            <option>                            <option>Eventos</optionEventos</option>
+                            >
+                            <option>Tecnologia<option>Tecnologia</option>
+</option>
+                            <option>                            <option>Projetos sociais</option>
+Projetos sociais</option>
+                        </select>                        </select>
+                    </div
                     </div>
-
-                    <button type="submit" 
-                            class="w-full gradient-gold text-gray-900 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 hover:shadow-xl">
+                    >
+                    <button type="submit<button type="submit" class="w" class="w-full gradient-gold-full gradient-gold text-gray-9 text-gray-900 py-00 py-4 rounded-xl font4 rounded-xl font-bold text-lg transition-bold text-lg transition flex items-center justify flex items-center justify-center gap-2-center gap-2 hover:shadow-xl hover:shadow-xl">
+                        Enviar">
                         Enviar pelo WhatsApp
-                        <i data-lucide="send" class="w-5 h-5"></i>
+                        pelo WhatsApp
+                        <i data-l <i data-lucide="senducide="send" class="w" class="w-5 h--5 h-5"></i>5"></i>
+                    </button
                     </button>
+                </>
                 </form>
+           form>
             </div>
-        </div>
+ </div>
+        </div>        </div>
+    </section
     </section>
+
+    <!-->
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 py-12 px-6">
-        <div class=": ' + (instagram || 'Não informado') + '\container mx-auto">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
-                <div class="flex items-center space-x-4">
-                    <img src="./logo-tv-nova.jpg" alt="TV Voz de Brasília" class="h-12 w-auto bg-black rounded p-1">
+    Footer -->
+    <footer class=" <footer class="border-t border-whiteborder-t border-white/10 py/10 py-12 px-12 px-6">
+-6">
+        <div class        <div class="container mx-auto="container mx-auto">
+            ">
+            <div class="flex<div class="flex flex-col lg:flex flex-col lg:flex-row justify-between items-row justify-between items-center gap-6-center gap-6 mb-8"> mb-8">
+                <div
+                <div class="flex items class="flex items-center space-x--center space-x-4">
+                   4">
+                    <img src="./ <img src="./logo-tv-nlogo-tv-nova.jpg" altova.jpg" alt="TV Voz="TV Voz de Brasília" class de Brasília" class="h-1="h-12 w-auto bg2 w-auto bg-black rounded p--black rounded p-1">
+                   1">
                     <div>
-                        <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
-                        <p class="text-xs text-gray-400">40 anos de credibilidade</p>
-                    </div>
+ <div>
+                        <h3                        <h3 class="font-serif class="font-serif font-bold">TV font-bold">TV VOZ DE BR VOZ DE BRASÍLIA</ASÍLIA</h3>
+h3>
+                        <p class                        <p class="text-xs text="text-xs text-gray-40-gray-400">400">40 anos de credibilidade anos de credibilidade</p>
+</p>
+                    </div>                    </div>
+                </div
                 </div>
-                
-                <div class="flex items-center gap-4">
-                    <img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
+                >
+                <div class="flex<div class="flex items-center gap- items-center gap-4">
+                   4">
+                    <img src="./ <img src="./logo-ibjlogo-ibj.jpg" alt=".jpg" alt="Instituto Brazil JustInstituto Brazil Just" class="h" class="h-12 w-12 w-auto opacity-7-auto opacity-70">
+               0">
                 </div>
-
-                <div class="flex items-center gap-6">
-                    <a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="hover:text-yellow-500 transition">
-                        <i data-lucide="instagram" class="w-6 h-6"></i>
+ </div>
+                <div class                <div class="flex items-center="flex items-center gap-6"> gap-6">
+                    <a
+                    <a href="https:// href="https://instagram.com/tvinstagram.com/tvvozdebrasiliavozdebrasilia" target="_blank" target="_blank" class="hover" class="hover:text-yellow-5:text-yellow-500 transition">00 transition">
+                        <i
+                        <i data-lucide data-lucide="instagram" class="instagram" class="w-6="w-6 h-6"></ h-6"></i>
+                   i>
                     </a>
-                    <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" class="hover:text-yellow-500 transition">
-                        <i data-lucide="youtube" class="w-6 h-6"></i>
+ </a>
+                    <a href                    <a href="https://youtube="https://youtube.com/@Voz.com/@VozdebrasiliaTVdebrasiliaTV" target="_blank" target="_blank" class="hover" class="hover:text-yellow-5:text-yellow-500 transition">00 transition">
+                        <i
+                        <i data-lucide data-lucide="youtube" class="youtube" class="w-6="w-6 h-6"></ h-6"></i>
+                   i>
                     </a>
-                    <a href="https://wa.me/5561999812341" target="_blank" class="hover:text-yellow-500 transition">
-                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+ </a>
+                    <a href                    <a href="https://wa="https://wa.me/55.me/556199619998129812341"341" target="_blank" target="_blank" class="hover:text class="hover:text-yellow-50-yellow-500 transition">
+0 transition">
+                        <i data                        <i data-lucide="-lucide="message-circle" classmessage-circle" class="w-6="w-6 h-6"></ h-6"></i>
+                   i>
                     </a>
-                </div>
+ </a>
+                </div>                </div>
+            </div
             </div>
-            <div class="text-center text-gray-500 text-sm">
-                © 2026 TV Voz de Brasília. Todos os direitos reservados. | Instituto Brazil Just - Oportunidade e Igualdade para Todos!
-            </div>
+            >
+            <div class="text<div class="text-center text-gray--center text-gray-500 text500 text-sm">
+               -sm">
+                © 20 © 2026 TV V26 TV Voz de Brasília.oz de Brasília. Todos os direitos reservados Todos os direitos reservados. | Instituto Brazil. | Instituto Brazil Just - Oportun Just - Oportunidade e Igualdadeidade e Igualdade para Todos!
+ para Todos!
+            </div>            </div>
+        </div
         </div>
+    </>
     </footer>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5561999812341" target="_blank" 
-       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition hover:scale-110 z-50">
-        <i data-lucide="message-circle" class="w-8 h-8"></i>
+   footer>
+
+    <!-- WhatsApp Float Button <!-- WhatsApp Float Button -->
+     -->
+    <a href="https<a href="https://wa.me/://wa.me/5561556199989998123412341" target="_1" target="_blank" 
+      blank" 
+       class="fixed bottom class="fixed bottom-6 right--6 right-6 bg-green-6 bg-green-500 hover500 hover:bg-green-6:bg-green-600 text-white00 text-white p-4 rounded p-4 rounded-full shadow-2-full shadow-2xl transition hover:xl transition hover:scale-11scale-110 z-50 z-50">
+        <i data-l0">
+        <i data-lucide="messageucide="message-circle" class="-circle" class="w-8 hw-8 h-8"></i-8"></i>
+    </>
     </a>
 
+   a>
+
     <script>
-        lucide.createIcons();
+ <script>
+        lucide.create        lucide.createIcons();
 
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.toggle('hidden');
+       Icons();
+
+        function toggleMenu() function toggleMenu() {
+            const {
+            const menu = document.getElementById menu = document.getElementById('mobile-menu');('mobile-menu');
+            if (
+            if (menu) menu.classListmenu) menu.classList.toggle('hidden');.toggle('hidden');
         }
 
-        function scrollToContact() {
-            document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+
         }
 
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function scrollToContact        function scrollToContact() {
+           () {
+            document.getElementById('cont document.getElementById('contato').scrollIntoato').scrollIntoView({ behavior:View({ behavior: 'smooth' }); 'smooth' });
+        }
+
+
+        }
+
+        document.getElementById('        document.getElementById('contactForm').addEventListenercontactForm').addEventListener('submit', function('submit', function(e) {
+(e) {
+            e.preventDefault();            e.preventDefault();
             
-            const nome = document.getElementById('nome').value;
-            const empresa = document.getElementById('empresa').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const instagram = document.getElementById('instagram').value;
-            const segmento = document.getElementById('segmento').value;
+            const
             
-            const message = 'Olá! Vim pelo site da TV Voz de Brasília!\n\n' +
-                           '👤 Nome: ' + nome + '\n' +
-                           '🏢 Empresa: ' + empresa + '\n' +
-                           '📱 WhatsApp: ' + whatsapp + '\n' +
-                           '📷 Instagram: ' + (instagram || 'Não informado') + '\n' +
-                           '📊 Segmento:n' +
-                           '📊 Segmento: ' + segmento + '\n\n' +
-                           ' ' + segmento + '\n\n' +
-                           'Gostaria de saber mais sobre divulgação!';
+            const nome = document.getElementById nome = document.getElementById('nome').value('nome').value;
+            const;
+            const empresa = document.getElementById empresa = document.getElementById('empresa').value('empresa').value;
+            const;
+            const whatsapp = document.getElementById whatsapp = document.getElementById('whatsapp').('whatsapp').value;
+           value;
+            const instagram = document const instagram = document.getElementById('instagram')..getElementById('instagram').value;
+           value;
+            const segmento = document const segmento = document.getElementById('segmento.getElementById('segmento').value;
+').value;
             
-Gostaria de saber mais sobre divulgação!';
+            const message            
+            const message = 'Olá = 'Olá! Vim pelo site! Vim pelo site da TV Voz da TV Voz de Brasília!\n de Brasília!\n\n' +
+\n' +
+                           '                           '👤 Nome: '👤 Nome: ' + nome + '\ + nome + '\n' +
+n' +
+                           '                           '🏢 Empresa: '🏢 Empresa: ' + empresa + '\ + empresa + '\n' +
+n' +
+                           '                           '📱 WhatsApp: '📱 WhatsApp: ' + whatsapp + '\ + whatsapp + '\n' +
+n' +
+                           '                           '📷 Instagram: '📷 Instagram: ' + (instagram || + (instagram || 'Não informado') 'Não informado') + '\n' + '\n' +
+                           ' +
+                           '📊 Segment📊 Segmento: ' +o: ' + segmento + '\n segmento + '\n\n' +
+\n' +
+                           'Gost                           'Gostaria de saber maisaria de saber mais sobre divulgação!'; sobre divulgação!';
             
-            window.open('https://wa.me/556            window.open('https://wa.me/5561999812341?text1999812341?text=' + encodeURIComponent(message), '_blank');
+            window
+            
+            window.open('https://.open('https://wa.me/5wa.me/5561956199981998123412341?text=' +?text=' + encodeURIComponent(message), '_ encodeURIComponent(message), '_blank');
+       blank');
         });
 
-=' + encodeURIComponent(message), '_blank');
-        });
+        document });
 
-        document.getElementById('whatsapp').addEventListener('input', function        document.getElementById('whatsapp').addEventListener('input', function(e) {
-            let value = e.target.value.replace(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length <=(/\D/g, '');
-            if (value.length <= 11) {
-                value = value.replace(/^ 11) {
-                value = value.replace(/^(\d{2})(\d)/g, '($(\d{2})(\d)/g, '($1) $2');
-                value = value.replace(/1) $2');
-                value = value.replace(/(\d)(\d{4})$/, '$1-$(\d)(\d{4})$/, '$1-$2');
-                e.target.value = value;
-           2');
-                e.target.value = value;
+        document.getElementById('whatsapp.getElementById('whatsapp').addEventListener('input').addEventListener('input', function(e)', function(e) {
+            let {
+            let value = e.target value = e.target.value.replace(/\D.value.replace(/\D/g, '');
+/g, '');
+            if (value            if (value.length <= 1.length <= 11) {
+1) {
+                value = value                value = value.replace(/^(\d.replace(/^(\d{2})(\{2})(\d)/g,d)/g, '($1) '($1) $2');
+ $2');
+                value = value                value = value.replace(/(\d.replace(/(\d)(\d{)(\d{4})$/, '$4})$/, '$1-$2');1-$2');
+                e.target
+                e.target.value = value;.value = value;
+            }
+
             }
         });
+           });
     </script>
-</body }
-        });
-    </script>
+ </script>
 </body>
+</body>
+</html>
 </html>
