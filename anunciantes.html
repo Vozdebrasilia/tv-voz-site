@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Anunciantes - TV Voz de Brasília</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { scroll-behavior: smooth; margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-gold {
+            background: rgba(251, 191, 36, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%);
+        }
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(251, 191, 36, 0.5);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.15);
+        }
+        .video-thumbnail {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.08);
+        }
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fbbf24, #d4af37);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.8);
+            transition: transform 0.3s;
+        }
+        .video-card:hover .play-btn {
+            transform: scale(1);
+        }
+        
+        .filter-btn {
+            padding: 10px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover {
+            border-color: #fbbf24;
+            color: #fbbf24;
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, #fbbf24, #d4af37);
+            border-color: #fbbf24;
+            color: #0a0e27;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-empresarial { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-politica { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .badge-internacional { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.4); }
+        
+        .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 12px 20px 12px 50px;
+            color: white;
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #fbbf24;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .stats-counter {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(212, 175, 55, 0.1));
+            border: 2px solid rgba(251, 191, 36, 0.5);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.2), transparent);
+            border-radius: 50%;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .load-more-btn {
+            background: linear-gradient(135deg, #fbbf24, #d4af37);
+            color: #0a0e27;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .load-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 glass border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-14 w-auto" onerror="this.style.display='none'">
+                    <div>
+                        <h1 class="text-lg lg:text-xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
+                        <p class="text-xs text-yellow-500 tracking-widest">NOSSOS ANUNCIANTES</p>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="index.html" class="text-sm font-medium hover:text-yellow-500 transition">← Voltar ao Site</a>
+                    <a href="https://www.youtube.com/@VozdebrasiliaTV" target="_blank" class="gradient-gold text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition flex items-center gap-2">
+                        <i data-lucide="youtube" class="w-4 h-4"></i>
+                        Canal Oficial
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16 px-6">
+        <div class="container mx-auto">
+            <div class="max-w-5xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 glass-gold px-5 py-2 rounded-full mb-6">
+                    <i data-lucide="award" class="w-4 h-4 text-yellow-500"></i>
+                    <span class="text-sm font-semibold">40 anos conectando marcas ao sucesso</span>
+                </div>
+                
+                <h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">
+                    Nossos <span class="gradient-text">Anunciantes</span>
+                </h1>
+                <p class="text-lg lg:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Conheça as empresas e personalidades que confiam na TV Voz de Brasília 
+                    para construir autoridade e alcançar resultados extraordinários.
+                </p>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+                    <div class="stats-counter">
+                        <div class="text-3xl lg:text-4xl font-bold gradient-text mb-1">500+</div>
+                        <div class="text-xs lg:text-sm text-gray-400">Entrevistas Realizadas</div>
+                    </div>
+                    <div class="stats-counter">
+                        <div class="text-3xl lg:text-4xl font-bold gradient-text mb-1">150K+</div>
+                        <div class="text-xs lg:text-sm text-gray-400">Seguidores</div>
+                    </div>
+                    <div class="stats-counter">
+                        <div class="text-3xl lg:text-4xl font-bold gradient-text mb-1">170M+</div>
+                        <div class="text-xs lg:text-sm text-gray-400">Interações/Mês</div>
+                    </div>
+                    <div class="stats-counter">
+                        <div class="text-3xl lg:text-4xl font-bold gradient-text mb-1">40</div>
+                        <div class="text-xs lg:text-sm text-gray-400">Anos de História</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros e Busca -->
+    <section class="px-6 pb-8 sticky top-[72px] z-40 glass border-b border-white/10">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 py-4">
+                <!-- Filtros -->
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button class="filter-btn active" onclick="filtrar('todos')">
+                        Todos
+                    </button>
+                    <button class="filter-btn" onclick="filtrar('empresarial')">
+                        🏢 Empresarial
+                    </button>
+                    <button class="filter-btn" onclick="filtrar('politica')">
+                        🏛️ Política
+                    </button>
+                    <button class="filter-btn" onclick="filtrar('internacional')">
+                        🌍 Internacional
+                    </button>
+                </div>
+
+                <!-- Busca -->
+                <div class="relative">
+                    <i data-lucide="search" class="w-5 h-5 absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Buscar anunciante..." 
+                        class="search-input"
+                        oninput="buscar()">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Anunciantes -->
+    <section class="py-12 px-6">
+        <div class="container mx-auto">
+            <!-- Contador de resultados -->
+            <div class="flex items-center justify-between mb-8 max-w-6xl mx-auto">
+                <p class="text-gray-400">
+                    Mostrando <span id="contador" class="text-yellow-500 font-bold">0</span> anunciantes
+                </p>
+                <p class="text-sm text-gray-500 hidden md:block">
+                    Ordenado por data (mais recente)
+                </p>
+            </div>
+
+            <!-- Grid -->
+            <div id="gridAnunciantes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                <!-- Cards serão inseridos via JavaScript -->
+            </div>
+
+            <!-- Botão Carregar Mais -->
+            <div class="text-center mt-12">
+                <button id="loadMoreBtn" onclick="carregarMais()" class="load-more-btn">
+                    Carregar Mais Anunciantes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-5xl">
+            <div class="cta-banner text-center relative z-10">
+                <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full mb-6">
+                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                    <span class="text-sm font-bold">VAGAS LIMITADAS</span>
+                </div>
+                
+                <h2 class="text-3xl lg:text-5xl font-serif font-bold mb-4">
+                    Seja o próximo <span class="gradient-text">anunciante</span>
+                </h2>
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Junte-se a mais de 500 empresas e personalidades que já construíram autoridade 
+                    com a TV Voz de Brasília. Sua marca merece esse destaque!
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <a href="https://wa.me/5561999812341?text=Olá!%20Quero%20ser%20um%20anunciante%20da%20TV%20Voz%20de%20Brasília" 
+                       target="_blank" 
+                       class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Quero Anunciar Agora
+                    </a>
+                    <a href="index.html#contato" 
+                       class="glass border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500/10 px-8 py-4 rounded-full font-bold text-lg transition">
+                        Solicitar Mídia Kit
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                    <div class="text-center">
+                        <i data-lucide="video" class="w-6 h-6 text-yellow-500 mx-auto mb-2"></i>
+                        <p class="text-xs text-gray-300">Entrevista Profissional</p>
+                    </div>
+                    <div class="text-center">
+                        <i data-lucide="share-2" class="w-6 h-6 text-yellow-500 mx-auto mb-2"></i>
+                        <p class="text-xs text-gray-300">Divulgação Completa</p>
+                    </div>
+                    <div class="text-center">
+                        <i data-lucide="award" class="w-6 h-6 text-yellow-500 mx-auto mb-2"></i>
+                        <p class="text-xs text-gray-300">Certificado Oficial</p>
+                    </div>
+                    <div class="text-center">
+                        <i data-lucide="book" class="w-6 h-6 text-yellow-500 mx-auto mb-2"></i>
+                        <p class="text-xs text-gray-300">Anuário Brasileiro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-10 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                <div class="flex items-center space-x-3">
+                    <img src="./logo-tv-voz.png" alt="TV Voz" class="h-10 w-auto" onerror="this.style.display='none'">
+                    <div>
+                        <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
+                        <p class="text-xs text-gray-400">40 anos de credibilidade</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="hover:text-yellow-500 transition">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@VozdebrasiliaTV" target="_blank" class="hover:text-yellow-500 transition">
+                        <i data-lucide="youtube" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://wa.me/5561999812341" target="_blank" class="hover:text-yellow-500 transition">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <p class="text-sm text-gray-500">© 2026 TV Voz de Brasília</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5561999812341?text=Olá!%20Vi%20a%20página%20de%20anunciantes" 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition hover:scale-110 z-50">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+
+        // Base de dados de anunciantes (expanda conforme necessário)
+        const anunciantes = [
+            // EMPRESARIAL
+            { id: '5QWMLQjrV4c', titulo: 'Instituto de Medicina da Visão', categoria: 'empresarial', data: '07/01/2026' },
+            { id: 'b5t8TEEJdiU', titulo: 'Andrezza Bentes - Kumon', categoria: 'empresarial', data: '06/01/2026' },
+            { id: 'tB84ssWNLYg', titulo: 'Thiago Manzoni', categoria: 'empresarial', data: '05/01/2026' },
+            { id: 'VitoriaMesquita', titulo: 'Vitória Mesquita', categoria: 'empresarial', data: '04/01/2026' },
+            { id: 'PatriciaCalmon', titulo: 'Pastelaria Viçosa', categoria: 'empresarial', data: '03/01/2026' },
+            { id: 'FlowEstetica', titulo: 'Flow Estética Facial', categoria: 'empresarial', data: '02/01/2026' },
+            
+            // POLÍTICA
+            { id: 'mFX7ZEVbjrI', titulo: 'Igor Popov', categoria: 'politica', data: '04/01/2026' },
+            { id: 'rkLjp5Loue8', titulo: 'Senador Dr. Hiran', categoria: 'politica', data: '03/01/2026' },
+            { id: 'SWgHKS_i1UM', titulo: 'Gabriel Mota - Deputado', categoria: 'politica', data: '02/01/2026' },
+            { id: '8FBjQfoH8o8', titulo: 'Augusto Carvalho - ANABB', categoria: 'politica', data: '01/01/2026' },
+            
+            // INTERNACIONAL
+            { id: 'EmbaixadoraEgito', titulo: 'Embaixadora do Egito', categoria: 'internacional', data: '01/01/2026' },
+            { id: 'ONU_Daniel', titulo: 'Representante ONU', categoria: 'internacional', data: '31/12/2025' }
+        ];
+
+        let categoriaAtual = 'todos';
+        let termoBusca = '';
+        let itensVisiveis = 12;
+
+        function filtrar(categoria) {
+            categoriaAtual = categoria;
+            itensVisiveis = 12;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            renderizar();
+        }
+
+        function buscar() {
+            termoBusca = document.getElementById('searchInput').value.toLowerCase();
+            itensVisiveis = 12;
+            renderizar();
+        }
+
+        function carregarMais() {
+            itensVisiveis += 12;
+            renderizar();
+        }
+
+        function getAnunciantesFiltrados() {
+            return anunciantes.filter(a => {
+                const matchCategoria = categoriaAtual === 'todos' || a.categoria === categoriaAtual;
+                const matchBusca = a.titulo.toLowerCase().includes(termoBusca);
+                return matchCategoria && matchBusca;
+            });
+        }
+
+        function renderizar() {
+            const grid = document.getElementById('gridAnunciantes');
+            const filtrados = getAnunciantesFiltrados();
+            const visiveis = filtrados.slice(0, itensVisiveis);
+            
+            document.getElementById('contador').textContent = filtrados.length;
+            
+            if (visiveis.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-20">
+                        <i data-lucide="search-x" class="w-16 h-16 text-gray-600 mx-auto mb-4"></i>
+                        <p class="text-xl text-gray-400">Nenhum anunciante encontrado</p>
+                        <p class="text-sm text-gray-500 mt-2">Tente buscar por outro termo</p>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = visiveis.map((a, i) => `
+                    <a href="https://youtu.be/${a.id}" target="_blank" class="video-card fade-in" style="animation-delay: ${i * 0.05}s">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/${a.id}/mqdefault.jpg" 
+                                 alt="${a.titulo}"
+                                 onerror="this.src='https://img.youtube.com/vi/${a.id}/default.jpg'">
+                            <div class="play-overlay">
+                                <div class="play-btn">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#0a0e27">
+                                        <polygon points="6,3 20,12 6,21"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <span class="category-badge badge-${a.categoria} absolute top-3 left-3">
+                                ${getCategoriaNome(a.categoria)}
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-2 line-clamp-2">${a.titulo}</h3>
+                            <div class="flex items-center justify-between text-xs text-gray-400">
+                                <span class="flex items-center gap-1">
+                                    <i data-lucide="calendar" class="w-3 h-3"></i>
+                                    ${a.data}
+                                </span>
+                                <span class="text-yellow-500 font-semibold hover:underline">Assistir →</span>
+                            </div>
+                        </div>
+                    </a>
+                `).join('');
+            }
+            
+            // Mostrar/ocultar botão carregar mais
+            const btn = document.getElementById('loadMoreBtn');
+            btn.style.display = itensVisiveis >= filtrados.length ? 'none' : 'inline-block';
+            
+            lucide.createIcons();
+        }
+
+        function getCategoriaNome(cat) {
+            const nomes = {
+                'empresarial': 'Empresarial',
+                'politica': 'Política',
+                'internacional': 'Internacional'
+            };
+            return nomes[cat] || cat;
+        }
+
+        // Inicializar
+        renderizar();
+    </script>
+</body>
+</html>
