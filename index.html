@@ -119,66 +119,95 @@
             </div>
         </nav>
     </header>
+<!-- Hero Section -->
+<section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 hero-pattern">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <!-- Logo TV Voz de Brasília -->
+                    <div class="text-center mb-8">
+                        <img src="./logo-tv-nova.jpg" alt="TV Voz de Brasília" class="h-40 w-auto mx-auto bg-black rounded-lg p-4 shadow-2xl">
+                    </div>
+                    
+                    <!-- Selo 40 Anos -->
+                    <div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos justify-center lg:justify-start">
+                        <img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-32 w-32 rounded-full object-cover animate-40anos shadow-2xl">
+                        <div>
+                            <span class="text-3xl font-bold text-yellow-400">40 ANOS</span>
+                            <p class="text-sm text-gray-300">Construindo autoridade e credibilidade</p>
+                        </div>
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">
+                        A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
+                    </h1>
+                    
+                    <p class="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">
+                        Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, 
+                        mais de <span class="text-yellow-500 font-semibold">150 mil seguidores</span> no Instagram 
+                        e mais de <span class="text-yellow-500 font-semibold">170 milhões</span> de interações mensais.
+                    </p>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 hero-pattern">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
-        
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos">
-                        
-<div class="text-center mb-8">
-    <img src="./logo-tv-nova.jpg" alt="TV Voz de Brasília" class="h-40 w-auto mx-auto bg-black rounded-lg p-4 shadow-2xl">
-</div>
-<div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos">
-    <img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-32 w-32 rounded-full object-cover animate-40anos shadow-2xl">
-    <div>
-        <span class="text-3xl font-bold text-yellow-400">40 ANOS</span>
-        <p class="text-sm text-gray-300">Construindo autoridade e credibilidade</p>
-    </div>
-</div>
-                            <div>
-                                <span class="text-3xl font-bold text-yellow-400">40 ANOS</span>
-                                <p class="text-sm text-gray-300">Construindo autoridade e credibilidade</p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start">
+                        <a href="https://wa.me/5561999812341" target="_blank" 
+                           class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2">
+                            Quero divulgar minha empresa
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <button onclick="scrollToContact()" 
+                                class="glass border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500/10 px-8 py-4 rounded-full font-bold text-lg transition">
+                            Receber mídia kit
+                        </button>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="https://instagram.com/tvvozdebrasilia" target="_blank" 
+                           class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                            <span class="text-sm font-semibold">150K+ seguidores</span>
+                        </a>
+                        <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" 
+                           class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                            <span class="text-sm font-semibold">500+ entrevistas</span>
+                        </a>
+                        <div class="glass px-4 py-2 rounded-full flex items-center gap-2">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i>
+                            <span class="text-sm font-semibold">170M+ interações/mês</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block">
+                    <div class="relative">
+                        <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
+                        <div class="relative glass rounded-3xl p-6 border-4 border-yellow-500">
+                            <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black relative">
+                                <img src="https://img.youtube.com/vi/5QWMLQjrV4c/maxresdefault.jpg" alt="Entrevista" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                                    <a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="w-20 h-20 gradient-gold rounded-full flex items-center justify-center hover:scale-110 transition">
+                                        <i data-lucide="play" class="w-10 h-10 text-gray-900 ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full mb-2 animate-pulse">
+                                    <span class="w-2 h-2 bg-white rounded-full"></span>
+                                    <span class="font-bold text-sm">AO VIVO</span>
+                                </div>
+                                <p class="text-gray-400 text-xs mt-2">Entrevista realizada em 07 de Janeiro de 2026</p>
+                                <p class="text-gray-300 text-sm">Assista agora na TV Voz de Brasília</p>
                             </div>
                         </div>
-                        
-                        <h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">
-                            A maior vitrine <span class="gradient-text">empresarial</span> de Brasília
-                        </h1>
-                        
-                        <p class="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">
-                            Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, 
-                            mais de <span class="text-yellow-500 font-semibold">150 mil seguidores</span> no Instagram 
-                            e mais de <span class="text-yellow-500 font-semibold">170 milhões</span> de interações mensais.
-                        </p>
-
-                        <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                            <a href="https://wa.me/5561999812341" target="_blank" 
-                               class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2">
-                                Quero divulgar minha empresa
-                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                            </a>
-                            <button onclick="scrollToContact()" 
-                                    class="glass border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500/10 px-8 py-4 rounded-full font-bold text-lg transition">
-                                Receber mídia kit
-                            </button>
-                        </div>
-
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://instagram.com/tvvozdebrasilia" target="_blank" 
-                               class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
-                                <i data-lucide="instagram" class="w-5 h-5"></i>
-                                <span class="text-sm font-semibold">150K+ seguidores</span>
-                            </a>
-                            <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" 
-                               class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
-                                <i data-lucide="youtube" class="w-5 h-5"></i>
-                                <span class="text-sm font-semibold">500+ entrevistas</span>
-                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>                            </a>
                             <div class="glass px-4 py-2 rounded-full flex items-center gap-2">
                                 <i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i>
                                 <span class="text-sm font-semibold">170M+ interações/mês</span>
