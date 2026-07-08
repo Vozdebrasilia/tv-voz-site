@@ -99,7 +99,7 @@
         }
         
         .filter-btn {
-            padding: 10px 24px;
+            padding: 12px 28px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             background: transparent;
             color: white;
@@ -108,6 +108,7 @@
             font-weight: 600;
             font-size: 14px;
             transition: all 0.3s;
+            white-space: nowrap;
         }
         .filter-btn:hover {
             border-color: #fbbf24;
@@ -121,13 +122,17 @@
         
         .category-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        .badge-turismo { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-gastronomia { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .badge-moveis { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .badge-educacao { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.4); }
         .badge-empresarial { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); }
         .badge-politica { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.4); }
         .badge-internacional { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.4); }
@@ -136,16 +141,18 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            padding: 12px 20px 12px 50px;
+            padding: 14px 24px 14px 54px;
             color: white;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             transition: all 0.3s;
+            font-size: 15px;
         }
         .search-input:focus {
             outline: none;
             border-color: #fbbf24;
             background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
         }
         
         .stats-counter {
@@ -187,7 +194,7 @@
         .load-more-btn {
             background: linear-gradient(135deg, #fbbf24, #d4af37);
             color: #0a0e27;
-            padding: 16px 40px;
+            padding: 18px 48px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 16px;
@@ -199,6 +206,14 @@
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
         }
+        
+        .segmento-info {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -208,7 +223,7 @@
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="index.html" class="flex items-center space-x-3">
-                    <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-14 w-auto" onerror="this.style.display='none'">
+                    <img src="./logo-voz.png" alt="TV Voz de Brasília" class="h-14 w-auto" onerror="this.style.display='none'">
                     <div>
                         <h1 class="text-lg lg:text-xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
                         <p class="text-xs text-yellow-500 tracking-widest">NOSSOS ANUNCIANTES</p>
@@ -262,6 +277,30 @@
                         <div class="text-xs lg:text-sm text-gray-400">Anos de História</div>
                     </div>
                 </div>
+
+                <!-- Segmentos Principais -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+                    <div class="glass-gold rounded-2xl p-6 text-center hover-lift cursor-pointer" onclick="filtrarSegmento('turismo')">
+                        <div class="text-4xl mb-3">🏨</div>
+                        <h3 class="font-bold text-lg mb-2">Turismo & Hotéis</h3>
+                        <p class="text-sm text-gray-300">Hotéis fazenda, turismo ecológico e aventura</p>
+                    </div>
+                    <div class="glass-gold rounded-2xl p-6 text-center hover-lift cursor-pointer" onclick="filtrarSegmento('gastronomia')">
+                        <div class="text-4xl mb-3">🍽️</div>
+                        <h3 class="font-bold text-lg mb-2">Gastronomia</h3>
+                        <p class="text-sm text-gray-300">Restaurantes, petiscarias e bares</p>
+                    </div>
+                    <div class="glass-gold rounded-2xl p-6 text-center hover-lift cursor-pointer" onclick="filtrarSegmento('moveis')">
+                        <div class="text-4xl mb-3">️</div>
+                        <h3 class="font-bold text-lg mb-2">Móveis</h3>
+                        <p class="text-sm text-gray-300">Móveis residenciais e empresariais</p>
+                    </div>
+                    <div class="glass-gold rounded-2xl p-6 text-center hover-lift cursor-pointer" onclick="filtrarSegmento('educacao')">
+                        <div class="text-4xl mb-3"></div>
+                        <h3 class="font-bold text-lg mb-2">Educação</h3>
+                        <p class="text-sm text-gray-300">Escolas e faculdades</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -270,19 +309,28 @@
     <section class="px-6 pb-8 sticky top-[72px] z-40 glass border-b border-white/10">
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6 py-4">
-                <!-- Filtros -->
+                <!-- Filtros por Segmento -->
                 <div class="flex flex-wrap gap-3 justify-center">
                     <button class="filter-btn active" onclick="filtrar('todos')">
                         Todos
+                    </button>
+                    <button class="filter-btn" onclick="filtrarSegmento('turismo')">
+                        🏨 Turismo
+                    </button>
+                    <button class="filter-btn" onclick="filtrarSegmento('gastronomia')">
+                        🍽️ Gastronomia
+                    </button>
+                    <button class="filter-btn" onclick="filtrarSegmento('moveis')">
+                        🛋️ Móveis
+                    </button>
+                    <button class="filter-btn" onclick="filtrarSegmento('educacao')">
+                        🎓 Educação
                     </button>
                     <button class="filter-btn" onclick="filtrar('empresarial')">
                         🏢 Empresarial
                     </button>
                     <button class="filter-btn" onclick="filtrar('politica')">
                         🏛️ Política
-                    </button>
-                    <button class="filter-btn" onclick="filtrar('internacional')">
-                        🌍 Internacional
                     </button>
                 </div>
 
@@ -292,10 +340,28 @@
                     <input 
                         type="text" 
                         id="searchInput"
-                        placeholder="Buscar anunciante..." 
+                        placeholder="Buscar anunciante ou empresa..." 
                         class="search-input"
                         oninput="buscar()">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instruções -->
+    <section class="px-6 py-8">
+        <div class="container mx-auto max-w-4xl">
+            <div class="segmento-info">
+                <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                    <i data-lucide="info" class="w-5 h-5 text-yellow-500"></i>
+                    Como usar esta página:
+                </h3>
+                <ul class="text-sm text-gray-300 space-y-1 ml-7">
+                    <li>• Clique nos botões acima para filtrar por segmento (Turismo, Gastronomia, Móveis, Educação)</li>
+                    <li>• Use a barra de busca para encontrar empresas específicas</li>
+                    <li>• Clique em qualquer vídeo para assistir no YouTube</li>
+                    <li>• Botão "Carregar Mais" mostra mais resultados gradualmente</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -384,7 +450,7 @@
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
                 <div class="flex items-center space-x-3">
-                    <img src="./logo-tv-voz.png" alt="TV Voz" class="h-10 w-auto" onerror="this.style.display='none'">
+                    <img src="./logo-voz.png" alt="TV Voz" class="h-10 w-auto" onerror="this.style.display='none'">
                     <div>
                         <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
                         <p class="text-xs text-gray-400">40 anos de credibilidade</p>
@@ -418,37 +484,72 @@
     <script>
         lucide.createIcons();
 
-        // Base de dados de anunciantes (expanda conforme necessário)
+        // BASE DE DADOS - ADICIONE AQUI SEUS VÍDEOS
+        // INSTRUÇÕES:
+        // 1. Copie o ID do vídeo do YouTube (parte depois de "v=" na URL)
+        // 2. Adicione o título da empresa/pessoa
+        // 3. Escolha a categoria: 'turismo', 'gastronomia', 'moveis', 'educacao', 'empresarial', 'politica', 'internacional'
+        // 4. Coloque a data no formato 'DD/MM/AAAA'
+        
         const anunciantes = [
-            // EMPRESARIAL
-            { id: '5QWMLQjrV4c', titulo: 'Instituto de Medicina da Visão', categoria: 'empresarial', data: '07/01/2026' },
-            { id: 'b5t8TEEJdiU', titulo: 'Andrezza Bentes - Kumon', categoria: 'empresarial', data: '06/01/2026' },
-            { id: 'tB84ssWNLYg', titulo: 'Thiago Manzoni', categoria: 'empresarial', data: '05/01/2026' },
-            { id: 'VitoriaMesquita', titulo: 'Vitória Mesquita', categoria: 'empresarial', data: '04/01/2026' },
-            { id: 'PatriciaCalmon', titulo: 'Pastelaria Viçosa', categoria: 'empresarial', data: '03/01/2026' },
-            { id: 'FlowEstetica', titulo: 'Flow Estética Facial', categoria: 'empresarial', data: '02/01/2026' },
+            // TURISMO E HOTÉIS
+            { id: '5QWMLQjrV4c', titulo: 'Instituto de Medicina da Visão', categoria: 'turismo', segmento: 'turismo', data: '07/01/2026' },
+            { id: '8FBjQfoH8o8', titulo: 'Embaixadora do Egito - Turismo', categoria: 'internacional', segmento: 'turismo', data: '01/01/2026' },
+            // ADICIONE MAIS VÍDEOS DE TURISMO AQUI
+            
+            // GASTRONOMIA
+            { id: 'PatriciaCalmon', titulo: 'Pastelaria Viçosa', categoria: 'empresarial', segmento: 'gastronomia', data: '03/01/2026' },
+            // ADICIONE MAIS VÍDEOS DE GASTRONOMIA AQUI
+            
+            // MÓVEIS
+            // ADICIONE VÍDEOS DE MÓVEIS AQUI
+            
+            // EDUCAÇÃO
+            { id: 'b5t8TEEJdiU', titulo: 'Andrezza Bentes - Kumon', categoria: 'empresarial', segmento: 'educacao', data: '06/01/2026' },
+            // ADICIONE MAIS VÍDEOS DE EDUCAÇÃO AQUI
+            
+            // EMPRESARIAL (OUTROS)
+            { id: 'tB84ssWNLYg', titulo: 'Thiago Manzoni', categoria: 'empresarial', segmento: 'empresarial', data: '05/01/2026' },
+            { id: 'FlowEstetica', titulo: 'Flow Estética Facial', categoria: 'empresarial', segmento: 'empresarial', data: '02/01/2026' },
             
             // POLÍTICA
-            { id: 'mFX7ZEVbjrI', titulo: 'Igor Popov', categoria: 'politica', data: '04/01/2026' },
-            { id: 'rkLjp5Loue8', titulo: 'Senador Dr. Hiran', categoria: 'politica', data: '03/01/2026' },
-            { id: 'SWgHKS_i1UM', titulo: 'Gabriel Mota - Deputado', categoria: 'politica', data: '02/01/2026' },
-            { id: '8FBjQfoH8o8', titulo: 'Augusto Carvalho - ANABB', categoria: 'politica', data: '01/01/2026' },
+            { id: 'mFX7ZEVbjrI', titulo: 'Igor Popov', categoria: 'politica', segmento: 'politica', data: '04/01/2026' },
+            { id: 'rkLjp5Loue8', titulo: 'Senador Dr. Hiran', categoria: 'politica', segmento: 'politica', data: '03/01/2026' },
+            { id: 'SWgHKS_i1UM', titulo: 'Gabriel Mota - Deputado', categoria: 'politica', segmento: 'politica', data: '02/01/2026' },
             
             // INTERNACIONAL
-            { id: 'EmbaixadoraEgito', titulo: 'Embaixadora do Egito', categoria: 'internacional', data: '01/01/2026' },
-            { id: 'ONU_Daniel', titulo: 'Representante ONU', categoria: 'internacional', data: '31/12/2025' }
+            { id: 'AugustoCarvalho', titulo: 'Augusto Carvalho - ANABB', categoria: 'internacional', segmento: 'internacional', data: '31/12/2025' },
+            { id: 'RepresentanteONU', titulo: 'Representante ONU', categoria: 'internacional', segmento: 'internacional', data: '30/12/2025' }
         ];
 
         let categoriaAtual = 'todos';
+        let segmentoAtual = 'todos';
         let termoBusca = '';
         let itensVisiveis = 12;
 
         function filtrar(categoria) {
             categoriaAtual = categoria;
+            segmentoAtual = 'todos';
             itensVisiveis = 12;
             
+            // Atualiza botões
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase().includes(categoria) || (categoria === 'todos' && btn.textContent === 'Todos')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderizar();
+        }
+
+        function filtrarSegmento(segmento) {
+            segmentoAtual = segmento;
+            categoriaAtual = 'todos';
+            itensVisiveis = 12;
+            
+            // Remove active de todos os botões
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
             
             renderizar();
         }
@@ -467,8 +568,9 @@
         function getAnunciantesFiltrados() {
             return anunciantes.filter(a => {
                 const matchCategoria = categoriaAtual === 'todos' || a.categoria === categoriaAtual;
+                const matchSegmento = segmentoAtual === 'todos' || a.segmento === segmentoAtual;
                 const matchBusca = a.titulo.toLowerCase().includes(termoBusca);
-                return matchCategoria && matchBusca;
+                return (matchCategoria || matchSegmento) && matchBusca;
             });
         }
 
@@ -484,7 +586,7 @@
                     <div class="col-span-full text-center py-20">
                         <i data-lucide="search-x" class="w-16 h-16 text-gray-600 mx-auto mb-4"></i>
                         <p class="text-xl text-gray-400">Nenhum anunciante encontrado</p>
-                        <p class="text-sm text-gray-500 mt-2">Tente buscar por outro termo</p>
+                        <p class="text-sm text-gray-500 mt-2">Tente buscar por outro termo ou categoria</p>
                     </div>
                 `;
             } else {
@@ -501,8 +603,8 @@
                                     </svg>
                                 </div>
                             </div>
-                            <span class="category-badge badge-${a.categoria} absolute top-3 left-3">
-                                ${getCategoriaNome(a.categoria)}
+                            <span class="category-badge badge-${a.segmento} absolute top-3 left-3">
+                                ${getSegmentoNome(a.segmento)}
                             </span>
                         </div>
                         <div class="p-4">
@@ -526,13 +628,17 @@
             lucide.createIcons();
         }
 
-        function getCategoriaNome(cat) {
+        function getSegmentoNome(segmento) {
             const nomes = {
+                'turismo': 'Turismo',
+                'gastronomia': 'Gastronomia',
+                'moveis': 'Móveis',
+                'educacao': 'Educação',
                 'empresarial': 'Empresarial',
                 'politica': 'Política',
                 'internacional': 'Internacional'
             };
-            return nomes[cat] || cat;
+            return nomes[segmento] || segmento;
         }
 
         // Inicializar
