@@ -57,16 +57,6 @@
         .pulse-40anos {
             animation: pulse40 2s infinite;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fadeInUp 1s ease-out; }
         .hero-pattern {
             background-image: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
                               radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
@@ -77,18 +67,6 @@
         }
         .categoria-box { transition: all 0.3s; }
         .categoria-box:hover { transform: translateY(-5px); }
-        .parceiro-card {
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
-            border: 2px solid rgba(251, 191, 36, 0.4);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .parceiro-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(251, 191, 36, 0.3);
-        }
         .premio-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -105,7 +83,7 @@
 </head>
 <body class="antialiased">
 
-    <!-- Header com Logo -->
+    <!-- Header -->
     <header class="fixed w-full top-0 z-50 glass border-b border-white/10">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
@@ -146,15 +124,14 @@
         </nav>
     </header>
 
-    <!-- Hero Section com TV Ao Vivo e Selo 40 Anos Grande -->
+    <!-- Hero Section -->
     <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 hero-pattern">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
         
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-6xl mx-auto">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="animate-fade-in-up">
-                        <!-- Selo 40 Anos Grande e Animado -->
+                    <div>
                         <div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos">
                             <img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-20 w-20 rounded-full object-cover animate-40anos shadow-lg">
                             <div>
@@ -203,7 +180,6 @@
                         </div>
                     </div>
 
-                    <!-- TV AO VIVO com Thumbnail -->
                     <div class="hidden lg:block">
                         <div class="relative">
                             <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
@@ -267,47 +243,367 @@
                             <div class="aspect-video relative">
                                 <img src="https://img.youtube.com/vi/b5t8TEEJdiU/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-<!-- Números Atualizados -->
-    <section id="numeros" class="py-20 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 gradient-gold opacity-5"></div>
-        
-        <div class="container mx-auto relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">
-                    Números que <span class="gradient-text">comprovam</span> nossa autoridade
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="instagram" class="w-12 h-12 text-pink-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">150K+</div>
-                    <div class="text-gray-400 text-sm">seguidores no Instagram</div>
+                                    <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-gray-900 ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Andrezza Bentes - Kumon</h4>
+                                <p class="text-xs text-gray-400">06/01/2026</p>
+                            </div>
+                        </a>
+                        <a href="https://youtu.be/tB84ssWNLYg" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/tB84ssWNLYg/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-gray-900 ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Thiago Manzoni</h4>
+                                <p class="text-xs text-gray-400">05/01/2026</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="anunciantes.html" class="block w-full gradient-gold text-gray-900 text-center py-3 rounded-full font-bold hover:shadow-lg transition">
+                        Ver todos os anunciantes →
+                    </a>
                 </div>
 
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="youtube" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">500+</div>
-                    <div class="text-gray-400 text-sm">entrevistas no YouTube</div>
+                <!-- POLÍTICA -->
+                <div class="categoria-box glass rounded-3xl p-8 border-4 border-blue-500">
+                    <div class="text-6xl mb-4 text-center">🏛️</div>
+                    <h3 class="text-3xl font-bold text-blue-400 mb-3 text-center">Política</h3>
+                    <p class="text-gray-300 mb-2 text-center text-sm">Presidentes, Governadores, Ministros, Deputados, Senadores e Autoridades</p>
+                    
+                    <div class="space-y-3 mb-6 mt-4">
+                        <a href="https://youtu.be/mFX7ZEVbjrI" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/mFX7ZEVbjrI/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Igor Popov</h4>
+                                <p class="text-xs text-gray-400">04/01/2026</p>
+                            </div>
+                        </a>
+                        <a href="https://youtu.be/rkLjp5Loue8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/rkLjp5Loue8/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Senador Dr. Hiran</h4>
+                                <p class="text-xs text-gray-400">03/01/2026</p>
+                            </div>
+                        </a>
+                        <a href="https://youtu.be/SWgHKS_i1UM" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/SWgHKS_i1UM/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Representante ONU</h4>
+                                <p class="text-xs text-gray-400">02/01/2026</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="anunciantes.html" class="block w-full bg-blue-600 text-white text-center py-3 rounded-full font-bold hover:bg-blue-700 transition">
+                        Ver todos os anunciantes →
+                    </a>
                 </div>
 
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="trending-up" class="w-12 h-12 text-yellow-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">170M+</div>
-                    <div class="text-gray-400 text-sm">interações/mês</div>
-                </div>
-
-                <div class="stat-card rounded-3xl p-8 text-center hover-lift">
-                    <i data-lucide="award" class="w-12 h-12 text-yellow-500 mx-auto mb-4"></i>
-                    <div class="text-4xl font-bold mb-2">40</div>
-                    <div class="text-gray-400 text-sm">anos de atuação</div>
+                <!-- INTERNACIONAL -->
+                <div class="categoria-box glass rounded-3xl p-8 border-4 border-purple-500">
+                    <div class="text-6xl mb-4 text-center">🌍</div>
+                    <h3 class="text-3xl font-bold text-purple-400 mb-3 text-center">Internacional</h3>
+                    <p class="text-gray-300 mb-2 text-center text-sm">Embaixadores e Organismos Internacionais</p>
+                    
+                    <div class="space-y-3 mb-6 mt-4">
+                        <a href="https://youtu.be/8FBjQfoH8o8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/8FBjQfoH8o8/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Embaixadora do Egito</h4>
+                                <p class="text-xs text-gray-400">01/01/2026</p>
+                            </div>
+                        </a>
+                        <a href="https://youtu.be/AugustoCarvalho" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/AugustoCarvalho/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Augusto Carvalho - ANABB</h4>
+                                <p class="text-xs text-gray-400">31/12/2025</p>
+                            </div>
+                        </a>
+                        <a href="https://youtu.be/RepresentanteONU" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group">
+                            <div class="aspect-video relative">
+                                <img src="https://img.youtube.com/vi/RepresentanteONU/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                                        <i data-lucide="play" class="w-6 h-6 text-white ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-semibold text-sm">Organismos Internacionais</h4>
+                                <p class="text-xs text-gray-400">30/12/2025</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="anunciantes.html" class="block w-full bg-purple-600 text-white text-center py-3 rounded-full font-bold hover:bg-purple-700 transition">
+                        Ver todos os anunciantes 🌐 →
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projeto Recomeçar -->
-    <section id="recomecar" class="py-20 px-6 bg-gradient-to-b from-purple-900/20 to-blue-900/20">
+    <!-- Prêmios Section -->
+    <section id="premios" class="py-20 px-6">
         <div class="container mx-auto">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="w-24
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">
+                    O que nossos <span class="gradient-text">anunciantes recebem</span>
+                </h2>
+                <p class="text-xl text-gray-300">Reconhecimentos que fortalecem sua marca e comprovam sua excelência</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Anuário Brasileiro -->
+                <div class="premio-card">
+                    <div class="mb-6">
+                        <img src="./capa-anuario.jpg" alt="Anuário Brasileiro" class="mx-auto rounded-lg shadow-2xl max-h-80 object-cover w-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Anuário Brasileiro</h3>
+                    <p class="text-yellow-500 font-semibold mb-4">24ª Edição Impressa</p>
+                    <ul class="text-left text-sm text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> 300 mil exemplares</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> Distribuição nacional</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> Visibilidade garantida</li>
+                    </ul>
+                </div>
+
+                <!-- Troféu Top of Millenium -->
+                <div class="premio-card">
+                    <div class="mb-6">
+                        <img src="./logo-trofeu.jpg" alt="Troféu Top of Millenium" class="mx-auto rounded-lg shadow-2xl max-h-80 object-cover w-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Prêmio Top of Millenium</h3>
+                    <p class="text-yellow-500 font-semibold mb-4">10ª Edição - Excelência</p>
+                    <ul class="text-left text-sm text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Selo de Excelência</li>
+                        <li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Credibilidade e Prestígio</li>
+                        <li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Reconhecimento de Mercado</li>
+                    </ul>
+                </div>
+
+                <!-- Diploma Personalidade do Ano -->
+                <div class="premio-card">
+                    <div class="mb-6">
+                        <img src="./logo-diploma.png" alt="Diploma Personalidade do Ano" class="mx-auto rounded-lg shadow-2xl max-h-80 object-cover w-full">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Personalidade do Ano</h3>
+                    <p class="text-yellow-500 font-semibold mb-4">Diploma de Honra ao Mérito</p>
+                    <ul class="text-left text-sm text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Certificado Oficial</li>
+                        <li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Valorização da Marca</li>
+                        <li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Destaque na Imprensa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Parceiros - Instituto Brazil Just -->
+    <section id="parceiros" class="py-20 px-6 bg-gray" class="h-24 w-auto bg-white/10 rounded-lg p-2">
+                        <div-900/30">
+        <div class="container mx-auto">
+            <div class="max-w-5xl mx-auto">
+                <div class="glass-gold rounded-3xl p-12 text-center border-2 border-yellow-500/30">
+                    <h2 class="text-3xl font-serif font-bold mb-8">Nosso Parceiro Oficial</h2>
+                    <div class="flex items-center justify-center gap-8 mb-8 flex-wrap">
+                        <img src="./logo-voz.png" alt="TV Voz de Brasília" class="h-24 w-auto bg-white/10 rounded-lg p-2">
+                        <div class="text- class="text-4xl text-yellow4xl text-yellow-500-500 hidden md:block"> hidden md:block">+</div>
++</div>
+                        <img src                        <img src="./logo-ib="./logo-ibj.jpg" alt="Instituto Brazilj.jpg" alt="Instituto Brazil Just" class=" Just" class="h-24h-24 w-auto bg-white w-auto bg-white rounded-lg p- rounded-lg p-2 shadow-xl">2 shadow-xl">
+                    </
+                    </div>
+                   div>
+                    <h3 class <h3 class="text-4="text-4xl font-bold mbxl font-bold mb-4 text-4 text-blue-40-blue-400">Instituto0">Instituto Brazil Just</h Brazil Just</h3>
+                   3>
+                    <p class=" <p class="text-xl text-graytext-xl text-gray-300-300 mb-2 italic mb-2 italic">"Oportun">"Oportunidade e Igualdadeidade e Igualdade para Todos!"</ para Todos!"</p>
+                   p>
+                    <p class=" <p class="text-gray-4text-gray-400 mb00 mb-8 max-8 max-w-2xl-w-2xl mx-auto">Par mx-auto">Parceiro oficialceiro oficial da TV Voz da TV Voz de Brasília na promoção de Brasília na promoção da justiça social, da justiça social, cidadania e desenv cidadania e desenvolvimento sustentável.</olvimento sustentável.</p>
+                   p>
+                    <a href=" <a href="https://www.inhttps://www.institutobraziljuststitutobraziljust.org" target="_.org" target="_blank" class="blank" class="gradient-gold textgradient-gold text-gray-90-gray-900 px-80 px-8 py-4 rounded py-4 rounded-full font-bold text-full font-bold text-lg hover:shadow-lg hover:shadow-2xl transition-2xl transition inline-flex items-center inline-flex items-center gap-2"> gap-2">
+                        Visite
+                        Visite o site do IB o site do IBJ
+                        J
+                        <i data-luc<i data-lucide="external-linkide="external-link" class="w" class="w-5 h--5 h-5"></i>5"></i>
+                    </a
+                    </a>
+                </>
+                </div>
+           div>
+            </div>
+ </div>
+        </div>        </div>
+    </section
+    </section>
+
+    <!-->
+
+    <!-- Números --> Números -->
+    <section
+    <section id="numeros id="numeros" class="py" class="py-20 px-20 px-6">
+-6">
+        <div class        <div class="container mx-auto="container mx-auto">
+            ">
+            <div class="text<div class="text-center mb-1-center mb-16">
+               6">
+                <h2 class <h2 class="text-4="text-4xl lg:text-xl lg:text-5xl font-serif5xl font-serif font-bold mb- font-bold mb-6">
+                   6">
+                    Números que  Números que <span class="gradient<span class="gradient-text">comprov-text">comprovam</span>am</span> nossa autoridade
+                nossa autoridade
+                </h2> </h2>
+            </div
+            </div>
+            >
+            <div class="grid<div class="grid grid-cols grid-cols-2 lg:-2 lg:grid-cols-4grid-cols-4 gap-6 gap-6 max-w-5 max-w-5xl mx-auto">xl mx-auto">
+                <div
+                <div class="stat-card class="stat-card rounded-3xl rounded-3xl p-8 text p-8 text-center hover-lift-center hover-lift">
+                    ">
+                    <i data-luc<i data-lucide="instagram"ide="instagram" class="w- class="w-12 h-12 h-12 text-p12 text-pink-50ink-500 mx-auto mb0 mx-auto mb-4"></i-4"></i>
+                    >
+                    <div class="text<div class="text-4xl font-4xl font-bold mb-2-bold mb-2">15">150K+</div0K+</div>
+                    >
+                    <div class="text<div class="text-gray-40-gray-400 text-sm">0 text-sm">seguidores noseguidores no Instagram</div> Instagram</div>
+                </div
+                </div>
+                >
+                <div class="stat<div class="stat-card rounded-3-card rounded-3xl p-8xl p-8 text-center hover-l text-center hover-lift">
+                   ift">
+                    <i data-l <i data-lucide="youtubeucide="youtube" class="w" class="w-12 h-12 h-12 text-12 text-red-5-red-500 mx-auto00 mx-auto mb-4"></ mb-4"></i>
+                   i>
+                    <div class=" <div class="text-4xltext-4xl font-bold mb- font-bold mb-2">52">500+</div00+</div>
+                    >
+                    <div class="text<div class="text-gray-40-gray-400 text-sm">0 text-sm">entrevistas noentrevistas no YouTube</div> YouTube</div>
+                </div
+                </div>
+                >
+                <div class="stat<div class="stat-card rounded-3-card rounded-3xl p-8xl p-8 text-center hover-l text-center hover-lift">
+                   ift">
+                    <i data-l <i data-lucide="tucide="trending-up" classrending-up" class="w-1="w-12 h-12 h-1
+                        <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
+                <div class="flex items-center space-x-4">
+                    <img src="./logo-voz.png" alt="TV Voz de Brasília" class="h-12 w-auto">
+                    <div>
+                        <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
+                        <p class="text-xs text-gray-400">40 anos de credibilidade</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="hover:text-yellow-500 transition">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" class="hover:text-yellow-500 transition">
+                        <i data-lucide="youtube" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://wa.me/5561999812341" target="_blank" class="hover:text-yellow-500 transition">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-sm">
+                © 2026 TV Voz de Brasília. Todos os direitos reservados. | Instituto Brazil Just - Oportunidade e Igualdade para Todos!
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5561999812341" target="_blank" 
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition hover:scale-110 z-50">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function scrollToContact() {
+            document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const empresa = document.getElementById('empresa').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const instagram = document.getElementById('instagram').value;
+            const segmento = document.getElementById('segmento').value;
+            
+            const message = 'Olá! Vim pelo site da TV Voz de Brasília!\n\n' +
+                           '👤 Nome: ' + nome + '\n' +
+                           '🏢 Empresa: ' + empresa + '\n' +
+                           '📱 WhatsApp: ' + whatsapp + '\n' +
+                           '📷 Instagram: ' + (instagram || 'Não informado') + '\n' +
+                           '📊 Segmento: ' + segmento + '\n\n' +
+                           'Gostaria de saber mais sobre divulgação!';
+            
+            window.open('https://wa.me/5561999812341?text=' + encodeURIComponent(message), '_blank');
+        });
+
+        document.getElementById('whatsapp').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                e.target.value = value;
+            }
+        });
+    </script>
+</body>
+</html>
