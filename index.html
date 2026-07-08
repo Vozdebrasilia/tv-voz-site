@@ -41,7 +41,6 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
         }
-        
         @keyframes celebrate40 {
             0%, 100% { transform: scale(1) rotate(0deg); }
             25% { transform: scale(1.1) rotate(-5deg); }
@@ -58,7 +57,6 @@
         .pulse-40anos {
             animation: pulse40 2s infinite;
         }
-        
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
@@ -69,7 +67,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in-up { animation: fadeInUp 1s ease-out; }
-        
         .hero-pattern {
             background-image: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
                               radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
@@ -78,13 +75,8 @@
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
             border: 1px solid rgba(251, 191, 36, 0.2);
         }
-        .categoria-box {
-            transition: all 0.3s;
-        }
-        .categoria-box:hover {
-            transform: translateY(-5px);
-        }
-        
+        .categoria-box { transition: all 0.3s; }
+        .categoria-box:hover { transform: translateY(-5px); }
         .parceiro-card {
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
             border: 2px solid rgba(251, 191, 36, 0.4);
@@ -106,44 +98,18 @@
             display: inline-block;
             margin: 5px;
         }
-        
-        .video-placeholder {
-            background: linear-gradient(135deg, #1a1f3a 0%, #0f1429 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .video-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .loading-spinner {
-            border: 4px solid rgba(251, 191, 36, 0.3);
-            border-top: 4px solid #fbbf24;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            position: absolute;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header com Logo Única -->
+    <!-- Header -->
     <header class="fixed w-full top-0 z-50 glass border-b border-white/10">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-16 w-auto">
+                <div class="flex items-center space-x-3">
+                    <img src="./logo-voz.png" alt="TV Voz de Brasília" class="h-14 w-auto">
                     <div class="hidden md:block">
-                        <h1 class="text-xl lg:text-2xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
+                        <h1 class="text-lg lg:text-xl font-serif font-bold">TV VOZ DE BRASÍLIA</h1>
                         <p class="text-xs text-yellow-500 tracking-widest">40 ANOS DE HISTÓRIA</p>
                     </div>
                 </div>
@@ -152,8 +118,9 @@
                     <a href="#inicio" class="text-sm font-medium hover:text-yellow-500 transition">Início</a>
                     <a href="#categorias" class="text-sm font-medium hover:text-yellow-500 transition">Categorias</a>
                     <a href="#parceiros" class="text-sm font-medium hover:text-yellow-500 transition">Parceiros</a>
+                    <a href="anunciantes.html" class="text-sm font-medium hover:text-yellow-500 transition">Anunciantes</a>
                     <a href="#numeros" class="text-sm font-medium hover:text-yellow-500 transition">Números</a>
-                    <a href="https://www.institutobraziljust.org" target="_blank" class="text-sm font-medium hover:text-yellow-500 transition text-purple-400">IBJ</a>
+                    <a href="https://www.institutobraziljust.org" target="_blank" class="text-sm font-medium hover:text-yellow-500 transition text-blue-400">IBJ</a>
                     <a href="#recomecar" class="text-sm font-medium hover:text-yellow-500 transition text-purple-400">Recomeçar</a>
                     <a href="#contato" class="gradient-gold text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition">
                         Quero Divulgar
@@ -163,6 +130,14 @@
                 <button onclick="toggleMenu()" class="lg:hidden p-2 hover:bg-white/5 rounded-lg transition">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 space-y-3">
+                <a href="#inicio" class="block py-2 hover:text-yellow-500">Início</a>
+                <a href="#categorias" class="block py-2 hover:text-yellow-500">Categorias</a>
+                <a href="#parceiros" class="block py-2 hover:text-yellow-500">Parceiros</a>
+                <a href="anunciantes.html" class="block py-2 hover:text-yellow-500">Anunciantes</a>
+                <a href="#contato" class="block py-2 text-yellow-500">Quero Divulgar</a>
             </div>
         </nav>
     </header>
@@ -177,7 +152,7 @@
                     <div class="animate-fade-in-up">
                         <!-- Selo 40 Anos Animado -->
                         <div class="inline-flex items-center gap-3 glass-gold px-6 py-3 rounded-full mb-6 pulse-40anos">
-                            <div class="animate-40anos text-4xl">🏆</div>
+                            <img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-12 w-12 rounded-full object-cover animate-40anos">
                             <div>
                                 <span class="text-2xl font-bold text-yellow-400">40 ANOS</span>
                                 <p class="text-sm">Construindo autoridade</p>
@@ -212,7 +187,7 @@
                                 <i data-lucide="instagram" class="w-5 h-5"></i>
                                 <span class="text-sm font-semibold">150K+ seguidores</span>
                             </a>
-                            <a href="https://youtube.com/@tvvozdebrasilia" target="_blank" 
+                            <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" 
                                class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition">
                                 <i data-lucide="youtube" class="w-5 h-5"></i>
                                 <span class="text-sm font-semibold">500+ entrevistas</span>
@@ -229,28 +204,13 @@
                         <div class="relative">
                             <div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
                             <div class="relative glass rounded-3xl p-6 border-4 border-yellow-500">
-                                <!-- Player com Thumbnail -->
-                                <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black relative video-container">
-                                    <!-- Thumbnail inicial -->
-                                    <div class="video-placeholder absolute inset-0" id="videoPlaceholder">
-                                        <img src="https://img.youtube.com/vi/5QWMLQjrV4c/maxresdefault.jpg" alt="Entrevista" class="w-full h-full object-cover">
-                                        <div class="loading-spinner"></div>
-                                        <div class="absolute inset-0 flex items-center justify-center">
-                                            <div class="w-20 h-20 gradient-gold rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition" onclick="loadVideo()">
-                                                <i data-lucide="play" class="w-10 h-10 text-gray-900 ml-1"></i>
-                                            </div>
-                                        </div>
+                                <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black relative">
+                                    <img src="https://img.youtube.com/vi/5QWMLQjrV4c/maxresdefault.jpg" alt="Entrevista" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                                        <a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="w-20 h-20 gradient-gold rounded-full flex items-center justify-center hover:scale-110 transition">
+                                            <i data-lucide="play" class="w-10 h-10 text-gray-900 ml-1"></i>
+                                        </a>
                                     </div>
-                                    <!-- Iframe do YouTube (carrega depois) -->
-                                    <iframe 
-                                        id="youtubePlayer"
-                                        src=""
-                                        title="TV Ao Vivo"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen
-                                        class="w-full h-full hidden">
-                                    </iframe>
                                 </div>
                                 <div class="text-center">
                                     <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full mb-2 animate-pulse">
@@ -267,7 +227,6 @@
             </div>
         </div>
     </section>
-
     <!-- Categorias Section -->
     <section id="categorias" class="py-20 px-6 bg-gray-900/50">
         <div class="container mx-auto">
@@ -281,7 +240,7 @@
             <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- EMPRESARIAL -->
                 <div class="categoria-box glass-gold rounded-3xl p-8 border-4 border-yellow-500">
-                    <div class="text-6xl mb-4 text-center">🏢</div>
+                    <div class="text-6xl mb-4 text-center"></div>
                     <h3 class="text-3xl font-bold text-yellow-400 mb-3 text-center">EMPRESARIAL</h3>
                     <p class="text-gray-300 mb-6 text-center">Entrevistas com empresários e CEOs</p>
                     
@@ -443,14 +402,14 @@
                     </div>
                     
                     <a href="tv-ao-vivo.html" class="block w-full bg-purple-600 text-white text-center py-3 rounded-full font-bold hover:bg-purple-700 transition">
-                        Ver todas 🌐 →
+                        Ver todas  →
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Parceiros e Prêmios Section -->
+    <!-- Parceiros e Prêmios Section (Com as imagens reais) -->
     <section id="parceiros" class="py-20 px-6">
         <div class="container mx-auto">
             <div class="text-center mb-16">
@@ -464,22 +423,18 @@
                 <!-- Anuário Brasileiro -->
                 <div class="parceiro-card">
                     <div class="mb-4">
-                        <img src="./capa-anuario.jpg" alt="Anuário Brasileiro 24ª Edição" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
+                        <img src="./capa-anuario.jpg" alt="Anuário Brasileiro" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Anuário Brasileiro</h3>
                     <p class="text-gray-300 mb-4">24ª Edição Impressa</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 justify-center">
                             <i data-lucide="check" class="w-4 h-4 text-yellow-500"></i>
                             <span>300 mil exemplares</span>
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 justify-center">
                             <i data-lucide="check" class="w-4 h-4 text-yellow-500"></i>
-                            <span>Distribuição nacional e internacional</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-yellow-500"></i>
-                            <span>Visibilidade garantida</span>
+                            <span>Distribuição nacional</span>
                         </div>
                     </div>
                 </div>
@@ -487,25 +442,18 @@
                 <!-- Troféu Top of Millenium -->
                 <div class="parceiro-card">
                     <div class="mb-4">
-                        <div class="w-32 h-32 mx-auto gradient-gold rounded-full flex items-center justify-center mb-4">
-                            <i data-lucide="trophy" class="w-16 h-16 text-gray-900"></i>
-                        </div>
-                        <span class="premio-badge">10ª EDIÇÃO</span>
+                        <img src="./logo-trofeu.jpg" alt="Troféu Top of Millenium" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Prêmio Top of Millenium</h3>
-                    <p class="text-gray-300 mb-4">Excelência que Inspira e Transforma</p>
+                    <p class="text-gray-300 mb-4">10ª Edição - Excelência</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 justify-center">
                             <i data-lucide="award" class="w-4 h-4 text-yellow-500"></i>
                             <span>Selo de Excelência</span>
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 justify-center">
                             <i data-lucide="award" class="w-4 h-4 text-yellow-500"></i>
                             <span>Credibilidade e Prestígio</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="award" class="w-4 h-4 text-yellow-500"></i>
-                            <span>Reconhecimento de Mercado</span>
                         </div>
                     </div>
                 </div>
@@ -513,22 +461,18 @@
                 <!-- Diploma Personalidade do Ano -->
                 <div class="parceiro-card">
                     <div class="mb-4">
-                        <img src="./diploma.jpg" alt="Diploma Personalidade do Ano" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
+                        <img src="./logo-diploma.png" alt="Diploma Personalidade do Ano" class="mx-auto rounded-lg shadow-2xl max-h-64 object-cover w-full">
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Personalidade do Ano</h3>
                     <p class="text-gray-300 mb-4">Certificado de Excelência</p>
                     <div class="space-y-2 text-sm">
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 justify-center">
                             <i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i>
                             <span>Certificado Oficial</span>
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 justify-center">
                             <i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i>
                             <span>Valorização da Marca</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i>
-                            <span>Destaque na Imprensa</span>
                         </div>
                     </div>
                 </div>
@@ -538,9 +482,9 @@
             <div class="max-w-4xl mx-auto">
                 <div class="glass-gold rounded-3xl p-12 text-center">
                     <div class="flex items-center justify-center gap-6 mb-6 flex-wrap">
-                        <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-20 w-auto">
+                        <img src="./logo-voz.png" alt="TV Voz de Brasília" class="h-20 w-auto">
                         <div class="h-16 w-px bg-yellow-500 hidden md:block"></div>
-                        <img src="./logo-ibj.png" alt="Instituto Brazil Just" class="h-20 w-auto">
+                        <img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-20 w-auto">
                     </div>
                     <h3 class="text-3xl font-bold mb-4">Instituto Brazil Just</h3>
                     <p class="text-xl text-gray-300 mb-6">Oportunidade e Igualdade para Todos!</p>
@@ -592,7 +536,6 @@
             </div>
         </div>
     </section>
-
     <!-- Projeto Recomeçar -->
     <section id="recomecar" class="py-20 px-6 bg-gradient-to-b from-purple-900/20 to-blue-900/20">
         <div class="container mx-auto">
@@ -695,7 +638,7 @@
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
                 <div class="flex items-center space-x-4">
-                    <img src="./logo-tv-voz.png" alt="TV Voz de Brasília" class="h-12 w-auto">
+                    <img src="./logo-voz.png" alt="TV Voz de Brasília" class="h-12 w-auto">
                     <div>
                         <h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
                         <p class="text-xs text-gray-400">40 anos de credibilidade</p>
@@ -703,14 +646,14 @@
                 </div>
                 
                 <div class="flex items-center gap-4">
-                    <img src="./logo-ibj.png" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
+                    <img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
                 </div>
 
                 <div class="flex items-center gap-6">
                     <a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="hover:text-yellow-500 transition">
                         <i data-lucide="instagram" class="w-6 h-6"></i>
                     </a>
-                    <a href="https://youtube.com/@tvvozdebrasilia" target="_blank" class="hover:text-yellow-500 transition">
+                    <a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" class="hover:text-yellow-500 transition">
                         <i data-lucide="youtube" class="w-6 h-6"></i>
                     </a>
                     <a href="https://wa.me/5561999812341" target="_blank" class="hover:text-yellow-500 transition">
@@ -742,14 +685,6 @@
             document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function loadVideo() {
-            const iframe = document.getElementById('youtubePlayer');
-            const placeholder = document.getElementById('videoPlaceholder');
-            iframe.src = 'https://www.youtube.com/embed/5QWMLQjrV4c?autoplay=1';
-            iframe.classList.remove('hidden');
-            placeholder.classList.add('hidden');
-        }
-
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -761,7 +696,7 @@
             
             const message = 'Olá! Vim pelo site da TV Voz de Brasília!\n\n' +
                            '👤 Nome: ' + nome + '\n' +
-                           '🏢 Empresa: ' + empresa + '\n' +
+                           ' Empresa: ' + empresa + '\n' +
                            '📱 WhatsApp: ' + whatsapp + '\n' +
                            '📷 Instagram: ' + (instagram || 'Não informado') + '\n' +
                            '📊 Segmento: ' + segmento + '\n\n' +
