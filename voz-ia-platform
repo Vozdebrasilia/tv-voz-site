@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VOZ IA Platform | TV Voz de Brasília</title>
+
+  <meta name="description" content="VOZ IA Platform: ecossistema de mídia, notícias 24h, negócios, turismo, gastronomia, audiovisual, marketplace e inteligência artificial da TV Voz de Brasília." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #fbbf24;
+      --gold-dark: #b45309;
+      --dark: #07040f;
+      --purple: #3b0764;
+      --violet: #6d28d9;
+      --blue: #0f172a;
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.35), transparent 35%),
+        radial-gradient(circle at top right, rgba(251, 191, 36, 0.16), transparent 30%),
+        linear-gradient(135deg, #05010a 0%, #120022 45%, #020617 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 35%, #d97706 70%, #92400e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+      color: #120022;
+      font-weight: 900;
+      box-shadow: 0 18px 45px rgba(251, 191, 36, 0.28);
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 55px rgba(251, 191, 36, 0.38);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      color: #fbbf24;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(251, 191, 36, 0.13);
+      transform: translateY(-3px);
+    }
+
+    .card-hover {
+      transition: all 0.35s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      border-color: rgba(251, 191, 36, 0.55);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: #fbbf24;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      font-weight: 900;
+    }
+
+    .section-subtitle {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 9px 16px;
+      background: rgba(251, 191, 36, 0.11);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: #fbbf24;
+    }
+
+    .pulse-gold {
+      animation: pulseGold 2.8s infinite;
+    }
+
+    @keyframes pulseGold {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.28);
+      }
+      50% {
+        box-shadow: 0 0 0 18px rgba(251, 191, 36, 0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="flex items-center justify-between h-24">
+        <a href="#home" class="flex items-center gap-4">
+          <img
+            src="./logo-tv-transparente.png"
+            alt="TV Voz de Brasília"
+            style="height:76px;width:auto;display:block;object-fit:contain;"
+          >
+        </a>
+
+        <nav class="hidden xl:flex items-center gap-7">
+          <a href="#noticias" class="nav-link">Notícias 24h</a>
+          <a href="#empresas" class="nav-link">Empresas</a>
+          <a href="#turismo" class="nav-link">Turismo</a>
+          <a href="#gastronomia" class="nav-link">Gastronomia</a>
+          <a href="#audiovisual" class="nav-link">Audiovisual</a>
+          <a href="#ibj" class="nav-link">IBJ</a>
+          <a href="#contato" class="nav-link">Contato</a>
+        </nav>
+
+        <a href="#contato" class="hidden md:inline-flex px-5 py-3 rounded-full btn-gold text-sm">
+          Anunciar agora
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="pt-32">
+    <section class="relative min-h-[88vh] flex items-center">
+      <div class="absolute inset-0 opacity-25">
+        <div class="absolute top-24 left-10 w-72 h-72 bg-purple-600 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-5 lg:px-8 py-16">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <div class="badge mb-7">
+              ✨ TV Voz de Brasília • 40 anos de autoridade
+            </div>
+
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] mb-7">
+              Da visão à realidade:
+              <span class="gold-gradient block">nasce a VOZ IA.</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-white/75 leading-relaxed mb-9 max-w-2xl">
+              Um ecossistema nacional de mídia, negócios, notícias 24h, turismo,
+              gastronomia, audiovisual, marketplace e inteligência artificial,
+              criado a partir da credibilidade histórica da TV Voz de Brasília.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mb-10">
+              <a href="#empresas" class="px-8 py-4 rounded-full btn-gold text-center">
+                Quero anunciar minha empresa
+              </a>
+              <a href="#noticias" class="px-8 py-4 rounded-full btn-outline text-center font-bold">
+                Conhecer Notícias 24h
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 max-w-2xl">
+              <div class="glass rounded-2xl p-4">
+                <div class="stat-number text-3xl">170M+</div>
+                <div class="text-white/65 text-sm">interações</div>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <div class="stat-number text-3xl">150K+</div>
+                <div class="text-white/65 text-sm">seguidores</div>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <div class="stat-number text-3xl">500+</div>
+                <div class="text-white/65 text-sm">entrevistas</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="glass rounded-[2rem] p-6 md:p-8 card-hover">
+              <div class="aspect-video rounded-3xl bg-black/60 border border-white/10 flex items-center justify-center mb-6 overflow-hidden">
+                <div class="text-center p-8">
+                  <div class="w-24 h-24 mx-auto rounded-full bg-yellow-400/20 border border-yellow-300/40 flex items-center justify-center text-5xl pulse-gold mb-5">
+                    ▶
+                  </div>
+                  <h3 class="font-display text-3xl font-black mb-2">
+                    TV Voz IA ao Vivo
+                  </h3>
+                  <p class="text-white/65">
+                    Notícias, entrevistas, negócios e inteligência artificial em uma única plataforma.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  <div class="text-3xl mb-2">🎙️</div>
+                  <h4 class="font-bold text-lg">Dra. Deijanete IA</h4>
+                  <p class="text-white/60 text-sm">apresentadora digital institucional</p>
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  <div class="text-3xl mb-2">📰</div>
+                  <h4 class="font-bold text-lg">Paulo Fayad IA</h4>
+                  <p class="text-white/60 text-sm">narrador de notícias 24h</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute -top-8 -right-6 hidden md:block glass rounded-full px-6 py-5 border-yellow-400/40">
+              <div class="text-center">
+                <div class="text-4xl font-black text-yellow-400">40</div>
+                <div class="text-xs uppercase tracking-widest text-white/70">anos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- NOTÍCIAS 24H -->
+    <section id="noticias" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-4xl mb-14">
+          <div class="badge mb-6">📰 VOZ IA Notícias 24h</div>
+          <h2 class="section-title mb-6">
+            Notícias narradas por IA, 24 horas por dia.
+          </h2>
+          <p class="section-subtitle">
+            A VOZ IA será uma central inteligente de informação com curadoria jornalística,
+            roteiros automáticos e apresentadores digitais narrando os principais fatos de
+            Brasília, do Brasil e do mundo.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🏛️</div>
+            <h3 class="text-xl font-black mb-3">Brasília</h3>
+            <p class="text-white/65">Política, governo, economia local, eventos e bastidores da capital.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🇧🇷</div>
+            <h3 class="text-xl font-black mb-3">Brasil</h3>
+            <p class="text-white/65">Principais acontecimentos nacionais com linguagem clara e rápida.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🌍</div>
+            <h3 class="text-xl font-black mb-3">Mundo</h3>
+            <p class="text-white/65">Notícias internacionais, economia global, diplomacia e tendências.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🤖</div>
+            <h3 class="text-xl font-black mb-3">Clones IA</h3>
+            <p class="text-white/65">Dra. Deijanete IA e Paulo Fayad IA apresentando boletins contínuos.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 glass rounded-[2rem] p-8 md:p-10">
+          <div class="grid lg:grid-cols-3 gap-8 items-center">
+            <div class="lg:col-span-2">
+              <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+                Uma redação digital sempre ativa.
+              </h3>
+              <p class="text-white/70 leading-relaxed text-lg">
+                A plataforma será preparada para produzir chamadas, resumos, roteiros,
+                narrações e vídeos curtos para portal, Instagram, YouTube, TikTok,
+                WhatsApp e LinkedIn, mantendo a TV Voz presente durante todo o dia.
+              </p>
+            </div>
+
+            <div class="grid gap-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">01.</strong>
+                <span class="ml-2">Curadoria das notícias</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">02.</strong>
+                <span class="ml-2">Roteiro jornalístico</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">03.</strong>
+                <span class="ml-2">Narração com IA</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">04.</strong>
+                <span class="ml-2">Distribuição multiplataforma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- NOTÍCIAS 24H -->
+    <section id="noticias" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-4xl mb-14">
+          <div class="badge mb-6">📰 VOZ IA Notícias 24h</div>
+          <h2 class="section-title mb-6">
+            Notícias narradas por IA, 24 horas por dia.
+          </h2>
+          <p class="section-subtitle">
+            A VOZ IA será uma central inteligente de informação com curadoria jornalística,
+            roteiros automáticos e apresentadores digitais narrando os principais fatos de
+            Brasília, do Brasil e do mundo.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🏛️</div>
+            <h3 class="text-xl font-black mb-3">Brasília</h3>
+            <p class="text-white/65">Política, governo, economia local, eventos e bastidores da capital.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🇧🇷</div>
+            <h3 class="text-xl font-black mb-3">Brasil</h3>
+            <p class="text-white/65">Principais acontecimentos nacionais com linguagem clara e rápida.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🌍</div>
+            <h3 class="text-xl font-black mb-3">Mundo</h3>
+            <p class="text-white/65">Notícias internacionais, economia global, diplomacia e tendências.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🤖</div>
+            <h3 class="text-xl font-black mb-3">Clones IA</h3>
+            <p class="text-white/65">Dra. Deijanete IA e Paulo Fayad IA apresentando boletins contínuos.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 glass rounded-[2rem] p-8 md:p-10">
+          <div class="grid lg:grid-cols-3 gap-8 items-center">
+            <div class="lg:col-span-2">
+              <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+                Uma redação digital sempre ativa.
+              </h3>
+              <p class="text-white/70 leading-relaxed text-lg">
+                A plataforma será preparada para produzir chamadas, resumos, roteiros,
+                narrações e vídeos curtos para portal, Instagram, YouTube, TikTok,
+                WhatsApp e LinkedIn, mantendo a TV Voz presente durante todo o dia.
+              </p>
+            </div>
+
+            <div class="grid gap-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">01.</strong>
+                <span class="ml-2">Curadoria das notícias</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">02.</strong>
+                <span class="ml-2">Roteiro jornalístico</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">03.</strong>
+                <span class="ml-2">Narração com IA</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">04.</strong>
+                <span class="ml-2">Distribuição multiplataforma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- AUDIOVISUAL E MARKETPLACE -->
+    <section id="audiovisual" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-5xl mb-14">
+          <div class="badge mb-6">🎥 TV Voz Studio & Marketplace</div>
+          <h2 class="section-title mb-6">
+            Produção audiovisual, drones e negócios em um só ecossistema.
+          </h2>
+          <p class="section-subtitle">
+            A TV Voz passa a oferecer uma frente completa para fotografia, filmagens,
+            imagens aéreas, lives, podcasts, estúdio móvel, cobertura jornalística,
+            compra, venda, troca e locação de equipamentos profissionais.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">📸</div>
+            <h3 class="text-2xl font-black mb-3">Fotografia Profissional</h3>
+            <p class="text-white/65 leading-relaxed">
+              Fotografia corporativa, eventos, retratos executivos, gastronomia,
+              hotelaria, arquitetura, produtos, moda, turismo e campanhas institucionais.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🎬</div>
+            <h3 class="text-2xl font-black mb-3">Filmagens</h3>
+            <p class="text-white/65 leading-relaxed">
+              Comerciais, institucionais, entrevistas, documentários, cobertura de eventos,
+              inaugurações, lançamentos e conteúdo para redes sociais.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🚁</div>
+            <h3 class="text-2xl font-black mb-3">Drones</h3>
+            <p class="text-white/65 leading-relaxed">
+              Imagens aéreas para hotéis, fazendas, condomínios, obras, indústrias,
+              turismo, eventos, municípios e empreendimentos imobiliários.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🎙️</div>
+            <h3 class="text-2xl font-black mb-3">Estúdio & Podcast</h3>
+            <p class="text-white/65 leading-relaxed">
+              Entrevistas, podcasts, programas especiais, lives, webinars, cursos,
+              treinamentos e programas digitais para empresas e instituições.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">📡</div>
+            <h3 class="text-2xl font-black mb-3">Lives & Streaming</h3>
+            <p class="text-white/65 leading-relaxed">
+              Transmissões ao vivo, eventos corporativos, premiações, feiras, congressos,
+              coletivas, shows, lançamentos e cerimônias oficiais.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🎞️</div>
+            <h3 class="text-2xl font-black mb-3">Edição & Pós-Produção</h3>
+            <p class="text-white/65 leading-relaxed">
+              Edição profissional, motion graphics, vinhetas, legendas, colorização,
+              tratamento de áudio, reels, shorts e vídeos comerciais.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 glass rounded-[2rem] p-8 md:p-10">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <div class="badge mb-6">🛒 Marketplace Audiovisual</div>
+              <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+                Compra, venda e locação de equipamentos.
+              </h3>
+              <p class="text-white/70 leading-relaxed text-lg">
+                A VOZ IA também nasce preparada para se tornar um classificado profissional
+                de equipamentos audiovisuais, conectando compradores, vendedores, produtoras,
+                fotógrafos, cinegrafistas, emissoras, estúdios e fornecedores.
+              </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">📷</div>
+                <strong>Câmeras</strong>
+                <p class="text-white/55 text-sm mt-1">Sony, Canon, Nikon, Blackmagic, RED, Panasonic.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">🚁</div>
+                <strong>Drones</strong>
+                <p class="text-white/55 text-sm mt-1">DJI, Autel, FPV, drones enterprise e agrícolas.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">🎤</div>
+                <strong>Áudio</strong>
+                <p class="text-white/55 text-sm mt-1">Microfones, gravadores, interfaces e mesas.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">💡</div>
+                <strong>Iluminação</strong>
+                <p class="text-white/55 text-sm mt-1">LEDs, softbox, fresnel, rebatedores e RGB.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">🎥</div>
+                <strong>Acessórios</strong>
+                <p class="text-white/55 text-sm mt-1">Lentes, tripés, gimbals, teleprompter e monitores.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">💻</div>
+                <strong>Edição</strong>
+                <p class="text-white/55 text-sm mt-1">Workstations, SSDs, HDs, placas de vídeo e NAS.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 rounded-[2rem] bg-gradient-to-r from-purple-700/30 to-yellow-400/15 border border-white/10 p-8 md:p-10">
+          <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+            TV Voz Studio
+          </h3>
+          <p class="text-white/75 text-lg leading-relaxed max-w-4xl">
+            Imagem, estratégia e autoridade para marcas que querem crescer. A empresa pode contratar
+            entrevista, produção audiovisual, drone, fotografia, edição, publicação no portal,
+            distribuição nas redes e presença no ecossistema da TV Voz em um único projeto.
+          </p>
+        </div>
+      </div>
+    </section>
+<!-- INSTITUTO BRAZIL JUST -->
+    <section id="ibj" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <div class="badge mb-6">🤝 Parceiro Oficial</div>
+            <h2 class="section-title mb-6">
+              Instituto Brazil Just: impacto social com autoridade.
+            </h2>
+            <p class="section-subtitle mb-7">
+              O Instituto Brazil Just é parceiro estratégico da TV Voz de Brasília na construção
+              de uma comunicação comprometida com cidadania, inclusão, desenvolvimento humano,
+              esporte, saúde, educação, projetos sociais e transformação de vidas.
+            </p>
+
+            <p class="text-white/70 leading-relaxed text-lg mb-8">
+              A união entre a TV Voz de Brasília, a VOZ IA e o Instituto Brazil Just fortalece
+              uma visão maior: criar oportunidades, dar visibilidade a causas relevantes, aproximar
+              empresas de projetos de impacto social e ampliar a presença institucional de quem
+              deseja crescer fazendo diferença.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="glass rounded-2xl p-5">
+                <div class="stat-number text-3xl">10K+</div>
+                <p class="text-white/65 text-sm">famílias impactadas</p>
+              </div>
+              <div class="glass rounded-2xl p-5">
+                <div class="stat-number text-3xl">2011</div>
+                <p class="text-white/65 text-sm">fundação em Brasília</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-[2rem] p-8 md:p-10 card-hover">
+            <div class="rounded-3xl bg-white p-6 mb-7 flex items-center justify-center">
+              <div class="text-center text-slate-900">
+                <div class="text-5xl mb-3">🌎</div>
+                <h3 class="font-display text-3xl font-black">Instituto Brazil Just</h3>
+                <p class="font-bold text-slate-600">Justiça social, inclusão e cidadania</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                🧒 Projetos para crianças, adolescentes e famílias
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                🥋 Esporte, cultura, saúde e inclusão social
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                💛 Campanhas de conscientização e cuidado humano
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                🤝 Ponte entre empresas, sociedade e transformação social
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANUÁRIO E PRÊMIOS -->
+    <section id="premios" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-5xl mb-14">
+          <div class="badge mb-6">🏆 Anuário Brasileiro & Reconhecimento</div>
+          <h2 class="section-title mb-6">
+            Prestígio, memória institucional e reconhecimento empresarial.
+          </h2>
+          <p class="section-subtitle">
+            A TV Voz de Brasília integra mídia, entrevistas, Anuário Brasileiro, premiações,
+            diplomas e reconhecimento público para fortalecer a imagem de empresas, autoridades,
+            personalidades e instituições.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-5xl mb-5">📘</div>
+            <h3 class="text-2xl font-black mb-3">Anuário Brasileiro</h3>
+            <p class="text-white/65 leading-relaxed">
+              Publicação institucional que registra empresas, lideranças, turismo,
+              economia, meio ambiente, projetos e personalidades.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-5xl mb-5">🏅</div>
+            <h3 class="text-2xl font-black mb-3">Top Of Millenium</h3>
+            <p class="text-white/65 leading-relaxed">
+              Reconhecimento para marcas, empresários, autoridades e personalidades
+              que se destacam em seus setores.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-5xl mb-5">📜</div>
+            <h3 class="text-2xl font-black mb-3">Personalidade do Ano</h3>
+            <p class="text-white/65 leading-relaxed">
+              Diplomas, homenagens e registros de autoridade que valorizam trajetórias,
+              marcas e contribuições relevantes para a sociedade.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="rounded-[2.4rem] bg-gradient-to-br from-yellow-400/20 via-purple-700/25 to-black/30 border border-yellow-400/25 p-8 md:p-14">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div class="badge mb-6">🚀 Vamos transformar visão em realidade</div>
+              <h2 class="font-display text-4xl md:text-6xl font-black leading-tight mb-6">
+                Sua empresa pode fazer parte da nova era da TV Voz.
+              </h2>
+              <p class="text-white/75 text-lg leading-relaxed mb-8">
+                Anuncie, conceda uma entrevista, participe da vitrine empresarial,
+                divulgue seu negócio, entre para o ecossistema VOZ IA e conecte sua marca
+                a uma história de credibilidade, audiência e inovação.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://wa.me/5561999999999?text=Ol%C3%A1%2C%20quero%20anunciar%20na%20VOZ%20IA%20Platform%20da%20TV%20Voz%20de%20Bras%C3%ADlia."
+                  target="_blank"
+                  class="px-8 py-4 rounded-full btn-gold text-center"
+                >
+                  Falar pelo WhatsApp
+                </a>
+
+                <a href="#empresas" class="px-8 py-4 rounded-full btn-outline text-center font-bold">
+                  Ver oportunidades
+                </a>
+              </div>
+            </div>
+
+            <div class="glass rounded-[2rem] p-7">
+              <h3 class="font-display text-3xl font-black mb-6">
+                Frentes comerciais iniciais
+              </h3>
+
+              <div class="space-y-4">
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  💼 Empresas e anunciantes
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  ✈️ Turismo, hotéis e companhias aéreas
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  🍽️ Gastronomia e experiências
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  🎥 Produção audiovisual e marketplace
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  🤖 Notícias 24h com VOZ IA
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="border-t border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <div>
+          <h3 class="font-display text-2xl font-black mb-4">VOZ IA Platform</h3>
+          <p class="text-white/60 leading-relaxed">
+            Ecossistema de mídia, negócios, notícias 24h, turismo, gastronomia,
+            audiovisual, marketplace e inteligência artificial.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-black mb-4 text-yellow-400">Plataforma</h4>
+          <div class="space-y-2 text-white/60">
+            <p>Notícias 24h</p>
+            <p>Empresas</p>
+            <p>Turismo</p>
+            <p>Gastronomia</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-black mb-4 text-yellow-400">Negócios</h4>
+          <div class="space-y-2 text-white/60">
+            <p>Audiovisual</p>
+            <p>Marketplace</p>
+            <p>Anuário Brasileiro</p>
+            <p>Prêmios</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-black mb-4 text-yellow-400">Institucional</h4>
+          <div class="space-y-2 text-white/60">
+            <p>TV Voz de Brasília</p>
+            <p>Instituto Brazil Just</p>
+            <p>Dra. Deijanete IA</p>
+            <p>Paulo Fayad IA</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-white/50 text-sm">
+        <p>© 2026 TV Voz de Brasília • VOZ IA Platform. Todos os direitos reservados.</p>
+        <p>Da visão à realidade: mídia, autoridade e inteligência artificial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(event) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
