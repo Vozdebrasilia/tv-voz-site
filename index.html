@@ -590,62 +590,124 @@
       </div>
     </section>
 
-    <!-- CONTATO -->
-    <section id="contato" class="py-24 border-t border-white/10">
-      <div class="max-w-7xl mx-auto px-5 lg:px-8">
-        <div class="rounded-[2.4rem] bg-gradient-to-br from-yellow-400/20 via-purple-700/25 to-black/30 border border-yellow-400/25 p-8 md:p-14">
-          <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div class="badge mb-6">🚀 Vamos transformar visão em realidade</div>
-              <h2 class="font-display text-4xl md:text-6xl font-black leading-tight mb-6">
-                Sua empresa pode fazer parte da nova era da TV Voz.
-              </h2>
-              <p class="text-white/75 text-lg leading-relaxed mb-8">
-                Anuncie, conceda uma entrevista, participe da vitrine empresarial,
-                divulgue seu negócio, entre para o ecossistema VOZ IA e conecte sua marca
-                a uma história de credibilidade, audiência e inovação.
-              </p>
+   <!-- CONTATO -->
+<section id="contato" class="py-24 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="rounded-[2.4rem] bg-gradient-to-r from-yellow-400/20 via-purple-700/25 to-black/30 border border-yellow-400/25 p-8 md:p-14">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        
+        <div>
+          <div class="badge mb-6">🚀 Vamos transformar visão em realidade</div>
 
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a
-                 href="https://web.whatsapp.com/send?phone=5561999999999&text=Ol%C3%A1%2C%20quero%20anunciar%20na%20VOZ%20IA%20Platform%20da%20TV%20Voz%20de%20Bras%C3%ADlia."
-               
-                  class="px-8 py-4 rounded-full btn-gold text-center"
-                >
-                  Falar pelo WhatsApp
-                </a>
+          <h2 class="font-display text-4xl md:text-6xl font-black leading-tight mb-6">
+            Sua empresa pode fazer parte da nova era da TV Voz.
+          </h2>
 
-                <a href="#empresas" class="px-8 py-4 rounded-full btn-outline text-center font-bold">
-                  Ver oportunidades
-                </a>
-              </div>
+          <p class="text-white/75 text-lg leading-relaxed mb-8">
+            Preencha o formulário rápido. Ao enviar, sua mensagem será encaminhada diretamente pelo WhatsApp para nossa equipe comercial.
+          </p>
+
+          <div class="space-y-4 text-white/80">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              💼 Empresas e anunciantes
             </div>
-
-            <div class="glass rounded-[2rem] p-7">
-              <h3 class="font-display text-3xl font-black mb-6">
-                Frentes comerciais iniciais
-              </h3>
-
-              <div class="space-y-4">
-                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
-                  💼 Empresas e anunciantes
-                </div>
-                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
-                  ✈️ Turismo, hotéis e companhias aéreas
-                </div>
-                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
-                  🍽️ Gastronomia e experiências
-                </div>
-                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
-                  🎥 Produção audiovisual e marketplace
-                </div>
-                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
-                  🤖 Notícias 24h com VOZ IA
-                </div>
-              </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              ✈️ Turismo, hotéis e companhias aéreas
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              🍽️ Gastronomia e experiências
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              🤖 Notícias 24h com VOZ IA
             </div>
           </div>
         </div>
+
+        <div class="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8">
+          <h3 class="font-display text-3xl font-black mb-6">
+            Solicitar contato comercial
+          </h3>
+
+          <form 
+            onsubmit="
+              var nome = document.getElementById('formNome').value;
+              var empresa = document.getElementById('formEmpresa').value;
+              var telefone = document.getElementById('formTelefone').value;
+              var interesse = document.getElementById('formInteresse').value;
+
+              var mensagem = 'Olá, quero anunciar na VOZ IA Platform da TV Voz de Brasília.%0A%0A' +
+                'Nome: ' + encodeURIComponent(nome) + '%0A' +
+                'Empresa: ' + encodeURIComponent(empresa) + '%0A' +
+                'Telefone: ' + encodeURIComponent(telefone) + '%0A' +
+                'Interesse: ' + encodeURIComponent(interesse);
+
+              window.location.href = 'https://web.whatsapp.com/send?phone=5561999999999&text=' + mensagem;
+              return false;
+            "
+            class="space-y-4"
+          >
+            <div>
+              <label class="block text-sm text-white/70 mb-2">Nome</label>
+              <input 
+                id="formNome" 
+                type="text" 
+                required 
+                placeholder="Seu nome"
+                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm text-white/70 mb-2">Empresa</label>
+              <input 
+                id="formEmpresa" 
+                type="text" 
+                required 
+                placeholder="Nome da empresa"
+                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm text-white/70 mb-2">Telefone</label>
+              <input 
+                id="formTelefone" 
+                type="tel" 
+                required 
+                placeholder="Seu WhatsApp"
+                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm text-white/70 mb-2">Interesse</label>
+              <select 
+                id="formInteresse" 
+                required
+                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
+              >
+                <option value="Anunciar minha empresa">Anunciar minha empresa</option>
+                <option value="Entrevista comercial">Entrevista comercial</option>
+                <option value="Turismo e experiências">Turismo e experiências</option>
+                <option value="Gastronomia">Gastronomia</option>
+                <option value="Notícias 24h / VOZ IA">Notícias 24h / VOZ IA</option>
+                <option value="Outro projeto">Outro projeto</option>
+              </select>
+            </div>
+
+            <button 
+              type="submit"
+              class="w-full px-8 py-4 rounded-full btn-gold text-center font-bold"
+            >
+              Enviar pelo WhatsApp
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>        </div>
       </div>
     </section>
   </main>
