@@ -434,55 +434,67 @@
       width: 100%;
     }
   }
-.hero-brand-badge {
-  display: inline-flex;
+.hero-top-brand {
+  display: flex;
   align-items: center;
-  gap: 18px;
-  width: auto;
-  max-width: fit-content;
-  padding: 12px 22px;
-  border: 1px solid rgba(255, 215, 0, 0.55);
-  border-radius: 999px;
-  color: #ffd700;
-  background: rgba(255, 215, 0, 0.10);
-  font-weight: 900;
-  margin-bottom: 24px;
+  justify-content: flex-start;
+  gap: 28px;
+  margin-bottom: 34px;
 }
 
-.hero-brand-badge span {
-  font-size: 20px;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.hero-brand-badge .selo-40-mini {
-  width: 140px !important;
-  height: 140px !important;
-  max-width: 140px !important;
-  max-height: 140px !important;
+.selo-40-destaque {
+  width: 230px;
+  height: 230px;
+  max-width: 230px;
+  max-height: 230px;
   object-fit: contain;
-  display: inline-block;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.55));
+  display: block;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.65));
+}
+
+.hero-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.hero-brand-text span {
+  color: #ffd700;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.hero-brand-text strong {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 @media (max-width: 768px) {
-  .hero-brand-badge {
-    gap: 12px;
-    padding: 10px 16px;
+  .hero-top-brand {
+    gap: 16px;
+    margin-bottom: 24px;
   }
 
-  .hero-brand-badge span {
-    font-size: 16px;
+  .selo-40-destaque {
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
   }
 
-  .hero-brand-badge .selo-40-mini {
-    width: 100px !important;
-    height: 100px !important;
-    max-width: 100px !important;
-    max-height: 100px !important;
+  .hero-brand-text span {
+    font-size: 18px;
   }
-}
+
+  .hero-brand-text strong {
+    font-size: 15px;
+  }
+}}
 </style>  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -548,9 +560,13 @@
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-content">
-          <div class="hero-brand-badge">
-  <span>✨ TV Voz de Brasília</span>
- <img class="selo-40-mini" src="./selo-40anos.jpg" alt="Selo 40 anos TV Voz de Brasília" />
+<div class="hero-top-brand">
+  <img class="selo-40-destaque" src="./selo-40anos.jpg" alt="Selo 40 anos TV Voz de Brasília" />
+
+  <div class="hero-brand-text">
+    <span>✨ TV Voz de Brasília</span>
+    <strong>40 anos de credibilidade</strong>
+  </div>
 </div>
 
           <h1>
