@@ -3,542 +3,832 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>VOZ IA Platform | TV Voz de Brasília</title>
-
-  <meta
-    name="description"
-    content="VOZ IA Platform: ecossistema de mídia, notícias 24h, política, internacional, empresas, viagens, gastronomia, imóveis, cidades satélites, entrevistas e inteligência artificial da TV Voz de Brasília."
-  />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <meta name="description" content="VOZ IA Platform: portal de notícias, estúdio IA, entrevistas, anunciantes, negócios, imóveis, automóveis, motos, turismo, gastronomia e cidades satélites da TV Voz de Brasília." />
   <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    background: #12001f;
-    color: #ffffff;
-    overflow-x: hidden;
-  }
-
-  .container {
-    width: min(1180px, 92%);
-    margin: 0 auto;
-  }
-
-  .site-header {
-    background: rgba(18, 0, 31, 0.96);
-    border-bottom: 1px solid rgba(255, 215, 0, 0.35);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .header-inner {
-    min-height: 86px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .logo-img {
-  width: 180px;
-  max-width: 180px;
-  height: auto;
-  display: block;
-}
-
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .desktop-nav a,
-  .mobile-menu a,
-  .footer-grid a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .desktop-nav a:hover,
-  .mobile-menu a:hover,
-  .footer-grid a:hover {
-    color: #ffd700;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 18px;
-    border-radius: 999px;
-    font-weight: 800;
-    text-decoration: none;
-    border: 1px solid transparent;
-    cursor: pointer;
-  }
-
-  .btn-gold {
-    background: linear-gradient(135deg, #ffd700, #b8860b);
-    color: #12001f !important;
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: #ffd700 !important;
-    border-color: #ffd700;
-  }
-
-  .mobile-menu-button {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .section {
-    padding: 86px 0;
-  }
-
-  .hero {
-    min-height: calc(100vh - 86px);
-    display: flex;
-    align-items: center;
-    background:
-      radial-gradient(circle at top left, rgba(255, 215, 0, 0.18), transparent 30%),
-      radial-gradient(circle at top right, rgba(180, 0, 255, 0.35), transparent 30%),
-      linear-gradient(135deg, #210033, #090012 70%);
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-    gap: 48px;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid rgba(255, 215, 0, 0.45);
-    border-radius: 999px;
-    color: #ffd700;
-    background: rgba(255, 215, 0, 0.08);
-    font-weight: 800;
-    margin-bottom: 18px;
-  }
-
-  h1 {
-    font-size: clamp(42px, 7vw, 86px);
-    line-height: 0.95;
-    margin-bottom: 24px;
-  }
-
-  h1 span {
-    color: #ffd700;
-    display: block;
-  }
-
-  h2 {
-    font-size: clamp(32px, 4vw, 58px);
-    line-height: 1.05;
-    margin-bottom: 20px;
-  }
-
-  h3 {
-    font-size: 24px;
-    margin-bottom: 12px;
-  }
-
-  p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #e8dff0;
-  }
-
-  .hero-buttons,
-  .chips,
-  .stats-grid,
-  .anchor-grid {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 28px;
-  }
-
-  .stat-card,
-  .card,
-  .ad-card,
-  .anchor-card,
-  .hero-card,
-  .studio-box,
-  .contact-box {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 215, 0, 0.28);
-    border-radius: 24px;
-    padding: 28px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  }
-
-  .stat-card strong {
-    display: block;
-    font-size: 32px;
-    color: #ffd700;
-  }
-
-  .stat-card span {
-    color: #ffffff;
-  }
-
-  .video-box {
-    min-height: 280px;
-    border-radius: 24px;
-    background:
-      linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(180, 0, 255, 0.22)),
-      #210033;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-  }
-
-  .play-icon,
-  .avatar,
-  .card-icon {
-    font-size: 46px;
-    margin-bottom: 14px;
-  }
-
-  .section-head {
-    max-width: 900px;
-    margin-bottom: 42px;
-  }
-
-  .cards-grid {
-    display: grid;
-    gap: 24px;
-  }
-
-  .cards-grid.two {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cards-grid.three {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .cards-grid.four {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .ad-card {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.16), rgba(255, 255, 255, 0.08));
-    color: #ffffff;
-    font-weight: 800;
-  }
-
-  .chips span {
-    padding: 10px 16px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 215, 0, 0.25);
-    color: #ffffff;
-    font-weight: 700;
-  }
-
-  .studio-box {
-    position: relative;
-    min-height: 560px;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at center, rgba(255, 215, 0, 0.18), transparent 28%),
-      linear-gradient(135deg, #150024, #2b0044);
-  }
-
-  .studio-screen {
-    text-align: center;
-    padding: 42px;
-    border-radius: 24px;
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    margin-bottom: 30px;
-  }
-
-  .studio-anchor {
-    width: 45%;
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  .studio-anchor.right {
-    float: right;
-  }
-
-  .studio-desk {
-    clear: both;
-    margin: 40px auto 20px;
-    width: 70%;
-    padding: 24px;
-    text-align: center;
-    font-size: 42px;
-    font-weight: 900;
-    color: #ffd700;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.45);
-  }
-
-  .ticker {
-    background: #ffd700;
-    color: #12001f;
-    padding: 14px;
-    border-radius: 12px;
-    font-weight: 900;
-    overflow: hidden;
-  }
-
-  .logos-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 18px;
-    margin: 34px 0;
-  }
-
-  .logos-grid img {
-    width: 100%;
-    max-height: 120px;
-    object-fit: contain;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 12px;
-  }
-
-  .contact-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 34px;
-    align-items: start;
-  }
-
-  .contact-form {
-    display: grid;
-    gap: 12px;
-  }
-
-  .contact-form label {
-    font-weight: 800;
-    color: #ffd700;
-  }
-
-  .contact-form input,
-  .contact-form select {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    background: rgba(255, 255, 255, 0.95);
-    color: #12001f;
-    font-size: 16px;
-  }
-
-  .site-footer {
-    background: #07000d;
-    border-top: 1px solid rgba(255, 215, 0, 0.3);
-    padding: 50px 0 24px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 26px;
-  }
-
-  .footer-grid a {
-    display: block;
-    margin: 8px 0;
-  }
-
-  .footer-bottom {
-    margin-top: 30px;
-    padding-top: 22px;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    display: flex;
-    justify-content: space-between;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: 980px) {
-    .desktop-nav,
-    .desktop-cta {
-      display: none;
+    :root {
+      --bg: #090012;
+      --purple-1: #160021;
+      --purple-2: #32004d;
+      --purple-3: #5d007d;
+      --gold: #ffd700;
+      --gold-2: #b8860b;
+      --white: #ffffff;
+      --muted: #eadff5;
+      --line: rgba(255, 215, 0, 0.32);
+      --glass: rgba(255, 255, 255, 0.08);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+      --radius: 28px;
     }
 
-    .mobile-menu-button {
-      display: inline-flex;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .mobile-menu {
-      display: grid;
-      gap: 14px;
-      padding: 18px 4%;
-      background: #12001f;
-      border-top: 1px solid rgba(255, 215, 0, 0.25);
+    html {
+      scroll-behavior: smooth;
     }
 
-    .mobile-menu.hidden {
-      display: none;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--white);
+      background: var(--bg);
+      overflow-x: hidden;
     }
 
-    .hero-grid,
-    .contact-box {
-      grid-template-columns: 1fr;
-    }
-
-    .cards-grid.two,
-    .cards-grid.three,
-    .cards-grid.four,
-    .footer-grid,
-    .logos-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .studio-anchor {
-      width: 100%;
+    img {
+      max-width: 100%;
       display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1220px, 92%);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 0, 20, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+    }
+
+    .logo-img {
+      width: 210px;
+      max-width: 210px;
+      height: 86px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .desktop-nav a,
+    .mobile-menu a,
+    .footer-grid a {
+      font-size: 13px;
+      font-weight: 800;
+      color: #f7edff;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-menu a:hover,
+    .footer-grid a:hover {
+      color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 900;
+      line-height: 1.1;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(255, 215, 0, 0.16);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #160020 !important;
+    }
+
+    .btn-outline {
+      border-color: var(--gold);
+      color: var(--gold) !important;
+      background: rgba(255, 215, 0, 0.04);
+    }
+
+    .mobile-menu-button,
+    .mobile-menu {
+      display: none;
+    }
+
+    .section {
+      padding: 84px 0;
+      position: relative;
+    }
+
+    .hero {
+      min-height: calc(100vh - 92px);
+      display: flex;
+      align-items: center;
+      padding: 72px 0 84px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 215, 0, 0.18), transparent 24%),
+        radial-gradient(circle at 82% 10%, rgba(190, 0, 255, 0.38), transparent 28%),
+        linear-gradient(135deg, #150020, #38004f 52%, #090012);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      align-items: center;
+      gap: 46px;
+    }
+
+    .hero-content {
+      min-width: 0;
+    }
+
+    .hero-top-brand {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 22px;
+      margin-bottom: 28px;
+    }
+
+    .selo-40-destaque {
+      width: 170px;
+      height: 110px;
+      max-width: 170px;
+      max-height: 110px;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.62));
+    }
+
+    .hero-brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+    }
+
+    .hero-brand-text span {
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .hero-brand-text strong {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 64px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--gold);
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.06;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 24px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.62;
+    }
+
+    .hero-content > p {
+      max-width: 610px;
+      font-weight: 700;
+    }
+
+    .hero-buttons,
+    .stats-grid,
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-card,
+    .card,
+    .ad-card,
+    .hero-card,
+    .contact-box,
+    .mini-card {
+      background: var(--glass);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card {
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--gold);
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .stat-card span {
+      display: block;
+      margin-top: 5px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .hero-card {
+      padding: 26px;
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255, 215, 0, 0.10), rgba(255, 255, 255, 0.06)),
+        rgba(8, 0, 16, 0.74);
+      min-height: 660px;
+    }
+
+    .vozia-studio-live {
+      position: relative;
+      min-height: 600px;
+      padding: 24px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, 0.48);
+      background:
+        linear-gradient(90deg, rgba(255, 215, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255, 215, 0, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at top, rgba(255, 215, 0, 0.25), transparent 24%),
+        radial-gradient(circle at bottom, rgba(116, 0, 255, 0.48), transparent 42%),
+        linear-gradient(135deg, #06000f, #29003d 55%, #07000c);
+      background-size: auto, 52px 52px, auto, auto, auto;
+      box-shadow: inset 0 0 80px rgba(255, 215, 0, 0.08), 0 30px 90px rgba(0, 0, 0, 0.55);
+    }
+
+    .studio-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       margin-bottom: 20px;
     }
 
-    .studio-anchor.right {
-      float: none;
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #e00000, #850000);
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 0 24px rgba(224, 0, 0, 0.34);
     }
 
-    .studio-desk {
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 12px #fff;
+    }
+
+    .studio-channel {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .studio-led-panel {
+      position: relative;
+      text-align: center;
+      padding: 22px 18px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.18), transparent 56%),
+        linear-gradient(135deg, rgba(72, 0, 92, 0.95), rgba(21, 0, 35, 0.95));
+      border: 1px solid rgba(255, 215, 0, 0.42);
+      margin-bottom: 24px;
+    }
+
+    .studio-led-panel small {
+      display: block;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
+    .studio-led-panel strong {
+      display: block;
+      color: var(--gold);
+      font-size: clamp(32px, 4.2vw, 58px);
+      font-weight: 900;
+      line-height: 0.95;
+      text-shadow: 0 0 24px rgba(255, 215, 0, 0.28);
+    }
+
+    .studio-led-panel span {
+      display: block;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    .studio-set {
+      position: relative;
+      min-height: 360px;
+      padding-bottom: 88px;
+    }
+
+    .studio-avatars {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: end;
+    }
+
+    .avatar-host {
+      position: relative;
+      min-height: 318px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: center;
+      padding: 18px 14px 68px;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+    }
+
+    .avatar-face {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 16px;
+      border-radius: 50% 50% 44% 44%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 36px rgba(255, 215, 0, 0.40);
+      overflow: hidden;
+    }
+
+    .avatar-face::before,
+    .avatar-face::after {
+      content: "";
+      position: absolute;
+      top: 62px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #1d0719;
+      z-index: 3;
+    }
+
+    .avatar-face::before { left: 50px; }
+    .avatar-face::after { right: 50px; }
+
+    .avatar-initial {
+      position: relative;
+      z-index: 2;
+      margin-top: 48px;
+      font-size: 62px;
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .female-avatar {
+      background: linear-gradient(180deg, #2a061e 0 22%, #c88962 22% 100%);
+    }
+
+    .female-avatar .hair {
+      position: absolute;
+      top: -6px;
+      left: 24px;
+      right: 24px;
+      height: 78px;
+      border-radius: 70px 70px 20px 20px;
+      background: linear-gradient(135deg, #2a0f0f, #6b2d1c);
+      z-index: 1;
+    }
+
+    .male-avatar {
+      background: linear-gradient(180deg, #1c1c1c 0 18%, #c9946f 18% 100%);
+    }
+
+    .male-avatar .hair {
+      position: absolute;
+      top: -8px;
+      left: 28px;
+      right: 28px;
+      height: 58px;
+      border-radius: 46px 46px 16px 16px;
+      background: linear-gradient(135deg, #101010, #333333);
+      z-index: 1;
+    }
+
+    .host-name {
+      color: #ffffff;
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .host-role {
+      color: #e9d9ff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    .microphone {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #170022;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 12px 25px rgba(255, 215, 0, 0.16);
+    }
+
+    .studio-desk-live {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      bottom: 40px;
+      z-index: 4;
+      min-height: 105px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 24px 24px 34px 34px;
+      background:
+        linear-gradient(135deg, rgba(255, 215, 0, 0.16), transparent 34%),
+        linear-gradient(180deg, #260038, #050008);
+      border: 1px solid rgba(255, 215, 0, 0.58);
+      box-shadow: inset 0 0 34px rgba(255, 215, 0, 0.14), 0 18px 44px rgba(0, 0, 0, 0.55);
+    }
+
+    .studio-desk-live span {
+      color: var(--gold);
+      font-size: clamp(25px, 3vw, 38px);
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .studio-newsbar {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 16px;
+      z-index: 5;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), #ffe870);
+      color: #160020;
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-head {
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 9px 15px;
+      border: 1px solid rgba(255, 215, 0, 0.46);
+      border-radius: 999px;
+      color: var(--gold);
+      background: rgba(255, 215, 0, 0.08);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .cards-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .cards-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .cards-grid.four { grid-template-columns: repeat(4, 1fr); }
+
+    .card,
+    .ad-card,
+    .mini-card {
+      padding: 28px;
+    }
+
+    .card-icon,
+    .service-icon {
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .ad-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.16), rgba(255, 255, 255, 0.07));
+      font-weight: 800;
+    }
+
+    .chips span {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255, 215, 0, 0.12);
+    }
+
+    .logos-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+      margin: 34px 0;
+    }
+
+    .logos-grid img {
       width: 100%;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.2);
     }
-  }
-.hero-top-brand {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 28px;
-  margin-bottom: 34px;
-}
 
-.selo-40-destaque {
-  width: 230px;
-  height: 230px;
-  max-width: 230px;
-  max-height: 230px;
-  object-fit: contain;
-  display: block;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.65));
-}
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: start;
+      padding: 34px;
+      background:
+        radial-gradient(circle at left, rgba(255, 215, 0, 0.14), transparent 35%),
+        rgba(255, 255, 255, 0.08);
+    }
 
-.hero-brand-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
+    .contact-form {
+      display: grid;
+      gap: 12px;
+    }
 
-.hero-brand-text span {
-  color: #ffd700;
-  font-size: 24px;
-  font-weight: 900;
-}
+    .contact-form label {
+      color: var(--gold);
+      font-weight: 900;
+    }
 
-.hero-brand-text strong {
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 800;
-}
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.30);
+      color: #12001f;
+      font-size: 16px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.96);
+    }
 
-@media (max-width: 768px) {
-  .hero-top-brand {
-    gap: 16px;
-    margin-bottom: 24px;
-  }
+    .site-footer {
+      background: #050008;
+      border-top: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 52px 0 26px;
+    }
 
-  .selo-40-destaque {
-    width: 150px;
-    height: 150px;
-    max-width: 150px;
-    max-height: 150px;
-  }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 28px;
+    }
 
-  .hero-brand-text span {
-    font-size: 18px;
-  }
+    .footer-grid a,
+    .footer-grid p {
+      display: block;
+      margin-top: 8px;
+      font-size: 14px;
+    }
 
-  .hero-brand-text strong {
-    font-size: 15px;
-  }
-}}
-</style>  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
+    .footer-bottom {
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-  <link rel="stylesheet" href="./css/style.css" />
+    @media (max-width: 1100px) {
+      .desktop-nav,
+      .desktop-cta { display: none; }
+      .mobile-menu-button { display: inline-flex; }
+      .mobile-menu {
+        display: grid;
+        gap: 14px;
+        padding: 18px 4%;
+        background: #12001f;
+        border-top: 1px solid rgba(255, 215, 0, 0.25);
+      }
+      .mobile-menu.hidden { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+      .hero-card { min-height: auto; }
+      .cards-grid.two,
+      .cards-grid.three,
+      .cards-grid.four,
+      .footer-grid,
+      .logos-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .header-inner { min-height: 78px; }
+      .logo-img {
+        width: 150px;
+        max-width: 150px;
+        height: 64px;
+      }
+      .hero { padding: 46px 0 64px; }
+      .hero-top-brand {
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+      .selo-40-destaque {
+        width: 115px;
+        height: 78px;
+        max-width: 115px;
+        max-height: 78px;
+      }
+      .hero-brand-text span { font-size: 17px; }
+      .hero-brand-text strong { font-size: 14px; }
+      h1 { font-size: clamp(40px, 14vw, 58px); }
+      .vozia-studio-live {
+        min-height: auto;
+        padding: 18px;
+      }
+      .studio-topline {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .studio-avatars {
+        grid-template-columns: 1fr;
+      }
+      .avatar-host {
+        min-height: 275px;
+      }
+      .avatar-face {
+        width: 126px;
+        height: 126px;
+      }
+      .avatar-initial { font-size: 50px; }
+      .studio-set { padding-bottom: 130px; }
+      .studio-desk-live {
+        left: 0;
+        right: 0;
+        bottom: 50px;
+      }
+      .studio-newsbar {
+        left: 0;
+        right: 0;
+      }
+      .contact-box { padding: 24px; }
+      .section { padding: 62px 0; }
+    }
+  </style>
 </head>
-
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a href="#home" class="logo-link" aria-label="Início TV Voz de Brasília">
-        <img
-          src="./logo-tv-transparente.PNG"
-          alt="TV Voz de Brasília"
-          class="logo-img"
-        />
+        <img src="./logo-tv-transparente.PNG" alt="TV Voz de Brasília" class="logo-img" />
       </a>
-
       <nav class="desktop-nav" aria-label="Menu principal">
         <a href="#noticias">Notícias 24h</a>
         <a href="#studio">Estúdio IA</a>
         <a href="#politica">Política</a>
         <a href="#internacional">Internacional</a>
         <a href="#empresas">Empresas</a>
-        <a href="#viagens">Viagens e Turismo</a>
+        <a href="#viagens">Viagens</a>
         <a href="#gastronomia">Gastronomia</a>
         <a href="#imoveis">Imóveis</a>
+        <a href="#autos">Autos/Motos</a>
         <a href="#importacao">Import/Export</a>
-        <a href="#sustentabilidade">Sustentabilidade</a>
-        <a href="#cidades">Cidades Satélites</a>
+        <a href="#cidades">Cidades</a>
         <a href="#entrevistas">Entrevistas</a>
-        <a href="#contato">Contato</a>
       </nav>
-
       <div class="header-actions">
         <a href="#contato" class="btn btn-gold desktop-cta">Anunciar agora</a>
-        <button type="button" id="mobileMenuButton" class="btn btn-gold mobile-menu-button">
-          ☰ Menu
-        </button>
+        <button type="button" id="mobileMenuButton" class="btn btn-gold mobile-menu-button">☰ Menu</button>
       </div>
     </div>
-
     <nav id="mobileMenu" class="mobile-menu hidden" aria-label="Menu mobile">
       <a href="#noticias">Notícias 24h</a>
       <a href="#studio">Estúdio IA</a>
@@ -548,7 +838,8 @@
       <a href="#viagens">Viagens e Turismo</a>
       <a href="#gastronomia">Gastronomia</a>
       <a href="#imoveis">Imóveis</a>
-      <a href="#importacao">Import/Export</a>
+      <a href="#autos">Automóveis e Motos</a>
+      <a href="#importacao">Importação e Exportação</a>
       <a href="#sustentabilidade">Sustentabilidade</a>
       <a href="#cidades">Cidades Satélites</a>
       <a href="#entrevistas">Entrevistas</a>
@@ -560,67 +851,61 @@
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-content">
-<div class="hero-top-brand">
-  <img class="selo-40-destaque" src="./selo-40anos.jpg" alt="Selo 40 anos TV Voz de Brasília" />
+          <div class="hero-top-brand">
+            <img class="selo-40-destaque" src="./selo-40anos.jpg" alt="Selo 40 anos TV Voz de Brasília" />
+            <div class="hero-brand-text">
+              <span>✨ TV Voz de Brasília</span>
+              <strong>40 anos de credibilidade</strong>
+            </div>
+          </div>
 
-  <div class="hero-brand-text">
-    <span>✨ TV Voz de Brasília</span>
-    <strong>40 anos de credibilidade</strong>
-  </div>
-</div>
-
-          <h1>
-            Da visão à realidade:
-            <span>nasce a VOZ IA.</span>
-          </h1>
-
-          <p>
-            Um ecossistema nacional de mídia, negócios, notícias 24h, política,
-            internacional, turismo, gastronomia, imóveis, cidades, entrevistas e
-            inteligência artificial.
-          </p>
+          <h1>Da visão à realidade:<span>nasce a VOZ IA.</span></h1>
+          <p>Um ecossistema nacional de mídia, negócios, notícias 24h, política, internacional, turismo, gastronomia, imóveis, automóveis, cidades, entrevistas e inteligência artificial.</p>
 
           <div class="hero-buttons">
             <a href="#contato" class="btn btn-gold">Quero anunciar minha empresa</a>
-            <a href="#noticias" class="btn btn-outline">Conhecer Notícias 24h</a>
+            <a href="#studio" class="btn btn-outline">Ver estúdio VOZ IA</a>
           </div>
 
           <div class="stats-grid">
-            <div class="stat-card">
-              <strong>170M+</strong>
-              <span>interações</span>
-            </div>
-
-            <div class="stat-card">
-              <strong>150K+</strong>
-              <span>seguidores</span>
-            </div>
-
-            <div class="stat-card">
-              <strong>500+</strong>
-              <span>entrevistas</span>
-            </div>
+            <div class="stat-card"><strong>170M+</strong><span>interações</span></div>
+            <div class="stat-card"><strong>150K+</strong><span>seguidores</span></div>
+            <div class="stat-card"><strong>500+</strong><span>entrevistas</span></div>
           </div>
         </div>
 
-        <div class="hero-card">
-          <div class="video-box">
-            <div class="play-icon">▶</div>
-            <h2>TV Voz IA ao Vivo</h2>
-            <p>Dra. Deijanete IA e Paulo Fayad IA no ar, em boletins contínuos.</p>
-          </div>
-
-          <div class="anchor-grid">
-            <div class="anchor-card">
-              <div class="anchor-icon">🎙️</div>
-              <h3>Dra. Deijanete IA</h3>
-              <p>apresentadora digital</p>
+        <div class="hero-card" id="studio">
+          <div class="vozia-studio-live" aria-label="Estúdio VOZ IA ao vivo com apresentadores digitais">
+            <div class="studio-topline">
+              <div class="live-pill"><span class="live-dot"></span> AO VIVO</div>
+              <div class="studio-channel">TV VOZ IA • Brasília • Brasil • Mundo</div>
             </div>
 
-            <div class="anchor-card">
-              <div class="anchor-icon">📰</div>
-              <h3>Paulo Fayad IA</h3>
-              <p>âncora de notícias 24h</p>
+            <div class="studio-led-panel">
+              <small>Estúdio digital de notícias</small>
+              <strong>VOZ IA NEWS 24H</strong>
+              <span>Dra. Deijanete IA e Paulo Fayad IA na bancada</span>
+            </div>
+
+            <div class="studio-set">
+              <div class="studio-avatars">
+                <div class="avatar-host">
+                  <div class="avatar-face female-avatar" aria-hidden="true"><span class="hair"></span><span class="avatar-initial">D</span></div>
+                  <div class="host-name">Dra. Deijanete IA</div>
+                  <div class="host-role">apresentadora digital</div>
+                  <div class="microphone">🎙️ Microfone VOZ IA</div>
+                </div>
+
+                <div class="avatar-host">
+                  <div class="avatar-face male-avatar" aria-hidden="true"><span class="hair"></span><span class="avatar-initial">P</span></div>
+                  <div class="host-name">Paulo Fayad IA</div>
+                  <div class="host-role">âncora de notícias</div>
+                  <div class="microphone">🎙️ Microfone VOZ IA</div>
+                </div>
+              </div>
+
+              <div class="studio-desk-live"><span>TV VOZ IA AO VIVO</span></div>
+              <div class="studio-newsbar">URGENTE • Brasília, Brasil e mundo em boletins contínuos pela VOZ IA</div>
             </div>
           </div>
         </div>
@@ -632,85 +917,13 @@
         <div class="section-head">
           <div class="badge">📰 VOZ IA Notícias 24h</div>
           <h2>Redação inteligente com curadoria, fonte e comentário.</h2>
-          <p>
-            A VOZ IA organiza manchetes, fontes e comentários jornalísticos.
-            O modelo simula a curadoria de grandes veículos, sempre com referência
-            e comentário próprio.
-          </p>
+          <p>A VOZ IA organiza manchetes, fontes e comentários jornalísticos, com foco em Brasília, Brasil e mundo.</p>
         </div>
-
         <div class="cards-grid four">
-          <article class="card">
-            <div class="card-icon">🏛️</div>
-            <h3>Brasília</h3>
-            <p>Política, governo, economia local, eventos e bastidores da capital.</p>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">🇧🇷</div>
-            <h3>Brasil</h3>
-            <p>Principais acontecimentos nacionais com linguagem clara e rápida.</p>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">🌍</div>
-            <h3>Mundo</h3>
-            <p>CNN Internacional, diplomacia, economia global e tendências.</p>
-          </article>
-
-          <article class="card">
-            <div class="card-icon">📡</div>
-            <h3>Fontes</h3>
-            <p>CNN Brasil, Globo, Record, Metrópoles, Correio Braziliense e portais oficiais.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="studio" class="section">
-      <div class="container">
-        <div class="section-head">
-          <div class="badge">🚨 Estúdio VOZ IA 3D</div>
-          <h2>Dra. Deijanete IA e Paulo Fayad IA narrando ao vivo.</h2>
-          <p>
-            Um modelo visual de estúdio jornalístico premium, com bancada, LEDs,
-            microfones VOZ IA e simulação de narração.
-          </p>
-        </div>
-
-        <div class="studio-box">
-          <div class="studio-screen">
-            <div class="badge">AO VIVO • VOZ IA NEWS</div>
-            <h3>Redação 24h</h3>
-            <p>Brasília, Brasil e mundo em atualização contínua</p>
-          </div>
-
-          <div class="studio-anchor left">
-            <div class="avatar">🎙️</div>
-            <h4>Deijanete IA</h4>
-            <p>Comentário institucional, humano e estratégico.</p>
-            <button type="button" id="voiceDeijanete" class="btn btn-gold">
-              Ouvir Deijanete IA
-            </button>
-          </div>
-
-          <div class="studio-anchor right">
-            <div class="avatar">📰</div>
-            <h4>Paulo Fayad IA</h4>
-            <p>Manchetes, bastidores e análise jornalística.</p>
-            <button type="button" id="voicePaulo" class="btn btn-outline">
-              Ouvir Paulo IA
-            </button>
-          </div>
-
-          <div class="studio-desk">VOZ IA</div>
-
-          <div class="ticker">
-            <span>
-              URGENTE • VOZ IA 24H: Brasília recebe nova plataforma de notícias,
-              negócios e inteligência artificial com âncoras digitais e integração às redes sociais.
-            </span>
-          </div>
+          <article class="card service-card"><div class="card-icon">🏛️</div><h3>Brasília</h3><p>Política, governo, economia local, eventos e bastidores da capital.</p></article>
+          <article class="card service-card"><div class="card-icon">🇧🇷</div><h3>Brasil</h3><p>Principais acontecimentos nacionais com linguagem clara e rápida.</p></article>
+          <article class="card service-card"><div class="card-icon">🌍</div><h3>Mundo</h3><p>Diplomacia, economia global, embaixadas e tendências internacionais.</p></article>
+          <article class="card service-card"><div class="card-icon">📡</div><h3>Fontes</h3><p>CNN Brasil, Globo, Record, Metrópoles, Correio Braziliense e portais oficiais.</p></article>
         </div>
       </div>
     </section>
@@ -719,31 +932,13 @@
       <div class="container">
         <div class="badge">🏛️ Política e Poder</div>
         <h2>Entrevistas com quem decide o Brasil.</h2>
-
         <div class="chips">
-          <span>Presidentes</span>
-          <span>CEOs</span>
-          <span>Ministros</span>
-          <span>Senadores</span>
-          <span>Deputados</span>
-          <span>Autoridades Públicas</span>
+          <span>Presidentes</span><span>CEOs</span><span>Ministros</span><span>Senadores</span><span>Deputados</span><span>Autoridades Públicas</span>
         </div>
-
-        <div class="cards-grid three">
-          <article class="card">
-            <h3>Arquivo político</h3>
-            <p>Espaço para entrevistas, cortes, bastidores, agendas e anúncios institucionais.</p>
-          </article>
-
-          <article class="card">
-            <h3>Radar de autoridade</h3>
-            <p>Senado, Câmara, ministérios, GDF, entidades e lideranças empresariais.</p>
-          </article>
-
-          <article class="ad-card">
-            <h3>Espaço Premium</h3>
-            <p>Patrocínio de instituições, entidades, empresas e campanhas de interesse público.</p>
-          </article>
+        <div class="cards-grid three" style="margin-top: 28px;">
+          <article class="card"><h3>Arquivo político</h3><p>Entrevistas, cortes, bastidores, agendas e anúncios institucionais.</p></article>
+          <article class="card"><h3>Radar de autoridade</h3><p>Senado, Câmara, ministérios, GDF, entidades e lideranças empresariais.</p></article>
+          <article class="ad-card"><h3>Espaço Premium</h3><p>Patrocínio de instituições, entidades, empresas e campanhas de interesse público.</p></article>
         </div>
       </div>
     </section>
@@ -752,32 +947,10 @@
       <div class="container">
         <div class="badge">🌍 Internacional</div>
         <h2>Diplomacia, embaixadas e organismos internacionais.</h2>
-
-        <div class="chips">
-          <span>Embaixadores</span>
-          <span>Presidentes</span>
-          <span>Organismos Internacionais</span>
-          <span>Artigos</span>
-          <span>Mensagens</span>
-          <span>Comércio Exterior</span>
-        </div>
-
-        <div class="cards-grid two">
-          <article class="card">
-            <h3>VOZ IA Internacional</h3>
-            <p>
-              Entrevistas diplomáticas, cooperação econômica, turismo, cultura
-              e oportunidades entre países.
-            </p>
-          </article>
-
-          <article class="ad-card">
-            <h3>Espaço para artigos e mensagens</h3>
-            <p>
-              Área reservada para embaixadas, organismos, câmaras de comércio,
-              missões e parceiros internacionais.
-            </p>
-          </article>
+        <div class="chips"><span>Embaixadores</span><span>Presidentes</span><span>Organismos Internacionais</span><span>Artigos</span><span>Mensagens</span><span>Comércio Exterior</span></div>
+        <div class="cards-grid two" style="margin-top: 28px;">
+          <article class="card"><h3>VOZ IA Internacional</h3><p>Entrevistas diplomáticas, cooperação econômica, turismo, cultura e oportunidades entre países.</p></article>
+          <article class="ad-card"><h3>Espaço para artigos e mensagens</h3><p>Área para embaixadas, organismos, câmaras de comércio, missões e parceiros internacionais.</p></article>
         </div>
       </div>
     </section>
@@ -786,26 +959,10 @@
       <div class="container">
         <div class="badge">💼 Empresas e Anunciantes</div>
         <h2>Vitrine comercial para todos os setores.</h2>
-
         <div class="chips">
-          <span>Móveis residenciais</span>
-          <span>Móveis comerciais</span>
-          <span>Escolas</span>
-          <span>Faculdades</span>
-          <span>Supermercados</span>
-          <span>Drogarias</span>
-          <span>Shoppings</span>
-          <span>Moda festa / Lavie</span>
-          <span>Clínicas</span>
-          <span>Construção</span>
-          <span>Tecnologia</span>
-          <span>Serviços</span>
-          <span>Comércio local</span>
-          <span>Indústria</span>
-          <span>Eventos</span>
+          <span>Móveis residenciais</span><span>Móveis comerciais</span><span>Escolas</span><span>Faculdades</span><span>Supermercados</span><span>Drogarias</span><span>Shoppings</span><span>Moda festa / Lavie</span><span>Clínicas</span><span>Construção</span><span>Tecnologia</span><span>Serviços</span><span>Comércio local</span><span>Indústria</span><span>Eventos</span><span>Concessionárias</span><span>Revendas</span>
         </div>
-
-        <div class="cards-grid three">
+        <div class="cards-grid three" style="margin-top: 28px;">
           <article class="ad-card">Anunciante destaque 01</article>
           <article class="ad-card">Anunciante destaque 02</article>
           <article class="ad-card">Anunciante destaque 03</article>
@@ -817,24 +974,8 @@
       <div class="container">
         <div class="badge">✈️ Viagens e Turismo</div>
         <h2>Hotéis, companhias aéreas e experiências.</h2>
-
-        <div class="chips">
-          <span>Hotéis</span>
-          <span>Cias aéreas</span>
-          <span>Hotéis fazenda</span>
-          <span>Turismo cívico</span>
-          <span>Turismo religioso</span>
-          <span>Resorts</span>
-          <span>Agências</span>
-          <span>Destinos nacionais</span>
-          <span>Destinos internacionais</span>
-          <span>Experiências</span>
-        </div>
-
-        <div class="ad-card">
-          Espaço para campanhas de hotéis, resorts, companhias aéreas,
-          destinos e experiências turísticas.
-        </div>
+        <div class="chips"><span>Hotéis</span><span>Cias aéreas</span><span>Hotéis fazenda</span><span>Turismo cívico</span><span>Turismo religioso</span><span>Resorts</span><span>Agências</span><span>Destinos nacionais</span><span>Destinos internacionais</span><span>Experiências</span></div>
+        <div class="ad-card" style="margin-top: 28px;">Espaço para campanhas de hotéis, resorts, companhias aéreas, destinos e experiências turísticas.</div>
       </div>
     </section>
 
@@ -842,25 +983,30 @@
       <div class="container">
         <div class="badge">🍽️ Gastronomia</div>
         <h2>Restaurantes, bares e experiências gastronômicas.</h2>
+        <div class="chips"><span>Restaurantes</span><span>Hotéis</span><span>Petiscarias</span><span>Bares</span><span>Cafés</span><span>Padarias</span><span>Pizzarias</span><span>Churrascarias</span><span>Delivery</span><span>Chefs</span><span>Eventos gastronômicos</span></div>
+        <div class="cards-grid three" style="margin-top: 28px;"><article class="ad-card">Anúncio restaurante</article><article class="ad-card">Anúncio bar/petiscaria</article><article class="ad-card">Anúncio hotel gastronômico</article></div>
+      </div>
+    </section>
 
-        <div class="chips">
-          <span>Restaurantes</span>
-          <span>Hotéis</span>
-          <span>Petiscarias</span>
-          <span>Bares</span>
-          <span>Cafés</span>
-          <span>Padarias</span>
-          <span>Pizzarias</span>
-          <span>Churrascarias</span>
-          <span>Delivery</span>
-          <span>Chefs</span>
-          <span>Eventos gastronômicos</span>
-        </div>
+    <section id="imoveis" class="section">
+      <div class="container">
+        <div class="badge">🏢 Imóveis</div>
+        <h2>Compra, venda, aluguel e avaliação.</h2>
+        <p>Área estratégica para anúncios de imobiliárias, construtoras, lançamentos e atuação imobiliária de Paulo Fayad.</p>
+        <div class="chips"><span>Comprar</span><span>Vender</span><span>Alugar</span><span>Avaliação</span><span>Imobiliárias</span><span>Construtoras</span><span>Lançamentos</span><span>Salas comerciais</span><span>Casas</span><span>Apartamentos</span><span>Terrenos</span></div>
+      </div>
+    </section>
 
-        <div class="cards-grid three">
-          <article class="ad-card">Anúncio restaurante</article>
-          <article class="ad-card">Anúncio bar/petiscaria</article>
-          <article class="ad-card">Anúncio hotel gastronômico</article>
+    <section id="autos" class="section">
+      <div class="container">
+        <div class="badge">🚗🏍️ Automóveis e Motos</div>
+        <h2>Vitrine para concessionárias, revendas e lançamentos.</h2>
+        <p>Nova área comercial para venda de mídia a concessionárias, lojas de seminovos, revendas de motos, oficinas, seguradoras, consórcios e empresas do setor automotivo.</p>
+        <div class="cards-grid four" style="margin-top: 28px;">
+          <article class="card service-card"><div class="service-icon">🚘</div><h3>Concessionárias</h3><p>Lançamentos, test-drive, campanhas e ofertas especiais.</p></article>
+          <article class="card service-card"><div class="service-icon">🏍️</div><h3>Motos</h3><p>Revendas, acessórios, eventos e conteúdo para motociclistas.</p></article>
+          <article class="card service-card"><div class="service-icon">🔧</div><h3>Serviços</h3><p>Oficinas, estética automotiva, seguros, rastreadores e manutenção.</p></article>
+          <article class="ad-card service-card"><div class="service-icon">📣</div><h3>Anuncie aqui</h3><p>Pacotes para revendas, concessionárias e marcas automotivas.</p></article>
         </div>
       </div>
     </section>
@@ -869,39 +1015,7 @@
       <div class="container">
         <div class="badge">🚢 Importação e Exportação</div>
         <h2>APEX, comércio exterior e oportunidades globais.</h2>
-
-        <div class="cards-grid four">
-          <article class="card">Como exportar</article>
-          <article class="card">Como importar</article>
-          <article class="card">APEX e missões</article>
-          <article class="card">Feiras internacionais</article>
-        </div>
-      </div>
-    </section>
-
-    <section id="imoveis" class="section">
-      <div class="container">
-        <div class="badge">🏢 Imóveis</div>
-        <h2>Compra, venda, aluguel e avaliação.</h2>
-
-        <p>
-          Área estratégica para anúncios de imobiliárias, construtoras,
-          lançamentos e atuação imobiliária de Paulo Fayad.
-        </p>
-
-        <div class="chips">
-          <span>Comprar</span>
-          <span>Vender</span>
-          <span>Alugar</span>
-          <span>Avaliação</span>
-          <span>Imobiliárias</span>
-          <span>Construtoras</span>
-          <span>Lançamentos</span>
-          <span>Salas comerciais</span>
-          <span>Casas</span>
-          <span>Apartamentos</span>
-          <span>Terrenos</span>
-        </div>
+        <div class="cards-grid four"><article class="card">Como exportar</article><article class="card">Como importar</article><article class="card">APEX e missões</article><article class="card">Feiras internacionais</article></div>
       </div>
     </section>
 
@@ -909,17 +1023,8 @@
       <div class="container">
         <div class="badge">🌱 Sustentabilidade</div>
         <h2>Um plano VOZ IA para comunicar impacto positivo.</h2>
-
-        <p>
-          A VOZ IA abre uma frente para ESG, meio ambiente, projetos sociais,
-          economia verde, educação ambiental e campanhas de responsabilidade institucional.
-        </p>
-
-        <div class="cards-grid three">
-          <article class="card">Empresas sustentáveis</article>
-          <article class="card">Projetos sociais e IBJ</article>
-          <article class="ad-card">Espaço para marcas com compromisso ambiental e social.</article>
-        </div>
+        <p>A VOZ IA abre uma frente para ESG, meio ambiente, projetos sociais, economia verde, educação ambiental e campanhas de responsabilidade institucional.</p>
+        <div class="cards-grid three" style="margin-top: 28px;"><article class="card">Empresas sustentáveis</article><article class="card">Projetos sociais e IBJ</article><article class="ad-card">Espaço para marcas com compromisso ambiental e social.</article></div>
       </div>
     </section>
 
@@ -927,24 +1032,7 @@
       <div class="container">
         <div class="badge">📍 Cidades Satélites</div>
         <h2>Notícias locais de Brasília e regiões administrativas.</h2>
-
-        <div class="chips">
-          <span>Taguatinga</span>
-          <span>Ceilândia</span>
-          <span>Samambaia</span>
-          <span>Águas Claras</span>
-          <span>Guará</span>
-          <span>Gama</span>
-          <span>Sobradinho</span>
-          <span>Planaltina</span>
-          <span>São Sebastião</span>
-          <span>Paranoá</span>
-          <span>Itapoã</span>
-          <span>Santa Maria</span>
-          <span>Vicente Pires</span>
-          <span>Arniqueira</span>
-          <span>Núcleo Bandeirante</span>
-        </div>
+        <div class="chips"><span>Taguatinga</span><span>Ceilândia</span><span>Samambaia</span><span>Águas Claras</span><span>Guará</span><span>Gama</span><span>Sobradinho</span><span>Planaltina</span><span>São Sebastião</span><span>Paranoá</span><span>Itapoã</span><span>Santa Maria</span><span>Vicente Pires</span><span>Arniqueira</span><span>Núcleo Bandeirante</span></div>
       </div>
     </section>
 
@@ -952,28 +1040,8 @@
       <div class="container">
         <div class="badge">🎥 Entrevistas TV Voz</div>
         <h2>Mais de 500 entrevistas em exibição permanente.</h2>
-
-        <p>
-          Área preparada para integrar o canal @tvvozdebrasilia, organizar
-          entrevistas por categoria e transformar cada entrevista em até 10 cortes
-          para Reels, Shorts, TikTok, Kwai e portal.
-        </p>
-
-        <div class="cards-grid three">
-          <article class="card">
-            <h3>Canal contínuo</h3>
-            <p>Carrossel e vitrine para entrevistas completas.</p>
-          </article>
-
-          <article class="card">
-            <h3>10 cortes por entrevista</h3>
-            <p>Transformação de conteúdo longo em vídeos curtos para redes.</p>
-          </article>
-
-          <article class="ad-card">
-            Espaço para patrocínio de séries, entrevistas e programas especiais.
-          </article>
-        </div>
+        <p>Área preparada para integrar o canal @tvvozdebrasilia, organizar entrevistas por categoria e transformar cada entrevista em até 10 cortes para Reels, Shorts, TikTok, Kwai e portal.</p>
+        <div class="cards-grid three" style="margin-top: 28px;"><article class="card"><h3>Canal contínuo</h3><p>Carrossel e vitrine para entrevistas completas.</p></article><article class="card"><h3>10 cortes por entrevista</h3><p>Transformação de conteúdo longo em vídeos curtos para redes.</p></article><article class="ad-card">Espaço para patrocínio de séries, entrevistas e programas especiais.</article></div>
       </div>
     </section>
 
@@ -981,32 +1049,17 @@
       <div class="container">
         <div class="badge">🏆 Credibilidade Institucional</div>
         <h2>40 anos, Anuário, IBJ, prêmios e lideranças.</h2>
-
         <div class="logos-grid">
-          <img src="./selo-40anos.jpg" alt="40 anos" />
+          <img src="./selo-40anos.jpg" alt="Selo 40 anos" />
           <img src="./capa-anuario.jpg" alt="Anuário Brasileiro" />
           <img src="./logo-ibj.jpg" alt="Instituto Brazil Just" />
           <img src="./logo-premio.jpg" alt="Top of Millenium" />
           <img src="./selo-voz.png" alt="Selo Voz de Brasília" />
           <img src="./logo-diploma.png" alt="Diploma" />
         </div>
-
         <div class="cards-grid two">
-          <article class="card">
-            <h3>Paulo Fayad André</h3>
-            <p>
-              Jornalista MTB/DF 8872, editor da Voz de Brasília há mais de 30 anos,
-              diretor do portal, professor, vice-presidente do IBJ e liderança institucional.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Dra. Deijanete Fayad</h3>
-            <p>
-              Advogada, jornalista, psicanalista, teóloga, gestora da TV Voz de Brasília
-              e presidente do Instituto Brazil Just.
-            </p>
-          </article>
+          <article class="card"><h3>Paulo Fayad André</h3><p>Jornalista MTB/DF 8872, editor da Voz de Brasília há mais de 30 anos, diretor do portal, professor, vice-presidente do IBJ e liderança institucional.</p></article>
+          <article class="card"><h3>Dra. Deijanete Fayad</h3><p>Advogada, jornalista, psicanalista, teóloga, gestora da TV Voz de Brasília e presidente do Instituto Brazil Just.</p></article>
         </div>
       </div>
     </section>
@@ -1015,12 +1068,7 @@
       <div class="container">
         <div class="badge">🎬 Audiovisual & Marketplace</div>
         <h2>Estúdio, podcasts, drones, lives e campanhas.</h2>
-
-        <div class="cards-grid three">
-          <article class="card">Filmagens e fotografia</article>
-          <article class="card">Podcast e entrevistas</article>
-          <article class="card">Drones e eventos</article>
-        </div>
+        <div class="cards-grid three"><article class="card">Filmagens e fotografia</article><article class="card">Podcast e entrevistas</article><article class="card">Drones e eventos</article></div>
       </div>
     </section>
 
@@ -1028,11 +1076,7 @@
       <div class="container">
         <div class="badge">🤝 Instituto Brazil Just</div>
         <h2>Projetos sociais, inclusão e impacto humano.</h2>
-
-        <p>
-          A força institucional da TV Voz e da VOZ IA conectada a campanhas sociais,
-          saúde, esporte, educação, inclusão e cidadania.
-        </p>
+        <p>A força institucional da TV Voz e da VOZ IA conectada a campanhas sociais, saúde, esporte, educação, inclusão e cidadania.</p>
       </div>
     </section>
 
@@ -1041,25 +1085,16 @@
         <div class="contact-box">
           <div class="contact-content">
             <div class="badge">🚀 Vamos transformar visão em realidade</div>
-
             <h2>Sua empresa pode fazer parte da nova era da TV Voz.</h2>
-
-            <p>
-              Preencha o formulário rápido. Ao enviar, a equipe comercial recebe
-              seu interesse pelo WhatsApp.
-            </p>
+            <p>Preencha o formulário rápido. Ao enviar, a equipe comercial recebe seu interesse pelo WhatsApp.</p>
           </div>
-
           <form id="contactForm" class="contact-form">
             <label for="formNome">Nome</label>
             <input id="formNome" name="nome" type="text" placeholder="Seu nome" required />
-
             <label for="formEmpresa">Empresa</label>
             <input id="formEmpresa" name="empresa" type="text" placeholder="Nome da empresa" />
-
             <label for="formTelefone">WhatsApp</label>
             <input id="formTelefone" name="telefone" type="tel" placeholder="Seu WhatsApp" required />
-
             <label for="formInteresse">Interesse</label>
             <select id="formInteresse" name="interesse" required>
               <option value="">Selecione uma opção</option>
@@ -1068,12 +1103,12 @@
               <option>Quero uma entrevista</option>
               <option>Quero parceria institucional</option>
               <option>Quero divulgar imóvel</option>
+              <option>Quero anunciar automóveis ou motos</option>
               <option>Quero mídia kit</option>
             </select>
-
-            <button type="submit" class="btn btn-gold">
-              Enviar pelo WhatsApp
-            </button>
+            <label for="formMensagem">Mensagem</label>
+            <textarea id="formMensagem" name="mensagem" rows="4" placeholder="Conte rapidamente o que deseja divulgar"></textarea>
+            <button type="submit" class="btn btn-gold">Enviar pelo WhatsApp</button>
           </form>
         </div>
       </div>
@@ -1084,43 +1119,58 @@
     <div class="container footer-grid">
       <div>
         <h3>VOZ IA | TV Voz de Brasília</h3>
-        <p>
-          Plataforma de mídia, negócios, entrevistas, turismo, gastronomia,
-          imóveis, ESG, audiovisual e inteligência artificial.
-        </p>
+        <p>Plataforma de mídia, negócios, entrevistas, turismo, gastronomia, imóveis, automóveis, ESG, audiovisual e inteligência artificial.</p>
       </div>
-
       <div>
         <h4>Plataforma</h4>
-        <a href="#noticias">Notícias 24h</a>
-        <a href="#politica">Política</a>
-        <a href="#internacional">Internacional</a>
-        <a href="#entrevistas">Entrevistas</a>
+        <a href="#noticias">Notícias 24h</a><a href="#politica">Política</a><a href="#internacional">Internacional</a><a href="#entrevistas">Entrevistas</a>
       </div>
-
       <div>
         <h4>Negócios</h4>
-        <a href="#empresas">Empresas</a>
-        <a href="#viagens">Viagens e Turismo</a>
-        <a href="#gastronomia">Gastronomia</a>
-        <a href="#imoveis">Imóveis</a>
+        <a href="#empresas">Empresas</a><a href="#viagens">Viagens</a><a href="#gastronomia">Gastronomia</a><a href="#imoveis">Imóveis</a><a href="#autos">Autos/Motos</a>
       </div>
-
       <div>
         <h4>Institucional</h4>
-        <p>TV Voz de Brasília</p>
-        <p>Instituto Brazil Just</p>
-        <p>Dra. Deijanete IA</p>
-        <p>Paulo Fayad IA</p>
+        <p>TV Voz de Brasília</p><p>Instituto Brazil Just</p><p>Dra. Deijanete IA</p><p>Paulo Fayad IA</p>
       </div>
     </div>
-
     <div class="container footer-bottom">
       <p>© 2026 TV Voz de Brasília • VOZ IA Platform. Todos os direitos reservados.</p>
       <p>Da visão à realidade: mídia, credibilidade e inteligência artificial.</p>
     </div>
   </footer>
 
-  <script src="./js/main.js"></script>
+  <script>
+    const menuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuButton && mobileMenu) {
+      menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const nome = document.getElementById('formNome').value.trim();
+        const empresa = document.getElementById('formEmpresa').value.trim();
+        const telefone = document.getElementById('formTelefone').value.trim();
+        const interesse = document.getElementById('formInteresse').value;
+        const mensagemExtra = document.getElementById('formMensagem').value.trim();
+        const mensagem = [
+          'Olá, TV Voz de Brasília!',
+          '',
+          'Meu nome: ' + nome,
+          'Empresa: ' + (empresa || 'Não informado'),
+          'WhatsApp: ' + telefone,
+          'Interesse: ' + interesse,
+          'Mensagem: ' + (mensagemExtra || 'Não informado')
+        ].join('\n');
+        window.open('https://wa.me/5561999999999?text=' + encodeURIComponent(mensagem), '_blank');
+      });
+    }
+  </script>
 </body>
 </html>
