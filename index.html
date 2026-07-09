@@ -1,341 +1,794 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TV Voz de Brasília - 40 Anos de Autoridade</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-* { scroll-behavior: smooth; margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%); color: white; overflow-x: hidden; }
-.glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
-.glass-gold { background: rgba(251,191,36,0.1); backdrop-filter: blur(20px); border: 1px solid rgba(251,191,36,0.3); }
-.gradient-text { background: linear-gradient(135deg, #fbbf24 0%, #d4af37 50%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.gradient-gold { background: linear-gradient(135deg, #fbbf24 0%, #d4af37 100%); }
-.hover-lift { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-.hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(251,191,36,0.15); }
-@keyframes celebrate40 { 0%,100% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.1) rotate(-5deg); } 75% { transform: scale(1.1) rotate(5deg); } }
-.animate-40anos { animation: celebrate40 3s ease-in-out infinite; display: inline-block; }
-@keyframes pulse40 { 0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,0.7); } 50% { box-shadow: 0 0 0 30px rgba(251,191,36,0); } }
-.pulse-40anos { animation: pulse40 2s infinite; }
-.hero-pattern { background-image: radial-gradient(circle at 20% 50%, rgba(251,191,36,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(251,191,36,0.1) 0%, transparent 50%); }
-.stat-card { background: linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(212,175,55,0.05) 100%); border: 1px solid rgba(251,191,36,0.2); }
-.categoria-box { transition: all 0.3s; }
-.categoria-box:hover { transform: translateY(-5px); }
-.premio-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 30px; text-align: center; transition: all 0.3s; }
-.premio-card:hover { transform: translateY(-5px); border-color: rgba(251,191,36,0.5); }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VOZ IA Platform | TV Voz de Brasília</title>
+
+  <meta name="description" content="VOZ IA Platform: ecossistema de mídia, notícias 24h, negócios, turismo, gastronomia, audiovisual, marketplace e inteligência artificial da TV Voz de Brasília." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #fbbf24;
+      --gold-dark: #b45309;
+      --dark: #07040f;
+      --purple: #3b0764;
+      --violet: #6d28d9;
+      --blue: #0f172a;
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.35), transparent 35%),
+        radial-gradient(circle at top right, rgba(251, 191, 36, 0.16), transparent 30%),
+        linear-gradient(135deg, #05010a 0%, #120022 45%, #020617 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 35%, #d97706 70%, #92400e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+      color: #120022;
+      font-weight: 900;
+      box-shadow: 0 18px 45px rgba(251, 191, 36, 0.28);
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 55px rgba(251, 191, 36, 0.38);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      color: #fbbf24;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(251, 191, 36, 0.13);
+      transform: translateY(-3px);
+    }
+
+    .card-hover {
+      transition: all 0.35s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      border-color: rgba(251, 191, 36, 0.55);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: #fbbf24;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      font-weight: 900;
+    }
+
+    .section-subtitle {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 9px 16px;
+      background: rgba(251, 191, 36, 0.11);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: #fbbf24;
+    }
+
+    .pulse-gold {
+      animation: pulseGold 2.8s infinite;
+    }
+
+    @keyframes pulseGold {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.28);
+      }
+      50% {
+        box-shadow: 0 0 0 18px rgba(251, 191, 36, 0);
+      }
+    }
+  </style>
 </head>
-<body class="antialiased">
-<header class="fixed w-full top-0 z-50 glass border-b border-white/10">
-<nav class="container mx-auto px-6 py-2">
-<div class="flex items-center justify-between">
-<div class="flex items-center space-x-3">
-<img src="./logo-tv-transparente.png" alt="TV Voz de Brasília" style="height:90px;width:auto;display:block;object-fit:contain;"> 
-</div>
-     <div class="hidden lg:flex items-center space-x-6">
-<a href="#inicio" class="text-sm font-medium hover:text-yellow-500 transition">Início</a>
-<a href="#categorias" class="text-sm font-medium hover:text-yellow-500 transition">Categorias</a>
-<a href="#premios" class="text-sm font-medium hover:text-yellow-500 transition">Prêmios</a>
-<a href="#parceiros" class="text-sm font-medium hover:text-yellow-500 transition">Parceiros</a>
-<a href="anunciantes.html" class="text-sm font-medium hover:text-yellow-500 transition">Anunciantes</a>
-<a href="#numeros" class="text-sm font-medium hover:text-yellow-500 transition">Números</a>
-<a href="https://www.institutobraziljust.org" target="_blank" class="text-sm font-medium hover:text-yellow-500 transition text-blue-400">IBJ</a>
-<a href="#recomecar" class="text-sm font-medium hover:text-yellow-500 transition text-purple-400">Recomeçar</a>
-<a href="#contato" class="gradient-gold text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition">Quero Divulgar</a>
-</div>
-<button onclick="toggleMenu()" class="lg:hidden p-2 hover:bg-white/5 rounded-lg transition">
-<i data-lucide="menu" class="w-6 h-6"></i>
-</button>
-</div>
-<div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 space-y-3">
-<a href="#inicio" class="block py-2 hover:text-yellow-500">Início</a>
-<a href="#categorias" class="block py-2 hover:text-yellow-500">Categorias</a>
-<a href="#premios" class="block py-2 hover:text-yellow-500">Prêmios</a>
-<a href="anunciantes.html" class="block py-2 hover:text-yellow-500">Anunciantes</a>
-<a href="#contato" class="block py-2 text-yellow-500">Quero Divulgar</a>
-</div>
-</nav>
-</header>
-<section id="inicio" class="relative min-h-screen flex items-center pt-52 pb-20 hero-pattern">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/50"></div>
-<div class="container mx-auto px-6 relative z-10">
-<div class="max-w-6xl mx-auto">
-<div class="grid lg:grid-cols-2 gap-12 items-center">
-<div class="text-center lg:text-left">
-<div class="inline-flex items-center gap-4 glass-gold px-8 py-4 rounded-full mb-8 pulse-40anos justify-center lg:justify-start">
-<img src="./selo-40anos.jpg" alt="Selo 40 Anos" class="h-32 w-32 rounded-full object-cover animate-40anos shadow-2xl">
-<div>
-<span class="text-3xl font-bold text-yellow-400">40 ANOS</span>
-<p class="text-sm text-gray-300">Construindo autoridade e credibilidade</p>
-</div>
-</div>
-<h1 class="text-4xl lg:text-6xl font-serif font-black leading-tight mb-6">A maior vitrine <span class="gradient-text">empresarial</span> de Brasília</h1>
-<p class="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">Mais de <span class="text-yellow-500 font-semibold">500 entrevistas</span> no YouTube, mais de <span class="text-yellow-500 font-semibold">150 mil seguidores</span> no Instagram e mais de <span class="text-yellow-500 font-semibold">170 milhões</span> de interações mensais.</p>
-<div class="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start">
-<a href="https://wa.me/5561999812341" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2">Quero divulgar minha empresa <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-<button onclick="scrollToContact()" class="glass border border-yellow-500/50 text-yellow-500 hover:bg-yellow-500/10 px-8 py-4 rounded-full font-bold text-lg transition">Receber mídia kit</button>
-</div>
-<div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-<a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition"><i data-lucide="instagram" class="w-5 h-5"></i><span class="text-sm font-semibold">150K+ seguidores</span></a>
-<a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" class="glass px-4 py-2 rounded-full flex items-center gap-2 hover:scale-105 transition"><i data-lucide="youtube" class="w-5 h-5"></i><span class="text-sm font-semibold">500+ entrevistas</span></a>
-<div class="glass px-4 py-2 rounded-full flex items-center gap-2"><i data-lucide="trending-up" class="w-5 h-5 text-yellow-500"></i><span class="text-sm font-semibold">170M+ interações/mês</span></div>
-</div>
-</div>
-<div class="hidden lg:block">
-<div class="relative">
-<div class="absolute inset-0 gradient-gold rounded-3xl blur-3xl opacity-20"></div>
-<div class="relative glass rounded-3xl p-6 border-4 border-yellow-500">
-<div class="aspect-video rounded-xl overflow-hidden mb-4 bg-black relative">
-<img src="https://img.youtube.com/vi/5QWMLQjrV4c/maxresdefault.jpg" alt="Entrevista" class="w-full h-full object-cover">
-<div class="absolute inset-0 flex items-center justify-center bg-black/40">
-<a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="w-20 h-20 gradient-gold rounded-full flex items-center justify-center hover:scale-110 transition"><i data-lucide="play" class="w-10 h-10 text-gray-900 ml-1"></i></a>
-</div>
-</div>
-<div class="text-center">
-<div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full mb-2 animate-pulse"><span class="w-2 h-2 bg-white rounded-full"></span><span class="font-bold text-sm">AO VIVO</span></div>
-<p class="text-gray-400 text-xs mt-2">Entrevista realizada em 07 de Janeiro de 2026</p>
-<p class="text-gray-300 text-sm">Assista agora na TV Voz de Brasília</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="categorias" class="py-20 px-6 bg-gray-900/50">
-<div class="container mx-auto">
-<div class="text-center mb-12">
-<h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">TV VOZ <span class="gradient-text">AO VIVO</span></h2>
-<p class="text-xl text-gray-300">Escolha a categoria e assista às entrevistas</p>
-</div>
-<div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-<div class="categoria-box glass-gold rounded-3xl p-8 border-4 border-yellow-500">
-<div class="text-6xl mb-4 text-center">🏢</div>
-<h3 class="text-3xl font-bold text-yellow-400 mb-3 text-center">EMPRESARIAL</h3>
-<p class="text-gray-300 mb-6 text-center">Entrevistas com empresários e CEOs</p>
-<div class="space-y-3 mb-6">
-<a href="https://youtu.be/5QWMLQjrV4c" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/5QWMLQjrV4c/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-gray-900 ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Instituto de Medicina</h4><p class="text-xs text-gray-400">07/01/2026</p></div></a>
-<a href="https://youtu.be/b5t8TEEJdiU" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/b5t8TEEJdiU/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-gray-900 ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Andrezza Bentes - Kumon</h4><p class="text-xs text-gray-400">06/01/2026</p></div></a>
-<a href="https://youtu.be/tB84ssWNLYg" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/tB84ssWNLYg/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-gray-900 ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Thiago Manzoni</h4><p class="text-xs text-gray-400">05/01/2026</p></div></a>
-</div>
-<a href="anunciantes.html" class="block w-full gradient-gold text-gray-900 text-center py-3 rounded-full font-bold hover:shadow-lg transition">Ver todos os anunciantes →</a>
-</div>
-<div class="categoria-box glass rounded-3xl p-8 border-4 border-blue-500">
-<div class="text-6xl mb-4 text-center">🏛️</div>
-<h3 class="text-3xl font-bold text-blue-400 mb-3 text-center">Política</h3>
-<p class="text-gray-300 mb-2 text-center text-sm">Presidentes, Governadores, Ministros, Deputados, Senadores</p>
-<div class="space-y-3 mb-6 mt-4">
-<a href="https://youtu.be/mFX7ZEVbjrI" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/mFX7ZEVbjrI/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-white ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Igor Popov</h4><p class="text-xs text-gray-400">04/01/2026</p></div></a>
-<a href="https://youtu.be/rkLjp5Loue8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/rkLjp5Loue8/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-white ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Senador Dr. Hiran</h4><p class="text-xs text-gray-400">03/01/2026</p></div></a>
-<a href="https://youtu.be/SWgHKS_i1UM" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/SWgHKS_i1UM/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-white ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Representante ONU</h4><p class="text-xs text-gray-400">02/01/2026</p></div></a>
-</div>
-<a href="anunciantes.html" class="block w-full bg-blue-600 text-white text-center py-3 rounded-full font-bold hover:bg-blue-700 transition">Ver todos os anunciantes →</a>
-</div>
-<div class="categoria-box glass rounded-3xl p-8 border-4 border-purple-500">
-<div class="text-6xl mb-4 text-center">🌍</div>
-<h3 class="text-3xl font-bold text-purple-400 mb-3 text-center">Internacional</h3>
-<p class="text-gray-300 mb-2 text-center text-sm">Embaixadores e Organismos Internacionais</p>
-<div class="space-y-3 mb-6 mt-4">
-<a href="https://youtu.be/8FBjQfoH8o8" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/8FBjQfoH8o8/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-white ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Embaixadora do Egito</h4><p class="text-xs text-gray-400">01/01/2026</p></div></a>
-<a href="https://youtu.be/AugustoCarvalho" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/AugustoCarvalho/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-white ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Augusto Carvalho - ANABB</h4><p class="text-xs text-gray-400">31/12/2025</p></div></a>
-<a href="https://youtu.be/RepresentanteONU" target="_blank" class="glass rounded-xl overflow-hidden hover-lift block group"><div class="aspect-video relative"><img src="https://img.youtube.com/vi/RepresentanteONU/mqdefault.jpg" alt="Vídeo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-6 h-6 text-white ml-1"></i></div></div></div><div class="p-3"><h4 class="font-semibold text-sm">Organismos Internacionais</h4><p class="text-xs text-gray-400">30/12/2025</p></div></a>
-</div>
-<a href="anunciantes.html" class="block w-full bg-purple-600 text-white text-center py-3 rounded-full font-bold hover:bg-purple-700 transition">Ver todos os anunciantes 🌐 →</a>
-</div>
-</div>
-</div>
-</section>
-<section id="premios" class="py-20 px-6">
-<div class="container mx-auto">
-<div class="text-center mb-16">
-<h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">O que nossos <span class="gradient-text">anunciantes recebem</span></h2>
-<p class="text-xl text-gray-300">Reconhecimentos que fortalecem sua marca</p>
-</div>
-<div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-<div class="premio-card">
-<img src="./capa-anuario.jpg" alt="Anuário Brasileiro" class="mx-auto rounded-lg shadow-2xl max-h-96 object-cover w-full mb-6">
-<h3 class="text-2xl font-bold mb-2">Anuário Brasileiro</h3>
-<p class="text-yellow-500 font-semibold mb-4">24ª Edição Impressa</p>
-<ul class="text-left text-sm text-gray-300 space-y-2">
-<li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> 300 mil exemplares</li>
-<li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> Distribuição nacional</li>
-<li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-yellow-500"></i> Visibilidade garantida</li>
-</ul>
-</div>
-<div class="premio-card">
-<img src="./logo-trofeu.jpg" alt="Troféu Top of Millenium" class="mx-auto rounded-lg shadow-2xl max-h-96 object-cover w-full mb-6">
-<h3 class="text-2xl font-bold mb-2">Prêmio Top of Millenium</h3>
-<p class="text-yellow-500 font-semibold mb-4">10ª Edição - Excelência</p>
-<ul class="text-left text-sm text-gray-300 space-y-2">
-<li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Selo de Excelência</li>
-<li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Credibilidade e Prestígio</li>
-<li class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-yellow-500"></i> Reconhecimento de Mercado</li>
-</ul>
-</div>
-<div class="premio-card">
-<img src="./logo-diploma.png" alt="Diploma Personalidade do Ano" class="mx-auto rounded-lg shadow-2xl max-h-96 object-cover w-full mb-6">
-<h3 class="text-2xl font-bold mb-2">Personalidade do Ano</h3>
-<p class="text-yellow-500 font-semibold mb-4">Diploma de Honra ao Mérito</p>
-<ul class="text-left text-sm text-gray-300 space-y-2">
-<li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Certificado Oficial</li>
-<li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Valorização da Marca</li>
-<li class="flex items-center gap-2"><i data-lucide="certificate" class="w-4 h-4 text-yellow-500"></i> Destaque na Imprensa</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="parceiros" class="py-20 px-6 bg-gray-900/30">
-<div class="container mx-auto">
-<div class="max-w-5xl mx-auto">
-<div class="glass-gold rounded-3xl p-12 text-center border-2 border-yellow-500/30">
-<h2 class="text-3xl font-serif font-bold mb-8">Nosso Parceiro Oficial</h2>
-<div class="flex items-center justify-center gap-8 mb-8 flex-wrap">
-<img src="/logo-tv-transparente.png" alt="TV Voz de Brasília" style="height:90px;width:auto;display:block;">
-<div class="text-4xl text-yellow-500 hidden md:block">+</div>
-<img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-26 w-auto bg-white rounded-lg p-2 shadow-xl">
-</div>
-<h3 class="text-4xl font-bold mb-4 text-blue-400">Instituto Brazil Just</h3>
-<p class="text-xl text-gray-300 mb-2 italic">"Oportunidade e Igualdade para Todos!"</p>
-<p class="text-gray-400 mb-8 max-w-2xl mx-auto">Parceiro oficial da TV Voz de Brasília na promoção da justiça social, cidadania e desenvolvimento sustentável.</p>
-<a href="https://www.institutobraziljust.org" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition inline-flex items-center gap-2">Visite o site do IBJ <i data-lucide="external-link" class="w-5 h-5"></i></a>
-</div>
-</div>
-</div>
-</section>
-<section id="numeros" class="py-20 px-6">
-<div class="container mx-auto">
-<div class="text-center mb-16">
-<h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">Números que <span class="gradient-text">comprovam</span> nossa autoridade</h2>
-</div>
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-<div class="stat-card rounded-3xl p-8 text-center hover-lift">
-<i data-lucide="instagram" class="w-12 h-12 text-pink-500 mx-auto mb-4"></i>
-<div class="text-4xl font-bold mb-2">150K+</div>
-<div class="text-gray-400 text-sm">seguidores no Instagram</div>
-</div>
-<div class="stat-card rounded-3xl p-8 text-center hover-lift">
-<i data-lucide="youtube" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
-<div class="text-4xl font-bold mb-2">500+</div>
-<div class="text-gray-400 text-sm">entrevistas no YouTube</div>
-</div>
-<div class="stat-card rounded-3xl p-8 text-center hover-lift">
-<i data-lucide="trending-up" class="w-12 h-12 text-yellow-500 mx-auto mb-4"></i>
-<div class="text-4xl font-bold mb-2">170M+</div>
-<div class="text-gray-400 text-sm">interações/mês</div>
-</div>
-<div class="stat-card rounded-3xl p-8 text-center hover-lift">
-<i data-lucide="award" class="w-12 h-12 text-yellow-500 mx-auto mb-4"></i>
-<div class="text-4xl font-bold mb-2">40</div>
-<div class="text-gray-400 text-sm">anos de atuação</div>
-</div>
-</div>
-</div>
-</section>
-<section id="recomecar" class="py-20 px-6 bg-gradient-to-b from-purple-900/20 to-blue-900/20">
-<div class="container mx-auto">
-<div class="max-w-4xl mx-auto text-center">
-<div class="w-24 h-24 mx-auto mb-6 gradient-gold rounded-full flex items-center justify-center">
-<i data-lucide="heart" class="w-12 h-12 text-gray-900"></i>
-</div>
-<h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Projeto <span class="text-purple-400">Recomeçar</span></h2>
-<p class="text-xl text-gray-300 mb-8">Transformando solidariedade em novos começos</p>
-<p class="text-lg text-gray-400 mb-8">Cada doação ajuda famílias a quitarem dívidas, recuperarem crédito e recomeçarem com dignidade. Impacto social com transparência e benefício fiscal.</p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<a href="https://recomecar.ibj.org.br" target="_blank" class="gradient-gold text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition flex items-center justify-center gap-2"><i data-lucide="heart" class="w-6 h-6"></i> Quero Recomeçar</a>
-<a href="https://recomecar.ibj.org.br/ajudar" target="_blank" class="glass border border-purple-500/50 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2"><i data-lucide="hand-heart" class="w-6 h-6"></i> Quero Ajudar</a>
-</div>
-</div>
-</div>
-</section>
-<section id="contato" class="py-20 px-6">
-<div class="container mx-auto max-w-4xl">
-<div class="glass rounded-3xl p-8 lg:p-12 border border-white/10">
-<h2 class="text-4xl font-serif font-bold text-center mb-4">Envie seu interesse</h2>
-<p class="text-center text-gray-400 mb-8">Preencha o formulário e receba uma proposta personalizada</p>
-<form id="contactForm" class="space-y-6">
-<div class="grid md:grid-cols-2 gap-6">
-<div><label class="block mb-2 font-semibold text-sm">Seu nome</label><input type="text" id="nome" required class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition"></div>
-<div><label class="block mb-2 font-semibold text-sm">Nome da empresa</label><input type="text" id="empresa" required class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition"></div>
-</div>
-<div class="grid md:grid-cols-2 gap-6">
-<div><label class="block mb-2 font-semibold text-sm">WhatsApp</label><input type="tel" id="whatsapp" placeholder="(61) 99999-9999" required class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition"></div>
-<div><label class="block mb-2 font-semibold text-sm">Instagram</label><input type="text" id="instagram" class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition"></div>
-</div>
-<div>
-<label class="block mb-2 font-semibold text-sm">Segmento</label>
-<select id="segmento" class="w-full px-4 py-3 rounded-xl bg-gray-800/50 border border-white/10 focus:border-yellow-500 focus:outline-none transition">
-<option value="">Selecione...</option>
-<option>Turismo e Hotéis</option>
-<option>Gastronomia</option>
-<option>Móveis</option>
-<option>Educação</option>
-<option>Saúde e estética</option>
-<option>Moda e beleza</option>
-<option>Imobiliário</option>
-<option>Direito</option>
-<option>Política</option>
-<option>Eventos</option>
-<option>Tecnologia</option>
-<option>Projetos sociais</option>
-</select>
-</div>
-<button type="submit" class="w-full gradient-gold text-gray-900 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-2 hover:shadow-xl">Enviar pelo WhatsApp <i data-lucide="send" class="w-5 h-5"></i></button>
-</form>
-</div>
-</div>
-</section>
-<footer class="border-t border-white/10 py-12 px-6">
-<div class="container mx-auto">
-<div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
-<div class="flex items-center space-x-4">
-<img src="/logo-tv-transparente.png" alt="TV Voz de Brasília" style="height:90px;width:auto;display:block;">
-<div>
-<h3 class="font-serif font-bold">TV VOZ DE BRASÍLIA</h3>
-<p class="text-xs text-gray-400">40 anos de credibilidade</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<img src="./logo-ibj.jpg" alt="Instituto Brazil Just" class="h-12 w-auto opacity-70">
-</div>
-<div class="flex items-center gap-6">
-<a href="https://instagram.com/tvvozdebrasilia" target="_blank" class="hover:text-yellow-500 transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
-<a href="https://youtube.com/@VozdebrasiliaTV" target="_blank" class="hover:text-yellow-500 transition"><i data-lucide="youtube" class="w-6 h-6"></i></a>
-<a href="https://wa.me/5561999812341" target="_blank" class="hover:text-yellow-500 transition"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
-</div>
-</div>
-<div class="text-center text-gray-500 text-sm">© 2026 TV Voz de Brasília. Todos os direitos reservados. | Instituto Brazil Just - Oportunidade e Igualdade para Todos!</div>
-</div>
-</footer>
-<a href="https://wa.me/5561999812341" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition hover:scale-110 z-50">
-<i data-lucide="message-circle" class="w-8 h-8"></i>
-</a>
-<script>
-lucide.createIcons();
-function toggleMenu() { const menu = document.getElementById('mobile-menu'); if (menu) menu.classList.toggle('hidden'); }
-function scrollToContact() { document.getElementById('contato').scrollIntoView({ behavior: 'smooth' }); }
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-e.preventDefault();
-const nome = document.getElementById('nome').value;
-const empresa = document.getElementById('empresa').value;
-const whatsapp = document.getElementById('whatsapp').value;
-const instagram = document.getElementById('instagram').value;
-const segmento = document.getElementById('segmento').value;
-const message = 'Olá! Vim pelo site da TV Voz de Brasília!\n\n👤 Nome: ' + nome + '\n🏢 Empresa: ' + empresa + '\n📱 WhatsApp: ' + whatsapp + '\n📷 Instagram: ' + (instagram || 'Não informado') + '\n📊 Segmento: ' + segmento + '\n\nGostaria de saber mais sobre divulgação!';
-window.open('https://wa.me/5561999812341?text=' + encodeURIComponent(message), '_blank');
-});
-document.getElementById('whatsapp').addEventListener('input', function(e) {
-let value = e.target.value.replace(/\D/g, '');
-if (value.length <= 11) {
-value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-e.target.value = value;
-}
-});
-</script>
+
+<body>
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="flex items-center justify-between h-24">
+        <a href="#home" class="flex items-center gap-4">
+          <img
+            src="./logo-tv-transparente.png"
+            alt="TV Voz de Brasília"
+            style="height:76px;width:auto;display:block;object-fit:contain;"
+          >
+        </a>
+
+        <nav class="hidden xl:flex items-center gap-7">
+          <a href="#noticias" class="nav-link">Notícias 24h</a>
+          <a href="#empresas" class="nav-link">Empresas</a>
+          <a href="#turismo" class="nav-link">Turismo</a>
+          <a href="#gastronomia" class="nav-link">Gastronomia</a>
+          <a href="#audiovisual" class="nav-link">Audiovisual</a>
+          <a href="#ibj" class="nav-link">IBJ</a>
+          <a href="#contato" class="nav-link">Contato</a>
+        </nav>
+
+        <a href="#contato" class="hidden md:inline-flex px-5 py-3 rounded-full btn-gold text-sm">
+          Anunciar agora
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="pt-32">
+    <section class="relative min-h-[88vh] flex items-center">
+      <div class="absolute inset-0 opacity-25">
+        <div class="absolute top-24 left-10 w-72 h-72 bg-purple-600 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-5 lg:px-8 py-16">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <div class="badge mb-7">
+              ✨ TV Voz de Brasília • 40 anos de autoridade
+            </div>
+
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] mb-7">
+              Da visão à realidade:
+              <span class="gold-gradient block">nasce a VOZ IA.</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-white/75 leading-relaxed mb-9 max-w-2xl">
+              Um ecossistema nacional de mídia, negócios, notícias 24h, turismo,
+              gastronomia, audiovisual, marketplace e inteligência artificial,
+              criado a partir da credibilidade histórica da TV Voz de Brasília.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mb-10">
+              <a href="#empresas" class="px-8 py-4 rounded-full btn-gold text-center">
+                Quero anunciar minha empresa
+              </a>
+              <a href="#noticias" class="px-8 py-4 rounded-full btn-outline text-center font-bold">
+                Conhecer Notícias 24h
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 max-w-2xl">
+              <div class="glass rounded-2xl p-4">
+                <div class="stat-number text-3xl">170M+</div>
+                <div class="text-white/65 text-sm">interações</div>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <div class="stat-number text-3xl">150K+</div>
+                <div class="text-white/65 text-sm">seguidores</div>
+              </div>
+              <div class="glass rounded-2xl p-4">
+                <div class="stat-number text-3xl">500+</div>
+                <div class="text-white/65 text-sm">entrevistas</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="glass rounded-[2rem] p-6 md:p-8 card-hover">
+              <div class="aspect-video rounded-3xl bg-black/60 border border-white/10 flex items-center justify-center mb-6 overflow-hidden">
+                <div class="text-center p-8">
+                  <div class="w-24 h-24 mx-auto rounded-full bg-yellow-400/20 border border-yellow-300/40 flex items-center justify-center text-5xl pulse-gold mb-5">
+                    ▶
+                  </div>
+                  <h3 class="font-display text-3xl font-black mb-2">
+                    TV Voz IA ao Vivo
+                  </h3>
+                  <p class="text-white/65">
+                    Notícias, entrevistas, negócios e inteligência artificial em uma única plataforma.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  <div class="text-3xl mb-2">🎙️</div>
+                  <h4 class="font-bold text-lg">Dra. Deijanete IA</h4>
+                  <p class="text-white/60 text-sm">apresentadora digital institucional</p>
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  <div class="text-3xl mb-2">📰</div>
+                  <h4 class="font-bold text-lg">Paulo Fayad IA</h4>
+                  <p class="text-white/60 text-sm">narrador de notícias 24h</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute -top-8 -right-6 hidden md:block glass rounded-full px-6 py-5 border-yellow-400/40">
+              <div class="text-center">
+                <div class="text-4xl font-black text-yellow-400">40</div>
+                <div class="text-xs uppercase tracking-widest text-white/70">anos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- NOTÍCIAS 24H -->
+    <section id="noticias" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-4xl mb-14">
+          <div class="badge mb-6">📰 VOZ IA Notícias 24h</div>
+          <h2 class="section-title mb-6">
+            Notícias narradas por IA, 24 horas por dia.
+          </h2>
+          <p class="section-subtitle">
+            A VOZ IA será uma central inteligente de informação com curadoria jornalística,
+            roteiros automáticos e apresentadores digitais narrando os principais fatos de
+            Brasília, do Brasil e do mundo.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🏛️</div>
+            <h3 class="text-xl font-black mb-3">Brasília</h3>
+            <p class="text-white/65">Política, governo, economia local, eventos e bastidores da capital.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🇧🇷</div>
+            <h3 class="text-xl font-black mb-3">Brasil</h3>
+            <p class="text-white/65">Principais acontecimentos nacionais com linguagem clara e rápida.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🌍</div>
+            <h3 class="text-xl font-black mb-3">Mundo</h3>
+            <p class="text-white/65">Notícias internacionais, economia global, diplomacia e tendências.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🤖</div>
+            <h3 class="text-xl font-black mb-3">Clones IA</h3>
+            <p class="text-white/65">Dra. Deijanete IA e Paulo Fayad IA apresentando boletins contínuos.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 glass rounded-[2rem] p-8 md:p-10">
+          <div class="grid lg:grid-cols-3 gap-8 items-center">
+            <div class="lg:col-span-2">
+              <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+                Uma redação digital sempre ativa.
+              </h3>
+              <p class="text-white/70 leading-relaxed text-lg">
+                A plataforma será preparada para produzir chamadas, resumos, roteiros,
+                narrações e vídeos curtos para portal, Instagram, YouTube, TikTok,
+                WhatsApp e LinkedIn, mantendo a TV Voz presente durante todo o dia.
+              </p>
+            </div>
+
+            <div class="grid gap-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">01.</strong>
+                <span class="ml-2">Curadoria das notícias</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">02.</strong>
+                <span class="ml-2">Roteiro jornalístico</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">03.</strong>
+                <span class="ml-2">Narração com IA</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">04.</strong>
+                <span class="ml-2">Distribuição multiplataforma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- NOTÍCIAS 24H -->
+    <section id="noticias" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-4xl mb-14">
+          <div class="badge mb-6">📰 VOZ IA Notícias 24h</div>
+          <h2 class="section-title mb-6">
+            Notícias narradas por IA, 24 horas por dia.
+          </h2>
+          <p class="section-subtitle">
+            A VOZ IA será uma central inteligente de informação com curadoria jornalística,
+            roteiros automáticos e apresentadores digitais narrando os principais fatos de
+            Brasília, do Brasil e do mundo.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🏛️</div>
+            <h3 class="text-xl font-black mb-3">Brasília</h3>
+            <p class="text-white/65">Política, governo, economia local, eventos e bastidores da capital.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🇧🇷</div>
+            <h3 class="text-xl font-black mb-3">Brasil</h3>
+            <p class="text-white/65">Principais acontecimentos nacionais com linguagem clara e rápida.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🌍</div>
+            <h3 class="text-xl font-black mb-3">Mundo</h3>
+            <p class="text-white/65">Notícias internacionais, economia global, diplomacia e tendências.</p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 card-hover">
+            <div class="text-4xl mb-4">🤖</div>
+            <h3 class="text-xl font-black mb-3">Clones IA</h3>
+            <p class="text-white/65">Dra. Deijanete IA e Paulo Fayad IA apresentando boletins contínuos.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 glass rounded-[2rem] p-8 md:p-10">
+          <div class="grid lg:grid-cols-3 gap-8 items-center">
+            <div class="lg:col-span-2">
+              <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+                Uma redação digital sempre ativa.
+              </h3>
+              <p class="text-white/70 leading-relaxed text-lg">
+                A plataforma será preparada para produzir chamadas, resumos, roteiros,
+                narrações e vídeos curtos para portal, Instagram, YouTube, TikTok,
+                WhatsApp e LinkedIn, mantendo a TV Voz presente durante todo o dia.
+              </p>
+            </div>
+
+            <div class="grid gap-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">01.</strong>
+                <span class="ml-2">Curadoria das notícias</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">02.</strong>
+                <span class="ml-2">Roteiro jornalístico</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">03.</strong>
+                <span class="ml-2">Narração com IA</span>
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <strong class="text-yellow-400">04.</strong>
+                <span class="ml-2">Distribuição multiplataforma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- AUDIOVISUAL E MARKETPLACE -->
+    <section id="audiovisual" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-5xl mb-14">
+          <div class="badge mb-6">🎥 TV Voz Studio & Marketplace</div>
+          <h2 class="section-title mb-6">
+            Produção audiovisual, drones e negócios em um só ecossistema.
+          </h2>
+          <p class="section-subtitle">
+            A TV Voz passa a oferecer uma frente completa para fotografia, filmagens,
+            imagens aéreas, lives, podcasts, estúdio móvel, cobertura jornalística,
+            compra, venda, troca e locação de equipamentos profissionais.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">📸</div>
+            <h3 class="text-2xl font-black mb-3">Fotografia Profissional</h3>
+            <p class="text-white/65 leading-relaxed">
+              Fotografia corporativa, eventos, retratos executivos, gastronomia,
+              hotelaria, arquitetura, produtos, moda, turismo e campanhas institucionais.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🎬</div>
+            <h3 class="text-2xl font-black mb-3">Filmagens</h3>
+            <p class="text-white/65 leading-relaxed">
+              Comerciais, institucionais, entrevistas, documentários, cobertura de eventos,
+              inaugurações, lançamentos e conteúdo para redes sociais.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🚁</div>
+            <h3 class="text-2xl font-black mb-3">Drones</h3>
+            <p class="text-white/65 leading-relaxed">
+              Imagens aéreas para hotéis, fazendas, condomínios, obras, indústrias,
+              turismo, eventos, municípios e empreendimentos imobiliários.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🎙️</div>
+            <h3 class="text-2xl font-black mb-3">Estúdio & Podcast</h3>
+            <p class="text-white/65 leading-relaxed">
+              Entrevistas, podcasts, programas especiais, lives, webinars, cursos,
+              treinamentos e programas digitais para empresas e instituições.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">📡</div>
+            <h3 class="text-2xl font-black mb-3">Lives & Streaming</h3>
+            <p class="text-white/65 leading-relaxed">
+              Transmissões ao vivo, eventos corporativos, premiações, feiras, congressos,
+              coletivas, shows, lançamentos e cerimônias oficiais.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-4xl mb-4">🎞️</div>
+            <h3 class="text-2xl font-black mb-3">Edição & Pós-Produção</h3>
+            <p class="text-white/65 leading-relaxed">
+              Edição profissional, motion graphics, vinhetas, legendas, colorização,
+              tratamento de áudio, reels, shorts e vídeos comerciais.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 glass rounded-[2rem] p-8 md:p-10">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <div class="badge mb-6">🛒 Marketplace Audiovisual</div>
+              <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+                Compra, venda e locação de equipamentos.
+              </h3>
+              <p class="text-white/70 leading-relaxed text-lg">
+                A VOZ IA também nasce preparada para se tornar um classificado profissional
+                de equipamentos audiovisuais, conectando compradores, vendedores, produtoras,
+                fotógrafos, cinegrafistas, emissoras, estúdios e fornecedores.
+              </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">📷</div>
+                <strong>Câmeras</strong>
+                <p class="text-white/55 text-sm mt-1">Sony, Canon, Nikon, Blackmagic, RED, Panasonic.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">🚁</div>
+                <strong>Drones</strong>
+                <p class="text-white/55 text-sm mt-1">DJI, Autel, FPV, drones enterprise e agrícolas.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">🎤</div>
+                <strong>Áudio</strong>
+                <p class="text-white/55 text-sm mt-1">Microfones, gravadores, interfaces e mesas.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">💡</div>
+                <strong>Iluminação</strong>
+                <p class="text-white/55 text-sm mt-1">LEDs, softbox, fresnel, rebatedores e RGB.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">🎥</div>
+                <strong>Acessórios</strong>
+                <p class="text-white/55 text-sm mt-1">Lentes, tripés, gimbals, teleprompter e monitores.</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                <div class="text-3xl mb-2">💻</div>
+                <strong>Edição</strong>
+                <p class="text-white/55 text-sm mt-1">Workstations, SSDs, HDs, placas de vídeo e NAS.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 rounded-[2rem] bg-gradient-to-r from-purple-700/30 to-yellow-400/15 border border-white/10 p-8 md:p-10">
+          <h3 class="font-display text-3xl md:text-5xl font-black mb-5">
+            TV Voz Studio
+          </h3>
+          <p class="text-white/75 text-lg leading-relaxed max-w-4xl">
+            Imagem, estratégia e autoridade para marcas que querem crescer. A empresa pode contratar
+            entrevista, produção audiovisual, drone, fotografia, edição, publicação no portal,
+            distribuição nas redes e presença no ecossistema da TV Voz em um único projeto.
+          </p>
+        </div>
+      </div>
+    </section>
+<!-- INSTITUTO BRAZIL JUST -->
+    <section id="ibj" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <div class="badge mb-6">🤝 Parceiro Oficial</div>
+            <h2 class="section-title mb-6">
+              Instituto Brazil Just: impacto social com autoridade.
+            </h2>
+            <p class="section-subtitle mb-7">
+              O Instituto Brazil Just é parceiro estratégico da TV Voz de Brasília na construção
+              de uma comunicação comprometida com cidadania, inclusão, desenvolvimento humano,
+              esporte, saúde, educação, projetos sociais e transformação de vidas.
+            </p>
+
+            <p class="text-white/70 leading-relaxed text-lg mb-8">
+              A união entre a TV Voz de Brasília, a VOZ IA e o Instituto Brazil Just fortalece
+              uma visão maior: criar oportunidades, dar visibilidade a causas relevantes, aproximar
+              empresas de projetos de impacto social e ampliar a presença institucional de quem
+              deseja crescer fazendo diferença.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="glass rounded-2xl p-5">
+                <div class="stat-number text-3xl">10K+</div>
+                <p class="text-white/65 text-sm">famílias impactadas</p>
+              </div>
+              <div class="glass rounded-2xl p-5">
+                <div class="stat-number text-3xl">2011</div>
+                <p class="text-white/65 text-sm">fundação em Brasília</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-[2rem] p-8 md:p-10 card-hover">
+            <div class="rounded-3xl bg-white p-6 mb-7 flex items-center justify-center">
+              <div class="text-center text-slate-900">
+                <div class="text-5xl mb-3">🌎</div>
+                <h3 class="font-display text-3xl font-black">Instituto Brazil Just</h3>
+                <p class="font-bold text-slate-600">Justiça social, inclusão e cidadania</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                🧒 Projetos para crianças, adolescentes e famílias
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                🥋 Esporte, cultura, saúde e inclusão social
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                💛 Campanhas de conscientização e cuidado humano
+              </div>
+              <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                🤝 Ponte entre empresas, sociedade e transformação social
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANUÁRIO E PRÊMIOS -->
+    <section id="premios" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="max-w-5xl mb-14">
+          <div class="badge mb-6">🏆 Anuário Brasileiro & Reconhecimento</div>
+          <h2 class="section-title mb-6">
+            Prestígio, memória institucional e reconhecimento empresarial.
+          </h2>
+          <p class="section-subtitle">
+            A TV Voz de Brasília integra mídia, entrevistas, Anuário Brasileiro, premiações,
+            diplomas e reconhecimento público para fortalecer a imagem de empresas, autoridades,
+            personalidades e instituições.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-5xl mb-5">📘</div>
+            <h3 class="text-2xl font-black mb-3">Anuário Brasileiro</h3>
+            <p class="text-white/65 leading-relaxed">
+              Publicação institucional que registra empresas, lideranças, turismo,
+              economia, meio ambiente, projetos e personalidades.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-5xl mb-5">🏅</div>
+            <h3 class="text-2xl font-black mb-3">Top Of Millenium</h3>
+            <p class="text-white/65 leading-relaxed">
+              Reconhecimento para marcas, empresários, autoridades e personalidades
+              que se destacam em seus setores.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-7 card-hover">
+            <div class="text-5xl mb-5">📜</div>
+            <h3 class="text-2xl font-black mb-3">Personalidade do Ano</h3>
+            <p class="text-white/65 leading-relaxed">
+              Diplomas, homenagens e registros de autoridade que valorizam trajetórias,
+              marcas e contribuições relevantes para a sociedade.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="rounded-[2.4rem] bg-gradient-to-br from-yellow-400/20 via-purple-700/25 to-black/30 border border-yellow-400/25 p-8 md:p-14">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div class="badge mb-6">🚀 Vamos transformar visão em realidade</div>
+              <h2 class="font-display text-4xl md:text-6xl font-black leading-tight mb-6">
+                Sua empresa pode fazer parte da nova era da TV Voz.
+              </h2>
+              <p class="text-white/75 text-lg leading-relaxed mb-8">
+                Anuncie, conceda uma entrevista, participe da vitrine empresarial,
+                divulgue seu negócio, entre para o ecossistema VOZ IA e conecte sua marca
+                a uma história de credibilidade, audiência e inovação.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://wa.me/5561999999999?text=Ol%C3%A1%2C%20quero%20anunciar%20na%20VOZ%20IA%20Platform%20da%20TV%20Voz%20de%20Bras%C3%ADlia."
+                  target="_blank"
+                  class="px-8 py-4 rounded-full btn-gold text-center"
+                >
+                  Falar pelo WhatsApp
+                </a>
+
+                <a href="#empresas" class="px-8 py-4 rounded-full btn-outline text-center font-bold">
+                  Ver oportunidades
+                </a>
+              </div>
+            </div>
+
+            <div class="glass rounded-[2rem] p-7">
+              <h3 class="font-display text-3xl font-black mb-6">
+                Frentes comerciais iniciais
+              </h3>
+
+              <div class="space-y-4">
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  💼 Empresas e anunciantes
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  ✈️ Turismo, hotéis e companhias aéreas
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  🍽️ Gastronomia e experiências
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  🎥 Produção audiovisual e marketplace
+                </div>
+                <div class="rounded-2xl bg-white/8 border border-white/10 p-5">
+                  🤖 Notícias 24h com VOZ IA
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="border-t border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <div>
+          <h3 class="font-display text-2xl font-black mb-4">VOZ IA Platform</h3>
+          <p class="text-white/60 leading-relaxed">
+            Ecossistema de mídia, negócios, notícias 24h, turismo, gastronomia,
+            audiovisual, marketplace e inteligência artificial.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-black mb-4 text-yellow-400">Plataforma</h4>
+          <div class="space-y-2 text-white/60">
+            <p>Notícias 24h</p>
+            <p>Empresas</p>
+            <p>Turismo</p>
+            <p>Gastronomia</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-black mb-4 text-yellow-400">Negócios</h4>
+          <div class="space-y-2 text-white/60">
+            <p>Audiovisual</p>
+            <p>Marketplace</p>
+            <p>Anuário Brasileiro</p>
+            <p>Prêmios</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-black mb-4 text-yellow-400">Institucional</h4>
+          <div class="space-y-2 text-white/60">
+            <p>TV Voz de Brasília</p>
+            <p>Instituto Brazil Just</p>
+            <p>Dra. Deijanete IA</p>
+            <p>Paulo Fayad IA</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-white/50 text-sm">
+        <p>© 2026 TV Voz de Brasília • VOZ IA Platform. Todos os direitos reservados.</p>
+        <p>Da visão à realidade: mídia, autoridade e inteligência artificial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(event) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
