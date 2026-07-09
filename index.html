@@ -434,6 +434,55 @@
       width: 100%;
     }
   }
+.hero-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  width: auto;
+  max-width: fit-content;
+  padding: 12px 22px;
+  border: 1px solid rgba(255, 215, 0, 0.55);
+  border-radius: 999px;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.10);
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+
+.hero-brand-badge span {
+  font-size: 20px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.hero-brand-badge .selo-40-mini {
+  width: 140px !important;
+  height: 140px !important;
+  max-width: 140px !important;
+  max-height: 140px !important;
+  object-fit: contain;
+  display: inline-block;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.55));
+}
+
+@media (max-width: 768px) {
+  .hero-brand-badge {
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  .hero-brand-badge span {
+    font-size: 16px;
+  }
+
+  .hero-brand-badge .selo-40-mini {
+    width: 100px !important;
+    height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+}
 </style>  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -501,7 +550,7 @@
         <div class="hero-content">
           <div class="hero-brand-badge">
   <span>✨ TV Voz de Brasília</span>
-  <img src="./selo-40anos.jpg" alt="Selo 40 anos TV Voz de Brasília" />
+ <img class="selo-40-mini" src="./selo-40anos.jpg" alt="Selo 40 anos TV Voz de Brasília" />
 </div>
 
           <h1>
