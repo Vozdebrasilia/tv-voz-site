@@ -152,8 +152,8 @@
   <!-- HEADER -->
   <header class="fixed top-0 left-0 right-0 z-50 glass">
     <div class="max-w-7xl mx-auto px-5 lg:px-8">
-      <div class="flex items-center justify-between h-24">
-        <a href="#home" class="flex items-center gap-4">
+      <div class="flex items-center justify-between h-24 gap-4">
+        <a href="#home" class="flex items-center gap-4 shrink-0" aria-label="Início TV Voz de Brasília">
           <img
             src="./logo-tv-transparente.PNG"
             alt="TV Voz de Brasília"
@@ -164,37 +164,44 @@
         <nav class="hidden xl:flex items-center gap-7">
           <a href="#noticias" class="nav-link">Notícias 24h</a>
           <a href="#contato" class="nav-link">Empresas</a>
-<a href="#contato" class="nav-link">Turismo</a>
-<a href="#contato" class="nav-link">Gastronomia</a>
+          <a href="#contato" class="nav-link">Turismo</a>
+          <a href="#contato" class="nav-link">Gastronomia</a>
           <a href="#audiovisual" class="nav-link">Audiovisual</a>
           <a href="#ibj" class="nav-link">IBJ</a>
           <a href="#contato" class="nav-link">Contato</a>
         </nav>
 
-<a href="#contato" class="hidden md:inline-flex px-5 py-3 rounded-full btn-gold text-sm">
-  Anunciar agora
-</a>
+        <div class="flex items-center gap-3">
+          <a href="#contato" class="hidden md:inline-flex px-5 py-3 rounded-full btn-gold text-sm">
+            Anunciar agora
+          </a>
 
-<button 
-  onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
-  class="md:hidden px-4 py-3 rounded-full btn-gold text-sm font-bold"
->
-  ☰ Menu
-</button>
+          <button
+            type="button"
+            onclick="toggleMobileMenu()"
+            class="xl:hidden px-4 py-3 rounded-full btn-gold text-sm font-bold"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+          >
+            ☰ Menu
+          </button>
+        </div>
       </div>
     </div>
   </header>
-  <div id="mobileMenu" class="hidden md:hidden fixed top-24 left-4 right-4 z-50 rounded-2xl border border-white/10 bg-[#1b0828] p-5 shadow-2xl">
-  <div class="flex flex-col gap-4 text-white font-bold">
-    <a href="#noticias" onclick="document.getElementById('mobileMenu').classList.add('hidden')">Notícias 24h</a>
-    <a href="#contato" onclick="document.getElementById('mobileMenu').classList.add('hidden')">Empresas</a>
-    <a href="#contato" onclick="document.getElementById('mobileMenu').classList.add('hidden')">Turismo</a>
-    <a href="#contato" onclick="document.getElementById('mobileMenu').classList.add('hidden')">Gastronomia</a>
-    <a href="#audiovisual" onclick="document.getElementById('mobileMenu').classList.add('hidden')">Audiovisual</a>
-    <a href="#ibj" onclick="document.getElementById('mobileMenu').classList.add('hidden')">IBJ</a>
-    <a href="#contato" onclick="document.getElementById('mobileMenu').classList.add('hidden')">Contato</a>
+
+  <div id="mobileMenu" class="hidden xl:hidden fixed top-24 left-4 right-4 z-50 rounded-2xl border border-white/10 bg-[#1b0828] p-5 shadow-2xl">
+    <div class="flex flex-col gap-4 text-white font-bold">
+      <a href="#noticias" onclick="closeMobileMenu()">Notícias 24h</a>
+      <a href="#contato" onclick="closeMobileMenu()">Empresas</a>
+      <a href="#contato" onclick="closeMobileMenu()">Turismo</a>
+      <a href="#contato" onclick="closeMobileMenu()">Gastronomia</a>
+      <a href="#audiovisual" onclick="closeMobileMenu()">Audiovisual</a>
+      <a href="#ibj" onclick="closeMobileMenu()">IBJ</a>
+      <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+      <a href="#contato" onclick="closeMobileMenu()" class="mt-2 px-5 py-3 rounded-full btn-gold text-center">Anunciar agora</a>
+    </div>
   </div>
-</div>
   <!-- HERO -->
   <main id="home" class="pt-32">
     <section class="relative min-h-[88vh] flex items-center">
@@ -357,6 +364,42 @@
                 <strong class="text-yellow-400">04.</strong>
                 <span class="ml-2">Distribuição multiplataforma</span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 rounded-[2rem] border border-yellow-400/25 bg-gradient-to-r from-purple-900/50 via-black/30 to-yellow-900/20 p-8 md:p-10">
+          <div class="max-w-4xl mb-8">
+            <div class="badge mb-5">🎙️ Clones institucionais em ação</div>
+            <h3 class="font-display text-3xl md:text-5xl font-black mb-4">
+              Dra. Deijanete IA e Paulo Fayad IA narrando as notícias.
+            </h3>
+            <p class="text-white/70 leading-relaxed text-lg">
+              Espaço criado para boletins curtos, chamadas de notícias e apresentação digital da VOZ IA. Os botões abaixo ativam uma prévia de narração no navegador.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass rounded-3xl p-7 card-hover">
+              <div class="text-4xl mb-4">🎙️</div>
+              <h4 class="text-2xl font-black mb-3">Dra. Deijanete IA</h4>
+              <p class="text-white/65 leading-relaxed mb-5">
+                Apresentadora digital institucional para abertura de boletins, chamadas comerciais e conteúdo de credibilidade.
+              </p>
+              <button type="button" onclick="narrarVozIA('deijanete')" class="px-6 py-3 rounded-full btn-gold text-sm font-bold">
+                Ouvir chamada Deijanete IA
+              </button>
+            </div>
+
+            <div class="glass rounded-3xl p-7 card-hover">
+              <div class="text-4xl mb-4">📰</div>
+              <h4 class="text-2xl font-black mb-3">Paulo Fayad IA</h4>
+              <p class="text-white/65 leading-relaxed mb-5">
+                Narrador digital de notícias 24h para resumos rápidos, manchetes e boletins informativos da TV Voz.
+              </p>
+              <button type="button" onclick="narrarVozIA('paulo')" class="px-6 py-3 rounded-full btn-outline text-sm font-bold">
+                Ouvir chamada Paulo Fayad IA
+              </button>
             </div>
           </div>
         </div>
@@ -608,126 +651,73 @@
     </section>
 
    <!-- CONTATO -->
-<section id="contato" class="py-24 border-t border-white/10">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="rounded-[2.4rem] bg-gradient-to-r from-yellow-400/20 via-purple-700/25 to-black/30 border border-yellow-400/25 p-8 md:p-14">
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
-        
-        <div>
-          <div class="badge mb-6">🚀 Vamos transformar visão em realidade</div>
+    <section id="contato" class="py-24 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="rounded-[2.4rem] bg-gradient-to-r from-yellow-400/20 via-purple-700/25 to-black/30 border border-yellow-400/25 p-8 md:p-14">
+          <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <div class="badge mb-6">🚀 Vamos transformar visão em realidade</div>
 
-          <h2 class="font-display text-4xl md:text-6xl font-black leading-tight mb-6">
-            Sua empresa pode fazer parte da nova era da TV Voz.
-          </h2>
+              <h2 class="font-display text-4xl md:text-6xl font-black leading-tight mb-6">
+                Sua empresa pode fazer parte da nova era da TV Voz.
+              </h2>
 
-          <p class="text-white/75 text-lg leading-relaxed mb-8">
-            Preencha o formulário rápido. Ao enviar, sua mensagem será encaminhada diretamente pelo WhatsApp para nossa equipe comercial.
-          </p>
+              <p class="text-white/75 text-lg leading-relaxed mb-8">
+                Preencha o formulário rápido. Ao enviar, sua mensagem será encaminhada diretamente pelo WhatsApp para nossa equipe comercial.
+              </p>
 
-          <div class="space-y-4 text-white/80">
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-              💼 Empresas e anunciantes
+              <div class="space-y-4 text-white/80">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">💼 Empresas e anunciantes</div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">✈️ Turismo, hotéis e companhias aéreas</div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">🍽️ Gastronomia e experiências</div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">🤖 Notícias 24h com VOZ IA</div>
+              </div>
             </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-              ✈️ Turismo, hotéis e companhias aéreas
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-              🍽️ Gastronomia e experiências
-            </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-              🤖 Notícias 24h com VOZ IA
+
+            <div class="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8">
+              <h3 class="font-display text-3xl font-black mb-6">
+                Solicitar contato comercial
+              </h3>
+
+              <form onsubmit="enviarFormularioWhatsApp(event)" class="space-y-4">
+                <div>
+                  <label class="block text-sm text-white/70 mb-2">Nome</label>
+                  <input id="formNome" type="text" required placeholder="Seu nome" class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400">
+                </div>
+
+                <div>
+                  <label class="block text-sm text-white/70 mb-2">Empresa</label>
+                  <input id="formEmpresa" type="text" required placeholder="Nome da empresa" class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400">
+                </div>
+
+                <div>
+                  <label class="block text-sm text-white/70 mb-2">Telefone</label>
+                  <input id="formTelefone" type="tel" required placeholder="Seu WhatsApp" class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400">
+                </div>
+
+                <div>
+                  <label class="block text-sm text-white/70 mb-2">Interesse</label>
+                  <select id="formInteresse" required class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400">
+                    <option value="Anunciar minha empresa">Anunciar minha empresa</option>
+                    <option value="Entrevista comercial">Entrevista comercial</option>
+                    <option value="Turismo e experiências">Turismo e experiências</option>
+                    <option value="Gastronomia">Gastronomia</option>
+                    <option value="Notícias 24h / VOZ IA">Notícias 24h / VOZ IA</option>
+                    <option value="Outro projeto">Outro projeto</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="w-full px-8 py-4 rounded-full btn-gold text-center font-bold">
+                  Enviar pelo WhatsApp
+                </button>
+              </form>
             </div>
           </div>
         </div>
-
-        <div class="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8">
-          <h3 class="font-display text-3xl font-black mb-6">
-            Solicitar contato comercial
-          </h3>
-
-          <form 
-            onsubmit="
-              var nome = document.getElementById('formNome').value;
-              var empresa = document.getElementById('formEmpresa').value;
-              var telefone = document.getElementById('formTelefone').value;
-              var interesse = document.getElementById('formInteresse').value;
-
-              var mensagem = 'Olá, quero anunciar na VOZ IA Platform da TV Voz de Brasília.%0A%0A' +
-                'Nome: ' + encodeURIComponent(nome) + '%0A' +
-                'Empresa: ' + encodeURIComponent(empresa) + '%0A' +
-                'Telefone: ' + encodeURIComponent(telefone) + '%0A' +
-                'Interesse: ' + encodeURIComponent(interesse);
-
-              window.location.href = 'https://web.whatsapp.com/send?phone=5561999811109&text=' + mensagem;
-              return false;
-            "
-            class="space-y-4"
-          >
-            <div>
-              <label class="block text-sm text-white/70 mb-2">Nome</label>
-              <input 
-                id="formNome" 
-                type="text" 
-                required 
-                placeholder="Seu nome"
-                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
-              >
-            </div>
-
-            <div>
-              <label class="block text-sm text-white/70 mb-2">Empresa</label>
-              <input 
-                id="formEmpresa" 
-                type="text" 
-                required 
-                placeholder="Nome da empresa"
-                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
-              >
-            </div>
-
-            <div>
-              <label class="block text-sm text-white/70 mb-2">Telefone</label>
-              <input 
-                id="formTelefone" 
-                type="tel" 
-                required 
-                placeholder="Seu WhatsApp"
-                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
-              >
-            </div>
-
-            <div>
-              <label class="block text-sm text-white/70 mb-2">Interesse</label>
-              <select 
-                id="formInteresse" 
-                required
-                class="w-full rounded-xl bg-black/30 border border-white/15 px-4 py-3 text-white outline-none focus:border-yellow-400"
-              >
-                <option value="Anunciar minha empresa">Anunciar minha empresa</option>
-                <option value="Entrevista comercial">Entrevista comercial</option>
-                <option value="Turismo e experiências">Turismo e experiências</option>
-                <option value="Gastronomia">Gastronomia</option>
-                <option value="Notícias 24h / VOZ IA">Notícias 24h / VOZ IA</option>
-                <option value="Outro projeto">Outro projeto</option>
-              </select>
-            </div>
-
-            <button 
-              type="submit"
-              class="w-full px-8 py-4 rounded-full btn-gold text-center font-bold"
-            >
-              Enviar pelo WhatsApp
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>        </div>
       </div>
     </section>
   </main>
+
 
   <!-- RODAPÉ -->
   <footer class="border-t border-white/10 py-12">
@@ -744,10 +734,10 @@
         <div>
           <h4 class="font-black mb-4 text-yellow-400">Plataforma</h4>
           <div class="space-y-2 text-white/60">
-            <p>Notícias 24h</p>
-            <p>Empresas</p>
-            <p>Turismo</p>
-            <p>Gastronomia</p>
+            <p><a href="#noticias" class="hover:text-yellow-400">Notícias 24h</a></p>
+            <p><a href="#contato" class="hover:text-yellow-400">Empresas</a></p>
+            <p><a href="#contato" class="hover:text-yellow-400">Turismo</a></p>
+            <p><a href="#contato" class="hover:text-yellow-400">Gastronomia</a></p>
           </div>
         </div>
 
@@ -780,15 +770,66 @@
   </footer>
 
   <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.add('hidden');
+    }
+
+    function enviarFormularioWhatsApp(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('formNome').value.trim();
+      const empresa = document.getElementById('formEmpresa').value.trim();
+      const telefone = document.getElementById('formTelefone').value.trim();
+      const interesse = document.getElementById('formInteresse').value;
+
+      const mensagem =
+        'Olá, quero anunciar na VOZ IA Platform da TV Voz de Brasília.\n\n' +
+        'Nome: ' + nome + '\n' +
+        'Empresa: ' + empresa + '\n' +
+        'Telefone: ' + telefone + '\n' +
+        'Interesse: ' + interesse;
+
+      window.location.href = 'https://web.whatsapp.com/send?phone=5561999811109&text=' + encodeURIComponent(mensagem);
+    }
+
+    function narrarVozIA(tipo) {
+      if (!('speechSynthesis' in window)) {
+        alert('Este navegador não ativou narração automática.');
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const textos = {
+        deijanete: 'TV Voz de Brasília apresenta: VOZ IA Notícias vinte e quatro horas. Informação com credibilidade, tecnologia e compromisso com a sociedade.',
+        paulo: 'Direto da redação da TV Voz de Brasília: os principais fatos de Brasília, do Brasil e do mundo, agora em boletins rápidos com inteligência artificial.'
+      };
+
+      const fala = new SpeechSynthesisUtterance(textos[tipo] || textos.deijanete);
+      fala.lang = 'pt-BR';
+      fala.rate = tipo === 'paulo' ? 0.98 : 0.92;
+      fala.pitch = tipo === 'paulo' ? 0.86 : 1.08;
+
+      const vozes = window.speechSynthesis.getVoices();
+      const vozPtBr = vozes.find(function(voz) { return voz.lang && voz.lang.toLowerCase().includes('pt-br'); });
+      if (vozPtBr) fala.voice = vozPtBr;
+
+      window.speechSynthesis.speak(fala);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(event) {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           event.preventDefault();
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          closeMobileMenu();
         }
       });
     });
