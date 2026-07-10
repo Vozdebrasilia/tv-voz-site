@@ -1,0 +1,16 @@
+VOZ IA — ESTÚDIO FUTURISTA NOVO
+
+Este pacote contém um index.html novo e diferente do projeto anterior.
+
+Para publicar:
+1. Copie index.html para a pasta local ~/tv-voz-site.
+2. Substitua o index.html existente.
+3. Mantenha no projeto os arquivos já existentes:
+   logo-tv-transparente.PNG
+   selo-40anos-transparente.png
+   deijanete-fayad-anchor.jpg
+   paulo-fayad-anchor.jpg
+4. Execute git status, git add ., git commit e git push.
+
+A narração incluída usa a voz disponível no navegador.
+Clonagem real de voz e sincronização labial exigem serviço externo especializado.
