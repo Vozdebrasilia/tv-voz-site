@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOZ IA Studio | TV Voz de Brasília</title>
+<style>
+:root{--gold:#ffd21f;--blue:#00b9ff;--violet:#7a35ff;--red:#e00024;--ink:#04030a;--muted:#d8deec}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#05030a,#12051e 45%,#04131d);color:#fff}a{text-decoration:none;color:inherit}img{display:block;max-width:100%}.wrap{width:min(1380px,96%);margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(3,3,9,.97);border-bottom:1px solid rgba(255,210,31,.35);backdrop-filter:blur(12px)}
+.head{min-height:110px;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{width:390px;height:100px;object-fit:contain;object-position:left center}.menu{display:flex;gap:24px;font-weight:900;font-size:15px}.menu a:hover{color:var(--gold)}
+.hero{padding:26px 0 46px}.topline{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;margin-bottom:22px}.kicker{color:var(--gold);font-weight:900;letter-spacing:1px}.title{font-size:clamp(44px,6vw,86px);line-height:.94;font-weight:900}.title span{display:block;color:var(--gold)}.subtitle{margin-top:14px;color:var(--muted);font-size:18px;line-height:1.5}.seal{width:170px;height:170px;object-fit:contain;filter:drop-shadow(0 0 28px rgba(255,210,31,.45))}
+.studio{position:relative;min-height:820px;border-radius:32px;overflow:hidden;border:1px solid rgba(255,210,31,.42);box-shadow:0 35px 90px rgba(0,0,0,.6);background:url('./studio-vozia-final.png') center/cover no-repeat}
+.studio::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,3,12,.08),rgba(1,3,12,.16) 48%,rgba(1,3,12,.68) 100%)}
+.live{position:absolute;top:24px;left:24px;z-index:5;background:var(--red);padding:11px 18px;border-radius:999px;font-weight:900;box-shadow:0 0 25px rgba(224,0,36,.65)}.channel{position:absolute;top:30px;right:28px;z-index:5;color:var(--gold);font-weight:900;letter-spacing:1px}
+.newsbar{position:relative;margin-top:18px;padding:17px 22px;border-radius:22px;background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.14);display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.newsbar h3{font-size:28px;margin-bottom:7px}.newsbar p{color:var(--muted);line-height:1.45}.dialog{display:grid;gap:10px}.line{padding:14px;border-radius:15px;background:rgba(255,255,255,.08);font-weight:800}.line b{color:var(--gold)}
+.ticker{margin-top:14px;background:var(--gold);color:#12051b;padding:12px;border-radius:999px;font-weight:900;white-space:nowrap;overflow:hidden}.ticker span{display:inline-block;animation:move 26s linear infinite}@keyframes move{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.content{padding:66px 0}.content h2{font-size:clamp(34px,4vw,54px);margin-bottom:12px}.content p{color:var(--muted);font-size:18px;line-height:1.55}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}.box{padding:24px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,210,31,.28)}.box h3{color:var(--gold);margin-bottom:10px}footer{padding:34px 0;background:#020208;border-top:1px solid rgba(255,210,31,.28)}
+@media(max-width:950px){.menu{display:none}.topline{grid-template-columns:1fr}.seal{width:140px;height:140px}.studio{min-height:720px}.channel{display:none}.newsbar,.grid{grid-template-columns:1fr}.logo{width:300px;height:82px}}
+</style>
+</head>
+<body>
+<header><div class="wrap head"><img class="logo" src="./logo-tv-transparente.PNG" alt="VOZ IA"><nav class="menu"><a href="#ao-vivo">AO VIVO</a><a href="#noticias">Notícias</a><a href="#entrevistas">Entrevistas</a><a href="#anuncie">Anuncie</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap"><div class="topline"><div><div class="kicker">TV VOZ DE BRASÍLIA • 40 ANOS</div><h1 class="title">Da visão à realidade:<span>nasce a VOZ IA.</span></h1><p class="subtitle">Estúdio digital futurista com notícias, entrevistas, anunciantes e inteligência artificial.</p></div><img class="seal" src="./selo-40anos-transparente.png" alt="Selo 40 anos"></div>
+<div class="studio" id="ao-vivo"><div class="live">● AO VIVO</div><div class="channel">VOZ IA NEWS • BRASÍLIA • BRASIL • MUNDO</div></div>
+<div class="newsbar" id="noticias"><article><h3>VOZ IA entra no ar em um novo estúdio digital.</h3><p>Notícias, entrevistas, negócios, turismo, cidades e impacto social em uma plataforma nacional de mídia.</p></article><div class="dialog"><div class="line"><b>Deijanete IA:</b> Boa tarde. A TV Voz IA está entrando no ar.</div><div class="line"><b>Paulo Fayad IA:</b> Agora, as principais notícias de Brasília, do Brasil e do mundo.</div></div></div>
+<div class="ticker"><span>TV VOZ IA • NOTÍCIAS • ENTREVISTAS • BRASÍLIA • BRASIL • MUNDO • 40 ANOS DE CREDIBILIDADE</span></div></div></section>
+<section class="content" id="entrevistas"><div class="wrap"><h2>Entrevistas e cortes</h2><p>Programação contínua das entrevistas da TV Voz e distribuição de cortes nas redes sociais.</p></div></section>
+<section class="content"><div class="wrap"><h2>Notícias 24 horas</h2><div class="grid"><div class="box"><h3>Brasília</h3><p>Política, cidades, serviços, eventos e economia local.</p></div><div class="box"><h3>Brasil</h3><p>Governo, economia, saúde, educação e sociedade.</p></div><div class="box"><h3>Mundo</h3><p>Diplomacia, turismo, comércio exterior e geopolítica.</p></div></div></div></section>
+<section class="content" id="anuncie"><div class="wrap"><h2>Anuncie na VOZ IA</h2><p>Vitrines para empresas, imóveis, automóveis, gastronomia, turismo, saúde, educação, tecnologia e projetos sociais.</p></div></section>
+<<<<<<< HEAD
+</main>
+<footer><div class="wrap"><strong>VOZ IA | TV Voz de Brasília</strong><p>Da visão à realidade: mídia, credibilidade e inteligência artificial.</p></div></footer>
+<script>
+function narrar(){if(!('speechSynthesis'in window)){alert('Narração indisponível neste navegador.');return}speechSynthesis.cancel();const falas=[['deijanete','Boa tarde. Eu sou a Deijanete IA. A TV Voz IA está entrando no ar com notícias, entrevistas e credibilidade.'],['paulo','Eu sou Paulo Fayad IA. Agora, as principais notícias de Brasília, do Brasil e do mundo.']];let i=0;function prox(){if(i>=falas.length)return;const [id,texto]=falas[i++];const u=new SpeechSynthesisUtterance(texto);u.lang='pt-BR';u.rate=.93;u.onstart=()=>document.getElementById(id).style.boxShadow='0 0 45px rgba(255,210,31,.65)';u.onend=()=>{document.getElementById(id).style.boxShadow='none';prox()};speechSynthesis.speak(u)}prox()}
+function parar(){speechSynthesis.cancel();document.getElementById('deijanete').style.boxShadow='none';document.getElementById('paulo').style.boxShadow='none'}
+</script>
+=======
+</main><footer><div class="wrap"><strong>VOZ IA | TV Voz de Brasília</strong><p>Da visão à realidade: mídia, credibilidade e inteligência artificial.</p></div></footer>
+>>>>>>> Publica studio final VOZ IA
+</body></html>
