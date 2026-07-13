@@ -1,15 +1,12 @@
-VOZ NEWS — versão integrada 13-07-2026
+VOZ NEWS — versão comercial estabilizada
 
+Base restaurada: tv-voz-site-main (12)
 Alterações:
-- Nova identidade VOZ NEWS no cabeçalho.
-- Nova marca aplicada no estúdio.
-- Selo editorial VOZ NEWS em todas as editorias.
-- Repetições de Sérgio Souza removidas.
-- Política e entrevistas com conteúdos diferentes do canal.
-- Diplomacia com entrevista de embaixador e Daniel Balaban/WFP.
-- Imagens fotográficas reais substituindo ilustrações genéricas nas editorias.
-- CSS e JavaScript de lip-sync integrados aos apresentadores do estúdio.
-- Narração ligada ao fluxo existente, com fallback para voz do navegador.
-- Layout, formulário comercial e links existentes preservados.
+- identidade VOZ NEWS no cabeçalho e no estúdio;
+- sem integração experimental de lip-sync;
+- editorias comerciais atualizadas com os nomes solicitados;
+- links para o acervo oficial da TV Voz de Brasília no YouTube;
+- formulário do WhatsApp preservado;
+- backup do index anterior incluído.
 
-Antes de publicar, teste o botão de narração no navegador.
+Validar localmente antes de publicar no GitHub/Vercel.
