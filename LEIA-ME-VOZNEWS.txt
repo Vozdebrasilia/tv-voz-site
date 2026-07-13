@@ -1,0 +1,15 @@
+VOZ NEWS — versão integrada 13-07-2026
+
+Alterações:
+- Nova identidade VOZ NEWS no cabeçalho.
+- Nova marca aplicada no estúdio.
+- Selo editorial VOZ NEWS em todas as editorias.
+- Repetições de Sérgio Souza removidas.
+- Política e entrevistas com conteúdos diferentes do canal.
+- Diplomacia com entrevista de embaixador e Daniel Balaban/WFP.
+- Imagens fotográficas reais substituindo ilustrações genéricas nas editorias.
+- CSS e JavaScript de lip-sync integrados aos apresentadores do estúdio.
+- Narração ligada ao fluxo existente, com fallback para voz do navegador.
+- Layout, formulário comercial e links existentes preservados.
+
+Antes de publicar, teste o botão de narração no navegador.
