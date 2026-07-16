@@ -281,6 +281,54 @@
       .studio-headline-panel h3{font-size:9px!important;-webkit-line-clamp:3!important}
     }
 
+
+
+    /* ACABAMENTO JORNAL AO VIVO — nomes únicos, logo inteira e ticker sem emenda */
+    .studio-overlay-logo.main{
+      top:27%!important;
+      width:210px!important;
+      min-width:210px!important;
+      max-width:210px!important;
+      height:96px!important;
+      padding:8px 12px!important;
+      overflow:visible!important;
+      justify-content:center!important;
+      background:rgba(5,22,44,.90)!important;
+    }
+    .studio-center-logo{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important}
+    .anchor-name-tag{min-width:210px!important;max-width:250px!important;bottom:118px!important;padding:8px 13px 9px!important}
+    .anchor-name-tag strong{font-size:16px!important;white-space:nowrap!important}
+    .tag-deijanete{left:18.8%!important;transform:translateX(-8%)!important;text-align:left!important}
+    .tag-paulo{right:17.8%!important;transform:translateX(8%)!important;text-align:right!important}
+
+    .idle-avatar-body{animation:anchorPresence 6.4s ease-in-out infinite!important;will-change:transform!important}
+    .idle-deijanete .idle-avatar-body{animation-delay:-1.1s!important}
+    .idle-paulo .idle-avatar-body{animation-delay:-3.4s!important}
+    @keyframes anchorPresence{
+      0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+      22%{transform:translate3d(.5px,-.7px,0) rotate(.06deg) scale(1.001)}
+      48%{transform:translate3d(-.45px,-1.15px,0) rotate(-.07deg) scale(1.0018)}
+      73%{transform:translate3d(.35px,-.45px,0) rotate(.045deg) scale(1.0008)}
+    }
+    .idle-avatar::after{animation:listeningHands 3.2s ease-in-out infinite alternate!important}
+    .idle-avatar::before{content:"";position:absolute;z-index:5;width:7.5%;height:1.7%;border-radius:50%;background:rgba(188,126,98,.88);opacity:0;pointer-events:none;transform:scaleY(.15);animation:naturalBlink 6.1s infinite}
+    .idle-deijanete::before{left:50.2%;top:19.1%;box-shadow:13.2% 0 0 rgba(188,126,98,.88)}
+    .idle-paulo::before{left:49.2%;top:19.2%;width:7%;background:rgba(164,108,82,.82);box-shadow:14.4% 0 0 rgba(164,108,82,.82);animation-delay:-2.7s}
+    @keyframes naturalBlink{0%,43%,46%,100%{opacity:0;transform:scaleY(.15)}44%,45%{opacity:.88;transform:scaleY(1)}}
+
+    .ticker-track{position:relative!important;overflow:hidden!important;display:block!important}
+    .ticker-runner{display:flex!important;align-items:center!important;width:max-content!important;height:100%!important;animation:tickerContinuous 58s linear infinite!important;will-change:transform!important}
+    .ticker-runner span{display:block!important;flex:0 0 auto!important;padding-left:0!important;padding-right:72px!important;white-space:nowrap!important;animation:none!important;font-size:11px!important;line-height:32px!important;font-weight:900!important}
+    @keyframes tickerContinuous{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+    .ticker:hover .ticker-runner{animation-play-state:running!important}
+    @media(max-width:620px){
+      .studio-overlay-logo.main{top:29%!important;width:126px!important;min-width:126px!important;max-width:126px!important;height:62px!important;padding:5px 7px!important}
+      .anchor-name-tag{bottom:82px!important;min-width:128px!important;max-width:145px!important;padding:6px 7px!important}
+      .anchor-name-tag strong{font-size:10px!important}.anchor-name-tag span{font-size:7px!important}
+      .tag-deijanete{left:8%!important;transform:none!important}.tag-paulo{right:8%!important;transform:none!important}
+      .ticker-runner span{font-size:9px!important;padding-right:48px!important}
+    }
+
 </style>
 </head>
 <body>
@@ -313,7 +361,7 @@
 <button id="stopLiveNews" type="button">Parar</button>
 </div>
 <div class="studio-status" id="studioStatus">Pronto para iniciar.</div>
-<div class="studio-overlay-logo main" aria-label="Logo principal do estúdio"><span class="orb">TV</span><span class="copy"><span class="line"><span class="voz">VOZ</span><span class="news">NEWS</span></span><span class="sub">TV Voz de Brasília</span></span></div>
+<div class="studio-overlay-logo main" aria-label="Logo principal do estúdio"><img class="studio-center-logo" src="./logo-voznews.png" alt="VOZ NEWS"/></div>
 <div class="studio-overlay-logo bottom" aria-label="Logo da base do estúdio"><span class="orb">TV</span><span class="copy"><span class="line"><span class="voz">VOZ</span><span class="news">NEWS</span></span><span class="sub">40 anos de credibilidade</span></span></div>
 <div class="studio-headline-panel">
   <div class="kicker" id="visibleNewsSource">TV Voz NEWS</div>
@@ -330,10 +378,10 @@
   <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="auto" poster="./studio-deijanete-source.png"></video>
   <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="auto" poster="./studio-paulo-source.png"></video>
 </div>
-<div class="anchor-name-tag tag-deijanete active" id="tagDeijanete"><strong>Dra. Deijanete Fayad</strong><span>Apresentadora</span></div>
+<div class="anchor-name-tag tag-deijanete active" id="tagDeijanete"><strong>Deijanete Fayad</strong><span>Apresentadora</span></div>
 <div class="anchor-name-tag tag-paulo active" id="tagPaulo"><strong>Paulo Fayad</strong><span>Jornalista</span></div>
 <div id="didLoading" class="did-loading">Preparando apresentação…</div>
-<div class="ticker"><span class="ticker-brand"><img src="./logo-voznews.png" alt="VOZ NEWS"/></span><div class="ticker-track"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div></div>
+<div class="ticker"><span class="ticker-brand"><img src="./logo-voznews.png" alt="VOZ NEWS"/></span><div class="ticker-track"><div class="ticker-runner" id="tickerRunner"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span><span id="visibleNewsTickerClone" aria-hidden="true">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div></div></div>
 </section>
 </div>
 </section>
@@ -374,6 +422,7 @@
     const visibleMainHeadline=document.getElementById('visibleMainHeadline');
     const visibleNewsSummary=document.getElementById('visibleNewsSummary');
     const visibleNewsTicker=document.getElementById('visibleNewsTicker');
+    const visibleNewsTickerClone=document.getElementById('visibleNewsTickerClone');
     const studioStatus=document.getElementById('studioStatus');
     const didLoading=document.getElementById('didLoading');
     const videoDeijanete=document.getElementById('didVideoDeijanete');
@@ -383,11 +432,16 @@
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
 
+    function setTickerText(text){
+      const clean=String(text||'TV Voz NEWS • Manchetes em atualização • Brasil • Mundo').trim();
+      visibleNewsTicker.textContent=clean+'     •     ';
+      if(visibleNewsTickerClone) visibleNewsTickerClone.textContent=clean+'     •     ';
+    }
     function setNews(items){
       currentNews=(items&&items.length)?items.slice():fallbackNews.slice();
       if(currentIndex>=currentNews.length) currentIndex=0;
       updateVisibleHeadline(currentIndex);
-      visibleNewsTicker.textContent=buildTickerItems(currentNews).join('     •     ');
+      setTickerText(buildTickerItems(currentNews).join('     •     '));
     }
     function updateVisibleHeadline(index){
       const item=currentNews[index%currentNews.length]||fallbackNews[0];
@@ -408,7 +462,7 @@
     async function loadTickerData(){
       const extras=[];
       try{const response=await fetch('/api/ticker',{cache:'no-store'});if(response.ok){const data=await response.json();if(Array.isArray(data.items)) extras.push(...data.items);}}catch(e){}
-      visibleNewsTicker.textContent=buildTickerItems(currentNews,extras).join('   •   ');
+      setTickerText(buildTickerItems(currentNews,extras).join('   •   '));
     }
     function stopAllVideos(){
       [videoDeijanete,videoPaulo].forEach(video=>{
@@ -460,7 +514,7 @@
       return [title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,1200);
     }
     function buildLowerThird(item,presenter){
-      const name=presenter==='deijanete'?'Dra. Deijanete Fayad':'Paulo Fayad';
+      const name=presenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad';
       const role=presenter==='deijanete'?'Apresentadora':'Jornalista';
       return {name,role,title:sanitizeNewsText(item.title||'')};
     }
@@ -530,10 +584,12 @@
         const finish=()=>{
           if(finished)return;
           finished=true;
-          video.classList.remove('active');
-          idle.classList.remove('hidden');
           video.onended=null; video.onerror=null;
-          setTimeout(()=>{try{video.pause();}catch(e){} resolve();},430);
+          idle.classList.remove('hidden');
+          requestAnimationFrame(()=>{
+            requestAnimationFrame(()=>video.classList.remove('active'));
+          });
+          setTimeout(()=>{try{video.pause();}catch(e){} resolve();},180);
         };
         try{
           await preloadVideo(url,presenter);
@@ -597,7 +653,7 @@
         if(!segment||!liveRunning||token!==generationToken) break;
         currentIndex=segment.index;
         const lower=buildLowerThird(segment.item,segment.presenter);
-        visibleNewsSource.textContent=lower.name+'  •  '+lower.role;
+        visibleNewsSource.textContent=sanitizeNewsText(segment.item.source||'TV Voz NEWS');
         visibleMainHeadline.textContent=buildAnchorSpeech(segment.item);
         const nextQueued=pending[0];
         if(nextQueued){nextQueued.promise.then(next=>preloadVideo(next.resultUrl,next.presenter)).catch(()=>{});}
