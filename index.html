@@ -171,6 +171,26 @@
       .did-loading{bottom:82px!important}
     }
 
+
+    /* CORREÇÃO DEFINITIVA: rosto e mãos animados, corpo e bancada fixos */
+    .studio-avatar-videos{position:absolute!important;inset:0!important;z-index:6!important;overflow:hidden!important;border-radius:32px!important;pointer-events:none!important}
+    .did-avatar-video{position:absolute!important;display:none!important;object-fit:fill!important;object-position:center!important;border:0!important;background:transparent!important;box-shadow:none!important;opacity:0!important;transition:opacity .2s ease!important;transform:none!important}
+    .did-avatar-video.active{display:block!important;opacity:1!important}
+    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;-webkit-mask-image:url('./studio-deijanete-regions-mask.png')!important;mask-image:url('./studio-deijanete-regions-mask.png')!important;-webkit-mask-size:100% 100%!important;mask-size:100% 100%!important;-webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important}
+    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;-webkit-mask-image:url('./studio-paulo-regions-mask.png')!important;mask-image:url('./studio-paulo-regions-mask.png')!important;-webkit-mask-size:100% 100%!important;mask-size:100% 100%!important;-webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important}
+    .did-hands{z-index:7!important}.did-hands.active{animation:subtleHands 2.8s ease-in-out infinite alternate!important}
+    @keyframes subtleHands{from{transform:translateY(0) scale(1)}to{transform:translateY(-1.5px) scale(1.002)}}
+    .anchor-name-tag{position:absolute;z-index:12;bottom:94px;min-width:230px;padding:8px 14px 9px;background:linear-gradient(90deg,rgba(4,18,39,.97),rgba(8,49,88,.95));border-left:4px solid #d6ad2f;border-radius:4px;box-shadow:0 8px 22px rgba(0,0,0,.32);opacity:.68;transition:opacity .2s ease,transform .2s ease;color:#fff}
+    .anchor-name-tag.active{opacity:1;transform:translateY(-2px)}
+    .anchor-name-tag strong{display:block;font-size:13px;letter-spacing:.35px}.anchor-name-tag span{display:block;margin-top:2px;font-size:9px;font-weight:800;color:#d9e7f7}
+    .tag-deijanete{left:8.5%}.tag-paulo{right:8.5%;text-align:right;border-left:0;border-right:4px solid #d6ad2f}
+    .studio-headline-panel{top:auto!important;bottom:34px!important;width:min(880px,72%)!important;max-width:72%!important;min-height:49px!important;padding:7px 16px 8px!important;border-radius:5px!important;text-align:center!important;background:linear-gradient(90deg,rgba(3,16,35,.98),rgba(8,43,79,.98))!important;z-index:10!important}
+    .studio-headline-panel .kicker{display:block!important;color:#d6ad2f!important;font-size:9px!important;font-weight:900!important;letter-spacing:.8px!important;text-transform:uppercase!important;margin-bottom:2px!important}
+    .studio-headline-panel h3{font-size:clamp(12px,1.2vw,17px)!important;line-height:1.16!important;white-space:normal!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;margin:0!important}
+    .ticker{height:30px!important;bottom:0!important;z-index:13!important;background:#d6ad2f!important;color:#110900!important;padding:0!important;overflow:hidden!important;display:flex!important;align-items:center!important}
+    .ticker span{padding-left:100%!important;white-space:nowrap!important;font-size:11px!important;line-height:30px!important;font-weight:900!important;animation:marquee 58s linear infinite!important}
+    .studio-status,.did-loading{display:none!important}
+
 </style>
 </head>
 <body>
@@ -212,8 +232,12 @@
 </div>
 <div class="studio-avatar-videos" aria-label="Apresentadores animados pela D-ID">
   <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="metadata"></video>
+  <video id="didVideoDeijaneteHands" class="did-avatar-video did-deijanete did-hands" playsinline preload="metadata" muted></video>
   <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="metadata"></video>
+  <video id="didVideoPauloHands" class="did-avatar-video did-paulo did-hands" playsinline preload="metadata" muted></video>
 </div>
+<div class="anchor-name-tag tag-deijanete" id="tagDeijanete"><strong>DEIJANETE FAYAD</strong><span>Apresentadora | Brasília e Brasil</span></div>
+<div class="anchor-name-tag tag-paulo" id="tagPaulo"><strong>PAULO FAYAD</strong><span>Apresentador | Brasil e Mundo</span></div>
 <div id="didLoading" class="did-loading">Gerando apresentação com a D-ID…</div>
 <div class="ticker"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div>
 </section>
@@ -260,6 +284,10 @@
     const didLoading=document.getElementById('didLoading');
     const videoDeijanete=document.getElementById('didVideoDeijanete');
     const videoPaulo=document.getElementById('didVideoPaulo');
+    const videoDeijaneteHands=document.getElementById('didVideoDeijaneteHands');
+    const videoPauloHands=document.getElementById('didVideoPauloHands');
+    const tagDeijanete=document.getElementById('tagDeijanete');
+    const tagPaulo=document.getElementById('tagPaulo');
 
     function setNews(items){
       currentNews=(items&&items.length)?items.slice():fallbackNews.slice();
@@ -283,13 +311,17 @@
         setNews(fallbackNews);
       }
     }
+    async function loadTickerData(){
+      const extras=[];
+      try{const response=await fetch('/api/ticker',{cache:'no-store'});if(response.ok){const data=await response.json();if(Array.isArray(data.items)) extras.push(...data.items);}}catch(e){}
+      visibleNewsTicker.textContent=buildTickerItems(currentNews,extras).join('   •   ');
+    }
     function stopAllVideos(){
-      [videoDeijanete,videoPaulo].forEach(video=>{
+      [videoDeijanete,videoDeijaneteHands,videoPaulo,videoPauloHands].forEach(video=>{
         try{video.pause();video.removeAttribute('src');video.load();}catch(e){}
-        video.classList.remove('active');
-        video.onended=null;
-        video.onerror=null;
+        video.classList.remove('active'); video.onended=null; video.onerror=null;
       });
+      tagDeijanete.classList.remove('active'); tagPaulo.classList.remove('active');
     }
     function stopLive(){
       liveRunning=false;
@@ -302,35 +334,39 @@
       return index%2===0?'deijanete':'paulo';
     }
     function sanitizeNewsText(value=''){
-      return String(value)
+      let text=String(value||'');
+      text=text
         .replace(/https?:\/\/[^\s<>()]+/gi,' ')
         .replace(/www\.[^\s<>()]+/gi,' ')
-        .replace(/\b(?:bit\.ly|t\.co|tinyurl\.com|youtu\.be)\/[^\s]+/gi,' ')
-        .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)(?:\?[^\s]*)?/gi,' ')
+        .replace(/\b(?:[a-z0-9-]+\.)+(?:com|com\.br|org|org\.br|gov\.br|net|io|co|br)(?:\/[^\s]*)?/gi,' ')
+        .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)\b/gi,' ')
         .replace(/<[^>]*>/g,' ')
-        .replace(/\[[^\]]*(?:https?|www\.|\.com|\.br|\.org|utm_|source=|token=)[^\]]*\]/gi,' ')
-        .replace(/\([^)]*(?:https?|www\.|\.com|\.br|\.org|utm_|source=|token=)[^)]*\)/gi,' ')
-        .replace(/(?:utm_[a-z_]+|ref|source|id|token|fbclid|gclid)=[^\s&]+/gi,' ')
-        .replace(/[#*_~|>`]+/g,' ')
-        .replace(/[\/\\]{2,}/g,' ')
+        .replace(/\[[^\]]*\]|\{[^}]*\}/g,' ')
+        .replace(/(?:utm_[a-z_]+|ref|source|id|token|fbclid|gclid)\s*=\s*[^\s&]+/gi,' ')
+        .replace(/[#*_~|>`@]/g,' ')
+        .replace(/[\/\\_=]+/g,' ')
+        .replace(/[—–-]+/g,' e ')
         .replace(/&[a-z]+;/gi,' ')
-        .replace(/\bhttps?\b|\bwww\b/gi,' ')
+        .replace(/\b(?:https?|www|api|rss|xml|json|html|token|undefined|null)\b/gi,' ')
         .replace(/\s+/g,' ')
-        .replace(/\s+([,.;:!?])/g,'$1')
-        .trim();
+        .replace(/\s+([,.;:!?])/g,'$1').trim();
+      if(text&&!/[.!?]$/.test(text)) text+='.';
+      return text;
+    }
+    function normalizeSpokenNumbers(value=''){
+      return sanitizeNewsText(value).replace(/US\$/gi,' dólares ').replace(/R\$/gi,' reais ').replace(/(\d+(?:[.,]\d+)?)\s*%/g,'$1 por cento').replace(/\+/g,' alta de ').replace(/\s+/g,' ').trim();
     }
     function buildAnchorSpeech(item){
-      const title=sanitizeNewsText(item.title||'');
-      const summary=sanitizeNewsText(item.summary||'');
-      const sentence=[title,summary].filter(Boolean).join('. ');
-      return sanitizeNewsText(sentence).replace(/\.{2,}/g,'.').slice(0,1450);
+      const title=normalizeSpokenNumbers(item.title||''); const summary=normalizeSpokenNumbers(item.summary||'');
+      return [title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,1200);
     }
     function buildLowerThird(item,presenter){
       const name=presenter==='deijanete'?'DEIJANETE FAYAD':'PAULO FAYAD';
-      return {name,title:sanitizeNewsText(item.title||'')};
+      const role=presenter==='deijanete'?'Brasília e Brasil':'Brasil e Mundo';
+      return {name,role,title:sanitizeNewsText(item.title||'')};
     }
-    function buildTickerItems(newsList){
-      return (newsList||[]).map(item=>sanitizeNewsText(item.title||'')).filter(Boolean).slice(0,12);
+    function buildTickerItems(newsList,extraItems=[]){
+      return [...extraItems,...(newsList||[]).map(item=>sanitizeNewsText(item.title||''))].map(sanitizeNewsText).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,24);
     }
     async function createTalk(presenter,text){
       const response=await fetch('/api/did-create',{
@@ -373,13 +409,16 @@
       return new Promise((resolve,reject)=>{
         if(!liveRunning||token!==generationToken){resolve();return;}
         stopAllVideos();
-        const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
-        video.src=url;
-        video.classList.add('active');
-        video.onended=()=>{video.classList.remove('active');resolve();};
-        video.onerror=()=>{video.classList.remove('active');reject(new Error('Não foi possível reproduzir o vídeo gerado.'));};
-        const promise=video.play();
-        if(promise&&promise.catch) promise.catch(reject);
+        const face=presenter==='deijanete'?videoDeijanete:videoPaulo;
+        const hands=presenter==='deijanete'?videoDeijaneteHands:videoPauloHands;
+        const tag=presenter==='deijanete'?tagDeijanete:tagPaulo;
+        face.src=url; hands.src=url; hands.muted=true;
+        face.classList.add('active'); hands.classList.add('active'); tag.classList.add('active');
+        const cleanup=()=>{face.classList.remove('active');hands.classList.remove('active');tag.classList.remove('active');};
+        face.onended=()=>{cleanup();resolve();}; face.onerror=()=>{cleanup();reject(new Error('Falha de reprodução.'));};
+        face.onplay=()=>{try{hands.currentTime=face.currentTime;hands.play().catch(()=>{});}catch(e){}};
+        face.ontimeupdate=()=>{if(Math.abs((hands.currentTime||0)-face.currentTime)>.22){try{hands.currentTime=face.currentTime;}catch(e){}}};
+        const p=face.play(); if(p&&p.catch) p.catch(reject);
       });
     }
     async function prepareSegment(index,token){
@@ -390,41 +429,26 @@
       return {index,item,presenter,resultUrl};
     }
     async function runLiveSequence(token){
-      let preparedPromise=prepareSegment(currentIndex,token);
+      let queue=[]; let nextToPrepare=currentIndex;
+      const fillQueue=()=>{while(queue.length<3){const index=nextToPrepare%currentNews.length;queue.push({index,promise:prepareSegment(index,token)});nextToPrepare=(nextToPrepare+1)%currentNews.length;}};
+      fillQueue();
       while(liveRunning&&token===generationToken){
-        const currentPresenter=presenterFor(currentIndex);
-        updateVisibleHeadline(currentIndex);
-        studioStatus.textContent=(currentPresenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' prepara a manchete.';
-        didLoading.classList.add('show');
         try{
-          const segment=await preparedPromise;
+          const queued=queue.shift(); fillQueue(); const segment=await queued.promise;
           if(!liveRunning||token!==generationToken) break;
-          const nextIndex=(segment.index+1)%currentNews.length;
-          preparedPromise=prepareSegment(nextIndex,token);
-          didLoading.classList.remove('show');
-          studioStatus.textContent=(segment.presenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' no ar.';
-          updateVisibleHeadline(segment.index);
-          const lowerThird=buildLowerThird(segment.item,segment.presenter);
-          visibleNewsSource.textContent=lowerThird.name;
-          visibleMainHeadline.textContent=lowerThird.title;
+          currentIndex=segment.index; updateVisibleHeadline(segment.index);
+          const lower=buildLowerThird(segment.item,segment.presenter);
+          visibleNewsSource.textContent=lower.name+'  •  '+lower.role; visibleMainHeadline.textContent=lower.title;
           await playVideo(segment.resultUrl,segment.presenter,token);
           if(!liveRunning||token!==generationToken) break;
-          currentIndex=nextIndex;
-          studioStatus.textContent=(presenterFor(currentIndex)==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' prepara a próxima manchete.';
-          await new Promise(resolve=>setTimeout(resolve,650));
-        }catch(error){
-          didLoading.classList.remove('show');
-          if(error.message==='cancelado') break;
-          liveRunning=false;
-          stopAllVideos();
-          studioStatus.textContent=error.message||'Estúdio aguardando configuração das vozes e avatares.';
-          break;
-        }
+          await new Promise(resolve=>setTimeout(resolve,550));
+        }catch(error){if(error.message==='cancelado') break;queue=[];fillQueue();await new Promise(resolve=>setTimeout(resolve,500));}
       }
     }
     async function startLive(){
       stopLive();
       await loadNews();
+      await loadTickerData();
       liveRunning=true;
       const token=++generationToken;
       studioStatus.textContent='Conectando o estúdio à D-ID.';
@@ -452,7 +476,7 @@ Telefone: ${telefone}
 Cidade/UF: ${cidade}
 Área de interesse: ${interesse}
 Mensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURIComponent(texto),'_blank','noopener');});}
-    window.addEventListener('load',()=>{setNews(fallbackNews);loadNews();});
+    window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);});
   </script>
 </body>
 </html>

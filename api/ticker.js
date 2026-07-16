@@ -1,0 +1,7 @@
+function clean(value=''){return String(value||'').replace(/https?:\/\/\S+|www\.\S+/gi,' ').replace(/[—–-]+/g,' e ').replace(/[\/\\_=]+/g,' ').replace(/\s+/g,' ').trim();}
+module.exports=async function handler(req,res){
+  res.setHeader('Cache-Control','s-maxage=300, stale-while-revalidate=600'); const items=[];
+  try{const q=await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL');if(q.ok){const d=await q.json();const u=d.USDBRL,e=d.EURBRL;if(u?.bid)items.push(`Dólar comercial a ${Number(u.bid).toFixed(2).replace('.',',')} reais`);if(e?.bid)items.push(`Euro a ${Number(e.bid).toFixed(2).replace('.',',')} reais`);if(u?.pctChange)items.push(`Dólar registra ${Number(u.pctChange)>=0?'alta':'queda'} de ${Math.abs(Number(u.pctChange)).toFixed(2).replace('.',',')} por cento`);}}catch(e){}
+  try{const w=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-15.7939&longitude=-47.8828&current=temperature_2m&timezone=America%2FSao_Paulo');if(w.ok){const d=await w.json();const t=d?.current?.temperature_2m;if(Number.isFinite(t))items.push(`Brasília registra temperatura de ${Math.round(t)} graus`);}}catch(e){}
+  items.push('Bolsa acompanha o cenário econômico nacional','Mercados internacionais monitoram juros e atividade econômica');res.status(200).json({items:items.map(clean).filter(Boolean)});
+};
