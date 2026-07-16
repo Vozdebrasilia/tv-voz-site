@@ -36,8 +36,8 @@
     @media(max-width:620px){.logo-img{width:154px}.header-seal{width:58px;height:58px}.hero-title{font-size:40px}.hero-subtitle{font-size:16px}.seal-box{gap:10px}.seal-img{width:150px;height:150px}.seal-text strong{font-size:22px}.studio-screen h2{font-size:44px}.studio-screen{width:94%;padding:18px}.anchor-stage{width:94%}.anchor-photo{height:300px}.news-card h3{font-size:22px}.site-menu{right:14px}.btn-gold{padding:12px 16px}.menu-toggle{width:52px;height:52px}.section{padding:56px 0}.contact-form{grid-template-columns:1fr}.contact-form .full{grid-column:auto}}
 
     /* Estúdio CNN com fotos reais — alteração isolada */
-    .live-studio{min-height:820px;background:url('./studio-voznews-claro-sem-pessoas-v27.png') center center/cover no-repeat;}
-    .live-studio::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01) 52%,rgba(0,40,100,.05) 100%);z-index:1;pointer-events:none;}
+    .live-studio{min-height:820px;background:url('./studio-voznews-clean-light.png') center center/cover no-repeat;}
+    .live-studio::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,3,12,.05),rgba(1,3,12,.12) 52%,rgba(1,3,12,.28) 100%);z-index:1;pointer-events:none;}
     .live-studio .live-badge,.live-studio .studio-topline{z-index:3;}
     .studio-runtime-hidden{display:none!important;}
     @media(max-width:980px){.live-studio{min-height:620px;background-position:center center;}}
@@ -202,16 +202,31 @@
     .studio-status,.did-loading{display:none!important}
 
 
-/* AJUSTE DEFINITIVO V27: fundo claro sem pessoas e somente vídeos D-ID */
-.live-studio{background-image:url('./studio-voznews-claro-sem-pessoas-v27.png')!important;background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important;filter:none!important}
-.live-studio::before{background:rgba(255,255,255,.01)!important}
-.studio-presenters,.presenter,.anchor-stage,.anchor-photo,.presenter img{display:none!important;visibility:hidden!important;opacity:0!important}
-.studio-avatar-videos{display:block!important;z-index:8!important}
-.did-avatar-video{display:block!important;visibility:hidden!important;opacity:0!important;background:transparent!important}
-.did-avatar-video.ready,.did-avatar-video.active{visibility:visible!important;opacity:1!important;display:block!important}
-.did-avatar-video.ready:not(.active){filter:brightness(.98)!important}
-.did-avatar-video.active{animation:avatarNaturalBody 3.2s ease-in-out infinite alternate!important}
-@keyframes avatarNaturalBody{0%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-1px) rotate(.08deg) scale(1.002)}100%{transform:translateY(1px) rotate(-.06deg) scale(1.001)}}
+    /* ESTÚDIO FINAL: fundo limpo e avatares permanentes sem sobreposição */
+    .live-studio{background-image:url('./studio-voznews-clean-light.png')!important;filter:none!important}
+    .live-studio::before{background:linear-gradient(180deg,rgba(56,145,220,.03),rgba(31,99,171,.06) 55%,rgba(0,18,45,.18) 100%)!important}
+    .studio-avatar-videos{z-index:6!important}
+    .idle-avatar{position:absolute!important;z-index:6!important;opacity:1!important;transition:opacity .16s ease!important;pointer-events:none!important}
+    .idle-avatar.hidden{opacity:0!important}
+    .idle-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important}
+    .idle-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important}
+    .idle-avatar img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;object-position:center!important;border:0!important;background:transparent!important}
+    .idle-avatar-body{z-index:1!important;animation:idleBreath 5.2s ease-in-out infinite alternate!important;transform-origin:50% 70%!important}
+    .idle-avatar-hands{z-index:2!important;animation:idleHands 3.4s ease-in-out infinite alternate!important;transform-origin:50% 80%!important}
+    @keyframes idleBreath{from{transform:translateY(0) scale(1)}to{transform:translateY(-1px) scale(1.0015)}}
+    @keyframes idleHands{from{transform:translateY(0) rotate(0deg)}to{transform:translateY(-1.8px) rotate(.12deg)}}
+    .did-avatar-video{z-index:7!important;display:none!important;opacity:0!important;transition:opacity .16s ease!important;object-fit:fill!important}
+    .did-avatar-video.active{display:block!important;opacity:1!important}
+    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;-webkit-mask:url('./studio-deijanete-avatar.png') center/100% 100% no-repeat!important;mask:url('./studio-deijanete-avatar.png') center/100% 100% no-repeat!important;clip-path:inset(0)!important}
+    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;-webkit-mask:url('./studio-paulo-avatar.png') center/100% 100% no-repeat!important;mask:url('./studio-paulo-avatar.png') center/100% 100% no-repeat!important;clip-path:inset(0)!important}
+    .ticker{display:grid!important;grid-template-columns:104px 1fr!important;background:#d6ad2f!important}
+    .ticker-brand{position:relative!important;z-index:2!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#071a34!important;border-right:2px solid #f0c74e!important;height:100%!important;padding:0 8px!important}
+    .ticker-brand img{display:block!important;max-width:88px!important;max-height:24px!important;object-fit:contain!important}
+    .ticker-track{min-width:0!important;overflow:hidden!important;display:flex!important;align-items:center!important}
+    .ticker-track span{display:inline-block!important;padding-left:100%!important;white-space:nowrap!important;animation:marquee 44s linear infinite!important;font-size:11px!important;line-height:30px!important;font-weight:900!important}
+    .studio-headline-panel{bottom:35px!important}
+    .anchor-name-tag{bottom:91px!important;background:linear-gradient(90deg,rgba(6,28,58,.97),rgba(25,100,167,.94))!important}
+    @media(max-width:620px){.ticker{grid-template-columns:78px 1fr!important}.ticker-brand img{max-width:64px!important}.ticker-track span{font-size:9px!important}}
 
 </style>
 </head>
@@ -252,14 +267,22 @@
   <h3 id="visibleMainHeadline">Principais manchetes do Brasil e do mundo</h3>
   <p id="visibleNewsSummary">Manchete em destaque.</p>
 </div>
-<div class="studio-avatar-videos" aria-label="Apresentadores animados pela D-ID">
+<div class="studio-avatar-videos" aria-label="Apresentadores permanentes da VOZ NEWS">
+  <div id="idleDeijanete" class="idle-avatar idle-deijanete" aria-label="Deijanete Fayad em repouso">
+    <img class="idle-avatar-body" src="./studio-deijanete-body.png" alt="Deijanete Fayad"/>
+    <img class="idle-avatar-hands" src="./studio-deijanete-hands.png" alt="" aria-hidden="true"/>
+  </div>
+  <div id="idlePaulo" class="idle-avatar idle-paulo" aria-label="Paulo Fayad em repouso">
+    <img class="idle-avatar-body" src="./studio-paulo-body.png" alt="Paulo Fayad"/>
+    <img class="idle-avatar-hands" src="./studio-paulo-hands.png" alt="" aria-hidden="true"/>
+  </div>
   <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="metadata"></video>
   <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="metadata"></video>
 </div>
 <div class="anchor-name-tag tag-deijanete" id="tagDeijanete"><strong>DEIJANETE FAYAD</strong><span>Apresentadora | Brasília e Brasil</span></div>
 <div class="anchor-name-tag tag-paulo" id="tagPaulo"><strong>PAULO FAYAD</strong><span>Apresentador | Brasil e Mundo</span></div>
 <div id="didLoading" class="did-loading">Gerando apresentação com a D-ID…</div>
-<div class="ticker"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div>
+<div class="ticker"><span class="ticker-brand"><img src="./logo-voznews.png" alt="VOZ NEWS"/></span><div class="ticker-track"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div></div>
 </section>
 </div>
 </section>
@@ -304,6 +327,8 @@
     const didLoading=document.getElementById('didLoading');
     const videoDeijanete=document.getElementById('didVideoDeijanete');
     const videoPaulo=document.getElementById('didVideoPaulo');
+    const idleDeijanete=document.getElementById('idleDeijanete');
+    const idlePaulo=document.getElementById('idlePaulo');
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
 
@@ -334,32 +359,20 @@
       try{const response=await fetch('/api/ticker',{cache:'no-store'});if(response.ok){const data=await response.json();if(Array.isArray(data.items)) extras.push(...data.items);}}catch(e){}
       visibleNewsTicker.textContent=buildTickerItems(currentNews,extras).join('   •   ');
     }
-    function stopAllVideos(clearSources=false){
+    function stopAllVideos(){
       [videoDeijanete,videoPaulo].forEach(video=>{
-        try{video.pause();if(clearSources){video.removeAttribute('src');video.load();video.classList.remove('ready');}}catch(e){}
+        try{video.pause();video.removeAttribute('src');video.load();}catch(e){}
         video.classList.remove('active'); video.onended=null; video.onerror=null;
       });
       tagDeijanete.classList.remove('active'); tagPaulo.classList.remove('active');
-    }
-    function stageAvatar(url,presenter){
-      return new Promise((resolve,reject)=>{
-        const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
-        if(video.dataset.url===url&&video.classList.contains('ready')){resolve(video);return;}
-        video.dataset.url=url;
-        video.src=url;
-        video.muted=false;
-        video.preload='auto';
-        video.onloadeddata=()=>{video.classList.add('ready');try{video.currentTime=Math.min(.08,video.duration||.08);}catch(e){}resolve(video);};
-        video.onerror=()=>reject(new Error('Falha ao preparar avatar.'));
-        video.load();
-      });
+      idleDeijanete.classList.remove('hidden'); idlePaulo.classList.remove('hidden');
     }
     function stopLive(){
       liveRunning=false;
       generationToken++;
-      stopAllVideos(true);
+      stopAllVideos();
       didLoading.classList.remove('show');
-      studioStatus.textContent='Apresentação pausada.';
+      studioStatus.textContent='Boletim pausado.';
     }
     function presenterFor(index){
       return index%2===0?'deijanete':'paulo';
@@ -390,23 +403,9 @@
     function normalizeSpokenNumbers(value=''){
       return sanitizeNewsText(value).replace(/US\$/gi,' dólares ').replace(/R\$/gi,' reais ').replace(/(\d+(?:[.,]\d+)?)\s*%/g,'$1 por cento').replace(/\+/g,' alta de ').replace(/\s+/g,' ').trim();
     }
-    function shortenForSpeech(value='',limit=280){
-      const clean=normalizeSpokenNumbers(value||'');
-      if(clean.length<=limit) return clean;
-      const cut=clean.slice(0,limit);
-      const end=cut.lastIndexOf('. ');
-      if(end>140) return cut.slice(0,end+1).trim();
-      const comma=cut.lastIndexOf(', ');
-      if(comma>120) return cut.slice(0,comma)+'.';
-      return cut.trim().replace(/[,:;\-]+$/,'')+'.';
-    }
-    function buildAnchorSpeech(item,presenter){
-      const title=shortenForSpeech(item.title||'',180);
-      const summary=shortenForSpeech(item.summary||'',260);
-      const opener=presenter==='deijanete'
-        ? 'Olá. Agora, os destaques de Brasília e do Brasil.'
-        : 'Seguimos com os principais destaques do Brasil e do mundo.';
-      return [opener,title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,620);
+    function buildAnchorSpeech(item){
+      const title=normalizeSpokenNumbers(item.title||''); const summary=normalizeSpokenNumbers(item.summary||'');
+      return [title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,1200);
     }
     function buildLowerThird(item,presenter){
       const name=presenter==='deijanete'?'DEIJANETE FAYAD':'PAULO FAYAD';
@@ -453,25 +452,28 @@
       }
       throw new Error('A D-ID ainda está processando este vídeo. Aguarde alguns minutos e tente novamente.');
     }
-    async function playVideo(url,presenter,token){
-      if(!liveRunning||token!==generationToken) return;
-      const video=await stageAvatar(url,presenter);
-      const tag=presenter==='deijanete'?tagDeijanete:tagPaulo;
-      [videoDeijanete,videoPaulo].forEach(v=>v.classList.remove('active'));
-      tagDeijanete.classList.remove('active');tagPaulo.classList.remove('active');
-      video.classList.add('ready','active');tag.classList.add('active');
-      try{video.currentTime=0;}catch(e){}
-      await new Promise((resolve,reject)=>{
-        video.onended=()=>{video.classList.remove('active');video.classList.add('ready');tag.classList.remove('active');resolve();};
-        video.onerror=()=>{video.classList.remove('active');reject(new Error('Falha de reprodução.'));};
-        const result=video.play();
-        if(result&&result.catch) result.catch(reject);
+    function playVideo(url,presenter,token){
+      return new Promise((resolve,reject)=>{
+        if(!liveRunning||token!==generationToken){resolve();return;}
+        stopAllVideos();
+        const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
+        const tag=presenter==='deijanete'?tagDeijanete:tagPaulo;
+        const idle=presenter==='deijanete'?idleDeijanete:idlePaulo;
+        video.src=url;
+        idle.classList.add('hidden');
+        video.classList.add('active');
+        tag.classList.add('active');
+        const cleanup=()=>{video.classList.remove('active');tag.classList.remove('active');idle.classList.remove('hidden');};
+        video.onended=()=>{cleanup();resolve();};
+        video.onerror=()=>{cleanup();reject(new Error('Falha de reprodução.'));};
+        const p=video.play();
+        if(p&&p.catch) p.catch(error=>{cleanup();reject(error);});
       });
     }
     async function prepareSegment(index,token){
       const item=currentNews[index%currentNews.length]||fallbackNews[0];
       const presenter=presenterFor(index);
-      const created=await createTalk(presenter,buildAnchorSpeech(item,presenter));
+      const created=await createTalk(presenter,buildAnchorSpeech(item));
       const resultUrl=created.result_url||await waitForTalk(created.id,token);
       return {index,item,presenter,resultUrl};
     }
@@ -497,8 +499,7 @@
       };
       refill();
       try{
-        const firstPair=await Promise.all([pending[0].promise,pending[1].promise]);
-        await Promise.all(firstPair.map(seg=>stageAvatar(seg.resultUrl,seg.presenter)));
+        await Promise.all([pending[0].promise,pending[1].promise]);
       }catch(e){}
       while(liveRunning&&token===generationToken){
         let segment=null;
