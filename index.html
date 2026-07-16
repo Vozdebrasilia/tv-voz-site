@@ -334,7 +334,7 @@
       generationToken++;
       stopAllVideos();
       didLoading.classList.remove('show');
-      studioStatus.textContent='Boletim pausado.';
+      studioStatus.textContent='Apresentação pausada.';
     }
     function presenterFor(index){
       return index%2===0?'deijanete':'paulo';
@@ -365,9 +365,23 @@
     function normalizeSpokenNumbers(value=''){
       return sanitizeNewsText(value).replace(/US\$/gi,' dólares ').replace(/R\$/gi,' reais ').replace(/(\d+(?:[.,]\d+)?)\s*%/g,'$1 por cento').replace(/\+/g,' alta de ').replace(/\s+/g,' ').trim();
     }
-    function buildAnchorSpeech(item){
-      const title=normalizeSpokenNumbers(item.title||''); const summary=normalizeSpokenNumbers(item.summary||'');
-      return [title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,1200);
+    function shortenForSpeech(value='',limit=280){
+      const clean=normalizeSpokenNumbers(value||'');
+      if(clean.length<=limit) return clean;
+      const cut=clean.slice(0,limit);
+      const end=cut.lastIndexOf('. ');
+      if(end>140) return cut.slice(0,end+1).trim();
+      const comma=cut.lastIndexOf(', ');
+      if(comma>120) return cut.slice(0,comma)+'.';
+      return cut.trim().replace(/[,:;\-]+$/,'')+'.';
+    }
+    function buildAnchorSpeech(item,presenter){
+      const title=shortenForSpeech(item.title||'',180);
+      const summary=shortenForSpeech(item.summary||'',260);
+      const opener=presenter==='deijanete'
+        ? 'Olá. Agora, os destaques de Brasília e do Brasil.'
+        : 'Seguimos com os principais destaques do Brasil e do mundo.';
+      return [opener,title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,620);
     }
     function buildLowerThird(item,presenter){
       const name=presenter==='deijanete'?'DEIJANETE FAYAD':'PAULO FAYAD';
@@ -433,7 +447,7 @@
     async function prepareSegment(index,token){
       const item=currentNews[index%currentNews.length]||fallbackNews[0];
       const presenter=presenterFor(index);
-      const created=await createTalk(presenter,buildAnchorSpeech(item));
+      const created=await createTalk(presenter,buildAnchorSpeech(item,presenter));
       const resultUrl=created.result_url||await waitForTalk(created.id,token);
       return {index,item,presenter,resultUrl};
     }

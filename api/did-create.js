@@ -59,7 +59,8 @@ module.exports = async function handler(req,res){
   if(req.method!=='POST') return res.status(405).json({error:'Método não permitido.'});
   try{
     const presenter=req.body?.presenter==='paulo'?'paulo':'deijanete';
-    const text=sanitizeNewsText(req.body?.text||'').slice(0,1500);
+    let text=sanitizeNewsText(req.body?.text||'').slice(0,900);
+    text=text.replace(/\s+/g,' ').replace(/([.!?])\s*/g,'$1 ').replace(/,\s*/g,', ').trim();
     if(!text) return res.status(400).json({error:'Texto da notícia ausente.'});
 
     const { filename, absolutePath }=localImageFor(presenter);
@@ -80,7 +81,7 @@ module.exports = async function handler(req,res){
         stitch:true,
         result_format:'mp4',
         fluent:true,
-        pad_audio:0
+        pad_audio:0.2
       },
       name:`VOZ NEWS - ${presenter}`,
       user_data:JSON.stringify({presenter,cloned_voice:voice.cloned})
