@@ -1,0 +1,1 @@
+VERSÃO 27: cenário azul claro sem pessoas estáticas; avatares D-ID permanecem visíveis e alternam a fala. Envie os arquivos da raiz deste ZIP para a Vercel.
