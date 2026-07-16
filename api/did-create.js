@@ -22,10 +22,30 @@ async function resolveVoice(presenter){
 }
 
 function localImageFor(presenter){
-  const filename=presenter==='deijanete'?'studio-deijanete-source.jpg':'studio-paulo-source.jpg';
+  const filename=presenter==='deijanete'?'studio-deijanete-source.png':'studio-paulo-source.png';
   const absolutePath=path.join(process.cwd(), filename);
   if(!fs.existsSync(absolutePath)) throw new Error(`Imagem do apresentador não encontrada: ${filename}`);
   return { filename, absolutePath };
+}
+
+
+function sanitizeNewsText(value=''){
+  return String(value)
+    .replace(/https?:\/\/\S+/gi,' ')
+    .replace(/www\.\S+/gi,' ')
+    .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)(?:\?\S*)?/gi,' ')
+    .replace(/<[^>]*>/g,' ')
+    .replace(/`{1,3}[\s\S]*?`{1,3}/g,' ')
+    .replace(/[#*_~|>]+/g,' ')
+    .replace(/\[[^\]]*(?:https?|www\.|\.com|\.br|\.org)[^\]]*\]/gi,' ')
+    .replace(/\([^)]*(?:https?|www\.|\.com|\.br|\.org|utm_|source=)[^)]*\)/gi,' ')
+    .replace(/[\/\\]{2,}/g,' ')
+    .replace(/[_=]{2,}/g,' ')
+    .replace(/(?:utm_[a-z_]+|ref|source|id|token)=[^\s&]+/gi,' ')
+    .replace(/&[a-z]+;/gi,' ')
+    .replace(/\s+/g,' ')
+    .replace(/\s+([,.;:!?])/g,'$1')
+    .trim();
 }
 
 function uploadedImageUrl(data){
@@ -36,12 +56,12 @@ module.exports = async function handler(req,res){
   if(req.method!=='POST') return res.status(405).json({error:'Método não permitido.'});
   try{
     const presenter=req.body?.presenter==='paulo'?'paulo':'deijanete';
-    const text=String(req.body?.text||'').trim().slice(0,1500);
+    const text=sanitizeNewsText(req.body?.text||'').slice(0,1500);
     if(!text) return res.status(400).json({error:'Texto da notícia ausente.'});
 
     const { filename, absolutePath }=localImageFor(presenter);
     const imageBuffer=fs.readFileSync(absolutePath);
-    const upload=await didUploadImage(imageBuffer, filename, 'image/jpeg');
+    const upload=await didUploadImage(imageBuffer, filename, 'image/png');
     const sourceUrl=uploadedImageUrl(upload);
     if(!sourceUrl) throw new Error('A D-ID recebeu a imagem, mas não devolveu uma URL utilizável.');
 

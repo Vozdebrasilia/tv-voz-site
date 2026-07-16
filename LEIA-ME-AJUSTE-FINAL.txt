@@ -1,0 +1,1 @@
+Ajuste final: overlays encaixados nas coordenadas exatas da bancada usando imagens PNG sem perdas; URLs e caracteres técnicos removidos antes da legenda e da locução.

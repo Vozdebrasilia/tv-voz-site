@@ -133,12 +133,12 @@
     @media(max-width:620px){.studio-headline-panel{top:80px!important;width:82%!important}.studio-headline-panel h3{font-size:11px!important}.studio-status{top:56px!important;max-width:88%!important;font-size:10px!important}.did-loading{bottom:42px;font-size:10px}}
 
 
-    /* Ajuste final: manter os apresentadores sentados na bancada, sem retângulo flutuante */
+    /* Ajuste final: encaixe exato dos vídeos costurados na bancada */
     .studio-avatar-videos{position:absolute!important;inset:0!important;z-index:6!important;overflow:hidden!important;border-radius:32px!important;pointer-events:none!important}
-    .did-avatar-video{position:absolute!important;display:none!important;object-fit:fill!important;object-position:center!important;background:transparent!important;border:0!important;box-shadow:none!important;opacity:0!important;transition:opacity .18s ease!important;mix-blend-mode:normal!important;will-change:transform,opacity!important}
+    .did-avatar-video{position:absolute!important;display:none!important;object-fit:fill!important;object-position:center!important;background:transparent!important;border:0!important;box-shadow:none!important;opacity:0!important;transition:opacity .14s ease!important;transform:scale(1.004)!important;transform-origin:center center!important}
     .did-avatar-video.active{display:block!important;opacity:1!important}
-    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;clip-path:inset(0)!important;-webkit-mask-image:url('./studio-deijanete-mask.png')!important;mask-image:url('./studio-deijanete-mask.png')!important;-webkit-mask-size:100% 100%!important;mask-size:100% 100%!important;-webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;-webkit-mask-position:center center!important;mask-position:center center!important}
-    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;clip-path:inset(0)!important;-webkit-mask-image:url('./studio-paulo-mask.png')!important;mask-image:url('./studio-paulo-mask.png')!important;-webkit-mask-size:100% 100%!important;mask-size:100% 100%!important;-webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;-webkit-mask-position:center center!important;mask-position:center center!important}
+    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;clip-path:inset(0 0 0 0 round 1px)!important}
+    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;clip-path:inset(0 0 0 0 round 1px)!important}
     @media(max-width:980px){.did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important}.did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important}}
 
 </style>
@@ -239,9 +239,9 @@
     }
     function updateVisibleHeadline(index){
       const item=currentNews[index%currentNews.length]||fallbackNews[0];
-      visibleNewsSource.textContent=item.source||'VOZ NEWS';
-      visibleMainHeadline.textContent=item.title;
-      visibleNewsSummary.textContent=item.summary||'';
+      visibleNewsSource.textContent=sanitizeNewsText(item.source||'VOZ NEWS');
+      visibleMainHeadline.textContent=sanitizeNewsText(item.title);
+      visibleNewsSummary.textContent=sanitizeNewsText(item.summary||'');
     }
     async function loadNews(){
       try{
@@ -271,10 +271,28 @@
     function presenterFor(index){
       return index%2===0?'deijanete':'paulo';
     }
+    function sanitizeNewsText(value=''){
+      return String(value)
+        .replace(/https?:\/\/\S+/gi,' ')
+        .replace(/www\.\S+/gi,' ')
+        .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)(?:\?\S*)?/gi,' ')
+        .replace(/<[^>]*>/g,' ')
+        .replace(/[#*_~|>`]+/g,' ')
+        .replace(/\[[^\]]*(?:https?|www\.|\.com|\.br|\.org)[^\]]*\]/gi,' ')
+        .replace(/\([^)]*(?:https?|www\.|\.com|\.br|\.org|utm_|source=)[^)]*\)/gi,' ')
+        .replace(/[\/\\]{2,}/g,' ')
+        .replace(/(?:utm_[a-z_]+|ref|source|id|token)=[^\s&]+/gi,' ')
+        .replace(/&[a-z]+;/gi,' ')
+        .replace(/\s+/g,' ')
+        .replace(/\s+([,.;:!?])/g,'$1')
+        .trim();
+    }
     function buildScript(item,presenter){
       const opening=presenter==='deijanete'?'Boa noite. Eu sou Deijanete Fayad.':'Olá. Eu sou Paulo Fayad.';
       const transition=presenter==='deijanete'?'O destaque do Brasil é:':'No cenário internacional, o destaque é:';
-      return `${opening} ${transition} ${item.title}. ${item.summary||''}`.slice(0,1450);
+      const title=sanitizeNewsText(item.title);
+      const summary=sanitizeNewsText(item.summary||'');
+      return sanitizeNewsText(`${opening} ${transition} ${title}. ${summary}`).slice(0,1450);
     }
     async function createTalk(presenter,text){
       const response=await fetch('/api/did-create',{

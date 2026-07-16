@@ -4,7 +4,23 @@ const FEEDS = [
 ];
 
 function clean(value='') {
-  return value.replace(/<!\[CDATA\[|\]\]>/g,'').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/\s+/g,' ').trim();
+  return String(value)
+    .replace(/<!\[CDATA\[|\]\]>/g,'')
+    .replace(/<[^>]+>/g,' ')
+    .replace(/https?:\/\/\S+/gi,' ')
+    .replace(/www\.\S+/gi,' ')
+    .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)(?:\?\S*)?/gi,' ')
+    .replace(/(?:utm_[a-z_]+|ref|source|id|token)=[^\s&]+/gi,' ')
+    .replace(/[#*_~|>`]+/g,' ')
+    .replace(/[\/\\]{2,}/g,' ')
+    .replace(/&nbsp;/g,' ')
+    .replace(/&amp;/g,'&')
+    .replace(/&quot;/g,'"')
+    .replace(/&#39;/g,"'")
+    .replace(/&[a-z]+;/gi,' ')
+    .replace(/\s+/g,' ')
+    .replace(/\s+([,.;:!?])/g,'$1')
+    .trim();
 }
 function parse(xml, source) {
   const items=[];
