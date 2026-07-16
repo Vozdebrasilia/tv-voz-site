@@ -1,0 +1,13 @@
+INTEGRAÇÃO D-ID — VOZ NEWS
+
+1. DID_API_KEY já deve existir no Vercel.
+2. O site busca notícias e cria vídeos pela rota /api/did-create.
+3. Se a conta D-ID já tiver vozes clonadas chamadas Deijanete ou Paulo, o sistema tenta localizá-las automaticamente.
+4. Para garantir as vozes corretas, adicione no Vercel:
+   DEIJANETE_VOICE_ID
+   PAULO_VOICE_ID
+   DEIJANETE_VOICE_PROVIDER
+   PAULO_VOICE_PROVIDER
+5. Sem os IDs clonados, o sistema usa vozes portuguesas de teste da Microsoft.
+6. A clonagem exige gravação com a frase de consentimento da D-ID.
+7. Avatares de fotografia produzem fala, piscadas e movimentos leves de rosto/cabeça. Movimentos reais de mãos exigem Instant Avatar criado a partir de vídeo.
