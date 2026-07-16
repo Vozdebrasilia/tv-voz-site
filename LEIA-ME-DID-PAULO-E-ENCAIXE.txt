@@ -1,0 +1,1 @@
+Correção: vídeo do próximo apresentador é preparado enquanto o atual está no ar; espera máxima 12 minutos; encaixe exato dos recortes no cenário.

@@ -1,0 +1,1 @@
+Correção: espera de até 7 minutos por vídeo D-ID, com consulta contínua até status done.

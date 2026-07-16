@@ -132,6 +132,15 @@
     @media(max-width:980px){.did-deijanete{left:18.2%;top:19.9%;width:29.7%;height:61.9%}.did-paulo{left:51.9%;top:18.3%;width:30.9%;height:63.6%}.studio-headline-panel{width:76%!important}.studio-status{max-width:82%!important}}
     @media(max-width:620px){.studio-headline-panel{top:80px!important;width:82%!important}.studio-headline-panel h3{font-size:11px!important}.studio-status{top:56px!important;max-width:88%!important;font-size:10px!important}.did-loading{bottom:42px;font-size:10px}}
 
+
+    /* Ajuste final de encaixe dos vídeos D-ID no cenário */
+    .studio-avatar-videos{position:absolute!important;inset:0!important;z-index:6!important;overflow:hidden!important;border-radius:32px!important;pointer-events:none!important}
+    .did-avatar-video{position:absolute!important;display:none!important;object-fit:fill!important;object-position:center!important;background:transparent!important;border:0!important;box-shadow:none!important;opacity:0!important;transition:opacity .18s ease!important}
+    .did-avatar-video.active{display:block!important;opacity:1!important}
+    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;clip-path:inset(0 round 2px)!important}
+    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;clip-path:inset(0 round 2px)!important}
+    @media(max-width:980px){.did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important}.did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important}}
+
 </style>
 </head>
 <body>
@@ -278,16 +287,31 @@
       return data;
     }
     async function waitForTalk(id,token){
-      for(let attempt=0;attempt<80;attempt++){
+      const startedAt=Date.now();
+      const maxWaitMs=12*60*1000;
+      let transientErrors=0;
+      while(Date.now()-startedAt<maxWaitMs){
         if(!liveRunning||token!==generationToken) throw new Error('cancelado');
-        const response=await fetch('/api/did-status?id='+encodeURIComponent(id),{cache:'no-store'});
-        const data=await response.json().catch(()=>({}));
-        if(!response.ok) throw new Error(data.error||'Falha ao consultar a D-ID.');
-        if(data.status==='done'&&data.result_url) return data.result_url;
-        if(data.status==='error'||data.status==='rejected') throw new Error(data.error||'A D-ID não conseguiu gerar o vídeo.');
-        await new Promise(resolve=>setTimeout(resolve,1800));
+        try{
+          const response=await fetch('/api/did-status?id='+encodeURIComponent(id)+'&t='+Date.now(),{cache:'no-store'});
+          const data=await response.json().catch(()=>({}));
+          if(!response.ok) throw new Error(data.error||'Falha ao consultar a D-ID.');
+          transientErrors=0;
+          if(data.status==='done'&&data.result_url) return data.result_url;
+          if(data.status==='error'||data.status==='rejected'||data.status==='failed'){
+            const detail=typeof data.error==='string'?data.error:(data.error?.description||data.error?.message||'A D-ID não conseguiu gerar o vídeo.');
+            throw new Error(detail);
+          }
+          const elapsed=Math.max(1,Math.floor((Date.now()-startedAt)/1000));
+          studioStatus.textContent='Gerando vídeo na D-ID • '+elapsed+'s';
+        }catch(error){
+          transientErrors++;
+          if(transientErrors>=6) throw error;
+          studioStatus.textContent='D-ID processando • nova tentativa automática';
+        }
+        await new Promise(resolve=>setTimeout(resolve,3000));
       }
-      throw new Error('A geração do vídeo demorou mais que o esperado.');
+      throw new Error('A D-ID ainda está processando este vídeo. Aguarde alguns minutos e tente novamente.');
     }
     function playVideo(url,presenter,token){
       return new Promise((resolve,reject)=>{
@@ -302,27 +326,38 @@
         if(promise&&promise.catch) promise.catch(reject);
       });
     }
+    async function prepareSegment(index,token){
+      const item=currentNews[index%currentNews.length]||fallbackNews[0];
+      const presenter=presenterFor(index);
+      const created=await createTalk(presenter,buildScript(item,presenter));
+      const resultUrl=created.result_url||await waitForTalk(created.id,token);
+      return {index,item,presenter,resultUrl};
+    }
     async function runLiveSequence(token){
+      let preparedPromise=prepareSegment(currentIndex,token);
       while(liveRunning&&token===generationToken){
-        const item=currentNews[currentIndex%currentNews.length]||fallbackNews[0];
-        const presenter=presenterFor(currentIndex);
+        const currentPresenter=presenterFor(currentIndex);
         updateVisibleHeadline(currentIndex);
-        studioStatus.textContent=(presenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' prepara a manchete.';
+        studioStatus.textContent=(currentPresenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' prepara a manchete.';
         didLoading.classList.add('show');
         try{
-          const created=await createTalk(presenter,buildScript(item,presenter));
-          const resultUrl=created.result_url||await waitForTalk(created.id,token);
+          const segment=await preparedPromise;
           if(!liveRunning||token!==generationToken) break;
+          const nextIndex=(segment.index+1)%currentNews.length;
+          preparedPromise=prepareSegment(nextIndex,token);
           didLoading.classList.remove('show');
-          studioStatus.textContent=(presenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' no ar.';
-          await playVideo(resultUrl,presenter,token);
+          studioStatus.textContent=(segment.presenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' no ar.';
+          updateVisibleHeadline(segment.index);
+          await playVideo(segment.resultUrl,segment.presenter,token);
           if(!liveRunning||token!==generationToken) break;
-          currentIndex=(currentIndex+1)%currentNews.length;
-          await new Promise(resolve=>setTimeout(resolve,700));
+          currentIndex=nextIndex;
+          studioStatus.textContent=(presenterFor(currentIndex)==='deijanete'?'Deijanete Fayad':'Paulo Fayad')+' prepara a próxima manchete.';
+          await new Promise(resolve=>setTimeout(resolve,650));
         }catch(error){
           didLoading.classList.remove('show');
           if(error.message==='cancelado') break;
           liveRunning=false;
+          stopAllVideos();
           studioStatus.textContent=error.message||'Estúdio aguardando configuração das vozes e avatares.';
           break;
         }
