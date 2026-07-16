@@ -246,6 +246,41 @@
     .ticker-track span{display:inline-block!important;visibility:visible!important;opacity:1!important}
     .anchor-name-tag{display:block!important;visibility:visible!important;z-index:22!important}
 
+
+
+    /* AJUSTE TRANSMISSÃO CONTÍNUA: sem cortes, ambos vivos, nomes e legenda visíveis */
+    .idle-avatar{transition:opacity .42s ease!important;will-change:transform,opacity!important}
+    .idle-avatar-body{animation:anchorAlive 5.6s ease-in-out infinite alternate!important;transform-origin:50% 72%!important}
+    .idle-deijanete .idle-avatar-body{animation-delay:-1.2s!important}
+    .idle-paulo .idle-avatar-body{animation-delay:-3.1s!important}
+    @keyframes anchorAlive{
+      0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+      35%{transform:translate3d(.45px,-.75px,0) rotate(.055deg) scale(1.0012)}
+      70%{transform:translate3d(-.35px,-1.15px,0) rotate(-.045deg) scale(1.0018)}
+      100%{transform:translate3d(.25px,-.45px,0) rotate(.035deg) scale(1.0008)}
+    }
+    .idle-avatar::after{content:"";position:absolute;left:18%;right:14%;bottom:7%;height:21%;z-index:3;animation:listeningHands 3.8s ease-in-out infinite alternate;transform-origin:50% 85%;pointer-events:none}
+    @keyframes listeningHands{from{transform:translateY(0) rotate(0deg)}to{transform:translateY(-1.6px) rotate(.08deg)}}
+    .did-avatar-video{display:block!important;visibility:visible!important;opacity:0!important;transition:opacity .42s ease!important;will-change:opacity!important}
+    .did-avatar-video.active{opacity:1!important}
+    /* Recorte apenas do canto onde o fornecedor insere a marca, preservando o avatar e revelando o fallback abaixo */
+    .did-avatar-video{clip-path:polygon(0 0,100% 0,100% 88%,92% 88%,92% 100%,0 100%)!important;-webkit-clip-path:polygon(0 0,100% 0,100% 88%,92% 88%,92% 100%,0 100%)!important}
+    .anchor-name-tag{display:block!important;visibility:visible!important;opacity:1!important;bottom:98px!important;min-width:245px!important;padding:10px 16px 11px!important;z-index:24!important;background:linear-gradient(90deg,rgba(3,20,45,.98),rgba(12,66,116,.97))!important;border-color:#e0ba3f!important}
+    .anchor-name-tag strong{font-size:17px!important;line-height:1.08!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.5)!important}
+    .anchor-name-tag span{font-size:11px!important;color:#f1cf64!important;letter-spacing:.5px!important;text-transform:uppercase!important}
+    .tag-deijanete{left:7.2%!important}.tag-paulo{right:7.2%!important}
+    .studio-headline-panel{bottom:35px!important;width:min(940px,78%)!important;max-width:78%!important;min-height:57px!important;padding:7px 18px 8px!important;text-align:center!important;z-index:23!important}
+    .studio-headline-panel .kicker{font-size:10px!important;color:#f1ca51!important;margin-bottom:3px!important}
+    .studio-headline-panel h3{font-size:clamp(12px,1.12vw,16px)!important;line-height:1.22!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important;color:#fff!important}
+    .ticker-track span{animation-name:marquee!important;animation-duration:44s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-delay:0s!important;animation-play-state:running!important;will-change:transform!important}
+    @media(max-width:620px){
+      .anchor-name-tag{bottom:74px!important;min-width:145px!important;padding:7px 9px!important}
+      .anchor-name-tag strong{font-size:11px!important}.anchor-name-tag span{font-size:7px!important}
+      .tag-deijanete{left:2.5%!important}.tag-paulo{right:2.5%!important}
+      .studio-headline-panel{bottom:27px!important;width:92%!important;max-width:92%!important;min-height:46px!important;padding:5px 8px!important}
+      .studio-headline-panel h3{font-size:9px!important;-webkit-line-clamp:3!important}
+    }
+
 </style>
 </head>
 <body>
@@ -295,9 +330,9 @@
   <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="auto" poster="./studio-deijanete-source.png"></video>
   <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="auto" poster="./studio-paulo-source.png"></video>
 </div>
-<div class="anchor-name-tag tag-deijanete" id="tagDeijanete"><strong>DEIJANETE FAYAD</strong><span>Apresentadora | Brasília e Brasil</span></div>
-<div class="anchor-name-tag tag-paulo" id="tagPaulo"><strong>PAULO FAYAD</strong><span>Apresentador | Brasil e Mundo</span></div>
-<div id="didLoading" class="did-loading">Gerando apresentação com a D-ID…</div>
+<div class="anchor-name-tag tag-deijanete active" id="tagDeijanete"><strong>Dra. Deijanete Fayad</strong><span>Apresentadora</span></div>
+<div class="anchor-name-tag tag-paulo active" id="tagPaulo"><strong>Paulo Fayad</strong><span>Jornalista</span></div>
+<div id="didLoading" class="did-loading">Preparando apresentação…</div>
 <div class="ticker"><span class="ticker-brand"><img src="./logo-voznews.png" alt="VOZ NEWS"/></span><div class="ticker-track"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div></div>
 </section>
 </div>
@@ -377,10 +412,11 @@
     }
     function stopAllVideos(){
       [videoDeijanete,videoPaulo].forEach(video=>{
-        try{video.pause();video.removeAttribute('src');video.load();}catch(e){}
-        video.classList.remove('active'); video.onended=null; video.onerror=null;
+        try{video.pause();}catch(e){}
+        video.classList.remove('active');
+        video.onended=null; video.onerror=null; video.oncanplay=null; video.onloadeddata=null;
       });
-      tagDeijanete.classList.remove('active'); tagPaulo.classList.remove('active');
+      tagDeijanete.classList.add('active'); tagPaulo.classList.add('active');
       idleDeijanete.classList.remove('hidden'); idlePaulo.classList.remove('hidden');
     }
     function stopLive(){
@@ -424,8 +460,8 @@
       return [title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,1200);
     }
     function buildLowerThird(item,presenter){
-      const name=presenter==='deijanete'?'DEIJANETE FAYAD':'PAULO FAYAD';
-      const role=presenter==='deijanete'?'Brasília e Brasil':'Brasil e Mundo';
+      const name=presenter==='deijanete'?'Dra. Deijanete Fayad':'Paulo Fayad';
+      const role=presenter==='deijanete'?'Apresentadora':'Jornalista';
       return {name,role,title:sanitizeNewsText(item.title||'')};
     }
     function buildTickerItems(newsList,extraItems=[]){
@@ -458,57 +494,66 @@
             throw new Error(detail);
           }
           const elapsed=Math.max(1,Math.floor((Date.now()-startedAt)/1000));
-          studioStatus.textContent='Gerando vídeo na D-ID • '+elapsed+'s';
+          studioStatus.textContent='Preparando transmissão • '+elapsed+'s';
         }catch(error){
           transientErrors++;
           if(transientErrors>=6) throw error;
-          studioStatus.textContent='D-ID processando • nova tentativa automática';
+          studioStatus.textContent='Preparando transmissão • nova tentativa automática';
         }
         await new Promise(resolve=>setTimeout(resolve,3000));
       }
-      throw new Error('A D-ID ainda está processando este vídeo. Aguarde alguns minutos e tente novamente.');
+      throw new Error('A transmissão ainda está sendo preparada. Aguarde alguns instantes e tente novamente.');
+    }
+    function preloadVideo(url,presenter){
+      const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
+      if(video.dataset.preloadedUrl===url&&video.readyState>=2) return Promise.resolve(video);
+      return new Promise(resolve=>{
+        let finished=false;
+        const done=()=>{if(finished)return;finished=true;video.dataset.preloadedUrl=url;video.oncanplaythrough=null;video.onloadeddata=null;video.onerror=null;resolve(video);};
+        video.preload='auto';
+        video.src=url;
+        video.oncanplaythrough=done;
+        video.onloadeddata=done;
+        video.onerror=done;
+        video.load();
+        setTimeout(done,12000);
+      });
     }
     function playVideo(url,presenter,token){
-      return new Promise((resolve,reject)=>{
+      return new Promise(async(resolve,reject)=>{
         if(!liveRunning||token!==generationToken){resolve();return;}
-        stopAllVideos();
         const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
-        const tag=presenter==='deijanete'?tagDeijanete:tagPaulo;
         const idle=presenter==='deijanete'?idleDeijanete:idlePaulo;
-        let started=false;
-        const cleanup=()=>{
-          video.pause();
+        const otherVideo=presenter==='deijanete'?videoPaulo:videoDeijanete;
+        const otherIdle=presenter==='deijanete'?idlePaulo:idleDeijanete;
+        let finished=false;
+        const finish=()=>{
+          if(finished)return;
+          finished=true;
           video.classList.remove('active');
-          tag.classList.remove('active');
           idle.classList.remove('hidden');
-          video.oncanplay=null; video.onloadeddata=null; video.onended=null; video.onerror=null;
+          video.onended=null; video.onerror=null;
+          setTimeout(()=>{try{video.pause();}catch(e){} resolve();},430);
         };
-        const startWhenReady=()=>{
-          if(started||!liveRunning||token!==generationToken) return;
-          started=true;
-          video.classList.add('active');
-          tag.classList.add('active');
+        try{
+          await preloadVideo(url,presenter);
+          if(!liveRunning||token!==generationToken){resolve();return;}
+          otherVideo.classList.remove('active');
+          otherIdle.classList.remove('hidden');
+          video.currentTime=0;
+          video.onended=finish;
+          video.onerror=finish;
           const playPromise=video.play();
-          if(playPromise&&playPromise.then){
-            playPromise.then(()=>{
-              requestAnimationFrame(()=>idle.classList.add('hidden'));
-            }).catch(error=>{cleanup();reject(error);});
-          }else{
-            requestAnimationFrame(()=>idle.classList.add('hidden'));
-          }
-        };
-        video.onloadeddata=startWhenReady;
-        video.oncanplay=startWhenReady;
-        video.onended=()=>{cleanup();resolve();};
-        video.onerror=()=>{cleanup();resolve();};
-        video.src=url;
-        video.load();
-        setTimeout(()=>{
-          if(!started){
-            cleanup();
-            resolve();
-          }
-        },15000);
+          if(playPromise&&playPromise.then) await playPromise;
+          requestAnimationFrame(()=>{
+            video.classList.add('active');
+            setTimeout(()=>idle.classList.add('hidden'),180);
+          });
+        }catch(error){
+          idle.classList.remove('hidden');
+          video.classList.remove('active');
+          reject(error);
+        }
       });
     }
     async function prepareSegment(index,token){
@@ -553,10 +598,11 @@
         currentIndex=segment.index;
         const lower=buildLowerThird(segment.item,segment.presenter);
         visibleNewsSource.textContent=lower.name+'  •  '+lower.role;
-        visibleMainHeadline.textContent=lower.title;
+        visibleMainHeadline.textContent=buildAnchorSpeech(segment.item);
+        const nextQueued=pending[0];
+        if(nextQueued){nextQueued.promise.then(next=>preloadVideo(next.resultUrl,next.presenter)).catch(()=>{});}
         try{await playVideo(segment.resultUrl,segment.presenter,token);}catch(e){}
         if(!liveRunning||token!==generationToken) break;
-        await new Promise(resolve=>setTimeout(resolve,450));
       }
     }
     async function startLive(){

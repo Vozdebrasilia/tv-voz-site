@@ -1,0 +1,18 @@
+AJUSTE DE TRANSMISSÃO CONTÍNUA — 16/07/2026
+
+Alterado somente o estúdio no index.html:
+- transição com pré-carregamento e crossfade entre as notícias;
+- remoção do intervalo artificial de 450 ms;
+- avatar ouvinte permanece visível e com movimento discreto;
+- retorno suave do vídeo falante para o avatar em repouso;
+- pequenos movimentos contínuos de corpo e mãos;
+- nomes permanentes e mais visíveis:
+  Dra. Deijanete Fayad — Apresentadora
+  Paulo Fayad — Jornalista
+- legenda principal mostra o texto completo narrado;
+- ticker preservado em execução contínua;
+- recorte visual do canto da marca do fornecedor, preenchido pelo avatar-base abaixo;
+- cenário, bancada, cores, vozes e demais áreas do site preservados.
+
+Validação técnica:
+- JavaScript verificado com node --check, sem erros de sintaxe.
