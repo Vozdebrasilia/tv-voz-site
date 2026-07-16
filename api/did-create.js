@@ -22,7 +22,7 @@ async function resolveVoice(presenter){
 }
 
 function localImageFor(presenter){
-  const filename=presenter==='deijanete'?'studio-deijanete-source.png':'studio-paulo-source.png';
+  const filename=presenter==='deijanete'?'studio-deijanete-source.jpg':'studio-paulo-source.jpg';
   const absolutePath=path.join(process.cwd(), filename);
   if(!fs.existsSync(absolutePath)) throw new Error(`Imagem do apresentador não encontrada: ${filename}`);
   return { filename, absolutePath };
@@ -30,22 +30,25 @@ function localImageFor(presenter){
 
 
 function sanitizeNewsText(value=''){
-  return String(value)
-    .replace(/https?:\/\/\S+/gi,' ')
-    .replace(/www\.\S+/gi,' ')
-    .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)(?:\?\S*)?/gi,' ')
+  let text=String(value||'')
+    .replace(/https?:\/\/[^\s<>()]+/gi,' ')
+    .replace(/www\.[^\s<>()]+/gi,' ')
+    .replace(/\b(?:[a-z0-9]+(?:[._-][a-z0-9]+)*\.)+(?:com|com\.br|org|org\.br|gov\.br|net|io|co|br)(?:\/[^\s]*)?/gi,' ')
+    .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)\b/gi,' ')
     .replace(/<[^>]*>/g,' ')
-    .replace(/`{1,3}[\s\S]*?`{1,3}/g,' ')
-    .replace(/[#*_~|>]+/g,' ')
-    .replace(/\[[^\]]*(?:https?|www\.|\.com|\.br|\.org)[^\]]*\]/gi,' ')
-    .replace(/\([^)]*(?:https?|www\.|\.com|\.br|\.org|utm_|source=)[^)]*\)/gi,' ')
-    .replace(/[\/\\]{2,}/g,' ')
-    .replace(/[_=]{2,}/g,' ')
-    .replace(/(?:utm_[a-z_]+|ref|source|id|token)=[^\s&]+/gi,' ')
+    .replace(/\[[^\]]*\]|\{[^}]*\}/g,' ')
+    .replace(/(?:utm_[a-z_]+|ref|source|id|token|fbclid|gclid)\s*=\s*[^\s&]+/gi,' ')
+    .replace(/[#*_~|>`@]/g,' ')
+    .replace(/[\/\\_=]+/g,' ')
+    .replace(/[—–-]+/g,' e ')
     .replace(/&[a-z]+;/gi,' ')
+    .replace(/\b(?:https?|www|api|rss|xml|json|html|token|undefined|null)\b/gi,' ')
     .replace(/\s+/g,' ')
     .replace(/\s+([,.;:!?])/g,'$1')
     .trim();
+  text=text.replace(/\s+e\s+e\s+/gi,' e ').replace(/^[,.;:!?\s]+|[,;:\s]+$/g,'').trim();
+  if(text&&!/[.!?]$/.test(text)) text+='.';
+  return text;
 }
 
 function uploadedImageUrl(data){
@@ -61,7 +64,7 @@ module.exports = async function handler(req,res){
 
     const { filename, absolutePath }=localImageFor(presenter);
     const imageBuffer=fs.readFileSync(absolutePath);
-    const upload=await didUploadImage(imageBuffer, filename, 'image/png');
+    const upload=await didUploadImage(imageBuffer, filename, 'image/jpeg');
     const sourceUrl=uploadedImageUrl(upload);
     if(!sourceUrl) throw new Error('A D-ID recebeu a imagem, mas não devolveu uma URL utilizável.');
 

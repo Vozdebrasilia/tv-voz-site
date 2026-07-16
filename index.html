@@ -191,6 +191,16 @@
     .ticker span{padding-left:100%!important;white-space:nowrap!important;font-size:11px!important;line-height:30px!important;font-weight:900!important;animation:marquee 58s linear infinite!important}
     .studio-status,.did-loading{display:none!important}
 
+
+    /* FINAL DEFINITIVO: um único vídeo por apresentador, máscara regional e zero duplicação */
+    .studio-avatar-videos{position:absolute!important;inset:0!important;z-index:6!important;overflow:hidden!important;border-radius:32px!important;pointer-events:none!important;isolation:isolate!important}
+    .did-avatar-video{position:absolute!important;display:none!important;object-fit:fill!important;object-position:center!important;border:0!important;background:transparent!important;box-shadow:none!important;opacity:0!important;transition:opacity .18s ease!important;transform:none!important;filter:none!important}
+    .did-avatar-video.active{display:block!important;opacity:1!important}
+    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;-webkit-mask:url('./studio-deijanete-regions-mask.png') center/100% 100% no-repeat!important;mask:url('./studio-deijanete-regions-mask.png') center/100% 100% no-repeat!important;-webkit-mask-mode:alpha!important;mask-mode:alpha!important;clip-path:inset(0)!important}
+    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;-webkit-mask:url('./studio-paulo-regions-mask.png') center/100% 100% no-repeat!important;mask:url('./studio-paulo-regions-mask.png') center/100% 100% no-repeat!important;-webkit-mask-mode:alpha!important;mask-mode:alpha!important;clip-path:inset(0)!important}
+    .anchor-name-tag{opacity:.42!important}.anchor-name-tag.active{opacity:1!important}
+    .studio-status,.did-loading{display:none!important}
+
 </style>
 </head>
 <body>
@@ -232,9 +242,7 @@
 </div>
 <div class="studio-avatar-videos" aria-label="Apresentadores animados pela D-ID">
   <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="metadata"></video>
-  <video id="didVideoDeijaneteHands" class="did-avatar-video did-deijanete did-hands" playsinline preload="metadata" muted></video>
   <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="metadata"></video>
-  <video id="didVideoPauloHands" class="did-avatar-video did-paulo did-hands" playsinline preload="metadata" muted></video>
 </div>
 <div class="anchor-name-tag tag-deijanete" id="tagDeijanete"><strong>DEIJANETE FAYAD</strong><span>Apresentadora | Brasília e Brasil</span></div>
 <div class="anchor-name-tag tag-paulo" id="tagPaulo"><strong>PAULO FAYAD</strong><span>Apresentador | Brasil e Mundo</span></div>
@@ -284,8 +292,6 @@
     const didLoading=document.getElementById('didLoading');
     const videoDeijanete=document.getElementById('didVideoDeijanete');
     const videoPaulo=document.getElementById('didVideoPaulo');
-    const videoDeijaneteHands=document.getElementById('didVideoDeijaneteHands');
-    const videoPauloHands=document.getElementById('didVideoPauloHands');
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
 
@@ -317,7 +323,7 @@
       visibleNewsTicker.textContent=buildTickerItems(currentNews,extras).join('   •   ');
     }
     function stopAllVideos(){
-      [videoDeijanete,videoDeijaneteHands,videoPaulo,videoPauloHands].forEach(video=>{
+      [videoDeijanete,videoPaulo].forEach(video=>{
         try{video.pause();video.removeAttribute('src');video.load();}catch(e){}
         video.classList.remove('active'); video.onended=null; video.onerror=null;
       });
@@ -338,10 +344,11 @@
       text=text
         .replace(/https?:\/\/[^\s<>()]+/gi,' ')
         .replace(/www\.[^\s<>()]+/gi,' ')
-        .replace(/\b(?:[a-z0-9-]+\.)+(?:com|com\.br|org|org\.br|gov\.br|net|io|co|br)(?:\/[^\s]*)?/gi,' ')
+        .replace(/\b(?:[a-z0-9]+(?:[._-][a-z0-9]+)*\.)+(?:com|com\.br|org|org\.br|gov\.br|net|io|co|br)(?:\/[^\s]*)?/gi,' ')
         .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)\b/gi,' ')
         .replace(/<[^>]*>/g,' ')
         .replace(/\[[^\]]*\]|\{[^}]*\}/g,' ')
+        .replace(/\([^)]*(?:https?|www|utm_|token|source|ref|id|api|rss|xml|json)[^)]*\)/gi,' ')
         .replace(/(?:utm_[a-z_]+|ref|source|id|token|fbclid|gclid)\s*=\s*[^\s&]+/gi,' ')
         .replace(/[#*_~|>`@]/g,' ')
         .replace(/[\/\\_=]+/g,' ')
@@ -349,7 +356,9 @@
         .replace(/&[a-z]+;/gi,' ')
         .replace(/\b(?:https?|www|api|rss|xml|json|html|token|undefined|null)\b/gi,' ')
         .replace(/\s+/g,' ')
-        .replace(/\s+([,.;:!?])/g,'$1').trim();
+        .replace(/\s+([,.;:!?])/g,'$1')
+        .trim();
+      text=text.replace(/\s+e\s+e\s+/gi,' e ').replace(/^[,.;:!?\s]+|[,;:\s]+$/g,'').trim();
       if(text&&!/[.!?]$/.test(text)) text+='.';
       return text;
     }
@@ -409,16 +418,16 @@
       return new Promise((resolve,reject)=>{
         if(!liveRunning||token!==generationToken){resolve();return;}
         stopAllVideos();
-        const face=presenter==='deijanete'?videoDeijanete:videoPaulo;
-        const hands=presenter==='deijanete'?videoDeijaneteHands:videoPauloHands;
+        const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
         const tag=presenter==='deijanete'?tagDeijanete:tagPaulo;
-        face.src=url; hands.src=url; hands.muted=true;
-        face.classList.add('active'); hands.classList.add('active'); tag.classList.add('active');
-        const cleanup=()=>{face.classList.remove('active');hands.classList.remove('active');tag.classList.remove('active');};
-        face.onended=()=>{cleanup();resolve();}; face.onerror=()=>{cleanup();reject(new Error('Falha de reprodução.'));};
-        face.onplay=()=>{try{hands.currentTime=face.currentTime;hands.play().catch(()=>{});}catch(e){}};
-        face.ontimeupdate=()=>{if(Math.abs((hands.currentTime||0)-face.currentTime)>.22){try{hands.currentTime=face.currentTime;}catch(e){}}};
-        const p=face.play(); if(p&&p.catch) p.catch(reject);
+        video.src=url;
+        video.classList.add('active');
+        tag.classList.add('active');
+        const cleanup=()=>{video.classList.remove('active');tag.classList.remove('active');};
+        video.onended=()=>{cleanup();resolve();};
+        video.onerror=()=>{cleanup();reject(new Error('Falha de reprodução.'));};
+        const p=video.play();
+        if(p&&p.catch) p.catch(error=>{cleanup();reject(error);});
       });
     }
     async function prepareSegment(index,token){
@@ -428,21 +437,45 @@
       const resultUrl=created.result_url||await waitForTalk(created.id,token);
       return {index,item,presenter,resultUrl};
     }
+    const segmentCache=new Map();
+    async function cachedPrepare(index,token){
+      const item=currentNews[index%currentNews.length]||fallbackNews[0];
+      const presenter=presenterFor(index);
+      const key=presenter+'|'+sanitizeNewsText(item.title||'')+'|'+sanitizeNewsText(item.summary||'');
+      if(segmentCache.has(key)) return segmentCache.get(key);
+      const promise=prepareSegment(index,token).catch(error=>{segmentCache.delete(key);throw error;});
+      segmentCache.set(key,promise);
+      return promise;
+    }
     async function runLiveSequence(token){
-      let queue=[]; let nextToPrepare=currentIndex;
-      const fillQueue=()=>{while(queue.length<3){const index=nextToPrepare%currentNews.length;queue.push({index,promise:prepareSegment(index,token)});nextToPrepare=(nextToPrepare+1)%currentNews.length;}};
-      fillQueue();
+      let nextToPrepare=currentIndex;
+      const pending=[];
+      const refill=()=>{
+        while(pending.length<5){
+          const index=nextToPrepare%currentNews.length;
+          pending.push({index,promise:cachedPrepare(index,token)});
+          nextToPrepare=(nextToPrepare+1)%currentNews.length;
+        }
+      };
+      refill();
+      try{
+        await Promise.all([pending[0].promise,pending[1].promise]);
+      }catch(e){}
       while(liveRunning&&token===generationToken){
-        try{
-          const queued=queue.shift(); fillQueue(); const segment=await queued.promise;
-          if(!liveRunning||token!==generationToken) break;
-          currentIndex=segment.index; updateVisibleHeadline(segment.index);
-          const lower=buildLowerThird(segment.item,segment.presenter);
-          visibleNewsSource.textContent=lower.name+'  •  '+lower.role; visibleMainHeadline.textContent=lower.title;
-          await playVideo(segment.resultUrl,segment.presenter,token);
-          if(!liveRunning||token!==generationToken) break;
-          await new Promise(resolve=>setTimeout(resolve,550));
-        }catch(error){if(error.message==='cancelado') break;queue=[];fillQueue();await new Promise(resolve=>setTimeout(resolve,500));}
+        let segment=null;
+        while(pending.length&&liveRunning&&token===generationToken){
+          const queued=pending.shift();
+          refill();
+          try{segment=await queued.promise;break;}catch(e){segment=null;}
+        }
+        if(!segment||!liveRunning||token!==generationToken) break;
+        currentIndex=segment.index;
+        const lower=buildLowerThird(segment.item,segment.presenter);
+        visibleNewsSource.textContent=lower.name+'  •  '+lower.role;
+        visibleMainHeadline.textContent=lower.title;
+        try{await playVideo(segment.resultUrl,segment.presenter,token);}catch(e){}
+        if(!liveRunning||token!==generationToken) break;
+        await new Promise(resolve=>setTimeout(resolve,450));
       }
     }
     async function startLive(){
@@ -451,7 +484,6 @@
       await loadTickerData();
       liveRunning=true;
       const token=++generationToken;
-      studioStatus.textContent='Conectando o estúdio à D-ID.';
       runLiveSequence(token);
     }
     function nextHeadline(){
