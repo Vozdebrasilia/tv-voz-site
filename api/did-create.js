@@ -53,6 +53,12 @@ module.exports = async function handler(req,res){
         input:text,
         provider:{type:voice.provider,voice_id:voice.id}
       },
+      config:{
+        stitch:true,
+        result_format:'mp4',
+        fluent:true,
+        pad_audio:0
+      },
       name:`VOZ NEWS - ${presenter}`,
       user_data:JSON.stringify({presenter,cloned_voice:voice.cloned})
     };
