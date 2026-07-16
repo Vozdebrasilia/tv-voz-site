@@ -1,0 +1,11 @@
+Correção V28
+
+Base usada: ZIP anexado pela usuária.
+Alterações restritas ao estúdio:
+- corrigidos caminhos inexistentes das imagens de repouso dos apresentadores;
+- imagens de Deijanete e Paulo permanecem visíveis como fallback;
+- vídeo falante só oculta a imagem de repouso depois de carregar e iniciar;
+- em falha do vídeo, a imagem de repouso permanece visível;
+- removidas máscaras inexistentes que ocultavam os vídeos;
+- lower third e ticker forçados a permanecer visíveis no rodapé;
+- restante do site preservado.

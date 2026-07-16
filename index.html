@@ -228,6 +228,24 @@
     .anchor-name-tag{bottom:91px!important;background:linear-gradient(90deg,rgba(6,28,58,.97),rgba(25,100,167,.94))!important}
     @media(max-width:620px){.ticker{grid-template-columns:78px 1fr!important}.ticker-brand img{max-width:64px!important}.ticker-track span{font-size:9px!important}}
 
+
+    /* CORREÇÃO V28: avatares visíveis, fallback seguro e rodapé sempre aparente */
+    .live-studio{position:relative!important;overflow:hidden!important;min-height:820px!important;background-position:center!important;background-size:cover!important}
+    .studio-avatar-videos{position:absolute!important;inset:0!important;z-index:6!important;overflow:hidden!important;pointer-events:none!important}
+    .idle-avatar{display:block!important;visibility:visible!important;opacity:1!important;background:transparent!important;overflow:hidden!important}
+    .idle-avatar.hidden{opacity:0!important;visibility:hidden!important}
+    .idle-avatar img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;object-fit:fill!important;background:transparent!important}
+    .idle-avatar-body{animation:idleBreath 4.8s ease-in-out infinite alternate!important}
+    .did-avatar-video{visibility:hidden!important;display:block!important;opacity:0!important;background:transparent!important;z-index:8!important;pointer-events:none!important;object-fit:fill!important}
+    .did-avatar-video.active{visibility:visible!important;display:block!important;opacity:1!important}
+    .did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;-webkit-mask:none!important;mask:none!important;clip-path:none!important}
+    .did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;-webkit-mask:none!important;mask:none!important;clip-path:none!important}
+    .studio-headline-panel{display:block!important;visibility:visible!important;opacity:1!important;left:50%!important;transform:translateX(-50%)!important;bottom:34px!important;top:auto!important;z-index:20!important}
+    .ticker{display:grid!important;visibility:visible!important;opacity:1!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:32px!important;z-index:21!important}
+    .ticker-track,.ticker-brand{display:flex!important;visibility:visible!important;opacity:1!important}
+    .ticker-track span{display:inline-block!important;visibility:visible!important;opacity:1!important}
+    .anchor-name-tag{display:block!important;visibility:visible!important;z-index:22!important}
+
 </style>
 </head>
 <body>
@@ -269,15 +287,13 @@
 </div>
 <div class="studio-avatar-videos" aria-label="Apresentadores permanentes da VOZ NEWS">
   <div id="idleDeijanete" class="idle-avatar idle-deijanete" aria-label="Deijanete Fayad em repouso">
-    <img class="idle-avatar-body" src="./studio-deijanete-body.png" alt="Deijanete Fayad"/>
-    <img class="idle-avatar-hands" src="./studio-deijanete-hands.png" alt="" aria-hidden="true"/>
+    <img class="idle-avatar-body" src="./studio-deijanete-source.png" alt="Deijanete Fayad"/>
   </div>
   <div id="idlePaulo" class="idle-avatar idle-paulo" aria-label="Paulo Fayad em repouso">
-    <img class="idle-avatar-body" src="./studio-paulo-body.png" alt="Paulo Fayad"/>
-    <img class="idle-avatar-hands" src="./studio-paulo-hands.png" alt="" aria-hidden="true"/>
+    <img class="idle-avatar-body" src="./studio-paulo-source.png" alt="Paulo Fayad"/>
   </div>
-  <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="metadata"></video>
-  <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="metadata"></video>
+  <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="auto" poster="./studio-deijanete-source.png"></video>
+  <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="auto" poster="./studio-paulo-source.png"></video>
 </div>
 <div class="anchor-name-tag tag-deijanete" id="tagDeijanete"><strong>DEIJANETE FAYAD</strong><span>Apresentadora | Brasília e Brasil</span></div>
 <div class="anchor-name-tag tag-paulo" id="tagPaulo"><strong>PAULO FAYAD</strong><span>Apresentador | Brasil e Mundo</span></div>
@@ -459,15 +475,40 @@
         const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
         const tag=presenter==='deijanete'?tagDeijanete:tagPaulo;
         const idle=presenter==='deijanete'?idleDeijanete:idlePaulo;
-        video.src=url;
-        idle.classList.add('hidden');
-        video.classList.add('active');
-        tag.classList.add('active');
-        const cleanup=()=>{video.classList.remove('active');tag.classList.remove('active');idle.classList.remove('hidden');};
+        let started=false;
+        const cleanup=()=>{
+          video.pause();
+          video.classList.remove('active');
+          tag.classList.remove('active');
+          idle.classList.remove('hidden');
+          video.oncanplay=null; video.onloadeddata=null; video.onended=null; video.onerror=null;
+        };
+        const startWhenReady=()=>{
+          if(started||!liveRunning||token!==generationToken) return;
+          started=true;
+          video.classList.add('active');
+          tag.classList.add('active');
+          const playPromise=video.play();
+          if(playPromise&&playPromise.then){
+            playPromise.then(()=>{
+              requestAnimationFrame(()=>idle.classList.add('hidden'));
+            }).catch(error=>{cleanup();reject(error);});
+          }else{
+            requestAnimationFrame(()=>idle.classList.add('hidden'));
+          }
+        };
+        video.onloadeddata=startWhenReady;
+        video.oncanplay=startWhenReady;
         video.onended=()=>{cleanup();resolve();};
-        video.onerror=()=>{cleanup();reject(new Error('Falha de reprodução.'));};
-        const p=video.play();
-        if(p&&p.catch) p.catch(error=>{cleanup();reject(error);});
+        video.onerror=()=>{cleanup();resolve();};
+        video.src=url;
+        video.load();
+        setTimeout(()=>{
+          if(!started){
+            cleanup();
+            resolve();
+          }
+        },15000);
       });
     }
     async function prepareSegment(index,token){
