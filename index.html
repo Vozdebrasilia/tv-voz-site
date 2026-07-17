@@ -1259,6 +1259,30 @@
   #tv-ao-vivo .studio-status::after{content:" • AO VIVO"}
 }
 
+
+/* FALA IMEDIATA ENQUANTO O VÍDEO REAL É PREPARADO */
+#tv-ao-vivo .instant-mouth{
+  position:absolute!important;
+  z-index:12!important;
+  display:block!important;
+  width:8.2%!important;
+  height:2.2%!important;
+  border-radius:50%!important;
+  background:rgba(65,8,12,.78)!important;
+  opacity:0!important;
+  transform:scaleY(.18)!important;
+  transform-origin:center!important;
+  pointer-events:none!important;
+  box-shadow:inset 0 1px 1px rgba(255,180,180,.35)!important;
+}
+#tv-ao-vivo .idle-deijanete .instant-mouth{left:52.4%!important;top:25.6%!important}
+#tv-ao-vivo .idle-paulo .instant-mouth{left:51.1%!important;top:25.7%!important;width:7.6%!important;background:rgba(55,7,9,.72)!important}
+#tv-ao-vivo .idle-avatar.instant-speaking .instant-mouth{opacity:.95!important;animation:instantLipSync .18s ease-in-out infinite alternate!important}
+#tv-ao-vivo .idle-avatar.instant-speaking .idle-avatar-body{animation:instantPresenterTalk 1.35s ease-in-out infinite!important}
+@keyframes instantLipSync{0%{transform:scaleY(.15) scaleX(.88)}45%{transform:scaleY(1.15) scaleX(1.05)}100%{transform:scaleY(.38) scaleX(.94)}}
+@keyframes instantPresenterTalk{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}30%{transform:translate3d(.8px,-1.2px,0) rotate(.10deg)}65%{transform:translate3d(-.6px,-.4px,0) rotate(-.07deg)}}
+#tv-ao-vivo .idle-avatar:not(.instant-speaking) .instant-mouth{opacity:0!important}
+
 </style>
 </head>
 <body>
@@ -1300,10 +1324,10 @@
 </div>
 <div class="studio-avatar-videos" aria-label="Apresentadores permanentes da VOZ NEWS">
   <div id="idleDeijanete" class="idle-avatar idle-deijanete" aria-label="Deijanete Fayad em repouso">
-    <img class="idle-avatar-body" src="./studio-deijanete-source.png" alt="Deijanete Fayad"/>
+    <img class="idle-avatar-body" src="./studio-deijanete-source.png" alt="Deijanete Fayad"/><span class="instant-mouth" aria-hidden="true"></span>
   </div>
   <div id="idlePaulo" class="idle-avatar idle-paulo" aria-label="Paulo Fayad em repouso">
-    <img class="idle-avatar-body" src="./studio-paulo-source.png" alt="Paulo Fayad"/>
+    <img class="idle-avatar-body" src="./studio-paulo-source.png" alt="Paulo Fayad"/><span class="instant-mouth" aria-hidden="true"></span>
   </div>
   <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="auto" poster="./studio-deijanete-source.png"></video>
   <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="auto" poster="./studio-paulo-source.png"></video>
@@ -1412,6 +1436,7 @@
       generationToken++;
       stopAllVideos();
       didLoading.classList.remove('show');
+      stopInstantSpeech();
       studioStatus.textContent='Boletim pausado.';
     }
     function presenterFor(index){
@@ -1455,6 +1480,72 @@
     function buildTickerItems(newsList,extraItems=[]){
       return [...extraItems,...(newsList||[]).map(item=>sanitizeNewsText(item.title||''))].map(sanitizeNewsText).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,24);
     }
+
+    let instantSpeechTimer=null;
+    let instantSpeakingPresenter=null;
+    function setInstantTalking(presenter,on){
+      const target=presenter==='deijanete'?idleDeijanete:idlePaulo;
+      const other=presenter==='deijanete'?idlePaulo:idleDeijanete;
+      target.classList.toggle('instant-speaking',!!on);
+      if(on) other.classList.remove('instant-speaking');
+      if(!on&&instantSpeakingPresenter===presenter) instantSpeakingPresenter=null;
+      if(on) instantSpeakingPresenter=presenter;
+    }
+    function stopInstantSpeech(){
+      if(instantSpeechTimer){clearTimeout(instantSpeechTimer);instantSpeechTimer=null;}
+      try{window.speechSynthesis?.cancel();}catch(e){}
+      setInstantTalking('deijanete',false);
+      setInstantTalking('paulo',false);
+    }
+    function browserVoiceFor(presenter){
+      const voices=window.speechSynthesis?.getVoices?.()||[];
+      const pt=voices.filter(v=>/^pt(-|_)/i.test(v.lang||''));
+      if(!pt.length) return voices[0]||null;
+      if(presenter==='deijanete') return pt.find(v=>/female|francisca|helena|luciana|maria/i.test(v.name||''))||pt[0];
+      return pt.find(v=>/male|antonio|daniel|ricardo|paulo/i.test(v.name||''))||pt[pt.length-1];
+    }
+    function speakInstant(item,presenter,token,next){
+      if(!liveRunning||token!==generationToken) return;
+      const text=buildAnchorSpeech(item).slice(0,520);
+      visibleNewsSource.textContent=sanitizeNewsText(item.source||'TV Voz NEWS');
+      visibleMainHeadline.textContent=text;
+      setInstantTalking(presenter,true);
+      if(!('speechSynthesis' in window)||!window.SpeechSynthesisUtterance){
+        instantSpeechTimer=setTimeout(()=>{setInstantTalking(presenter,false);next();},Math.max(4500,Math.min(11000,text.length*52)));
+        return;
+      }
+      try{
+        const utter=new SpeechSynthesisUtterance(text);
+        utter.lang='pt-BR';
+        utter.rate=1.04;
+        utter.pitch=presenter==='deijanete'?1.06:.92;
+        utter.volume=1;
+        const voice=browserVoiceFor(presenter); if(voice) utter.voice=voice;
+        let ended=false;
+        const finish=()=>{if(ended)return;ended=true;setInstantTalking(presenter,false);instantSpeechTimer=setTimeout(next,120);};
+        utter.onend=finish; utter.onerror=finish;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utter);
+        instantSpeechTimer=setTimeout(finish,Math.max(6500,Math.min(16000,text.length*70)));
+      }catch(e){
+        instantSpeechTimer=setTimeout(()=>{setInstantTalking(presenter,false);next();},Math.max(4500,Math.min(11000,text.length*52)));
+      }
+    }
+    function startInstantFallback(token){
+      stopInstantSpeech();
+      let localIndex=currentIndex;
+      const loop=()=>{
+        if(!liveRunning||token!==generationToken) return;
+        const activeDid=videoDeijanete.classList.contains('active')||videoPaulo.classList.contains('active');
+        if(activeDid){instantSpeechTimer=setTimeout(loop,600);return;}
+        const item=currentNews[localIndex%currentNews.length]||fallbackNews[0];
+        const presenter=presenterFor(localIndex);
+        localIndex=(localIndex+1)%Math.max(1,currentNews.length);
+        speakInstant(item,presenter,token,loop);
+      };
+      loop();
+    }
+
     async function createTalk(presenter,text){
       const response=await fetch('/api/did-create',{
         method:'POST',
@@ -1533,6 +1624,7 @@
           video.currentTime=0;
           video.onended=finish;
           video.onerror=finish;
+          stopInstantSpeech();
           const playPromise=video.play();
           if(playPromise&&playPromise.then) await playPromise;
           requestAnimationFrame(()=>{
@@ -1597,10 +1689,11 @@
     }
     async function startLive(){
       stopLive();
-      await loadNews();
-      await loadTickerData();
       liveRunning=true;
       const token=++generationToken;
+      studioStatus.textContent='Jornal ao vivo iniciado.';
+      startInstantFallback(token);
+      loadNews().then(()=>loadTickerData()).catch(()=>{});
       runLiveSequence(token);
     }
     function nextHeadline(){
@@ -1625,7 +1718,7 @@ Telefone: ${telefone}
 Cidade/UF: ${cidade}
 Área de interesse: ${interesse}
 Mensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURIComponent(texto),'_blank','noopener');});}
-    window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);window.__vozAutoLiveStarted=false;setTimeout(()=>{if(!window.__vozAutoLiveStarted){window.__vozAutoLiveStarted=true;startLive().catch(()=>{});}},1200);});
+    window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);window.__vozAutoLiveStarted=false;setTimeout(()=>{if(!window.__vozAutoLiveStarted){window.__vozAutoLiveStarted=true;startLive().catch(()=>{});}},500);});
   
 
     /* Mercado e clima em tempo real — faixa branca */
@@ -1683,6 +1776,7 @@ Mensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURI
     updateMarketStrip();
     setInterval(updateMarketStrip,300000);
 
+    ['click','touchstart','keydown'].forEach(evt=>window.addEventListener(evt,()=>{try{if(window.speechSynthesis?.paused)window.speechSynthesis.resume();}catch(e){}},{once:true,passive:true}));
 </script>
 </body>
 </html>
