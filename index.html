@@ -785,7 +785,7 @@
 }
 #tv-ao-vivo .ticker-brand{display:none!important;width:0!important;min-width:0!important;max-width:0!important;overflow:hidden!important}
 #tv-ao-vivo .ticker-track{display:block!important;flex:1 1 auto!important;min-width:0!important;height:42px!important;overflow:hidden!important}
-#tv-ao-vivo .ticker-runner{display:flex!important;align-items:center!important;height:42px!important;animation:tickerHotNews 28s linear infinite!important;will-change:transform!important}
+#tv-ao-vivo .ticker-runner{display:flex!important;align-items:center!important;height:42px!important;animation:tickerHotNews 42s linear infinite!important;will-change:transform!important}
 #tv-ao-vivo .ticker-runner span{
   display:inline-block!important;
   white-space:nowrap!important;
@@ -876,7 +876,7 @@
 }
 #tv-ao-vivo .ticker-brand{display:none!important;width:0!important;min-width:0!important;max-width:0!important;overflow:hidden!important}
 #tv-ao-vivo .ticker-track{display:block!important;flex:1 1 auto!important;min-width:0!important;height:48px!important;overflow:hidden!important}
-#tv-ao-vivo .ticker-runner{display:flex!important;align-items:center!important;height:48px!important;animation:tickerHotNewsFinal 28s linear infinite!important;will-change:transform!important}
+#tv-ao-vivo .ticker-runner{display:flex!important;align-items:center!important;height:48px!important;animation:tickerHotNewsFinal 30s linear infinite!important;will-change:transform!important}
 #tv-ao-vivo .ticker-runner span{
   display:inline-block!important;
   white-space:nowrap!important;
@@ -1595,7 +1595,7 @@
           if(transientErrors>=6) throw error;
           studioStatus.textContent='Preparando transmissão • nova tentativa automática';
         }
-        await new Promise(resolve=>setTimeout(resolve,3000));
+        await new Promise(resolve=>setTimeout(resolve,1800));
       }
       throw new Error('A transmissão ainda está sendo preparada. Aguarde alguns instantes e tente novamente.');
     }
@@ -1611,7 +1611,7 @@
         video.onloadeddata=done;
         video.onerror=done;
         video.load();
-        setTimeout(done,12000);
+        setTimeout(done,7000);
       });
     }
     function playVideo(url,presenter,token){
@@ -1637,7 +1637,7 @@
           if(!liveRunning||token!==generationToken){resolve();return;}
           otherVideo.classList.remove('active');
           otherIdle.classList.remove('hidden');
-          video.muted=false; video.volume=1; video.currentTime=0;
+          video.muted=false;video.volume=1;video.setAttribute('playsinline','');video.currentTime=0;
           video.muted=false; video.defaultMuted=false; video.volume=1;
           video.onended=finish;
           video.onerror=finish;
