@@ -1283,6 +1283,14 @@
 @keyframes instantPresenterTalk{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}30%{transform:translate3d(.8px,-1.2px,0) rotate(.10deg)}65%{transform:translate3d(-.6px,-.4px,0) rotate(-.07deg)}}
 #tv-ao-vivo .idle-avatar:not(.instant-speaking) .instant-mouth{opacity:0!important}
 
+
+/* ACESSO CONFIÁVEL ÀS VOZES REAIS — sem voz sintética do navegador */
+.enter-live-overlay{position:absolute;inset:0;z-index:100;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:rgba(3,10,22,.38);backdrop-filter:blur(2px);pointer-events:auto}
+.enter-live-overlay.show{display:flex}
+.enter-live-overlay button{border:0;border-radius:999px;padding:18px 28px;background:linear-gradient(180deg,#ffd94d,#d8a718);color:#161000;font-size:18px;font-weight:1000;letter-spacing:.4px;box-shadow:0 14px 34px rgba(0,0,0,.38),0 0 24px rgba(255,205,38,.28);cursor:pointer}
+.enter-live-overlay span{color:#fff;font-size:13px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+@media(max-width:620px){.enter-live-overlay button{padding:13px 18px;font-size:12px}.enter-live-overlay span{font-size:9px}}
+
 </style>
 </head>
 <body>
@@ -1307,6 +1315,7 @@
 <div class="seal-box"><img alt="Selo 40 anos TV Voz de Brasília" class="seal-img" src="./selo-40anos-transparente.png"/><div class="seal-text"><strong>40 anos</strong><span>de credibilidade</span></div></div>
 </div>
 <section aria-label="TV Voz NEWS ao vivo" class="live-studio" id="tv-ao-vivo">
+<div id="enterLiveOverlay" class="enter-live-overlay"><button id="enterLiveButton" type="button">▶ ENTRAR NO JORNAL AO VIVO</button><span>Vozes reais de Deijanete Fayad e Paulo Fayad</span></div>
 <div class="live-badge">● AO VIVO</div>
 <div class="studio-topline">VOZ NEWS • BRASÍLIA • BRASIL • MUNDO</div>
 <div class="studio-controls">
@@ -1436,7 +1445,6 @@
       generationToken++;
       stopAllVideos();
       didLoading.classList.remove('show');
-      stopInstantSpeech();
       studioStatus.textContent='Boletim pausado.';
     }
     function presenterFor(index){
@@ -1479,71 +1487,6 @@
     }
     function buildTickerItems(newsList,extraItems=[]){
       return [...extraItems,...(newsList||[]).map(item=>sanitizeNewsText(item.title||''))].map(sanitizeNewsText).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,24);
-    }
-
-    let instantSpeechTimer=null;
-    let instantSpeakingPresenter=null;
-    function setInstantTalking(presenter,on){
-      const target=presenter==='deijanete'?idleDeijanete:idlePaulo;
-      const other=presenter==='deijanete'?idlePaulo:idleDeijanete;
-      target.classList.toggle('instant-speaking',!!on);
-      if(on) other.classList.remove('instant-speaking');
-      if(!on&&instantSpeakingPresenter===presenter) instantSpeakingPresenter=null;
-      if(on) instantSpeakingPresenter=presenter;
-    }
-    function stopInstantSpeech(){
-      if(instantSpeechTimer){clearTimeout(instantSpeechTimer);instantSpeechTimer=null;}
-      try{window.speechSynthesis?.cancel();}catch(e){}
-      setInstantTalking('deijanete',false);
-      setInstantTalking('paulo',false);
-    }
-    function browserVoiceFor(presenter){
-      const voices=window.speechSynthesis?.getVoices?.()||[];
-      const pt=voices.filter(v=>/^pt(-|_)/i.test(v.lang||''));
-      if(!pt.length) return voices[0]||null;
-      if(presenter==='deijanete') return pt.find(v=>/female|francisca|helena|luciana|maria/i.test(v.name||''))||pt[0];
-      return pt.find(v=>/male|antonio|daniel|ricardo|paulo/i.test(v.name||''))||pt[pt.length-1];
-    }
-    function speakInstant(item,presenter,token,next){
-      if(!liveRunning||token!==generationToken) return;
-      const text=buildAnchorSpeech(item).slice(0,520);
-      visibleNewsSource.textContent=sanitizeNewsText(item.source||'TV Voz NEWS');
-      visibleMainHeadline.textContent=text;
-      setInstantTalking(presenter,true);
-      if(!('speechSynthesis' in window)||!window.SpeechSynthesisUtterance){
-        instantSpeechTimer=setTimeout(()=>{setInstantTalking(presenter,false);next();},Math.max(4500,Math.min(11000,text.length*52)));
-        return;
-      }
-      try{
-        const utter=new SpeechSynthesisUtterance(text);
-        utter.lang='pt-BR';
-        utter.rate=1.04;
-        utter.pitch=presenter==='deijanete'?1.06:.92;
-        utter.volume=1;
-        const voice=browserVoiceFor(presenter); if(voice) utter.voice=voice;
-        let ended=false;
-        const finish=()=>{if(ended)return;ended=true;setInstantTalking(presenter,false);instantSpeechTimer=setTimeout(next,120);};
-        utter.onend=finish; utter.onerror=finish;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utter);
-        instantSpeechTimer=setTimeout(finish,Math.max(6500,Math.min(16000,text.length*70)));
-      }catch(e){
-        instantSpeechTimer=setTimeout(()=>{setInstantTalking(presenter,false);next();},Math.max(4500,Math.min(11000,text.length*52)));
-      }
-    }
-    function startInstantFallback(token){
-      stopInstantSpeech();
-      let localIndex=currentIndex;
-      const loop=()=>{
-        if(!liveRunning||token!==generationToken) return;
-        const activeDid=videoDeijanete.classList.contains('active')||videoPaulo.classList.contains('active');
-        if(activeDid){instantSpeechTimer=setTimeout(loop,600);return;}
-        const item=currentNews[localIndex%currentNews.length]||fallbackNews[0];
-        const presenter=presenterFor(localIndex);
-        localIndex=(localIndex+1)%Math.max(1,currentNews.length);
-        speakInstant(item,presenter,token,loop);
-      };
-      loop();
     }
 
     async function createTalk(presenter,text){
@@ -1624,8 +1567,7 @@
           video.currentTime=0;
           video.onended=finish;
           video.onerror=finish;
-          stopInstantSpeech();
-          const playPromise=video.play();
+              const playPromise=video.play();
           if(playPromise&&playPromise.then) await playPromise;
           requestAnimationFrame(()=>{
             video.classList.add('active');
@@ -1691,9 +1633,9 @@
       stopLive();
       liveRunning=true;
       const token=++generationToken;
-      studioStatus.textContent='Jornal ao vivo iniciado.';
-      startInstantFallback(token);
-      loadNews().then(()=>loadTickerData()).catch(()=>{});
+      studioStatus.textContent='Preparando as vozes reais de Deijanete e Paulo…';
+      await loadNews();
+      await loadTickerData();
       runLiveSequence(token);
     }
     function nextHeadline(){
@@ -1704,6 +1646,7 @@
     document.getElementById('startLiveNews').addEventListener('click',startLive);
     document.getElementById('stopLiveNews').addEventListener('click',stopLive);
     document.getElementById('nextHeadline').addEventListener('click',nextHeadline);
+    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{document.getElementById('enterLiveOverlay')?.classList.remove('show');await startLive();});
 
     document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{const interest=link.getAttribute('data-interest');setTimeout(()=>{const select=document.getElementById('formInterest');if(select&&interest){for(const option of select.options){if(option.text===interest||option.value===interest){select.value=option.value||option.text;break;}}document.getElementById('formName')?.focus();}},250);}));
 
@@ -1718,7 +1661,7 @@ Telefone: ${telefone}
 Cidade/UF: ${cidade}
 Área de interesse: ${interesse}
 Mensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURIComponent(texto),'_blank','noopener');});}
-    window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);window.__vozAutoLiveStarted=false;setTimeout(()=>{if(!window.__vozAutoLiveStarted){window.__vozAutoLiveStarted=true;startLive().catch(()=>{});}},500);});
+    window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);document.getElementById('enterLiveOverlay')?.classList.add('show');});
   
 
     /* Mercado e clima em tempo real — faixa branca */
@@ -1774,9 +1717,7 @@ Mensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURI
       if(marketInfoClone)marketInfoClone.textContent=text;
     }
     updateMarketStrip();
-    setInterval(updateMarketStrip,300000);
-
-    ['click','touchstart','keydown'].forEach(evt=>window.addEventListener(evt,()=>{try{if(window.speechSynthesis?.paused)window.speechSynthesis.resume();}catch(e){}},{once:true,passive:true}));
+    setInterval(updateMarketStrip,300000);}catch(e){}},{once:true,passive:true}));
 </script>
 </body>
 </html>
