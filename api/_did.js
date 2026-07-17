@@ -1,7 +1,8 @@
 function didAuthHeader() {
   const key = process.env.DID_API_KEY || '';
   if (!key) throw new Error('DID_API_KEY não configurada no Vercel.');
-  return key.startsWith('Basic ') ? key : `Basic ${key}`;
+  
+  return key;
 }
 
 async function parseDidResponse(response) {
