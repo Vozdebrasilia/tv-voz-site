@@ -945,7 +945,7 @@
   align-items:center!important;
   width:max-content!important;
   height:42px!important;
-  animation:marketContinuous 56s linear infinite!important;
+  animation:marketContinuous 40s linear infinite!important;
   will-change:transform!important;
 }
 #tv-ao-vivo .market-runner span{
@@ -1140,7 +1140,7 @@
   100%{transform:translateY(-1px) scale(1.03);box-shadow:0 0 16px rgba(255,106,0,.48),0 0 24px rgba(255,180,0,.26), inset 0 2px 5px rgba(255,229,154,.45)}
 }
 #tv-ao-vivo .ticker-track{min-width:0!important;height:33px!important;overflow:hidden!important}
-#tv-ao-vivo .ticker-runner{display:flex!important;align-items:center!important;width:max-content!important;height:33px!important;animation:vozTickerHot 42s linear infinite!important;will-change:transform!important}
+#tv-ao-vivo .ticker-runner{display:flex!important;align-items:center!important;width:max-content!important;height:33px!important;animation:vozTickerHot 30s linear infinite!important;will-change:transform!important}
 #tv-ao-vivo .ticker-runner span{
   display:block!important;
   flex:0 0 auto!important;
@@ -1297,6 +1297,54 @@
 #tv-ao-vivo .ticker-runner{animation-duration:34s!important}
 #tv-ao-vivo .did-avatar-video{volume:1}
 
+
+/* CORREÇÃO DE MOVIMENTO VISÍVEL E FAIXAS MAIS RÁPIDAS */
+#tv-ao-vivo .idle-avatar-body{animation:vozAvatarAlive 3.6s ease-in-out infinite!important;transform-origin:50% 76%!important}
+#tv-ao-vivo .idle-deijanete .idle-avatar-body{animation-delay:-.8s!important}
+#tv-ao-vivo .idle-paulo .idle-avatar-body{animation-delay:-2.1s!important}
+@keyframes vozAvatarAlive{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  25%{transform:translate3d(.8px,-1.2px,0) rotate(.08deg) scale(1.001)}
+  55%{transform:translate3d(-.6px,-.4px,0) rotate(-.06deg) scale(1.002)}
+  78%{transform:translate3d(.4px,-.9px,0) rotate(.04deg) scale(1.001)}
+}
+#tv-ao-vivo .market-runner{animation-duration:40s!important}
+#tv-ao-vivo .ticker-runner{animation-duration:30s!important}
+
+
+/* CORREÇÃO DE EMERGÊNCIA — movimento visível enquanto a D-ID prepara o vídeo */
+#tv-ao-vivo .idle-avatar{opacity:1!important;visibility:visible!important;display:block!important}
+#tv-ao-vivo .idle-avatar .idle-avatar-body{animation:vozAvatarAlive 3.1s ease-in-out infinite!important}
+#tv-ao-vivo .idle-deijanete .idle-avatar-body{animation-delay:-.8s!important}
+#tv-ao-vivo .idle-paulo .idle-avatar-body{animation-delay:-2.1s!important}
+
+
+/* AJUSTE — logo superior menor, faixas mais rápidas e dados reais */
+.header-logo-img{
+  width:195px!important;
+  max-width:195px!important;
+  height:auto!important;
+}
+.logo-image-link{
+  padding:6px 10px!important;
+}
+#tv-ao-vivo .market-runner{
+  animation-duration:28s!important;
+}
+#tv-ao-vivo .ticker-runner{
+  animation-duration:22s!important;
+}
+@media(max-width:980px){
+  .header-logo-img{width:170px!important;max-width:170px!important}
+  #tv-ao-vivo .market-runner{animation-duration:24s!important}
+  #tv-ao-vivo .ticker-runner{animation-duration:19s!important}
+}
+@media(max-width:620px){
+  .header-logo-img{width:145px!important;max-width:145px!important}
+  #tv-ao-vivo .market-runner{animation-duration:21s!important}
+  #tv-ao-vivo .ticker-runner{animation-duration:17s!important}
+}
+
 </style>
 </head>
 <body>
@@ -1321,11 +1369,11 @@
 <div class="seal-box"><img alt="Selo 40 anos TV Voz de Brasília" class="seal-img" src="./selo-40anos-transparente.png"/><div class="seal-text"><strong>40 anos</strong><span>de credibilidade</span></div></div>
 </div>
 <section aria-label="TV Voz NEWS ao vivo" class="live-studio" id="tv-ao-vivo">
-<div id="enterLiveOverlay" class="enter-live-overlay"><button id="enterLiveButton" type="button">▶ ENTRAR NO JORNAL AO VIVO</button><span>Vozes reais de Deijanete Fayad e Paulo Fayad</span></div>
+<div id="enterLiveOverlay" class="enter-live-overlay"><button id="enterLiveButton" type="button">▶ ENTRAR NO JORNAL AO VIVO</button><span>Clique uma vez para liberar som e movimento</span></div>
 <div class="live-badge">● AO VIVO</div>
 <div class="studio-topline">VOZ NEWS • BRASÍLIA • BRASIL • MUNDO</div>
 <div class="studio-controls">
-<button class="primary" id="startLiveNews" type="button">Iniciar jornal ao vivo</button>
+<button class="primary" id="startLiveNews" type="button">▶ OUVIR JORNAL AO VIVO</button>
 <button id="nextHeadline" type="button">Próxima manchete</button>
 <button id="stopLiveNews" type="button">Parar</button>
 </div>
@@ -1352,9 +1400,9 @@
 <div id="didLoading" class="did-loading">Preparando apresentação…</div>
 <div class="market-strip" aria-label="Cotações, bolsa e clima em tempo real">
   <div class="market-label">MERCADO &amp; CLIMA</div>
-  <div class="market-track"><div class="market-runner" id="marketRunner"><span id="marketInfo">Atualizando dólar, bolsa e clima nas regiões brasileiras…</span><span id="marketInfoClone" aria-hidden="true">Atualizando dólar, bolsa e clima nas regiões brasileiras…</span></div></div>
+  <div class="market-track"><div class="market-runner" id="marketRunner"><span id="marketInfo">Carregando cotações e clima em tempo real…</span><span id="marketInfoClone" aria-hidden="true">Carregando cotações e clima em tempo real…</span></div></div>
 </div>
-<div class="ticker"><div class="ticker-track"><div class="ticker-runner" id="tickerRunner"><span id="visibleNewsTicker">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span><span id="visibleNewsTickerClone" aria-hidden="true">TV Voz NEWS • Manchetes em atualização • Brasil • Mundo</span></div></div></div>
+<div class="ticker"><div class="ticker-track"><div class="ticker-runner" id="tickerRunner"><span id="visibleNewsTicker">Notícias em tempo real • Brasil • Mundo • Brasília</span><span id="visibleNewsTickerClone" aria-hidden="true">Notícias em tempo real • Brasil • Mundo • Brasília</span></div></div></div>
 </section>
 </div>
 </section>
@@ -1425,7 +1473,7 @@
     }
 
     function setTickerText(text){
-      const clean=String(text||'TV Voz NEWS • Manchetes em atualização • Brasil • Mundo').trim();
+      const clean=String(text||'Notícias em tempo real • Brasil • Mundo • Brasília').trim();
       visibleNewsTicker.textContent=clean+'     •     ';
       if(visibleNewsTickerClone) visibleNewsTickerClone.textContent=clean+'     •     ';
     }
@@ -1636,7 +1684,7 @@
       };
       refill();
       try{
-        await Promise.all([pending[0].promise,pending[1].promise,pending[2].promise]);
+        await pending[0].promise;
       }catch(e){}
       while(liveRunning&&token===generationToken){
         let segment=null;
@@ -1660,7 +1708,7 @@
       stopLive();
       liveRunning=true;
       const token=++generationToken;
-      studioStatus.textContent='Preparando as vozes reais de Deijanete e Paulo…';
+      studioStatus.textContent='Preparando o jornal ao vivo…';
       await loadNews();
       await loadTickerData();
       runLiveSequence(token);
@@ -1673,7 +1721,7 @@
     document.getElementById('startLiveNews').addEventListener('click',startLive);
     document.getElementById('stopLiveNews').addEventListener('click',stopLive);
     document.getElementById('nextHeadline').addEventListener('click',nextHeadline);
-    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{await unlockStudioAudio();document.getElementById('enterLiveOverlay')?.classList.remove('show');studioStatus.textContent='Preparando vozes reais de Deijanete e Paulo…';await startLive();});
+    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{await unlockStudioAudio();document.getElementById('enterLiveOverlay')?.classList.remove('show');studioStatus.textContent='Preparando o jornal ao vivo…';await startLive();});
 
     document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{const interest=link.getAttribute('data-interest');setTimeout(()=>{const select=document.getElementById('formInterest');if(select&&interest){for(const option of select.options){if(option.text===interest||option.value===interest){select.value=option.value||option.text;break;}}document.getElementById('formName')?.focus();}},250);}));
 
