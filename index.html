@@ -1291,6 +1291,12 @@
 .enter-live-overlay span{color:#fff;font-size:13px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.7)}
 @media(max-width:620px){.enter-live-overlay button{padding:13px 18px;font-size:12px}.enter-live-overlay span{font-size:9px}}
 
+
+/* AJUSTE — faixas um pouco mais rápidas e reprodução de áudio destravada */
+#tv-ao-vivo .market-runner{animation-duration:44s!important}
+#tv-ao-vivo .ticker-runner{animation-duration:34s!important}
+#tv-ao-vivo .did-avatar-video{volume:1}
+
 </style>
 </head>
 <body>
@@ -1338,8 +1344,8 @@
   <div id="idlePaulo" class="idle-avatar idle-paulo" aria-label="Paulo Fayad em repouso">
     <img class="idle-avatar-body" src="./studio-paulo-source.png" alt="Paulo Fayad"/><span class="instant-mouth" aria-hidden="true"></span>
   </div>
-  <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="auto" poster="./studio-deijanete-source.png"></video>
-  <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="auto" poster="./studio-paulo-source.png"></video>
+  <video id="didVideoDeijanete" class="did-avatar-video did-deijanete" playsinline preload="auto" muted="false" poster="./studio-deijanete-source.png"></video>
+  <video id="didVideoPaulo" class="did-avatar-video did-paulo" playsinline preload="auto" muted="false" poster="./studio-paulo-source.png"></video>
 </div>
 <div class="anchor-name-tag tag-deijanete active" id="tagDeijanete"><strong>Deijanete Fayad</strong></div>
 <div class="anchor-name-tag tag-paulo active" id="tagPaulo"><strong>Paulo Fayad</strong></div>
@@ -1398,6 +1404,25 @@
     const idlePaulo=document.getElementById('idlePaulo');
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
+    let audioUnlocked=false;
+    async function unlockStudioAudio(){
+      audioUnlocked=true;
+      [videoDeijanete,videoPaulo].forEach(video=>{
+        try{video.muted=false;video.defaultMuted=false;video.volume=1;}catch(e){}
+      });
+      try{
+        const AudioCtx=window.AudioContext||window.webkitAudioContext;
+        if(AudioCtx){
+          window.__vozAudioContext=window.__vozAudioContext||new AudioCtx();
+          if(window.__vozAudioContext.state==='suspended') await window.__vozAudioContext.resume();
+          const oscillator=window.__vozAudioContext.createOscillator();
+          const gain=window.__vozAudioContext.createGain();
+          gain.gain.value=0.00001;
+          oscillator.connect(gain);gain.connect(window.__vozAudioContext.destination);
+          oscillator.start();oscillator.stop(window.__vozAudioContext.currentTime+0.03);
+        }
+      }catch(e){}
+    }
 
     function setTickerText(text){
       const clean=String(text||'TV Voz NEWS • Manchetes em atualização • Brasil • Mundo').trim();
@@ -1565,10 +1590,12 @@
           otherVideo.classList.remove('active');
           otherIdle.classList.remove('hidden');
           video.currentTime=0;
+          video.muted=false; video.defaultMuted=false; video.volume=1;
           video.onended=finish;
           video.onerror=finish;
               const playPromise=video.play();
           if(playPromise&&playPromise.then) await playPromise;
+          video.muted=false; video.defaultMuted=false; video.volume=1;
           requestAnimationFrame(()=>{
             video.classList.add('active');
             setTimeout(()=>idle.classList.add('hidden'),180);
@@ -1616,7 +1643,7 @@
         while(pending.length&&liveRunning&&token===generationToken){
           const queued=pending.shift();
           refill();
-          try{segment=await queued.promise;break;}catch(e){segment=null;}
+          try{segment=await queued.promise;break;}catch(e){segment=null;studioStatus.textContent='Falha ao gerar voz real: '+(e?.message||'verifique a configuração D-ID no Vercel.');}
         }
         if(!segment||!liveRunning||token!==generationToken) break;
         currentIndex=segment.index;
@@ -1625,7 +1652,7 @@
         visibleMainHeadline.textContent=buildAnchorSpeech(segment.item);
         const nextQueued=pending[0];
         if(nextQueued){nextQueued.promise.then(next=>preloadVideo(next.resultUrl,next.presenter)).catch(()=>{});}
-        try{await playVideo(segment.resultUrl,segment.presenter,token);}catch(e){}
+        try{await playVideo(segment.resultUrl,segment.presenter,token);}catch(e){studioStatus.textContent='Áudio bloqueado ou vídeo indisponível. Clique novamente em ENTRAR NO JORNAL AO VIVO.';}
         if(!liveRunning||token!==generationToken) break;
       }
     }
@@ -1646,7 +1673,7 @@
     document.getElementById('startLiveNews').addEventListener('click',startLive);
     document.getElementById('stopLiveNews').addEventListener('click',stopLive);
     document.getElementById('nextHeadline').addEventListener('click',nextHeadline);
-    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{document.getElementById('enterLiveOverlay')?.classList.remove('show');await startLive();});
+    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{await unlockStudioAudio();document.getElementById('enterLiveOverlay')?.classList.remove('show');studioStatus.textContent='Preparando vozes reais de Deijanete e Paulo…';await startLive();});
 
     document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{const interest=link.getAttribute('data-interest');setTimeout(()=>{const select=document.getElementById('formInterest');if(select&&interest){for(const option of select.options){if(option.text===interest||option.value===interest){select.value=option.value||option.text;break;}}document.getElementById('formName')?.focus();}},250);}));
 
