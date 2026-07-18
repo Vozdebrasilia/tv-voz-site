@@ -68,22 +68,38 @@ module.exports = async function handler(req,res){
     const sourceUrl=uploadedImageUrl(upload);
     if(!sourceUrl) throw new Error('A D-ID recebeu a imagem, mas não devolveu uma URL utilizável.');
 
-    const voice=await resolveVoice(presenter);
-    const payload={
-      source_url:sourceUrl,
-      script:{
-        type:'text',
-        input:text,
-        provider:{type:voice.provider,voice_id:voice.id}
+    const voice = await resolveVoice(presenter);
+    
+    // Ajuste de compatibilidade para o payload do script de voz da D-ID
+    const scriptPayload = {
+      type: 'text',
+      input: text
+    };
+
+    // Padrão atualizado da D-ID para ElevenLabs vs Provedores nativos (Microsoft)
+    if (voice.provider === 'elevenlabs') {
+      scriptPayload.provider = { 
+        type: 'elevenlabs', 
+        voice_id: voice.id 
+      };
+    } else {
+      scriptPayload.provider = { 
+        type: 'microsoft', 
+        voice_id: voice.id 
+      };
+    }
+
+    const payload = {
+      source_url: sourceUrl,
+      script: scriptPayload,
+      config: {
+        stitch: true,
+        result_format: 'mp4',
+        fluent: true,
+        pad_audio: 0
       },
-      config:{
-        stitch:true,
-        result_format:'mp4',
-        fluent:true,
-        pad_audio:0
-      },
-      name:`VOZ NEWS - ${presenter}`,
-      user_data:JSON.stringify({presenter,cloned_voice:voice.cloned})
+      name: `VOZ NEWS - ${presenter}`,
+      user_data: JSON.stringify({ presenter, cloned_voice: voice.cloned })
     };
 
     const data=await didFetch('/talks',{method:'POST',body:JSON.stringify(payload)});
