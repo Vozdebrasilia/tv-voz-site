@@ -1432,7 +1432,7 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
     const fallbackNews=[
       {title:'Brasília acompanha decisões políticas, econômicas e institucionais',summary:'A capital federal segue no centro das principais decisões do país, com impacto direto sobre empresas, cidadãos e projetos públicos.',source:'Brasília'},
       {title:'Brasil amplia conexões em inovação, negócios e desenvolvimento',summary:'O cenário nacional reúne investimentos, tecnologia, empreendedorismo e novas oportunidades em diferentes regiões.',source:'Brasil'},
-      {title:'Mercados globais monitoram tecnologia, energia e acordos internacionais',summary:'O panorama internacional destaca inovação, comércio, sustentabilidade e movimentos que influenciam a economia mundial.',source:'Mundo'},
+      {title:'Mercados globais monitoram tecnologia, energy e acordos internacionais',summary:'O panorama internacional destaca inovação, comércio, sustentabilidade e movimentos que influenciam a economia mundial.',source:'Mundo'},
       {title:'Saúde, educação e projetos sociais ganham espaço nas pautas nacionais',summary:'Iniciativas de impacto humano e desenvolvimento social permanecem entre os temas de maior interesse público.',source:'Brasil'}
     ];
     let currentNews=fallbackNews.slice();
@@ -1451,21 +1451,22 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
 
-    // CORREÇÃO DA FAIXA AMARELA: Injeta o tempo correto de animação de forma prioritária
-    function estabilizarLetreiro() {
-      if (visibleNewsTicker) {
-        visibleNewsTicker.style.setProperty('animation', 'ticker 35s linear infinite', 'important');
-      }
-      if (visibleNewsTickerClone) {
-        visibleNewsTickerClone.style.setProperty('animation', 'ticker 35s linear infinite', 'important');
-      }
+    // SOLUÇÃO DA FAIXA AMARELA: Injeta a velocidade estável diretamente na folha de estilos do navegador
+    function normalizarVelocidadeLetreiro() {
+      const estilo = document.createElement('style');
+      estilo.textContent = `
+        #visibleNewsTicker, #visibleNewsTickerClone {
+          animation: ticker 35s linear infinite !important;
+        }
+      `;
+      document.head.appendChild(estilo);
     }
 
     function setTickerText(text){
       const clean=String(text||'Notícias em tempo real • Brasil • Mundo • Brasília').trim();
       if(visibleNewsTicker) visibleNewsTicker.textContent=clean+'     •     ';
       if(visibleNewsTickerClone) visibleNewsTickerClone.textContent=clean+'     •     ';
-      estabilizarLetreiro();
+      normalizarVelocidadeLetreiro();
     }
 
     function setNews(items){
@@ -1503,7 +1504,6 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
       liveRunning=false;
       generationToken++;
       if('speechSynthesis' in window) window.speechSynthesis.cancel();
-      // Resgata o comportamento estrito de opacidade e exibição do seu ZIP original
       if(idleDeijanete) idleDeijanete.style.opacity = '1';
       if(idlePaulo) idlePaulo.style.opacity = '1';
       if(studioStatus) studioStatus.textContent='Boletim pausado.';
@@ -1536,47 +1536,41 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
             
             utterance.onstart = () => {
                 if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
-                // Controla os avatares pelas propriedades de exibição nativas do seu layout
+                // Alterna o destaque visual original dos avatares do seu estúdio
                 if(presenter === 'deijanete') {
                     if(idleDeijanete) idleDeijanete.style.opacity = '1';
-                    if(idlePaulo) idlePaulo.style.opacity = '0.6';
+                    if(idlePaulo) idlePaulo.style.opacity = '0.4';
                 } else {
                     if(idlePaulo) idlePaulo.style.opacity = '1';
-                    if(idleDeijanete) idleDeijanete.style.opacity = '0.6';
+                    if(idleDeijanete) idleDeijanete.style.opacity = '0.4';
                 }
             };
             utterance.onend = () => {
-                if(idleDeijanete) idleDeijanete.style.opacity = '1';
-                if(idlePaulo) idlePaulo.style.opacity = '1';
                 resolve();
             };
             utterance.onerror = () => {
-                if(idleDeijanete) idleDeijanete.style.opacity = '1';
-                if(idlePaulo) idlePaulo.style.opacity = '1';
                 resolve();
             };
 
+            // SOLUÇÃO DO LOOP DE VOZ: Garante a captura e separação real das vozes do navegador
             const voices = window.speechSynthesis.getVoices();
-            // CORREÇÃO DOS APRESENTADORES: Força a busca por uma voz Feminina (Deijanete) e uma Masculina (Paulo)
-            const selectedVoice = voices.find(v => {
+            const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
+            
+            let selectedVoice = ptVoices.find(v => {
                 const name = v.name.toLowerCase();
-                const isPt = v.lang.includes('pt-BR') || v.lang.includes('pt');
                 if (presenter === 'deijanete') {
-                    return isPt && (name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google') || name.includes('luciana'));
+                    return name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google') || name.includes('luciana');
                 } else {
-                    return isPt && (name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('male') || name.includes('microsoft') || name.includes('helio'));
+                    return name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('male') || name.includes('microsoft') || name.includes('helio');
                 }
             });
 
-            if (selectedVoice) {
-                utterance.voice = selectedVoice;
-            } else {
-                const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
-                if (ptVoices.length > 0) {
-                    utterance.voice = presenter === 'deijanete' ? ptVoices[0] : (ptVoices[1] || ptVoices[0]);
-                }
+            if (!selectedVoice && ptVoices.length > 0) {
+                // Caso não ache pelo nome exato, força o primeiro perfil pt-BR para ela e o segundo para ele
+                selectedVoice = presenter === 'deijanete' ? ptVoices[0] : (ptVoices[1] || ptVoices[0]);
             }
 
+            if (selectedVoice) utterance.voice = selectedVoice;
             window.speechSynthesis.speak(utterance);
         });
     }
@@ -1587,7 +1581,9 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
             const presenter = presenterFor(currentIndex);
             if(studioStatus) studioStatus.textContent = 'Apresentadores no ar.';
             updateVisibleHeadline(currentIndex);
+            
             await playNewsAudio(buildAnchorSpeech(item), presenter, token);
+            
             if (!liveRunning || token !== generationToken) break;
             currentIndex = (currentIndex + 1) % currentNews.length;
         }
@@ -1615,6 +1611,7 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
     document.getElementById('nextHeadline')?.addEventListener('click',nextHeadline);
     document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{document.getElementById('enterLiveOverlay')?.classList.remove('show');await startLive();});
     
+    // Força o recarregamento do catálogo de vozes do sistema operacional
     if ('speechSynthesis' in window) {
         window.speechSynthesis.getVoices();
         window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
