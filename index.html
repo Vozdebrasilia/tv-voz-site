@@ -1602,15 +1602,16 @@ function playNewsAudio(text, presenter) {
     }
 }
 
-function preloadVideo(url, presenter) {
-    // Força o sistema a executar a fala em áudio por cima do cenário estático atual
-    const videoEl = document.getElementById(presenter === 'deijanete' ? 'videoDeijanete' : 'videoPaulo');
-    if (videoEl) {
-        // Puxa o texto da notícia que está guardado no elemento de tela para falar
-        const newsText = document.getElementById('ticker-news-text')?.innerText || '';
-        if (newsText) playNewsAudio(newsText, presenter);
+ function preloadVideo(url, presenter) {
+    if (url && typeof url === 'string' && !url.startsWith('http') && url.trim().length > 0) {
+        try {
+            playNewsAudio(url, presenter);
+        } catch(e) {
+            console.log("Erro na execução imediata da voz:", e);
+        }
     }
     return Promise.resolve();
+}   return Promise.resolve();
 }
         const otherIdle=presenter==='deijanete'?idlePaulo:idleDeijanete;
         let finished=false;
