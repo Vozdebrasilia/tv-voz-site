@@ -7,10 +7,11 @@ module.exports = async function handler(req, res) {
         const { text, presenter } = req.body;
         if (!text) return res.status(400).json({ error: "O texto é obrigatório." });
 
-        // Retorna sucesso puro e limpo para o front-end disparar o áudio do navegador
+        // Retorna o status 'done' que o seu index.html precisa para seguir em frente
         return res.status(200).json({ 
             success: true, 
             status: "done",
+            id: "local_voice",
             message: "Motor de áudio pronto." 
         });
     } catch (error) {
