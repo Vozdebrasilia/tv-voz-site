@@ -1561,17 +1561,21 @@
     function buildTickerItems(newsList,extraItems=[]){
       return [...extraItems,...(newsList||[]).map(item=>sanitizeNewsText(item.title||''))].map(sanitizeNewsText).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,24);
     }
-async function createTalk(presenter, text) {
-    const response = await fetch('/api/did-create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ presenter, text })
-    });
-    const data = await response.json().catch(() => ({}));
-    return data;
+function createTalk(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'pt-BR';
+
+        const voices = window.speechSynthesis.getVoices();
+        const voiceBR = voices.find(v => v.lang === 'pt-BR' || v.lang.startsWith('pt'));
+        if (voiceBR) utterance.voice = voiceBR;
+
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.error('Web Speech API não suportada.');
+    }
 }
-    async function waitForTalk(talkId, token) {
-    // Como usamos o sistema gratuito de voz, não há vídeo para esperar do D-ID.
     // Retornamos um objeto indicando o sucesso da voz mapeada.
     return { status: "done" };
 }
