@@ -1561,17 +1561,15 @@
     function buildTickerItems(newsList,extraItems=[]){
       return [...extraItems,...(newsList||[]).map(item=>sanitizeNewsText(item.title||''))].map(sanitizeNewsText).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,24);
     }
-
-    async function createTalk(presenter,text){
-      const response=await fetch('/api/did-create',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({presenter,text})
-      });
-      const data=await response.json().catch(()=>({}));
-      if(!response.ok) throw new Error(data.error||'Falha ao criar o vídeo na D-ID.');
-      return data;
-    }
+async function createTalk(presenter, text) {
+    const response = await fetch('/api/did-create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ presenter, text })
+    });
+    const data = await response.json().catch(() => ({}));
+    return data;
+}
     async function waitForTalk(id,token){
       const startedAt=Date.now();
       const maxWaitMs=12*60*1000;
