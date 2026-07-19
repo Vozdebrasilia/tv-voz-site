@@ -1570,54 +1570,44 @@ async function createTalk(presenter, text) {
     const data = await response.json().catch(() => ({}));
     return data;
 }
-    async function waitForTalk(id,token){
-      const startedAt=Date.now();
-      const maxWaitMs=12*60*1000;
-      let transientErrors=0;
-      while(Date.now()-startedAt<maxWaitMs){
-        if(!liveRunning||token!==generationToken) throw new Error('cancelado');
-        try{
-          const response=await fetch('/api/did-status?id='+encodeURIComponent(id)+'&t='+Date.now(),{cache:'no-store'});
-          const data=await response.json().catch(()=>({}));
-          if(!response.ok) throw new Error(data.error||'Falha ao consultar a D-ID.');
-          transientErrors=0;
-          if(data.status==='done'&&data.result_url) return data.result_url;
-          if(data.status==='error'||data.status==='rejected'||data.status==='failed'){
-            const detail=typeof data.error==='string'?data.error:(data.error?.description||data.error?.message||'A D-ID não conseguiu gerar o vídeo.');
-            throw new Error(detail);
-          }
-          const elapsed=Math.max(1,Math.floor((Date.now()-startedAt)/1000));
-          studioStatus.textContent='Preparando transmissão • '+elapsed+'s';
-        }catch(error){
-          transientErrors++;
-          if(transientErrors>=6) throw error;
-          studioStatus.textContent='Preparando transmissão • nova tentativa automática';
-        }
-        await new Promise(resolve=>setTimeout(resolve,1800));
-      }
-      throw new Error('A transmissão ainda está sendo preparada. Aguarde alguns instantes e tente novamente.');
+    async function waitForTalk(talkId, token) {
+    // Como usamos o sistema gratuito de voz, não há vídeo para esperar do D-ID.
+    // Retornamos um objeto indicando o sucesso da voz mapeada.
+    return { status: "done" };
+}
+
+function playNewsAudio(text, presenter) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0;
+        
+        // Seleciona perfil de voz aproximado caso disponível no navegador
+        const voices = window.speechSynthesis.getVoices();
+        const selectedVoice = voices.find(v => 
+            presenter === 'deijanete' 
+                ? (v.name.includes('Francisca') || v.name.includes('Maria') || v.name.includes('Female'))
+                : (v.name.includes('Antonio') || v.name.includes('Daniel') || v.name.includes('Male'))
+        );
+        
+        if (selectedVoice) utterance.voice = selectedVoice;
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.log("Navegador não suporta SpeechSynthesis.");
     }
-    function preloadVideo(url,presenter){
-      const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
-      if(video.dataset.preloadedUrl===url&&video.readyState>=2) return Promise.resolve(video);
-      return new Promise(resolve=>{
-        let finished=false;
-        const done=()=>{if(finished)return;finished=true;video.dataset.preloadedUrl=url;video.oncanplaythrough=null;video.onloadeddata=null;video.onerror=null;resolve(video);};
-        video.preload='auto';
-        video.src=url;
-        video.oncanplaythrough=done;
-        video.onloadeddata=done;
-        video.onerror=done;
-        video.load();
-        setTimeout(done,7000);
-      });
+}
+
+function preloadVideo(url, presenter) {
+    // Força o sistema a executar a fala em áudio por cima do cenário estático atual
+    const videoEl = document.getElementById(presenter === 'deijanete' ? 'videoDeijanete' : 'videoPaulo');
+    if (videoEl) {
+        // Puxa o texto da notícia que está guardado no elemento de tela para falar
+        const newsText = document.getElementById('ticker-news-text')?.innerText || '';
+        if (newsText) playNewsAudio(newsText, presenter);
     }
-    function playVideo(url,presenter,token){
-      return new Promise(async(resolve,reject)=>{
-        if(!liveRunning||token!==generationToken){resolve();return;}
-        const video=presenter==='deijanete'?videoDeijanete:videoPaulo;
-        const idle=presenter==='deijanete'?idleDeijanete:idlePaulo;
-        const otherVideo=presenter==='deijanete'?videoPaulo:videoDeijanete;
+    return Promise.resolve();
+}
         const otherIdle=presenter==='deijanete'?idlePaulo:idleDeijanete;
         let finished=false;
         const finish=()=>{
