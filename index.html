@@ -1692,8 +1692,8 @@ function playNewsAudio(text, presenter) {
         visibleNewsSource.textContent=sanitizeNewsText(segment.item.source||'TV Voz NEWS');
         visibleMainHeadline.textContent=buildAnchorSpeech(segment.item);
         const nextQueued=pending[0];
-        if(nextQueued){nextQueued.promise.then(next=>preloadVideo(next.resultUrl,next.presenter)).catch(()=>{});}
-        try{await playVideo(segment.resultUrl,segment.presenter,token);}catch(e){studioStatus.textContent='Áudio bloqueado ou vídeo indisponível. Clique novamente em ENTRAR NO JORNAL AO VIVO.';}
+        if(nextQueued){nextQueued.promise.then(next=>preloadVideo(buildAnchorSpeech(next.item),next.presenter)).catch(()=>{});}
+        try{await playVideo(buildAnchorSpeech(segment.item),segment.presenter,token);}catch(e){studioStatus.textContent='Áudio bloqueado ou vídeo indisponível. Clique novamente em ENTRAR NO JORNAL AO VIVO.';}
         if(!liveRunning||token!==generationToken) break;
       }
     }
