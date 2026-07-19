@@ -1693,7 +1693,10 @@ function playNewsAudio(text, presenter) {
         visibleMainHeadline.textContent=buildAnchorSpeech(segment.item);
         const nextQueued=pending[0];
         if(nextQueued){nextQueued.promise.then(next=>preloadVideo(buildAnchorSpeech(next.item),next.presenter)).catch(()=>{});}
-        try{await playVideo(buildAnchorSpeech(segment.item),segment.presenter,token);}catch(e){studioStatus.textContent='Áudio bloqueado ou vídeo indisponível. Clique novamente em ENTRAR NO JORNAL AO VIVO.';}
+        try{
+            playNewsAudio(buildAnchorSpeech(segment.item), segment.presenter);
+            await new Promise(resolve => setTimeout(resolve, 8000));
+        }catch(e){studioStatus.textContent='Áudio bloqueado. Clique novamente em ENTRAR NO JORNAL AO VIVO.';}
         if(!liveRunning||token!==generationToken) break;
       }
     }
