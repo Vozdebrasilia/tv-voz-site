@@ -1433,7 +1433,7 @@
       {title:'Brasília acompanha decisões políticas, econômicas e institucionais',summary:'A capital federal segue no centro das principais decisões do país, com impacto direto sobre empresas, cidadãos e projetos públicos.',source:'Brasília'},
       {title:'Brasil amplia conexões em inovação, negócios e desenvolvimento',summary:'O cenário nacional reúne investimentos, tecnologia, empreendedorismo e novas oportunidades em diferentes regiões.',source:'Brasil'},
       {title:'Mercados globais monitoram tecnologia, energia e acordos internacionais',summary:'O panorama internacional destaca inovação, comércio, sustentabilidade e movimentos que influenciam a economia mundial.',source:'Mundo'},
-      {title:'Saúde, education e projetos sociais ganham espaço nas pautas nacionais',summary:'Iniciativas de impacto humano e desenvolvimento social permanecem entre os temas de maior interesse público.',source:'Brasil'}
+      {title:'Saúde, educação e projetos sociais ganham espaço nas pautas nacionais',summary:'Iniciativas de impacto humano e desenvolvimento social permanecem entre os temas de maior interesse público.',source:'Brasil'}
     ];
     let currentNews=fallbackNews.slice();
     let currentIndex=0;
@@ -1451,6 +1451,18 @@
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
     let audioUnlocked=false;
+
+    // Força a velocidade do letreiro amarelo a sincronizar com o padrão estável do branco
+    const yellowTicker = document.getElementById('visibleNewsTicker');
+    if (yellowTicker) {
+        yellowTicker.style.animationDuration = '30s';
+        yellowTicker.style.animationTimingFunction = 'linear';
+    }
+    const yellowTickerClone = document.getElementById('visibleNewsTickerClone');
+    if (yellowTickerClone) {
+        yellowTickerClone.style.animationDuration = '30s';
+        yellowTickerClone.style.animationTimingFunction = 'linear';
+    }
 
     async function unlockStudioAudio(){
       audioUnlocked=true;
@@ -1504,8 +1516,8 @@
       liveRunning=false;
       generationToken++;
       if('speechSynthesis' in window) window.speechSynthesis.cancel();
-      idleDeijanete.classList.remove('speaking', 'instant-speaking');
-      idlePaulo.classList.remove('speaking', 'instant-speaking');
+      idleDeijanete.classList.remove('speaking', 'instant-speaking', 'active');
+      idlePaulo.classList.remove('speaking', 'instant-speaking', 'active');
       studioStatus.textContent='Boletim pausado.';
     }
 
@@ -1555,27 +1567,32 @@
 
             utterance.onstart = () => {
                 if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
-                otherElement.classList.remove('speaking', 'instant-speaking');
-                // Aplica as classes css que disparam a animação de boca, cabeça e olhos por CSS alternado
-                speakerElement.classList.add('speaking', 'instant-speaking');
+                otherElement.classList.remove('speaking', 'instant-speaking', 'active');
+                // Ativa os estilos css artificiais para forçar a boca e cabeça a simularem movimento
+                speakerElement.classList.add('speaking', 'instant-speaking', 'active');
             };
 
             utterance.onend = () => {
-                speakerElement.classList.remove('speaking', 'instant-speaking');
+                speakerElement.classList.remove('speaking', 'instant-speaking', 'active');
                 resolve();
             };
 
             utterance.onerror = () => {
-                speakerElement.classList.remove('speaking', 'instant-speaking');
+                speakerElement.classList.remove('speaking', 'instant-speaking', 'active');
                 resolve();
             };
 
+            // Busca cirúrgica pelas vozes em português brasileiro clonadas ou nativas do navegador
             const voices = window.speechSynthesis.getVoices();
-            const selectedVoice = voices.find(v => 
+            let selectedVoice = voices.find(v => 
                 presenter === 'deijanete' 
-                    ? (v.name.includes('Francisca') || v.name.includes('Heloisa') || v.name.includes('Maria') || v.name.includes('Female') || v.lang.includes('BR'))
-                    : (v.name.includes('Antonio') || v.name.includes('Daniel') || v.name.includes('Male') || v.lang.includes('BR'))
+                    ? (v.name.toLowerCase().includes('francisca') || v.name.toLowerCase().includes('heloisa') || v.name.toLowerCase().includes('maria') || v.name.toLowerCase().includes('female')) && (v.lang.includes('BR') || v.lang.includes('pt'))
+                    : (v.name.toLowerCase().includes('antonio') || v.name.toLowerCase().includes('daniel') || v.name.toLowerCase().includes('fabio') || v.name.toLowerCase().includes('male')) && (v.lang.includes('BR') || v.lang.includes('pt'))
             );
+            
+            if(!selectedVoice) {
+                selectedVoice = voices.find(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
+            }
             
             if (selectedVoice) utterance.voice = selectedVoice;
             window.speechSynthesis.speak(utterance);
@@ -1622,6 +1639,13 @@
 
     const advertiserForm=document.getElementById('advertiserForm');
     if(advertiserForm){advertiserForm.addEventListener('submit',function(e){e.preventDefault();const nome=document.getElementById('formName').value.trim();const empresa=document.getElementById('formCompany').value.trim();const telefone=document.getElementById('formPhone').value.trim();const cidade=document.getElementById('formCity').value.trim();const interesse=document.getElementById('formInterest').value;const mensagem=document.getElementById('formMessage').value.trim();const texto=`Olá, equipe da TV Voz de Brasília!\n\nQuero anunciar na TV Voz NEWS.\n\nNome: ${nome}\nEmpresa/Marca: ${empresa}\nTelefone: ${telefone}\nCidade/UF: ${cidade}\nÁrea de interesse: ${interesse}\nMensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURIComponent(texto),'_blank','noopener');});}
+    
+    // Recarrega a lista de vozes caso o navegador atrase para montar o catálogo interno
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+    }
+
     window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);document.getElementById('enterLiveOverlay')?.classList.add('show');});
     
     const marketInfo=document.getElementById('marketInfo');
@@ -1677,6 +1701,5 @@
     }
     updateMarketStrip();
     setInterval(updateMarketStrip,300000);
-</script>
 </body>
 </html>
