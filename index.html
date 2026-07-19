@@ -1428,7 +1428,7 @@
 </main>
 <footer class="footer"><div class="container"><strong>VOZ NEWS | TV Voz de Brasília</strong><p>Da visão à realidade: mídia, credibilidade, negócios e inteligência artificial.</p></div></footer>
 <script>
-    const menuToggle=document.getElementById('menuToggle');const siteMenu=document.getElementById('siteMenu');menuToggle.addEventListener('click',()=>siteMenu.classList.toggle('open'));siteMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>siteMenu.classList.remove('open')));
+   const menuToggle=document.getElementById('menuToggle');const siteMenu=document.getElementById('siteMenu');menuToggle.addEventListener('click',()=>siteMenu.classList.toggle('open'));siteMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>siteMenu.classList.remove('open')));
     const fallbackNews=[
       {title:'Brasília acompanha decisões políticas, econômicas e institucionais',summary:'A capital federal segue no centro das principais decisões do país, com impacto direto sobre empresas, cidadãos e projetos públicos.',source:'Brasília'},
       {title:'Brasil amplia conexões em inovação, negócios e desenvolvimento',summary:'O cenário nacional reúne investimentos, tecnologia, empreendedorismo e novas oportunidades em diferentes regiões.',source:'Brasil'},
@@ -1446,28 +1446,19 @@
     const visibleNewsTickerClone=document.getElementById('visibleNewsTickerClone');
     const studioStatus=document.getElementById('studioStatus');
     const didLoading=document.getElementById('didLoading');
-    const videoDeijanete=document.getElementById('didVideoDeijanete');
-    const videoPaulo=document.getElementById('didVideoPaulo');
     const idleDeijanete=document.getElementById('idleDeijanete');
     const idlePaulo=document.getElementById('idlePaulo');
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
     let audioUnlocked=false;
+
     async function unlockStudioAudio(){
       audioUnlocked=true;
-      [videoDeijanete,videoPaulo].forEach(video=>{
-        try{video.muted=false;video.defaultMuted=false;video.volume=1;}catch(e){}
-      });
       try{
         const AudioCtx=window.AudioContext||window.webkitAudioContext;
         if(AudioCtx){
           window.__vozAudioContext=window.__vozAudioContext||new AudioCtx();
           if(window.__vozAudioContext.state==='suspended') await window.__vozAudioContext.resume();
-          const oscillator=window.__vozAudioContext.createOscillator();
-          const gain=window.__vozAudioContext.createGain();
-          gain.gain.value=0.00001;
-          oscillator.connect(gain);gain.connect(window.__vozAudioContext.destination);
-          oscillator.start();oscillator.stop(window.__vozAudioContext.currentTime+0.03);
         }
       }catch(e){}
     }
@@ -1477,18 +1468,21 @@
       visibleNewsTicker.textContent=clean+'     •     ';
       if(visibleNewsTickerClone) visibleNewsTickerClone.textContent=clean+'     •     ';
     }
+
     function setNews(items){
       currentNews=(items&&items.length)?items.slice():fallbackNews.slice();
       if(currentIndex>=currentNews.length) currentIndex=0;
       updateVisibleHeadline(currentIndex);
       setTickerText(buildTickerItems(currentNews).join('     •     '));
     }
+
     function updateVisibleHeadline(index){
       const item=currentNews[index%currentNews.length]||fallbackNews[0];
       visibleNewsSource.textContent=sanitizeNewsText(item.source||'VOZ NEWS');
       visibleMainHeadline.textContent=sanitizeNewsText(item.title);
       visibleNewsSummary.textContent=sanitizeNewsText(item.summary||'');
     }
+
     async function loadNews(){
       try{
         const response=await fetch('/api/news',{cache:'no-store'});
@@ -1499,30 +1493,26 @@
         setNews(fallbackNews);
       }
     }
+
     async function loadTickerData(){
       const extras=[];
       try{const response=await fetch('/api/ticker',{cache:'no-store'});if(response.ok){const data=await response.json();if(Array.isArray(data.items)) extras.push(...data.items);}}catch(e){}
       setTickerText(buildTickerItems(currentNews,extras).join('   •   '));
     }
-    function stopAllVideos(){
-      [videoDeijanete,videoPaulo].forEach(video=>{
-        try{video.pause();}catch(e){}
-        video.classList.remove('active');
-        video.onended=null; video.onerror=null; video.oncanplay=null; video.onloadeddata=null;
-      });
-      tagDeijanete.classList.add('active'); tagPaulo.classList.add('active');
-      idleDeijanete.classList.remove('hidden'); idlePaulo.classList.remove('hidden');
-    }
+
     function stopLive(){
       liveRunning=false;
       generationToken++;
-      stopAllVideos();
-      didLoading.classList.remove('show');
+      if('speechSynthesis' in window) window.speechSynthesis.cancel();
+      idleDeijanete.classList.remove('instant-speaking');
+      idlePaulo.classList.remove('instant-speaking');
       studioStatus.textContent='Boletim pausado.';
     }
+
     function presenterFor(index){
       return index%2===0?'deijanete':'paulo';
     }
+
     function sanitizeNewsText(value=''){
       let text=String(value||'');
       text=text
@@ -1532,210 +1522,107 @@
         .replace(/\b[a-z0-9._-]+\.(?:html?|php|aspx?|jsp|xml|json|jpg|jpeg|png|gif|webp|svg|mp3|mp4|m4a|pdf|zip)\b/gi,' ')
         .replace(/<[^>]*>/g,' ')
         .replace(/\[[^\]]*\]|\{[^}]*\}/g,' ')
-        .replace(/\([^)]*(?:https?|www|utm_|token|source|ref|id|api|rss|xml|json)[^)]*\)/gi,' ')
-        .replace(/(?:utm_[a-z_]+|ref|source|id|token|fbclid|gclid)\s*=\s*[^\s&]+/gi,' ')
-        .replace(/[#*_~|>`@]/g,' ')
-        .replace(/[\/\\_=]+/g,' ')
-        .replace(/[—–-]+/g,' e ')
-        .replace(/&[a-z]+;/gi,' ')
-        .replace(/\b(?:https?|www|api|rss|xml|json|html|token|undefined|null)\b/gi,' ')
         .replace(/\s+/g,' ')
-        .replace(/\s+([,.;:!?])/g,'$1')
         .trim();
-      text=text.replace(/\s+e\s+e\s+/gi,' e ').replace(/^[,.;:!?\s]+|[,;:\s]+$/g,'').trim();
       if(text&&!/[.!?]$/.test(text)) text+='.';
       return text;
     }
+
     function normalizeSpokenNumbers(value=''){
-      return sanitizeNewsText(value).replace(/US\$/gi,' dólares ').replace(/R\$/gi,' reais ').replace(/(\d+(?:[.,]\d+)?)\s*%/g,'$1 por cento').replace(/\+/g,' alta de ').replace(/\s+/g,' ').trim();
+      return sanitizeNewsText(value).replace(/US\$/gi,' dólares ').replace(/R\$/gi,' reais ').replace(/(\d+(?:[.,]\d+)?)\s*%/g,'$1 por cento').replace(/\+/g,' alta de ').trim();
     }
+
     function buildAnchorSpeech(item){
       const title=normalizeSpokenNumbers(item.title||''); const summary=normalizeSpokenNumbers(item.summary||'');
-      return [title,summary].filter(Boolean).join(' ').replace(/\.{2,}/g,'.').slice(0,1200);
+      return [title,summary].filter(Boolean).join(' ').slice(0,1200);
     }
-    function buildLowerThird(item,presenter){
-      const name=presenter==='deijanete'?'Deijanete Fayad':'Paulo Fayad';
-      const role=presenter==='deijanete'?'Apresentadora':'Jornalista';
-      return {name,role,title:sanitizeNewsText(item.title||'')};
-    }
+
     function buildTickerItems(newsList,extraItems=[]){
       return [...extraItems,...(newsList||[]).map(item=>sanitizeNewsText(item.title||''))].map(sanitizeNewsText).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,24);
     }
-function createTalk(text) {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'pt-BR';
 
-        const voices = window.speechSynthesis.getVoices();
-        const voiceBR = voices.find(v => v.lang === 'pt-BR' || v.lang.startsWith('pt'));
-        if (voiceBR) utterance.voice = voiceBR;
+    function playNewsAudio(text, presenter, token) {
+        return new Promise((resolve) => {
+            if (!liveRunning || token !== generationToken || !('speechSynthesis' in window)) { resolve(); return; }
 
-        window.speechSynthesis.speak(utterance);
-    } else {
-        console.error('Web Speech API não suportada.');
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'pt-BR';
+            utterance.rate = 1.0;
+
+            const speakerElement = presenter === 'deijanete' ? idleDeijanete : idlePaulo;
+            const otherElement = presenter === 'deijanete' ? idlePaulo : idleDeijanete;
+
+            utterance.onstart = () => {
+                if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
+                otherElement.classList.remove('instant-speaking');
+                speakerElement.classList.add('instant-speaking');
+            };
+
+            utterance.onend = () => {
+                speakerElement.classList.remove('instant-speaking');
+                resolve();
+            };
+
+            utterance.onerror = () => {
+                speakerElement.classList.remove('instant-speaking');
+                resolve();
+            };
+
+            const voices = window.speechSynthesis.getVoices();
+            const selectedVoice = voices.find(v => 
+                presenter === 'deijanete' 
+                    ? (v.name.includes('Francisca') || v.name.includes('Maria') || v.name.includes('Female'))
+                    : (v.name.includes('Antonio') || v.name.includes('Daniel') || v.name.includes('Male'))
+            );
+            
+            if (selectedVoice) utterance.voice = selectedVoice;
+            window.speechSynthesis.speak(utterance);
+        });
     }
-}
-    // Retornamos um objeto indicando o sucesso da voz mapeada.
-    return { status: "done" };
-}
 
-function playNewsAudio(text, presenter) {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'pt-BR';
-        utterance.rate = 1.0;
-        
-        // Seleciona perfil de voz aproximado caso disponível no navegador
-        const voices = window.speechSynthesis.getVoices();
-        const selectedVoice = voices.find(v => 
-            presenter === 'deijanete' 
-                ? (v.name.includes('Francisca') || v.name.includes('Maria') || v.name.includes('Female'))
-                : (v.name.includes('Antonio') || v.name.includes('Daniel') || v.name.includes('Male'))
-        );
-        
-        if (selectedVoice) utterance.voice = selectedVoice;
-        window.speechSynthesis.speak(utterance);
-    } else {
-        console.log("Navegador não suporta SpeechSynthesis.");
-    }
-}
+    async function runLiveSequence(token) {
+        while (liveRunning && token === generationToken) {
+            const item = currentNews[currentIndex % currentNews.length] || fallbackNews[0];
+            const presenter = presenterFor(currentIndex);
 
- function preloadVideo(url, presenter) {
-    if (url && typeof url === 'string' && !url.startsWith('http') && url.trim().length > 0) {
-        try {
-            playNewsAudio(url, presenter);
-        } catch(e) {
-            console.log("Erro na execução imediata da voz:", e);
+            studioStatus.textContent = 'Apresentadores no ar.';
+            updateVisibleHeadline(currentIndex);
+
+            const speechText = buildAnchorSpeech(item);
+            await playNewsAudio(speechText, presenter, token);
+
+            if (!liveRunning || token !== generationToken) break;
+            currentIndex = (currentIndex + 1) % currentNews.length;
         }
     }
-    return Promise.resolve();
-}   return Promise.resolve();
-}
-        const otherIdle=presenter==='deijanete'?idlePaulo:idleDeijanete;
-        let finished=false;
-        const finish=()=>{
-          if(finished)return;
-          finished=true;
-          video.onended=null; video.onerror=null;
-          idle.classList.remove('hidden');
-          requestAnimationFrame(()=>{
-            requestAnimationFrame(()=>video.classList.remove('active'));
-          });
-          setTimeout(()=>{try{video.pause();}catch(e){} resolve();},180);
-        };
-        try{
-          await preloadVideo(url,presenter);
-          if(!liveRunning||token!==generationToken){resolve();return;}
-          otherVideo.classList.remove('active');
-          otherIdle.classList.remove('hidden');
-          video.muted=false;video.volume=1;video.setAttribute('playsinline','');video.currentTime=0;
-          video.muted=false; video.defaultMuted=false; video.volume=1;
-          video.onended=finish;
-          video.onerror=finish;
-              const playPromise=video.play();
-          if(playPromise&&playPromise.then) await playPromise;
-          video.muted=false; video.defaultMuted=false; video.volume=1;
-          requestAnimationFrame(()=>{
-            video.classList.add('active');
-            setTimeout(()=>idle.classList.add('hidden'),180);
-          });
-        }catch(error){
-          idle.classList.remove('hidden');
-          video.classList.remove('active');
-          reject(error);
-        }
-      });
-    }
-    async function prepareSegment(index,token){
-      const item=currentNews[index%currentNews.length]||fallbackNews[0];
-      const presenter=presenterFor(index);
-      const created=await createTalk(presenter,buildAnchorSpeech(item));
-      const resultUrl=created.result_url||await waitForTalk(created.id,token);
-      return {index,item,presenter,resultUrl};
-    }
-    const segmentCache=new Map();
-    async function cachedPrepare(index,token){
-      const item=currentNews[index%currentNews.length]||fallbackNews[0];
-      const presenter=presenterFor(index);
-      const key=presenter+'|'+sanitizeNewsText(item.title||'')+'|'+sanitizeNewsText(item.summary||'');
-      if(segmentCache.has(key)) return segmentCache.get(key);
-      const promise=prepareSegment(index,token).catch(error=>{segmentCache.delete(key);throw error;});
-      segmentCache.set(key,promise);
-      return promise;
-    }
-    async function runLiveSequence(token){
-      let nextToPrepare=currentIndex;
-      const pending=[];
-      const refill=()=>{
-        while(pending.length<7){
-          const index=nextToPrepare%currentNews.length;
-          pending.push({index,promise:cachedPrepare(index,token)});
-          nextToPrepare=(nextToPrepare+1)%currentNews.length;
-        }
-      };
-      refill();
-      try{
-        await pending[0].promise;
-      }catch(e){}
-      while(liveRunning&&token===generationToken){
-        let segment=null;
-        while(pending.length&&liveRunning&&token===generationToken){
-          const queued=pending.shift();
-          refill();
-          try{segment=await queued.promise;break;}catch(e){segment=null;studioStatus.textContent='Falha ao gerar voz real: '+(e?.message||'verifique a configuração D-ID no Vercel.');}
-        }
-        if(!segment||!liveRunning||token!==generationToken) break;
-        currentIndex=segment.index;
-        const lower=buildLowerThird(segment.item,segment.presenter);
-        visibleNewsSource.textContent=sanitizeNewsText(segment.item.source||'TV Voz NEWS');
-        visibleMainHeadline.textContent=buildAnchorSpeech(segment.item);
-        const nextQueued=pending[0];
-        if(nextQueued){nextQueued.promise.then(next=>preloadVideo(buildAnchorSpeech(next.item),next.presenter)).catch(()=>{});}
-        try{
-            playNewsAudio(buildAnchorSpeech(segment.item), segment.presenter);
-            await new Promise(resolve => setTimeout(resolve, 8000));
-        }catch(e){studioStatus.textContent='Áudio bloqueado. Clique novamente em ENTRAR NO JORNAL AO VIVO.';}
-        if(!liveRunning||token!==generationToken) break;
-      }
-    }
+
     async function startLive(){
       stopLive();
       liveRunning=true;
       const token=++generationToken;
-      studioStatus.textContent='Preparando o jornal ao vivo…';
+      studioStatus.textContent='Carregando o boletim informativo...';
       await loadNews();
       await loadTickerData();
       runLiveSequence(token);
     }
+
     function nextHeadline(){
+      if('speechSynthesis' in window) window.speechSynthesis.cancel();
       currentIndex=(currentIndex+1)%currentNews.length;
       updateVisibleHeadline(currentIndex);
-      studioStatus.textContent='Próxima manchete selecionada.';
+      if(liveRunning) startLive();
     }
-    document.getElementById('startLiveNews').addEventListener('click',startLive);
+
+    document.getElementById('startLiveNews').addEventListener('click', async () => { await unlockStudioAudio(); startLive(); });
     document.getElementById('stopLiveNews').addEventListener('click',stopLive);
     document.getElementById('nextHeadline').addEventListener('click',nextHeadline);
-    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{await unlockStudioAudio();document.getElementById('enterLiveOverlay')?.classList.remove('show');studioStatus.textContent='Preparando o jornal ao vivo…';await startLive();});
-
-    document.querySelectorAll('[data-interest]').forEach(link=>link.addEventListener('click',()=>{const interest=link.getAttribute('data-interest');setTimeout(()=>{const select=document.getElementById('formInterest');if(select&&interest){for(const option of select.options){if(option.text===interest||option.value===interest){select.value=option.value||option.text;break;}}document.getElementById('formName')?.focus();}},250);}));
+    document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{await unlockStudioAudio();document.getElementById('enterLiveOverlay')?.classList.remove('show');await startLive();});
 
     const advertiserForm=document.getElementById('advertiserForm');
-    if(advertiserForm){advertiserForm.addEventListener('submit',function(e){e.preventDefault();const nome=document.getElementById('formName').value.trim();const empresa=document.getElementById('formCompany').value.trim();const telefone=document.getElementById('formPhone').value.trim();const cidade=document.getElementById('formCity').value.trim();const interesse=document.getElementById('formInterest').value;const mensagem=document.getElementById('formMessage').value.trim();const texto=`Olá, equipe da TV Voz de Brasília!
-
-Quero anunciar na TV Voz NEWS.
-
-Nome: ${nome}
-Empresa/Marca: ${empresa}
-Telefone: ${telefone}
-Cidade/UF: ${cidade}
-Área de interesse: ${interesse}
-Mensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURIComponent(texto),'_blank','noopener');});}
+    if(advertiserForm){advertiserForm.addEventListener('submit',function(e){e.preventDefault();const nome=document.getElementById('formName').value.trim();const empresa=document.getElementById('formCompany').value.trim();const telefone=document.getElementById('formPhone').value.trim();const cidade=document.getElementById('formCity').value.trim();const interesse=document.getElementById('formInterest').value;const mensagem=document.getElementById('formMessage').value.trim();const texto=`Olá, equipe da TV Voz de Brasília!\n\nQuero anunciar na TV Voz NEWS.\n\nNome: ${nome}\nEmpresa/Marca: ${empresa}\nTelefone: ${telefone}\nCidade/UF: ${cidade}\nÁrea de interesse: ${interesse}\nMensagem: ${mensagem}`;window.open('https://wa.me/5561999811109?text='+encodeURIComponent(texto),'_blank','noopener');});}
     window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,10*60*1000);document.getElementById('enterLiveOverlay')?.classList.add('show');});
-  
-
-    /* Mercado e clima em tempo real — faixa branca */
+    
     const marketInfo=document.getElementById('marketInfo');
     const marketInfoClone=document.getElementById('marketInfoClone');
     const formatBRL=value=>Number(value).toLocaleString('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2});
