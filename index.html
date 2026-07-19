@@ -1524,6 +1524,7 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
       return [...extraItems,...(newsList||[]).map(item=>item.title||'')].map(sanitizeNewsText).filter(Boolean);
     }
 
+   
     playNewsAudio(text, presenter, token) {
     return new Promise((resolve) => {
         if (!liveRunning || token !== generationToken || !('speechSynthesis' in window)) { resolve(); return; }
@@ -1555,6 +1556,23 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
         const voices = window.speechSynthesis.getVoices();
         const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
         
+        let selectedVoice = ptVoices.find(v => {
+            const name = v.name.toLowerCase();
+            if (presenter === 'deijanete') {
+                return name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google');
+            } else {
+                return name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('male') || name.includes('microsoft');
+            }
+        });
+
+        if (!selectedVoice && ptVoices.length > 0) {
+            selectedVoice = presenter === 'deijanete' ? ptVoices[0] : (ptVoices[1] || ptVoices[0]);
+        }
+
+        if (selectedVoice) utterance.voice = selectedVoice;
+        window.speechSynthesis.speak(utterance);
+    });
+}    
         let selectedVoice = ptVoices.find(v => {
             const name = v.name.toLowerCase();
             if (presenter === 'deijanete') {
