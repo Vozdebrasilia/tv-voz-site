@@ -1451,10 +1451,19 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
     const tagDeijanete=document.getElementById('tagDeijanete');
     const tagPaulo=document.getElementById('tagPaulo');
 
+    // ESTABILIZAÇÃO DA FAIXA AMARELA: Força a animação a rodar em velocidade normal (35 segundos)
+    function ajustarVelocidadeLetreiro() {
+      const elAmarelo = document.getElementById('visibleNewsTicker');
+      const elAmareloClone = document.getElementById('visibleNewsTickerClone');
+      if (elAmarelo) elAmarelo.style.animation = 'ticker 35s linear infinite';
+      if (elAmareloClone) elAmareloClone.style.animation = 'ticker 35s linear infinite';
+    }
+
     function setTickerText(text){
       const clean=String(text||'Notícias em tempo real • Brasil • Mundo • Brasília').trim();
       if(visibleNewsTicker) visibleNewsTicker.textContent=clean+'     •     ';
       if(visibleNewsTickerClone) visibleNewsTickerClone.textContent=clean+'     •     ';
+      ajustarVelocidadeLetreiro();
     }
 
     function setNews(items){
@@ -1492,8 +1501,8 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
       liveRunning=false;
       generationToken++;
       if('speechSynthesis' in window) window.speechSynthesis.cancel();
-      if(idleDeijanete) idleDeijanete.classList.remove('speaking','instant-speaking');
-      if(idlePaulo) idlePaulo.classList.remove('speaking','instant-speaking');
+      if(idleDeijanete) idleDeijanete.className = 'idle-avatar';
+      if(idlePaulo) idlePaulo.className = 'idle-avatar';
       if(studioStatus) studioStatus.textContent='Boletim pausado.';
     }
 
@@ -1517,27 +1526,49 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
         return new Promise((resolve) => {
             if (!liveRunning || token !== generationToken || !('speechSynthesis' in window)) { resolve(); return; }
             window.speechSynthesis.cancel();
+            
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'pt-BR';
             utterance.rate = 1.0;
+            
             const speakerElement = presenter === 'deijanete' ? idleDeijanete : idlePaulo;
             const otherElement = presenter === 'deijanete' ? idlePaulo : idleDeijanete;
+            
             utterance.onstart = () => {
                 if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
-                if(otherElement) otherElement.classList.remove('speaking','instant-speaking');
-                if(speakerElement) speakerElement.classList.add('speaking','instant-speaking');
+                if(otherElement) otherElement.className = 'idle-avatar';
+                if(speakerElement) speakerElement.className = 'idle-avatar speaking instant-speaking';
             };
             utterance.onend = () => {
-                if(speakerElement) speakerElement.classList.remove('speaking','instant-speaking');
+                if(speakerElement) speakerElement.className = 'idle-avatar';
                 resolve();
             };
             utterance.onerror = () => {
-                if(speakerElement) speakerElement.classList.remove('speaking','instant-speaking');
+                if(speakerElement) speakerElement.className = 'idle-avatar';
                 resolve();
             };
+
             const voices = window.speechSynthesis.getVoices();
-            const selectedVoice = voices.find(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
-            if (selectedVoice) utterance.voice = selectedVoice;
+            // MAPEAMENTO DE VOZ BRASILEIRA (Alterna entre Deijanete/Feminina e Paulo/Masculina)
+            const selectedVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                const isPt = v.lang.includes('pt-BR') || v.lang.includes('pt');
+                if (presenter === 'deijanete') {
+                    return isPt && (name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google') || name.includes('luciana'));
+                } else {
+                    return isPt && (name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('male') || name.includes('microsoft') || name.includes('helio'));
+                }
+            });
+
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            } else {
+                const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
+                if (ptVoices.length > 0) {
+                    utterance.voice = presenter === 'deijanete' ? ptVoices[0] : (ptVoices[1] || ptVoices[0]);
+                }
+            }
+
             window.speechSynthesis.speak(utterance);
         });
     }
@@ -1575,6 +1606,12 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
     document.getElementById('stopLiveNews')?.addEventListener('click',stopLive);
     document.getElementById('nextHeadline')?.addEventListener('click',nextHeadline);
     document.getElementById('enterLiveButton')?.addEventListener('click',async()=>{document.getElementById('enterLiveOverlay')?.classList.remove('show');await startLive();});
+    
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+    }
+
     window.addEventListener('load',()=>{setNews(fallbackNews);loadNews().then(loadTickerData);setInterval(loadTickerData,600000);document.getElementById('enterLiveOverlay')?.classList.add('show');});
     
     const marketInfo=document.getElementById('marketInfo');
