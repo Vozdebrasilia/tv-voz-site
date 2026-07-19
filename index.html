@@ -1428,12 +1428,12 @@
 </main>
 <footer class="footer"><div class="container"><strong>VOZ NEWS | TV Voz de Brasília</strong><p>Da visão à realidade: mídia, credibilidade, negócios e inteligência artificial.</p></div></footer>
 <script>
-   const menuToggle=document.getElementById('menuToggle');const siteMenu=document.getElementById('siteMenu');menuToggle.addEventListener('click',()=>siteMenu.classList.toggle('open'));siteMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>siteMenu.classList.remove('open')));
+ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.getElementById('siteMenu');menuToggle.addEventListener('click',()=>siteMenu.classList.toggle('open'));siteMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>siteMenu.classList.remove('open')));
     const fallbackNews=[
       {title:'Brasília acompanha decisões políticas, econômicas e institucionais',summary:'A capital federal segue no centro das principais decisões do país, com impacto direto sobre empresas, cidadãos e projetos públicos.',source:'Brasília'},
       {title:'Brasil amplia conexões em inovação, negócios e desenvolvimento',summary:'O cenário nacional reúne investimentos, tecnologia, empreendedorismo e novas oportunidades em diferentes regiões.',source:'Brasil'},
       {title:'Mercados globais monitoram tecnologia, energia e acordos internacionais',summary:'O panorama internacional destaca inovação, comércio, sustentabilidade e movimentos que influenciam a economia mundial.',source:'Mundo'},
-      {title:'Saúde, educação e projetos sociais ganham espaço nas pautas nacionais',summary:'Iniciativas de impacto humano e desenvolvimento social permanecem entre os temas de maior interesse público.',source:'Brasil'}
+      {title:'Saúde, education e projetos sociais ganham espaço nas pautas nacionais',summary:'Iniciativas de impacto humano e desenvolvimento social permanecem entre os temas de maior interesse público.',source:'Brasil'}
     ];
     let currentNews=fallbackNews.slice();
     let currentIndex=0;
@@ -1504,8 +1504,8 @@
       liveRunning=false;
       generationToken++;
       if('speechSynthesis' in window) window.speechSynthesis.cancel();
-      idleDeijanete.classList.remove('instant-speaking');
-      idlePaulo.classList.remove('instant-speaking');
+      idleDeijanete.classList.remove('speaking', 'instant-speaking');
+      idlePaulo.classList.remove('speaking', 'instant-speaking');
       studioStatus.textContent='Boletim pausado.';
     }
 
@@ -1555,25 +1555,26 @@
 
             utterance.onstart = () => {
                 if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
-                otherElement.classList.remove('instant-speaking');
-                speakerElement.classList.add('instant-speaking');
+                otherElement.classList.remove('speaking', 'instant-speaking');
+                // Aplica as classes css que disparam a animação de boca, cabeça e olhos por CSS alternado
+                speakerElement.classList.add('speaking', 'instant-speaking');
             };
 
             utterance.onend = () => {
-                speakerElement.classList.remove('instant-speaking');
+                speakerElement.classList.remove('speaking', 'instant-speaking');
                 resolve();
             };
 
             utterance.onerror = () => {
-                speakerElement.classList.remove('instant-speaking');
+                speakerElement.classList.remove('speaking', 'instant-speaking');
                 resolve();
             };
 
             const voices = window.speechSynthesis.getVoices();
             const selectedVoice = voices.find(v => 
                 presenter === 'deijanete' 
-                    ? (v.name.includes('Francisca') || v.name.includes('Maria') || v.name.includes('Female'))
-                    : (v.name.includes('Antonio') || v.name.includes('Daniel') || v.name.includes('Male'))
+                    ? (v.name.includes('Francisca') || v.name.includes('Heloisa') || v.name.includes('Maria') || v.name.includes('Female') || v.lang.includes('BR'))
+                    : (v.name.includes('Antonio') || v.name.includes('Daniel') || v.name.includes('Male') || v.lang.includes('BR'))
             );
             
             if (selectedVoice) utterance.voice = selectedVoice;
