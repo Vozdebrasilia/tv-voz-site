@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Voz de Brasília - Estúdio ao Vivo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        header {
+            background: linear-gradient(90deg, #1a1f2c, #0b0f19);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f1c40f;
+        }
+        .logo-area h1 {
+            font-size: 24px;
+            color: #f1c40f;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .studio-status {
+            font-size: 14px;
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid #f1c40f;
+        }
+        .main-stage {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+            gap: 40px;
+        }
+        .presenter-podium {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .avatar-box {
+            width: 280px;
+            height: 380px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #333;
+            position: relative;
+            background: #111;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+        }
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .avatar-box.speaking, .avatar-box.instant-speaking {
+            border-color: #2ecc71;
+            transform: scale(1.03);
+            animation: pulse-avatar 1.5s infinite alternate;
+        }
+        @keyframes pulse-avatar {
+            0% { box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); transform: scale(1.02); }
+            100% { box-shadow: 0 0 30px rgba(46, 204, 113, 0.8); transform: scale(1.05); }
+        }
+        .presenter-name {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #f1c40f;
+.background: rgba(0,0,0,0.6);
+            padding: 6px 20px;
+            border-radius: 4px;
+            border-bottom: 2px solid #f1c40f;
+        }
+        .ticker-container {
+            width: 100%;
+            background: #111;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            border-top: 1px solid #333;
+        }
+        .white-ticker {
+            background: #ffffff;
+            color: #000000;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .yellow-ticker {
+            background: #f1c40f;
+            color: #000000;
+            padding: 12px 0;
+            font-size: 22px !important;
+            font-weight: 900;
+        }
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 35s linear infinite;
+        }
+        .white-ticker .marquee {
+            animation-duration: 30s;
+        }
+        .yellow-ticker .marquee {
+            animation-duration: 45s !important;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 100;
+        }
+        .btn-live {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            transition: background 0.2s;
+        }
+        .btn-live:hover { background: #c0392b; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <h1>TV Voz de Brasília</h1>
+        </div>
+        <div id="studioStatus" class="studio-status">Apresentadores no ar</div>
+    </header>
+
+    <div class="controls">
+        <button class="btn-live" onclick="toggleLive()">🔴 AO VIVO</button>
+    </div>
+
+    <div class="main-stage">
+        <div class="presenter-podium">
+            <div id="idleDeijanete" class="avatar-box">
+                <img src="deijanete.jpg" alt="Deijanete" onerror="this.src='deijanete-fRyas-anchor.jpg'">
+            </div>
+            <div class="presenter-name">Deijanete</div>
+        </div>
+
+        <div class="presenter-podium">
+            <div id="idlePaulo" class="avatar-box">
+                <img src="paulo.jpg" alt="Paulo Fayad" onerror="this.src='paulo-anuncios.jpg'">
+            </div>
+            <div class="presenter-name">Paulo Fayad</div>
+        </div>
+    </div>
+
+    <div class="ticker-container white-ticker">
+        <div class="marquee" id="whiteTickerText">Bem-vindo à TV Voz de Brasília — Informação com credibilidade, turismo, meio ambiente e economia.</div>
+    </div>
+
+    <div class="ticker-container yellow-ticker">
+        <div class="marquee" id="yellowTickerText">★ NOTÍCIA URGENTE: Cobertura especial da 24ª Edição do Anuário Brasileiro de Economia, Turismo e Meio Ambiente ★</div>
+    </div>
+
+    <script>
+        let liveRunning = true;
+        let generationToken = 0;
+        let currentIndex = 0;
+
+        const newsList = [
+            { text: "Olá, sejam bem-vindos à TV Voz de Brasília. Trazemos agora as principais notícias da capital federal.", presenter: "deijanete" },
+            { text: "Exatamente, Deijanete. O Anuário Brasileiro de Economia, Turismo e Meio Ambiente destaca os avanços sustentáveis na região.", presenter: "paulo" },
+            { text: "Continuamos com nossa programação ao vivo trazendo entrevistas exclusivas e análises de mercado.", presenter: "deijanete" }
+        ];
+
+        const idleDeijanete = document.getElementById('idleDeijanete');
+        const idlePaulo = document.getElementById('idlePaulo');
+        const studioStatus = document.getElementById('studioStatus');
+
+        function playNewsAudio(text, presenter, token) {
+            return new Promise((resolve) => {
+                if (!liveRunning || token !== generationToken || !('speechSynthesis' in window)) { resolve(); return; }
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 1.0;
+                
+                const speakerElement = presenter === 'deijanete' ? idleDeijanete : idlePaulo;
+                const otherElement = presenter === 'deijanete' ? idlePaulo : idleDeijanete;
+                
+                utterance.onstart = () => {
+                    if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
+                    if (otherElement) {
+                        otherElement.style.opacity = '0.4';
+                        otherElement.classList.remove('speaking', 'instant-speaking');
+                    }
+                    if (speakerElement) {
+                        speakerElement.style.opacity = '1';
+                        speakerElement.classList.add('speaking', 'instant-speaking');
+                    }
+                };
+                
+                utterance.onend = () => {
+                    if (idleDeijanete) {
+                        idleDeijanete.style.opacity = '1';
+                        idleDeijanete.classList.remove('speaking', 'instant-speaking');
+                    }
+                    if (idlePaulo) {
+                        idlePaulo.style.opacity = '1';
+                        idlePaulo.classList.remove('speaking', 'instant-speaking');
+                    }
+                    resolve();
+                };
+                
+                utterance.onerror = () => {
+                    if (idleDeijanete) {
+                        idleDeijanete.style.opacity = '1';
+                        idleDeijanete.classList.remove('speaking', 'instant-speaking');
+                    }
+                    if (idlePaulo) {
+                        idlePaulo.style.opacity = '1';
+                        idlePaulo.classList.remove('speaking', 'instant-speaking');
+                    }
+                    resolve();
+                };
+
+                const voices = window.speechSynthesis.getVoices();
+                const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
+                
+                let selectedVoice = null;
+                if (presenter === 'deijanete') {
+                    selectedVoice = ptVoices.find(v => {
+                        const name = v.name.toLowerCase();
+                        return name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google');
+                    }) || ptVoices[0];
+                } else {
+                    selectedVoice = ptVoices.find(v => {
+                        const name = v.name.toLowerCase();
+                        return name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('ricardo') || name.includes('male');
+                    }) || ptVoices[1] || ptVoices[0];
+                }
+
+                if (selectedVoice) utterance.voice = selectedVoice;
+                window.speechSynthesis.speak(utterance);
+            });
+        }
+
+        async function runLiveSequence(token) {
+            while (liveRunning && token === generationToken) {
+                const item = newsList[currentIndex];
+                const presenter = item.presenter;
+                studioStatus.textContent = "Apresentadores no ar";
+                
+                await playNewsAudio(item.text, presenter, token);
+                if (!liveRunning || token !== generationToken) break;
+                
+                currentIndex = (currentIndex + 1) % newsList.length;
+                await new Promise(r => setTimeout(r, 1500));
+            }
+        }
+
+        function startLive() {
+            liveRunning = true;
+            generationToken++;
+            runLiveSequence(generationToken);
+        }
+
+        function toggleLive() {
+            liveRunning = !liveRunning;
+            if (liveRunning) {
+                startLive();
+            } else {
+                window.speechSynthesis.cancel();
+                if (idleDeijanete) idleDeijanete.classList.remove('speaking', 'instant-speaking');
+                if (idlePaulo) idlePaulo.classList.remove('speaking', 'instant-speaking');
+                studioStatus.textContent = "Em pausa";
+            }
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+        }
+
+        window.onload = () => {
+            startLive();
+        };
+    </script>
+</body>
+</html>
