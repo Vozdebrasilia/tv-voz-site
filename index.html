@@ -1527,20 +1527,60 @@ function playNewsAudio(text, presenter, token) {
         
         utterance.onstart = () => {
             if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
-            if(otherElement) otherElement.style.opacity = '0.4';
-            if(speakerElement) speakerElement.style.opacity = '1';
+            if (otherElement) {
+                otherElement.style.opacity = '0.4';
+                otherElement.classList.remove('speaking', 'instant-speaking');
+            }
+            if (speakerElement) {
+                speakerElement.style.opacity = '1';
+                speakerElement.classList.add('speaking', 'instant-speaking');
+            }
         };
+        
         utterance.onend = () => {
-            if(idleDeijanete) idleDeijanete.style.opacity = '1';
-            if(idlePaulo) idlePaulo.style.opacity = '1';
+            if (idleDeijanete) {
+                idleDeijanete.style.opacity = '1';
+                idleDeijanete.classList.remove('speaking', 'instant-speaking');
+            }
+            if (idlePaulo) {
+                idlePaulo.style.opacity = '1';
+                idlePaulo.classList.remove('speaking', 'instant-speaking');
+            }
             resolve();
         };
+        
         utterance.onerror = () => {
-            if(idleDeijanete) idleDeijanete.style.opacity = '1';
-            if(idlePaulo) idlePaulo.style.opacity = '1';
+            if (idleDeijanete) {
+                idleDeijanete.style.opacity = '1';
+                idleDeijanete.classList.remove('speaking', 'instant-speaking');
+            }
+            if (idlePaulo) {
+                idlePaulo.style.opacity = '1';
+                idlePaulo.classList.remove('speaking', 'instant-speaking');
+            }
             resolve();
         };
 
+        const voices = window.speechSynthesis.getVoices();
+        const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
+        
+        let selectedVoice = ptVoices.find(v => {
+            const name = v.name.toLowerCase();
+            if (presenter === 'deijanete') {
+                return name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google');
+            } else {
+                return name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('male') || name.includes('microsoft');
+            }
+        });
+
+        if (!selectedVoice && ptVoices.length > 0) {
+            selectedVoice = presenter === 'deijanete' ? ptVoices[0] : (ptVoices[1] || ptVoices[0]);
+        }
+
+        if (selectedVoice) utterance.voice = selectedVoice;
+        window.speechSynthesis.speak(utterance);
+    });
+}
         const voices = window.speechSynthesis.getVoices();
         const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
         
