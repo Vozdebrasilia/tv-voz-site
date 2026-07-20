@@ -1513,34 +1513,54 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
       return [...extraItems,...(newsList||[]).map(item=>item.title||'')].map(sanitizeNewsText).filter(Boolean);
     }
 
-    function playNewsAudio(text, presenter, token) {
-        return new Promise((resolve) => {
-            if (!liveRunning || token !== generationToken || !('speechSynthesis' in window)) { resolve(); return; }
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'pt-BR';
-            utterance.rate = 1.0;
-            const speakerElement = presenter === 'deijanete' ? idleDeijanete : idlePaulo;
-            const otherElement = presenter === 'deijanete' ? idlePaulo : idleDeijanete;
-            utterance.onstart = () => {
-                if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
-                if(otherElement) otherElement.classList.remove('speaking','instant-speaking');
-                if(speakerElement) speakerElement.classList.add('speaking','instant-speaking');
-            };
-            utterance.onend = () => {
-                if(speakerElement) speakerElement.classList.remove('speaking','instant-speaking');
-                resolve();
-            };
-            utterance.onerror = () => {
-                if(speakerElement) speakerElement.classList.remove('speaking','instant-speaking');
-                resolve();
-            };
-            const voices = window.speechSynthesis.getVoices();
-            const selectedVoice = voices.find(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
-            if (selectedVoice) utterance.voice = selectedVoice;
-            window.speechSynthesis.speak(utterance);
+function playNewsAudio(text, presenter, token) {
+    return new Promise((resolve) => {
+        if (!liveRunning || token !== generationToken || !('speechSynthesis' in window)) { resolve(); return; }
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0;
+        
+        const speakerElement = presenter === 'deijanete' ? idleDeijanete : idlePaulo;
+        const otherElement = presenter === 'deijanete' ? idlePaulo : idleDeijanete;
+        
+        utterance.onstart = () => {
+            if (!liveRunning || token !== generationToken) { window.speechSynthesis.cancel(); resolve(); return; }
+            if(otherElement) otherElement.style.opacity = '0.4';
+            if(speakerElement) speakerElement.style.opacity = '1';
+        };
+        utterance.onend = () => {
+            if(idleDeijanete) idleDeijanete.style.opacity = '1';
+            if(idlePaulo) idlePaulo.style.opacity = '1';
+            resolve();
+        };
+        utterance.onerror = () => {
+            if(idleDeijanete) idleDeijanete.style.opacity = '1';
+            if(idlePaulo) idlePaulo.style.opacity = '1';
+            resolve();
+        };
+
+        const voices = window.speechSynthesis.getVoices();
+        const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt'));
+        
+        let selectedVoice = ptVoices.find(v => {
+            const name = v.name.toLowerCase();
+            if (presenter === 'deijanete') {
+                return name.includes('francisca') || name.includes('heloisa') || name.includes('maria') || name.includes('female') || name.includes('google');
+            } else {
+                return name.includes('antonio') || name.includes('daniel') || name.includes('fabio') || name.includes('male') || name.includes('microsoft');
+            }
         });
-    }
+
+        if (!selectedVoice && ptVoices.length > 0) {
+            selectedVoice = presenter === 'deijanete' ? ptVoices[0] : (ptVoices[1] || ptVoices[0]);
+        }
+
+        if (selectedVoice) utterance.voice = selectedVoice;
+        window.speechSynthesis.speak(utterance);
+    });
+}
 
     async function runLiveSequence(token) {
         while (liveRunning && token === generationToken) {
