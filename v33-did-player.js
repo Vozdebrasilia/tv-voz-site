@@ -12,42 +12,59 @@
     { presenter:'deijanete', src:'./assets/v33-did/10-deijanete.mp4' }
   ];
 
-  const deijanete = document.getElementById('idleDeijanete');
-  const paulo = document.getElementById('idlePaulo');
+  const hosts = {
+    deijanete: document.getElementById('idleDeijanete'),
+    paulo: document.getElementById('idlePaulo')
+  };
+
   const status = document.getElementById('studioStatus');
   const overlay = document.getElementById('enterLiveOverlay');
 
-  if (!deijanete || !paulo) return;
+  if (!hosts.deijanete || !hosts.paulo) return;
 
-  const css = document.createElement('style');
-  css.textContent = `
+  const style = document.createElement('style');
+  style.textContent = `
     #tv-ao-vivo .v33-did-video{
       position:absolute!important;
       inset:0!important;
       width:100%!important;
       height:100%!important;
-      object-fit:contain!important;
+      object-fit:cover!important;
       object-position:center top!important;
-      z-index:30!important;
-      display:none!important;
-      background:transparent!important;
+      z-index:20!important;
+      opacity:0!important;
+      visibility:hidden!important;
       pointer-events:none!important;
+      background:transparent!important;
     }
 
     #tv-ao-vivo .idle-avatar.v33-did-active .v33-did-video{
-      display:block!important;
+      opacity:1!important;
+      visibility:visible!important;
     }
 
     #tv-ao-vivo .idle-avatar.v33-did-active .idle-avatar-body{
+      opacity:0!important;
       visibility:hidden!important;
     }
 
-    #tv-ao-vivo .idle-avatar.v33-did-active .instant-mouth,
-    #tv-ao-vivo .idle-avatar.v33-did-active .avatar-eyelids{
+    #tv-ao-vivo .instant-mouth,
+    #tv-ao-vivo .avatar-eyelids{
       display:none!important;
     }
+
+    #tv-ao-vivo .idle-avatar.v33-listening .idle-avatar-body{
+      animation:v33Listening 4s ease-in-out infinite!important;
+      transform-origin:50% 72%!important;
+    }
+
+    @keyframes v33Listening{
+      0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+      30%{transform:translate3d(0,-1px,0) rotate(.15deg)}
+      65%{transform:translate3d(0,0,0) rotate(-.12deg)}
+    }
   `;
-  document.head.appendChild(css);
+  document.head.appendChild(style);
 
   function createVideo(host, id) {
     const video = document.createElement('video');
@@ -57,115 +74,119 @@
     video.preload = 'auto';
     video.controls = false;
     video.muted = false;
-    video.setAttribute('playsinline', '');
+    video.setAttribute('playsinline','');
     host.appendChild(video);
     return video;
   }
 
   const videos = {
-    deijanete: createVideo(deijanete, 'v33DidDeijanete'),
-    paulo: createVideo(paulo, 'v33DidPaulo')
+    deijanete: createVideo(hosts.deijanete, 'v33DidDeijanete'),
+    paulo: createVideo(hosts.paulo, 'v33DidPaulo')
   };
+
+  playlist.forEach(item => {
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'video';
+    preload.href = item.src;
+    document.head.appendChild(preload);
+  });
 
   let running = false;
   let index = 0;
 
-  function cancelBrowserVoice() {
-    try {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-    } catch(e) {}
+  function cancelBrowserVoice(){
+    try{
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }catch(e){}
   }
 
-  function resetHost(host) {
+  function clearHost(name){
+    const host = hosts[name];
     host.classList.remove(
       'v33-did-active',
+      'v33-listening',
       'active-speaker',
       'instant-speaking',
       'listening-avatar'
     );
   }
 
-  function resetVideo(video) {
-    try {
+  function stopVideo(video){
+    try{
       video.pause();
       video.currentTime = 0;
       video.removeAttribute('src');
       video.load();
-    } catch(e) {}
+    }catch(e){}
   }
 
-  function resetAll() {
-    resetVideo(videos.deijanete);
-    resetVideo(videos.paulo);
-    resetHost(deijanete);
-    resetHost(paulo);
+  function resetAll(){
+    stopVideo(videos.deijanete);
+    stopVideo(videos.paulo);
+    clearHost('deijanete');
+    clearHost('paulo');
   }
 
-  function finishSequence() {
+  function finish(){
     running = false;
     cancelBrowserVoice();
     resetAll();
 
-    if (status) {
+    if(status){
       status.textContent = 'Apresentação concluída.';
     }
   }
 
-  function playCurrent() {
-    if (!running) return;
+  function playCurrent(){
+    if(!running) return;
 
-    if (index >= playlist.length) {
-      finishSequence();
+    if(index >= playlist.length){
+      finish();
       return;
     }
 
     cancelBrowserVoice();
 
     const item = playlist[index];
+    const active = item.presenter;
+    const listener = active === 'deijanete' ? 'paulo' : 'deijanete';
 
-    const activeHost =
-      item.presenter === 'deijanete' ? deijanete : paulo;
+    clearHost(active);
+    clearHost(listener);
 
-    const inactiveHost =
-      item.presenter === 'deijanete' ? paulo : deijanete;
+    hosts[active].classList.add('v33-did-active','active-speaker');
+    hosts[listener].classList.add('v33-listening');
 
-    const activeVideo = videos[item.presenter];
+    const activeVideo = videos[active];
+    const listenerVideo = videos[listener];
 
-    const inactiveVideo =
-      item.presenter === 'deijanete'
-        ? videos.paulo
-        : videos.deijanete;
+    try{
+      listenerVideo.pause();
+    }catch(e){}
 
-    resetVideo(inactiveVideo);
-    resetHost(inactiveHost);
-
-    activeHost.classList.add('v33-did-active', 'active-speaker');
-
-    if (status) {
+    if(status){
       status.textContent =
-        item.presenter === 'deijanete'
+        active === 'deijanete'
           ? 'Dra. Deijanete Fayad no ar.'
           : 'Paulo Fayad no ar.';
     }
 
     activeVideo.onended = () => {
-      resetHost(activeHost);
-      resetVideo(activeVideo);
+      clearHost(active);
+      clearHost(listener);
       index += 1;
       playCurrent();
     };
 
     activeVideo.onerror = () => {
       running = false;
-      resetHost(activeHost);
-      resetVideo(activeVideo);
+      clearHost(active);
+      clearHost(listener);
       cancelBrowserVoice();
 
-      if (status) {
-        status.textContent =
-          'Vídeo indisponível. Apresentador mantido em repouso.';
+      if(status){
+        status.textContent = 'Apresentação temporariamente indisponível.';
       }
     };
 
@@ -173,79 +194,68 @@
     activeVideo.currentTime = 0;
     activeVideo.load();
 
-    const playback = activeVideo.play();
+    const p = activeVideo.play();
 
-    if (playback && typeof playback.catch === 'function') {
-      playback.catch(() => {
+    if(p && typeof p.catch === 'function'){
+      p.catch(() => {
         running = false;
-        resetHost(activeHost);
+        clearHost(active);
+        clearHost(listener);
 
-        if (status) {
-          status.textContent =
-            'Clique em INICIAR AVATARES AO VIVO para liberar o áudio.';
+        if(status){
+          status.textContent = 'Clique em ENTRAR NO JORNAL AO VIVO.';
         }
       });
     }
   }
 
-  function startV33DidSequence() {
+  function startV33DidSequence(){
     cancelBrowserVoice();
     resetAll();
 
     running = true;
     index = 0;
 
-    overlay?.classList.remove('show');
+    if(overlay){
+      overlay.classList.remove('show');
+    }
 
     playCurrent();
   }
 
-  function stopV33DidSequence() {
+  function stopV33DidSequence(){
     running = false;
     cancelBrowserVoice();
     resetAll();
 
-    if (status) {
+    if(status){
       status.textContent = 'Boletim pausado.';
     }
   }
 
-  function nextV33DidClip() {
-    cancelBrowserVoice();
-
-    if (!running) {
+  function nextV33DidClip(){
+    if(!running){
       startV33DidSequence();
       return;
     }
 
     resetAll();
-
     index += 1;
-
-    if (index >= playlist.length) {
-      finishSequence();
-      return;
-    }
-
     playCurrent();
   }
 
   window.startV33DidSequence = startV33DidSequence;
   window.stopV33DidSequence = stopV33DidSequence;
 
-  function intercept(id, handler) {
-    const element = document.getElementById(id);
-    if (!element) return;
+  function intercept(id, handler){
+    const el = document.getElementById(id);
+    if(!el) return;
 
-    element.addEventListener(
-      'click',
-      event => {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        handler();
-      },
-      true
-    );
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      handler();
+    }, true);
   }
 
   intercept('startLiveNews', startV33DidSequence);
