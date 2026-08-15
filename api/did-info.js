@@ -1,28 +1,36 @@
 const { didFetch } = require('./_did');
 
 module.exports = async function handler(req,res){
-  try {
-    const [voices, avatars, presenters] = await Promise.all([
+  try{
+    const [voicesRaw,talksRaw] = await Promise.all([
       didFetch('/tts/voices'),
-      didFetch('/scenes/avatars?limit=200').catch(()=>[]),
-      didFetch('/clips/presenters?limit=1000').catch(()=>[])
+      didFetch('/talks?limit=100')
     ]);
 
-    const arr = x => Array.isArray(x) ? x : (x?.voices || x?.avatars || x?.presenters || []);
+    const voices = Array.isArray(voicesRaw) ? voicesRaw : (voicesRaw.voices || []);
+    const talks = Array.isArray(talksRaw) ? talksRaw : (talksRaw.talks || talksRaw.items || []);
 
-    const wanted = item => {
-      const s = JSON.stringify(item).toLowerCase();
-      return s.includes('deijanete') || s.includes('paulo') || s.includes('fayad') ||
-             s.includes('custom') || s.includes('clone');
-    };
+    const privateVoices = voices.filter(v =>
+      v.access && String(v.access).toLowerCase() !== 'public'
+    );
+
+    const relevantTalks = talks.filter(t => {
+      const s = JSON.stringify(t).toLowerCase();
+      return s.includes('deijanete') ||
+             s.includes('paulo') ||
+             s.includes('fayad') ||
+             s.includes('voz news');
+    });
 
     res.setHeader('Cache-Control','no-store');
     res.status(200).json({
-      voices: arr(voices).filter(wanted),
-      avatars: arr(avatars).filter(wanted),
-      presenters: arr(presenters).filter(wanted)
+      privateVoices,
+      relevantTalks: relevantTalks.slice(0,30)
     });
-  } catch(e) {
-    res.status(e.status || 500).json({error:e.message, details:e.data || null});
+  }catch(e){
+    res.status(e.status || 500).json({
+      error:e.message,
+      details:e.data || null
+    });
   }
 };
