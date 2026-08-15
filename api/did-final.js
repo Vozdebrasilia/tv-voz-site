@@ -66,7 +66,7 @@ const SCRIPT = [
 module.exports = async function handler(req,res){
   try{
     const token = String(req.query?.token || '');
-    if(token !== process.env.V33_GENERATE_TOKEN){
+    if(token !== 'V33-VOZ-150826-FINAL'){
       return res.status(401).json({error:'Não autorizado'});
     }
 
