@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VOZ NEWS — Ecossistema Nacional de Comunicação</title>
+  <meta name="description" content="Portal-mãe do Ecossistema VOZ NEWS: notícias, negócios, entrevistas, portais especializados e expansão nacional.">
+  <style>
+    :root {
+      --navy:#071d3a;
+      --blue:#0d4f9b;
+      --blue2:#1669c7;
+      --gold:#d4af37;
+      --ink:#10233f;
+      --muted:#66758a;
+      --bg:#f5f8fc;
+      --white:#fff;
+      --line:#dfe7f1;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px,92vw);margin:auto}
+    .topbar{background:var(--navy);color:#fff;font-size:14px}
+    .topbar .wrap{display:flex;justify-content:space-between;gap:16px;padding:8px 0;flex-wrap:wrap}
+    header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--navy));display:grid;place-items:center;color:#fff;font-weight:900}
+    .brand strong{display:block;font-size:21px;letter-spacing:.4px}
+    .brand small{display:block;color:var(--muted);font-weight:600}
+    nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-weight:700;font-size:14px}
+    .cta{background:var(--gold);color:#13213a;padding:11px 16px;border-radius:999px;font-weight:800}
+    .hero{background:linear-gradient(135deg,var(--navy),#0c376e 60%,#0c5fae);color:#fff;padding:70px 0 60px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:44px;align-items:center}
+    .eyebrow{text-transform:uppercase;letter-spacing:2px;font-weight:800;color:#f6d56e;font-size:13px}
+    h1{font-size:clamp(38px,6vw,70px);line-height:1.02;margin:12px 0 20px}
+    .hero p{font-size:19px;color:#dceaff;max-width:760px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:12px;font-weight:800;border:1px solid rgba(255,255,255,.25)}
+    .btn-primary{background:#fff;color:var(--navy)}
+    .btn-secondary{background:rgba(255,255,255,.08);color:#fff}
+    .hero-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:26px;backdrop-filter:blur(12px)}
+    .hero-card h2{margin-top:0;font-size:25px}
+    .hero-card ul{padding-left:18px;margin-bottom:0;color:#e8f1ff}
+    section{padding:64px 0}
+    .section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}
+    .section-head h2{font-size:clamp(30px,4vw,46px);margin:0}
+    .section-head p{max-width:680px;color:var(--muted);margin:0}
+    .spotlight{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .spot{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 10px 28px rgba(10,30,60,.06)}
+    .spot b{display:block;font-size:18px;margin-bottom:8px}
+    .spot span{color:var(--muted);font-size:14px}
+    .ecosystem{background:#fff}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+    .filter{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:700;cursor:pointer}
+    .filter.active{background:var(--navy);color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .portal-card{border:1px solid var(--line);border-radius:20px;padding:22px;background:linear-gradient(180deg,#fff,#f9fbfe);min-height:220px;display:flex;flex-direction:column;transition:.2s ease}
+    .portal-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(18,48,83,.10)}
+    .portal-badge{font-size:11px;font-weight:900;letter-spacing:1.5px;color:var(--blue);margin-bottom:12px}
+    .portal-card h3{font-size:20px;line-height:1.2;margin:0 0 10px}
+    .portal-card p{color:var(--muted);font-size:14px;margin:0 0 20px}
+    .portal-link{margin-top:auto;font-weight:900;color:var(--blue)}
+
+    .metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+    .metrics-strip div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px}
+    .metrics-strip strong{display:block;font-size:24px;color:#fff}
+    .metrics-strip span{display:block;font-size:12px;color:#dceaff;margin-top:3px}
+
+    .authority{background:#fff}
+    .authority-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .person-card{border:1px solid var(--line);border-radius:24px;padding:28px;background:linear-gradient(180deg,#fff,#f8fbff)}
+    .person-card h3{font-size:28px;margin:6px 0 12px}
+    .person-role{font-weight:800;color:var(--blue);font-size:13px;text-transform:uppercase;letter-spacing:1px}
+    .person-card ul{padding-left:18px;color:var(--muted)}
+    .archive-bar{margin-top:22px;background:var(--navy);color:#fff;border-radius:20px;padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .archive-bar strong{display:block;font-size:28px}
+    .archive-bar span{font-size:12px;color:#d8e8fa}
+    .academy{background:linear-gradient(135deg,#eef5ff,#fff)}
+    .academy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .academy-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+    .academy-card h3{margin-top:0}
+    .academy-card p{color:var(--muted)}
+    .offer{margin-top:22px;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;border-radius:22px;padding:26px}
+    .offer p{color:#e0ecfa}
+
+    .international{background:linear-gradient(135deg,#f7fbff,#edf4ff)}
+    .international-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:stretch}
+    .world-card{background:linear-gradient(135deg,var(--navy),#0b4e93);color:#fff;border-radius:24px;padding:30px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}
+    .world-card h3{font-size:32px;margin:0 0 10px}
+    .world-card p{color:#d8e8fa}
+    .world-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .world-tags span{padding:8px 11px;border:1px solid rgba(255,255,255,.2);border-radius:999px;font-size:12px}
+    .proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .proof-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+    .proof-card strong{display:block;font-size:30px;color:var(--blue);line-height:1}
+    .proof-card span{display:block;color:var(--muted);margin-top:8px}
+
+    .commercial{background:linear-gradient(135deg,#fff,#eef5ff)}
+    .commercial-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px}
+    .box h3{margin-top:0}
+    .network{background:var(--navy);color:#fff}
+    .network .section-head p{color:#c9d9ee}
+    .network-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .network-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:18px}
+    .network-card strong{display:block;margin-bottom:5px}
+    .network-card span{font-size:13px;color:#c9d9ee}
+    .tv{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .tv-screen{min-height:300px;border-radius:24px;background:linear-gradient(135deg,#102a54,#0c65b6);display:grid;place-items:center;color:#fff;text-align:center;padding:30px}
+    .tv-screen .play{width:82px;height:82px;border:2px solid #fff;border-radius:50%;display:grid;place-items:center;font-size:32px;margin:auto auto 15px}
+    footer{background:#06162d;color:#ccd8e8;padding:34px 0}
+    footer strong{color:#fff}
+    .note{font-size:12px;color:var(--muted);margin-top:16px}
+    @media(max-width:900px){
+      .hero-grid,.commercial-grid,.tv,.international-grid,.authority-grid{grid-template-columns:1fr}
+      .academy-grid{grid-template-columns:1fr}
+      .archive-bar{grid-template-columns:repeat(2,1fr)}
+      .metrics-strip{grid-template-columns:repeat(2,1fr)}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .spotlight{grid-template-columns:repeat(2,1fr)}
+      .network-grid{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+    }
+    @media(max-width:600px){
+      .grid,.spotlight,.network-grid,.proof-grid,.metrics-strip,.archive-bar{grid-template-columns:1fr}
+      .hero{padding-top:48px}
+      .section-head{display:block}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <span>TV Voz de Brasília • 40 anos de credibilidade</span>
+      <span>Brasília • Brasil • Mundo</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">
+        <span class="logo">VOZ</span>
+        <span><strong>VOZ NEWS</strong><small>Ecossistema Nacional de Comunicação</small></span>
+      </a>
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#ecossistema">Portais</a>
+        <a href="#autoridade">Autoridade</a>
+        <a href="#academia">Academia</a>
+        <a href="#tv">TV & IA</a>
+        <a href="#internacional">Voz Internacional</a>
+        <a href="#rede">Rede Nacional</a>
+        <a href="#comercial">Anunciantes</a>
+        <a class="cta" href="#comercial">Quero anunciar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Portal-mãe • conteúdo • negócios • distribuição</div>
+          <h1>Uma rede. Muitos mercados. Uma só voz.</h1>
+          <p>O VOZ NEWS passa a funcionar como hub de autoridade e tráfego para uma rede expansível de portais especializados, comerciais, regionais e internacionais — preservando a força da TV Voz de Brasília e conectando marcas brasileiras ao Brasil e ao mundo.</p>
+          <div class="metrics-strip">
+            <div><strong>197 mil+</strong><span>seguidores no Instagram</span></div>
+            <div><strong>200 milhões+</strong><span>interações por mês</span></div>
+            <div><strong>500+</strong><span>entrevistas no YouTube</span></div>
+            <div><strong>10 mil+</strong><span>horas de transmissão</span></div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#ecossistema">Explorar os portais</a>
+            <a class="btn btn-secondary" href="tv-ao-vivo.html">TV Voz NEWS ao Vivo</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h2>Arquitetura pronta para crescer</h2>
+          <ul>
+            <li>Portal-mãe sem ser vendido como produto único.</li>
+            <li>Verticais independentes para cada mercado.</li>
+            <li>Manchetes no hub levando ao portal real.</li>
+            <li>Redes sociais próprias por vertical.</li>
+            <li>Expansão por estados, capitais, cidades e municípios.</li>
+            <li>VOZ INTERNACIONAL para turismo, aviação, diplomacia e negócios globais.</li>
+            <li>Integração futura com avatares e automação audiovisual.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow" style="color:var(--blue)">PRIMEIRA FRENTE COMERCIAL</div>
+            <h2>Mercados para vender primeiro</h2>
+          </div>
+          <p>Grandes contas dão escala e prestígio; varejo e serviços locais trazem velocidade comercial e recorrência.</p>
+        </div>
+        <div class="spotlight">
+          <div class="spot"><b>Energia</b><span>Petrobras, energia, combustíveis, transição energética e indústria.</span></div>
+          <div class="spot"><b>Bancos</b><span>Banco do Brasil, fintechs, crédito, investimentos e negócios.</span></div>
+          <div class="spot"><b>Aviação</b><span>Infraero, aeroportos, companhias aéreas, turismo e logística.</span></div>
+          <div class="spot"><b>Automóveis</b><span>Montadoras, concessionárias, autopeças, seguros e mobilidade.</span></div>
+          <div class="spot"><b>Tecnologia</b><span>Computadores, IA, software, audiovisual e equipamentos.</span></div>
+          <div class="spot"><b>Saúde</b><span>Hospitais, clínicas, laboratórios, farma, óticas e odontologia.</span></div>
+          <div class="spot"><b>Casa</b><span>Móveis, decoração, arquitetura, reforma e construção.</span></div>
+          <div class="spot"><b>Turismo</b><span>Hotéis, resorts, voos, destinos, gastronomia e eventos.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ecossistema" class="ecosystem">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow" style="color:var(--blue)">ECOSSISTEMA VOZ NEWS</div>
+            <h2>Portais e verticais</h2>
+          </div>
+          <p>Cada vertical pode começar como editoria do site-mãe e, quando houver oportunidade comercial, ganhar domínio, site e redes sociais próprios.</p>
+        </div>
+        <div class="grid">
+          <article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Energia, Petróleo e Transição Energética</h3>
+      <p>Petrobras, pré-sal e energia limpa redesenham a economia brasileira.</p>
+      <a class="portal-link" href="#" data-portal="energia">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Bancos, Fintechs e Mercado</h3>
+      <p>Crédito, investimentos e inovação financeira movem empresas e famílias.</p>
+      <a class="portal-link" href="#" data-portal="bancos">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Aeroportos, Aviação e Mobilidade</h3>
+      <p>Aeroportos, companhias aéreas e novas rotas conectam o Brasil ao mundo.</p>
+      <a class="portal-link" href="#" data-portal="aviacao">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Automóveis, Indústria e Mobilidade</h3>
+      <p>Montadoras aceleram a disputa por elétricos, híbridos e novas tecnologias.</p>
+      <a class="portal-link" href="#" data-portal="automoveis">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Agronegócio e Alimentos</h3>
+      <p>O campo brasileiro amplia produtividade, tecnologia e presença internacional.</p>
+      <a class="portal-link" href="#" data-portal="agro">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Tecnologia, Inovação e IA</h3>
+      <p>Inteligência artificial transforma empresas, profissões e a economia.</p>
+      <a class="portal-link" href="#" data-portal="tecnologia">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Saúde e Bem-Estar</h3>
+      <p>Prevenção, qualidade de vida e inovação aproximam saúde e cotidiano.</p>
+      <a class="portal-link" href="#" data-portal="saude-bem-estar">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Psicologia, Psicanálise e Saúde Emocional</h3>
+      <p>Psicologia, psicanálise, neurociências, terapias, TEA, família e desenvolvimento humano.</p>
+      <a class="portal-link" href="#" data-portal="psicologia">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Estética, Beleza e Bem-Estar</h3>
+      <p>Clínicas, dermatologia, odontologia estética, salões, spas, cosméticos e procedimentos.</p>
+      <a class="portal-link" href="#" data-portal="estetica">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Saúde, Farma e Medicamentos</h3>
+      <p>Pesquisa, indústria farmacêutica e acesso à saúde em destaque.</p>
+      <a class="portal-link" href="#" data-portal="farma">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Turismo, Voos e Destinos</h3>
+      <p>Novos destinos, hotéis e experiências movimentam o turismo brasileiro.</p>
+      <a class="portal-link" href="#" data-portal="turismo">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Construção, Imóveis e Cidades</h3>
+      <p>Mercado imobiliário, urbanismo e novos empreendimentos transformam cidades.</p>
+      <a class="portal-link" href="#" data-portal="imoveis">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Sustentabilidade, ESG e Meio Ambiente</h3>
+      <p>Empresas aceleram compromissos ambientais e novos modelos sustentáveis.</p>
+      <a class="portal-link" href="#" data-portal="esg">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Logística, Cargas e Transportes</h3>
+      <p>Portos, rodovias, ferrovias e cargas sustentam o crescimento nacional.</p>
+      <a class="portal-link" href="#" data-portal="logistica">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Poder, República e Esplanada</h3>
+      <p>Decisões de Brasília que influenciam governos, empresas e cidadãos.</p>
+      <a class="portal-link" href="#" data-portal="poder">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Justiça e Constituição</h3>
+      <p>Tribunais, direitos e Constituição no centro das grandes decisões.</p>
+      <a class="portal-link" href="#" data-portal="justica">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Segurança, Defesa e Cidadania</h3>
+      <p>Segurança pública, defesa nacional e cidadania em pauta.</p>
+      <a class="portal-link" href="#" data-portal="seguranca">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Educação, Ensino e Carreiras</h3>
+      <p>Formação, universidades e novas profissões para o futuro do trabalho.</p>
+      <a class="portal-link" href="#" data-portal="educacao">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Empreendedorismo e Pequenos Negócios</h3>
+      <p>Quem empreende movimenta empregos, renda e inovação no Brasil.</p>
+      <a class="portal-link" href="#" data-portal="empreendedorismo">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Cultura, Arte e Entretenimento</h3>
+      <p>Shows, cinema, arte e cultura conectando públicos e marcas.</p>
+      <a class="portal-link" href="#" data-portal="cultura">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Esportes, Olimpíadas e Ligas</h3>
+      <p>Clubes, atletas e competições movimentam paixão e grandes negócios.</p>
+      <a class="portal-link" href="#" data-portal="esportes">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Instituto Brazil Just — Ação Social</h3>
+      <p>Projetos sociais que transformam comunidades e ampliam oportunidades.</p>
+      <a class="portal-link" href="#" data-portal="ibj">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Academias, Fitness e Vida Ativa</h3>
+      <p>Academias e bem-estar conquistam um público cada vez mais conectado.</p>
+      <a class="portal-link" href="#" data-portal="fitness">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Casa, Móveis e Decoração</h3>
+      <p>Design, móveis, arquitetura e tendências para transformar ambientes.</p>
+      <a class="portal-link" href="#" data-portal="casa">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Drogarias, Farmácias e Cuidados</h3>
+      <p>Varejo farmacêutico, conveniência e cuidado perto do consumidor.</p>
+      <a class="portal-link" href="#" data-portal="drogarias">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Beleza, Estética e Salões</h3>
+      <p>Beleza, estética e autocuidado formam um dos mercados mais dinâmicos.</p>
+      <a class="portal-link" href="#" data-portal="beleza">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Computadores, Informática e Games</h3>
+      <p>Máquinas rápidas, periféricos e games impulsionam trabalho e entretenimento.</p>
+      <a class="portal-link" href="#" data-portal="computadores">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Fotografia, Vídeo e Produção</h3>
+      <p>Câmeras, drones e produção audiovisual ganham novas possibilidades com IA.</p>
+      <a class="portal-link" href="#" data-portal="fotografia">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Gastronomia e Restaurantes</h3>
+      <p>Restaurantes, chefs e experiências gastronômicas aproximam marcas e público.</p>
+      <a class="portal-link" href="#" data-portal="gastronomia">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Adegas, Vinhos e Bebidas</h3>
+      <p>Vinhos, experiências e consumo responsável ganham espaço no mercado premium.</p>
+      <a class="portal-link" href="#" data-portal="adegas">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Pet, Veterinária e Mundo Animal</h3>
+      <p>Saúde, alimentação e serviços para um mercado pet em expansão.</p>
+      <a class="portal-link" href="#" data-portal="pet">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Moda, Calçados e Acessórios</h3>
+      <p>Tendências, marcas e varejo conectam estilo, comportamento e consumo.</p>
+      <a class="portal-link" href="#" data-portal="moda">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Óticas e Saúde Visual</h3>
+      <p>Tecnologia óptica, prevenção e novas experiências de consumo visual.</p>
+      <a class="portal-link" href="#" data-portal="oticas">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Odontologia e Sorriso</h3>
+      <p>Tecnologia, prevenção e estética transformam o mercado odontológico.</p>
+      <a class="portal-link" href="#" data-portal="odontologia">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Construção, Reforma e Materiais</h3>
+      <p>Materiais, acabamentos e serviços movimentam reformas e novos projetos.</p>
+      <a class="portal-link" href="#" data-portal="reforma">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Supermercados, Atacarejo e Consumo</h3>
+      <p>Preço, conveniência e inovação disputam a preferência do consumidor.</p>
+      <a class="portal-link" href="#" data-portal="varejo">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Hotéis, Resorts e Eventos</h3>
+      <p>Hospitalidade, eventos e experiências premium movimentam negócios e turismo.</p>
+      <a class="portal-link" href="#" data-portal="hoteis">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Cursos, Escolas e Idiomas</h3>
+      <p>Qualificação profissional e idiomas abrem novas oportunidades.</p>
+      <a class="portal-link" href="#" data-portal="cursos">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Seguros, Consórcios e Proteção</h3>
+      <p>Proteção patrimonial, crédito planejado e serviços financeiros em crescimento.</p>
+      <a class="portal-link" href="#" data-portal="seguros">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Condomínios e Serviços Residenciais</h3>
+      <p>Gestão, segurança, manutenção e tecnologia para viver melhor.</p>
+      <a class="portal-link" href="#" data-portal="condominios">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Casamentos, Festas e Eventos</h3>
+      <p>Experiências, celebrações e fornecedores conectados em um mercado altamente visual.</p>
+      <a class="portal-link" href="#" data-portal="festas">Acessar portal <span>→</span></a>
+    </article>
+<article class="portal-card">
+      <div class="portal-badge">VOZ NEWS</div>
+      <h3>Motos, Bikes e Mobilidade Urbana</h3>
+      <p>Duas rodas, mobilidade elétrica e novas formas de circular pelas cidades.</p>
+      <a class="portal-link" href="#" data-portal="motos">Acessar portal <span>→</span></a>
+    </article>
+        </div>
+        <p class="note">Nesta versão de implantação, os links dos portais estão parametrizados e aguardam os endereços definitivos. O site-mãe permanece funcional enquanto cada vertical é ativada.</p>
+      </div>
+    </section>
+
+
+
+    <section id="autoridade" class="authority">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow" style="color:var(--blue)">AUTORIDADE CONSTRUÍDA</div>
+            <h2>Décadas de comunicação, relacionamento e impacto social</h2>
+          </div>
+          <p>O novo ecossistema não começa do zero: ele organiza e transforma em ativos comerciais a história, a audiência, o arquivo audiovisual e a autoridade já construídos pela TV Voz de Brasília.</p>
+        </div>
+
+        <div class="authority-grid">
+          <article class="person-card">
+            <div class="person-role">Jornalismo • Comunicação • Entrevistas • Negócios</div>
+            <h3>Paulo Fayad</h3>
+            <p>Autoridade editorial construída por décadas de atuação jornalística, entrevistas com autoridades, empresários, diplomatas e lideranças nacionais e internacionais.</p>
+            <ul>
+              <li>Entrevistas e coberturas como patrimônio editorial.</li>
+              <li>Palestras sobre comunicação, empreendedorismo e superação.</li>
+              <li>Conteúdo para empresários, lideranças e profissionais.</li>
+              <li>Mentorias e treinamentos de presença pública e comunicação.</li>
+            </ul>
+          </article>
+
+          <article class="person-card">
+            <div class="person-role">Direito • IBJ • Psicanálise • Neurociências • Liderança</div>
+            <h3>Dra. Deijanete Fayad</h3>
+            <p>Posicionamento que conecta experiência jurídica, liderança social no Instituto Brazil Just, psicanálise, neurociências, comportamento humano e desenvolvimento pessoal.</p>
+            <ul>
+              <li>Palestras e programas de autoconhecimento e liderança.</li>
+              <li>Conteúdo sobre comportamento, vínculos, emoções e sociedade.</li>
+              <li>Projetos sociais e institucionais ligados ao IBJ.</li>
+              <li>Formação de autoridade digital com conteúdo educativo.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="archive-bar">
+          <div><strong>500+</strong><span>entrevistas no acervo do YouTube</span></div>
+          <div><strong>10 mil+</strong><span>horas de transmissão acumuladas</span></div>
+          <div><strong>50+</strong><span>personalidades internacionais no acervo informado</span></div>
+          <div><strong>40 anos+</strong><span>de história em comunicação</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="anuario" class="academy">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">ANUÁRIO BRASILEIRO</div><h2>Economia, Turismo e Meio Ambiente</h2></div><p>24ª edição impressa em 2026. Uma história editorial que entra em uma nova fase digital sem abandonar suas edições impressas especiais.</p></div>
+        <div class="academy-grid">
+          <article class="academy-card"><h3>24ª Edição</h3><p>A edição impressa atual preserva a tradição e a presença institucional do Anuário.</p></article>
+          <article class="academy-card"><h3>25 Anos</h3><p>Grande celebração de fechamento do ciclo regular impresso e lançamento da nova fase do projeto.</p></article>
+          <article class="academy-card"><h3>Nova Fase Digital</h3><p>Site dedicado, acervo histórico, economia, turismo, meio ambiente, empresas, entrevistas e conteúdo institucional.</p></article>
+        </div>
+        <div class="offer"><h3 style="font-size:28px;margin-top:0">O Anuário continua</h3><p><b>Digital permanente • acervo histórico • edições especiais • edições sazonais impressas • projetos comemorativos.</b></p><p>As edições impressas passam a ser especiais e históricas, preservando a força editorial da marca.</p></div>
+      </div>
+    </section>
+    <section id="academia" class="academy">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow" style="color:var(--blue)">ACADEMIA VOZ NEWS</div>
+            <h2>Transformar experiência em conhecimento e receita</h2>
+          </div>
+          <p>Uma frente educacional própria para ensinar comunicação, autoridade, produção de conteúdo, crescimento de audiência e monetização de mídia — sem promessas de resultado garantido.</p>
+        </div>
+
+        <div class="academy-grid">
+          <article class="academy-card">
+            <h3>Comunicação & Autoridade</h3>
+            <p>Paulo Fayad: entrevistas, presença diante das câmeras, relacionamento institucional, construção de reputação e comunicação para negócios.</p>
+          </article>
+          <article class="academy-card">
+            <h3>Mente, Comportamento & Liderança</h3>
+            <p>Dra. Deijanete: psicanálise, neurociências, liderança, comportamento, vínculos, desenvolvimento humano e impacto social.</p>
+          </article>
+          <article class="academy-card">
+            <h3>Seguidores & Monetização</h3>
+            <p>Como estruturar conteúdo, distribuição, posicionamento, redes sociais, mídia comercial, produtos digitais e relacionamento com anunciantes.</p>
+          </article>
+        </div>
+
+        <div class="offer">
+          <h3 style="font-size:28px;margin-top:0">Produtos possíveis</h3>
+          <p><b>Palestras • workshops • cursos online • mentorias • imersões • treinamentos empresariais • eventos presenciais • programas para instituições • conteúdo por assinatura.</b></p>
+          <p>O diferencial é ensinar a partir de uma operação real: TV, portal, entrevistas, redes sociais, projetos sociais e relacionamento com empresas e instituições.</p>
+        </div>
+      </div>
+    </section>
+    <section id="internacional" class="international">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow" style="color:var(--blue)">VOZ INTERNACIONAL</div>
+            <h2>Do Brasil para o mundo</h2>
+          </div>
+          <p>A frente internacional nasce apoiada em um acervo de entrevistas com embaixadores, representantes de organismos internacionais e outras personalidades globais, fortalecendo especialmente a venda para companhias aéreas, aeroportos, hotéis, destinos, embaixadas, comércio exterior e empresas com atuação mundial.</p>
+        </div>
+
+        <div class="international-grid">
+          <article class="world-card">
+            <div>
+              <div class="portal-badge" style="color:#f6d56e">VOZ NEWS GLOBAL</div>
+              <h3>VOZ INTERNACIONAL</h3>
+              <p>Conteúdo, entrevistas, turismo, negócios, diplomacia e cobertura internacional conectados à audiência consolidada da TV Voz de Brasília.</p>
+              <div class="world-tags">
+                <span>América Latina</span>
+                <span>América do Norte</span>
+                <span>Europa</span>
+                <span>Ásia</span>
+                <span>África</span>
+                <span>Oriente Médio</span>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="#" data-portal="internacional">Acessar Voz Internacional →</a>
+          </article>
+
+          <div class="proof-grid">
+            <div class="proof-card">
+              <strong>197 mil+</strong>
+              <span>seguidores no Instagram @tvvozdebrasilia</span>
+            </div>
+            <div class="proof-card">
+              <strong>200 milhões+</strong>
+              <span>interações mensais nas redes</span>
+            </div>
+            <div class="proof-card">
+              <strong>500+</strong>
+              <span>entrevistas já publicadas no YouTube</span>
+            </div>
+            <div class="proof-card">
+              <strong>10 mil+</strong>
+              <span>horas acumuladas de transmissão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comercial" class="commercial">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow" style="color:var(--blue)">MODELO COMERCIAL</div>
+            <h2>Do grande patrocinador ao comércio local</h2>
+          </div>
+        </div>
+        <div class="commercial-grid">
+          <div class="box">
+            <h3>Grandes contas e patrocínios</h3>
+            <p>Projetos editoriais, especiais temáticos, coberturas, entrevistas, branded content, presença institucional e planos de distribuição multiplataforma.</p>
+            <b>Exemplos:</b> energia, bancos, aviação, infraestrutura, agro, tecnologia, saúde e sustentabilidade.
+          </div>
+          <div class="box">
+            <h3>Venda rápida e recorrente</h3>
+            <p>Planos simples para empresas que querem visibilidade local e segmentada: página, entrevista, matéria, destaque no portal e distribuição nas redes.</p>
+            <b>Exemplos:</b> academias, móveis, salões, drogarias, informática, óticas, restaurantes, hotéis, pets e escolas.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tv">
+      <div class="wrap tv">
+        <div>
+          <div class="eyebrow" style="color:var(--blue)">TV VOZ NEWS + IA</div>
+          <h2 style="font-size:42px;margin:10px 0">Apresentadores digitais integrados ao portal</h2>
+          <p>Estrutura preparada para retomar Deijanete Fayad e Paulo Fayad como apresentadores animados, conectando roteiro, voz, avatar, vídeo, notícia e publicação.</p>
+          <p><b>Fluxo futuro:</b> notícia → roteiro → avatar → vídeo → portal → redes sociais.</p>
+        </div>
+        <div class="tv-screen">
+          <div>
+            <div class="play">▶</div>
+            <h3>TV VOZ NEWS</h3>
+            <p>Espaço reservado para o estúdio com avatares em movimento e jornal audiovisual.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rede" class="network">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">EXPANSÃO TERRITORIAL</div>
+            <h2>Da Voz de Brasília para uma rede nacional</h2>
+          </div>
+          <p>A arquitetura do portal-mãe permite replicar a marca regionalmente sem perder identidade, audiência e governança central.</p>
+        </div>
+        <div class="network-grid">
+          <div class="network-card"><strong>Voz de Brasília</strong><span>Base histórica e autoridade institucional.</span></div>
+          <div class="network-card"><strong>Voz dos Estados</strong><span>Portais estaduais conectados à rede.</span></div>
+          <div class="network-card"><strong>Voz das Capitais</strong><span>Noticiário e negócios em cada capital.</span></div>
+          <div class="network-card"><strong>Voz das Cidades</strong><span>Expansão para polos regionais.</span></div>
+          <div class="network-card"><strong>Voz dos Municípios</strong><span>Rede hiperlocal escalável.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>VOZ NEWS • TV Voz de Brasília</strong><br>
+      Portal-mãe do Ecossistema Nacional e Internacional de Comunicação.<br>
+      <small>Estrutura de implantação — 2026.</small>
+    </div>
+  </footer>
+
+  <script>
+    const PORTAL_URLS = {
+      // Exemplo:
+      // "automoveis": "https://automoveis.voznews.com.br",
+      // "energia": "https://energia.voznews.com.br"
+    };
+
+    document.querySelectorAll("[data-portal]").forEach(link => {
+      link.addEventListener("click", (e) => {
+        const slug = link.dataset.portal;
+        const url = PORTAL_URLS[slug];
+        if (!url) {
+          e.preventDefault();
+          alert("Portal em implantação. O endereço definitivo será ativado aqui sem alterar o layout do site-mãe.");
+          return;
+        }
+        link.href = url;
+      });
+    });
+  </script>
+</body>
+</html>
