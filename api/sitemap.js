@@ -1,0 +1,11 @@
+const BASE='https://www.voznewsbrasil.com.br';
+const FEEDS=[
+'https://news.google.com/rss/search?q=elei%C3%A7%C3%B5es+2026+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419',
+'https://news.google.com/rss/search?q=Lula+elei%C3%A7%C3%B5es+2026&hl=pt-BR&gl=BR&ceid=BR:pt-419',
+'https://news.google.com/rss/search?q=Fl%C3%A1vio+Bolsonaro+elei%C3%A7%C3%B5es+2026&hl=pt-BR&gl=BR&ceid=BR:pt-419',
+'https://news.google.com/rss/search?q=Celina+Le%C3%A3o+elei%C3%A7%C3%B5es+2026&hl=pt-BR&gl=BR&ceid=BR:pt-419'];
+function decode(s=''){return String(s).replace(/<!\[CDATA\[|\]\]>/g,'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>')}
+function clean(t=''){return decode(t).replace(/\s+-\s+[^-]{2,90}$/,'').replace(/\s+/g,' ').trim()}
+function slug(s=''){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,120)}
+module.exports=async function(req,res){try{const titles=[];for(const url of FEEDS){try{const r=await fetch(url,{headers:{'User-Agent':'Mozilla/5.0 VOZ NEWS'}});if(!r.ok)continue;const xml=await r.text();for(const b of (xml.match(/<item>[\s\S]*?<\/item>/gi)||[]).slice(0,12)){const t=clean((b.match(/<title>([\s\S]*?)<\/title>/i)||[])[1]||'');if(t)titles.push(t)}}catch{}}
+const unique=[...new Set(titles.map(t=>slug(t)))].filter(Boolean);const now=new Date().toISOString();const fixed=['/','/anunciantes.html'];const urls=[...fixed.map(p=>`${BASE}${p}`),...unique.map(s=>`${BASE}/analises/${s}`)];const xml=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(u=>`<url><loc>${u}</loc><lastmod>${now}</lastmod><changefreq>${u.includes('/analises/')?'hourly':'daily'}</changefreq><priority>${u===BASE+'/'?'1.0':'0.8'}</priority></url>`).join('')}</urlset>`;res.setHeader('Content-Type','application/xml; charset=utf-8');res.setHeader('Cache-Control','s-maxage=3600, stale-while-revalidate=300');res.status(200).send(xml)}catch(e){res.status(500).send('')}};
