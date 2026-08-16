@@ -19,14 +19,14 @@
   const startButton = document.getElementById('startLiveNews');
   const enterButton = document.getElementById('enterLiveButton');
   const didLoading = document.getElementById('didLoading');
-
   if (!deijanete || !paulo) return;
 
+  /* Preserva integralmente a composição original da bancada. */
   document.getElementById('v33-bancada-final')?.remove();
   document.getElementById('v33-bancada-cenario')?.remove();
   document.getElementById('v33-presenter-fix')?.remove();
-  deijanete.querySelectorAll('.v33-did-video').forEach(v => v.remove());
-  paulo.querySelectorAll('.v33-did-video').forEach(v => v.remove());
+  document.getElementById('v33-lipsync-style')?.remove();
+  document.querySelectorAll('.v33-did-video,.v33-mouth-layer').forEach(el => el.remove());
 
   if (startButton) startButton.textContent = '▶ INICIAR JORNAL AO VIVO';
   if (enterButton) enterButton.textContent = '▶ ENTRAR NO JORNAL AO VIVO';
@@ -42,83 +42,123 @@
   });
 
   const css = document.createElement('style');
-  css.id = 'v33-presenter-fix';
+  css.id = 'v33-lipsync-style';
   css.textContent = `
-    #tv-ao-vivo .studio-status::after{content:" • AO VIVO"!important;color:#9fdfff!important;font-weight:900!important;letter-spacing:.4px!important}
+    #tv-ao-vivo .studio-status::after{content:" • AO VIVO"!important;color:#9fdfff!important;font-weight:900!important}
     #tv-ao-vivo .did-loading{display:none!important}
-    #tv-ao-vivo .instant-mouth,#tv-ao-vivo .avatar-eyelids{display:none!important;opacity:0!important;animation:none!important}
-    #tv-ao-vivo .v33-did-video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;z-index:8!important;display:block!important;opacity:0!important;visibility:hidden!important;background:transparent!important;pointer-events:none!important;transition:opacity .08s linear!important}
-    #tv-ao-vivo .studio-presenter.v33-did-active .v33-did-video.v33-current{opacity:1!important;visibility:visible!important}
-    #tv-ao-vivo .studio-presenter.v33-did-active .studio-presenter-image{opacity:0!important;visibility:hidden!important}
-    #tv-ao-vivo .studio-presenter.v33-listening .studio-presenter-image{animation:v33Listen 3.1s ease-in-out infinite!important;transform-origin:50% 78%!important}
-    @keyframes v33Listen{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-1px,0) scale(1.001)}}
+    #tv-ao-vivo .v33-audio-source{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:-9999px!important;top:-9999px!important}
+    #tv-ao-vivo .studio-presenter{isolation:isolate!important}
+    #tv-ao-vivo .studio-presenter-image{opacity:1!important;visibility:visible!important}
+    #tv-ao-vivo .v33-mouth-layer{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:inherit!important;object-position:inherit!important;z-index:12!important;pointer-events:none!important;opacity:0!important;visibility:hidden!important;transform:scaleY(var(--mouth-scale,1))!important;transition:opacity .05s linear!important;will-change:transform!important}
+    #tv-ao-vivo .studio-presenter.v33-speaking .v33-mouth-layer{opacity:1!important;visibility:visible!important}
+    #tv-ao-vivo .idle-deijanete .v33-mouth-layer{clip-path:polygon(42% 29%,58% 29%,58% 38%,42% 38%)!important;transform-origin:50% 33.5%!important}
+    #tv-ao-vivo .idle-paulo .v33-mouth-layer{clip-path:polygon(42% 30%,58% 30%,58% 39%,42% 39%)!important;transform-origin:50% 34.5%!important}
+    #tv-ao-vivo .studio-presenter.v33-listening .studio-presenter-image{animation:v33Listen 3.2s ease-in-out infinite!important;transform-origin:50% 78%!important}
+    @keyframes v33Listen{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-1px,0)}}
   `;
   document.head.appendChild(css);
 
-  function createVideo(host, item, clipIndex) {
-    const video = document.createElement('video');
-    video.id = `v33DidClip${clipIndex + 1}`;
-    video.className = 'v33-did-video';
-    video.playsInline = true;
-    video.preload = 'auto';
-    video.controls = false;
-    video.muted = false;
-    video.disablePictureInPicture = true;
-    video.setAttribute('playsinline', '');
-    video.src = item.src;
-    host.appendChild(video);
-    try { video.load(); } catch(e) {}
-    return video;
+  function makeMouthLayer(host){
+    const base = host.querySelector('.studio-presenter-image');
+    if(!base) return null;
+    const mouth = base.cloneNode(true);
+    mouth.removeAttribute('id');
+    mouth.classList.add('v33-mouth-layer');
+    mouth.setAttribute('aria-hidden','true');
+    host.appendChild(mouth);
+    return mouth;
   }
+  const mouths = { deijanete: makeMouthLayer(deijanete), paulo: makeMouthLayer(paulo) };
 
-  const clipVideos = playlist.map((item, i) => createVideo(item.presenter === 'deijanete' ? deijanete : paulo, item, i));
-  let running = false;
-  let index = 0;
-  let transitionTimer = null;
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const media = playlist.map((item,i) => {
+    const el = document.createElement('video');
+    el.className = 'v33-audio-source';
+    el.id = `v33Audio${i+1}`;
+    el.src = item.src;
+    el.preload = 'auto';
+    el.playsInline = true;
+    el.controls = false;
+    el.muted = false;
+    el.setAttribute('playsinline','');
+    document.getElementById('tv-ao-vivo')?.appendChild(el);
 
-  function clearTransitionTimer(){if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}}
-  function clearHostState(host){host.classList.remove('v33-did-active','v33-listening','active-speaker','instant-speaking','listening-avatar')}
-  function pauseClip(video, rewind=true){try{video.pause();video.classList.remove('v33-current');if(rewind)video.currentTime=0}catch(e){}}
-  function resetAll(){clearTransitionTimer();clipVideos.forEach(v=>pauseClip(v));clearHostState(deijanete);clearHostState(paulo)}
-  function finishSequence(){running=false;resetAll();if(status)status.textContent='Apresentação concluída.'}
+    const source = audioCtx.createMediaElementSource(el);
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    analyser.smoothingTimeConstant = .42;
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    return { el, analyser, data:new Uint8Array(analyser.frequencyBinCount) };
+  });
 
-  function playCurrent(){
-    if(!running)return;
-    if(index>=playlist.length){finishSequence();return}
-    clearTransitionTimer();
-    const item=playlist[index];
-    const activeHost=item.presenter==='deijanete'?deijanete:paulo;
-    const inactiveHost=item.presenter==='deijanete'?paulo:deijanete;
-    const activeVideo=clipVideos[index];
-    clearHostState(activeHost);clearHostState(inactiveHost);
-    clipVideos.forEach((video,i)=>{if(i!==index)pauseClip(video,true)});
-    inactiveHost.classList.add('v33-listening');
-    if(status)status.textContent=item.presenter==='deijanete'?'Dra. Deijanete Fayad no ar.':'Paulo Fayad no ar.';
+  let running=false, index=0, transitionTimer=null, raf=0;
 
-    const startPlayback=()=>{
-      if(!running||clipVideos[index]!==activeVideo)return;
-      activeVideo.classList.add('v33-current');
-      activeHost.classList.add('v33-did-active','active-speaker');
-      const playback=activeVideo.play();
-      if(playback&&typeof playback.catch==='function')playback.catch(()=>{running=false;resetAll();if(status)status.textContent='Clique em ENTRAR NO JORNAL AO VIVO para liberar o áudio.';overlay?.classList.add('show')});
+  function hostFor(name){ return name==='deijanete' ? deijanete : paulo; }
+  function clearTimer(){ if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null;} }
+  function stopLip(){ if(raf){cancelAnimationFrame(raf);raf=0;} [deijanete,paulo].forEach(h=>{h.classList.remove('v33-speaking','v33-listening','active-speaker');h.style.setProperty('--mouth-scale','1');}); }
+  function pauseAll(rewind=true){ media.forEach(({el})=>{try{el.pause();if(rewind)el.currentTime=0;}catch(e){}}); }
+  function resetAll(){ clearTimer(); stopLip(); pauseAll(true); }
+
+  function animateLip(item, pack){
+    const host = hostFor(item.presenter);
+    const data = pack.data;
+    let smooth = 0;
+    const tick = () => {
+      if(!running || media[index] !== pack || pack.el.paused){ host.style.setProperty('--mouth-scale','1'); return; }
+      pack.analyser.getByteFrequencyData(data);
+      let sum=0;
+      for(let i=2;i<Math.min(28,data.length);i++) sum += data[i];
+      const level = sum / (Math.min(28,data.length)-2) / 255;
+      smooth = smooth*.58 + level*.42;
+      const gate = smooth < .055 ? 0 : Math.min(1,(smooth-.055)*3.8);
+      const pulse = 1 + gate*.34;
+      host.style.setProperty('--mouth-scale', pulse.toFixed(3));
+      raf=requestAnimationFrame(tick);
     };
-
-    activeVideo.onended=()=>{activeVideo.classList.remove('v33-current');activeHost.classList.remove('v33-did-active','active-speaker');transitionTimer=setTimeout(()=>{pauseClip(activeVideo,true);index+=1;playCurrent()},60)};
-    activeVideo.onerror=()=>{running=false;resetAll();if(status)status.textContent='Apresentação temporariamente indisponível.'};
-    try{activeVideo.currentTime=0}catch(e){}
-    if(activeVideo.readyState>=3)startPlayback();else{activeVideo.addEventListener('canplay',startPlayback,{once:true});try{activeVideo.load()}catch(e){}}
+    tick();
   }
 
-  function startV33DidSequence(){resetAll();running=true;index=0;overlay?.classList.remove('show');playCurrent()}
-  function stopV33DidSequence(){running=false;resetAll();if(status)status.textContent='Apresentação pausada.'}
-  function nextV33DidClip(){if(!running){startV33DidSequence();return}resetAll();index+=1;if(index>=playlist.length){finishSequence();return}playCurrent()}
+  function finish(){ running=false; resetAll(); if(status) status.textContent='Apresentação concluída.'; }
 
-  window.startV33DidSequence=startV33DidSequence;
-  window.stopV33DidSequence=stopV33DidSequence;
+  async function playCurrent(){
+    if(!running) return;
+    if(index>=playlist.length){ finish(); return; }
+    clearTimer(); stopLip(); pauseAll(true);
 
-  function intercept(id,handler){const element=document.getElementById(id);if(!element)return;element.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();handler()},true)}
-  intercept('startLiveNews',startV33DidSequence);
-  intercept('enterLiveButton',startV33DidSequence);
-  intercept('stopLiveNews',stopV33DidSequence);
-  intercept('nextHeadline',nextV33DidClip);
+    const item=playlist[index];
+    const active=hostFor(item.presenter);
+    const listener=item.presenter==='deijanete'?paulo:deijanete;
+    const pack=media[index];
+
+    active.classList.add('v33-speaking','active-speaker');
+    listener.classList.add('v33-listening');
+    if(status) status.textContent=item.presenter==='deijanete'?'Dra. Deijanete Fayad no ar.':'Paulo Fayad no ar.';
+
+    try{
+      if(audioCtx.state==='suspended') await audioCtx.resume();
+      pack.el.currentTime=0;
+      await pack.el.play();
+      animateLip(item,pack);
+    }catch(e){
+      running=false; resetAll(); overlay?.classList.add('show');
+      if(status) status.textContent='Clique em ENTRAR NO JORNAL AO VIVO para liberar o áudio.';
+      return;
+    }
+
+    pack.el.onended=()=>{
+      stopLip();
+      transitionTimer=setTimeout(()=>{index+=1;playCurrent();},70);
+    };
+    pack.el.onerror=()=>{running=false;resetAll();if(status)status.textContent='Apresentação temporariamente indisponível.';};
+  }
+
+  function start(){ resetAll(); running=true; index=0; overlay?.classList.remove('show'); playCurrent(); }
+  function stop(){ running=false; resetAll(); if(status) status.textContent='Apresentação pausada.'; }
+  function next(){ if(!running){start();return;} stopLip(); pauseAll(true); index+=1; if(index>=playlist.length){finish();return;} playCurrent(); }
+
+  window.startV33DidSequence=start;
+  window.stopV33DidSequence=stop;
+  function bind(id,handler){const el=document.getElementById(id);if(!el)return;el.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();handler();},true);}
+  bind('startLiveNews',start); bind('enterLiveButton',start); bind('stopLiveNews',stop); bind('nextHeadline',next);
 })();
