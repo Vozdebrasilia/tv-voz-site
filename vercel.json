@@ -3,7 +3,9 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/portais/:slug.html", "destination": "/portal.html" },
-    { "source": "/clientes/:slug.html", "destination": "/cliente.html" }
+    { "source": "/clientes/:slug.html", "destination": "/cliente.html" },
+    { "source": "/analises/:slug", "destination": "/api/analysis-page?slug=:slug" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
   ],
   "headers": [
     {
