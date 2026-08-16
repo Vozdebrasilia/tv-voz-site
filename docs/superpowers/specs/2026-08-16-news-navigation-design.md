@@ -1,0 +1,3 @@
+# News navigation design
+
+Approved change for VOZ NEWS V33: preserve the current news/analyst layout. Add discreet previous and next arrow controls around the central headline so users can manually move backward or forward through the loaded headlines while automatic rotation remains active. Increase yellow ticker headline typography from 13px to approximately 16px, preserving its slow animation and hover pause. Mobile arrows and ticker typography should scale down appropriately. No other visual or content behavior changes.
