@@ -12,6 +12,7 @@ grep -q 'src="./studio-paulo-source.png"' index.html
 grep -q "INICIAR JORNAL AO VIVO" v33-did-player.js
 grep -q "Apresentação concluída" v33-did-player.js
 grep -q "v33-current" v33-did-player.js
+perl -0777 -ne 'exit !(/\.v33-did-video\{.*?opacity:1!important;.*?visibility:hidden!important/s)' v33-did-player.js
 grep -q "function buildTickerItems" index.html
 ! grep -qiE 'assets/v33-did|assets/v33-real|speechSynthesis|SpeechSynthesisUtterance|/talks' v33-did-player.js
 test -f assets/v33-original/01-paulo-ola.mp4

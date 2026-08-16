@@ -61,11 +61,11 @@
       object-position:center 22%!important;
       z-index:8!important;
       display:block!important;
-      opacity:0!important;
+      opacity:1!important;
       visibility:hidden!important;
       background:transparent!important;
       pointer-events:none!important;
-      transition:opacity .14s linear!important;
+      transition:none!important;
       clip-path:inset(0 round 18px)!important;
       transform:translateZ(0) scale(1.04)!important;
     }
