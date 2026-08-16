@@ -5,6 +5,8 @@
     { "source": "/portais/:slug.html", "destination": "/portal.html" },
     { "source": "/clientes/:slug.html", "destination": "/cliente.html" },
     { "source": "/analises/:slug", "destination": "/api/analysis-page?slug=:slug" },
+    { "source": "/tema/:slug", "destination": "/api/seo-hub?type=tema&slug=:slug" },
+    { "source": "/autor/:slug", "destination": "/api/seo-hub?type=autor&slug=:slug" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" }
   ],
   "headers": [
