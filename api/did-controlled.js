@@ -4,14 +4,14 @@ const ITEMS = [
   {
     name: 'CONTROLADO PAULO',
     presenter: 'paulo',
-    source_url: 'https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/main/studio-paulo-source.jpg',
+    source_url: 'https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/main/studio-paulo-source.png',
     voice_id: 'U6LxHR0vu0MhG5Nqp5ID',
     text: 'Seja bem-vindo ao VOZ NEWS.'
   },
   {
     name: 'CONTROLADO DEIJANETE',
     presenter: 'deijanete',
-    source_url: 'https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/main/studio-deijanete-source.jpg',
+    source_url: 'https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/main/studio-deijanete-source.png',
     voice_id: 'Dimf6681ffz3PTVPPAEX',
     text: 'Agora, o destaque do dia.'
   }
