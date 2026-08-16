@@ -1436,11 +1436,17 @@
 </style><style id="v33-studio-architecture">
 #tv-ao-vivo .studio-presenter{overflow:hidden!important;animation:none!important;transform:none!important}
 #tv-ao-vivo .studio-presenter-image{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;animation:none!important;transform:none!important;transition:none!important}
-#tv-ao-vivo .v33-presenter-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 19%;border:0;background:transparent;opacity:0;visibility:hidden;pointer-events:none;transition:none;z-index:8;clip-path:inset(0 0 11% 0 round 18px)}
+#tv-ao-vivo .v33-presenter-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 19%;border:0;background:#071526;opacity:0;visibility:hidden;pointer-events:none;transition:none;z-index:8;clip-path:inset(0 round 18px);transform:translateZ(0)}
 #tv-ao-vivo.v33-media-ready .v33-presenter-video{opacity:1;visibility:visible}
 #tv-ao-vivo.v33-media-ready .studio-presenter-image{visibility:hidden}
 #tv-ao-vivo .studio-presenters{isolation:isolate;overflow:hidden!important}
-#tv-ao-vivo .deijanete-live-blazer,#tv-ao-vivo .anchor-name-tag{z-index:20!important}
+#tv-ao-vivo .deijanete-live-blazer{display:none!important}
+#tv-ao-vivo .anchor-name-tag{z-index:20!important}
+#tv-ao-vivo{box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 34px rgba(0,229,255,.3),inset 0 0 46px rgba(188,40,255,.12)!important}
+#tv-ao-vivo::before,#tv-ao-vivo::after{content:"";position:absolute;z-index:2;top:13%;bottom:15%;width:4px;border-radius:999px;pointer-events:none;background:linear-gradient(180deg,transparent,#23d9ff 20%,#c63cff 70%,transparent);box-shadow:0 0 8px #23d9ff,0 0 22px rgba(198,60,255,.8);animation:v33NeonPulse 3.2s ease-in-out infinite}
+#tv-ao-vivo::before{left:2.2%}#tv-ao-vivo::after{right:2.2%;animation-delay:-1.6s}
+@keyframes v33NeonPulse{0%,100%{opacity:.55;filter:saturate(.9)}50%{opacity:1;filter:saturate(1.35)}}
+@media(prefers-reduced-motion:reduce){#tv-ao-vivo::before,#tv-ao-vivo::after{animation:none}}
 </style>
 </head>
 <body>
@@ -1467,7 +1473,7 @@
 <div aria-label="Indicadores de autoridade e audiência" class="eco-stats">
 <div class="eco-stat featured-stat"><strong class="count-up" data-format="mil" data-suffix="+" data-target="200">0</strong><span>seguidores no Instagram @tvvozdebrasilia</span></div>
 <div class="eco-stat"><strong class="count-up" data-format="milhoes" data-suffix="+" data-target="200">0</strong><span>interações por mês nas redes</span></div>
-<div class="eco-stat"><strong class="count-up" data-format="plus" data-suffix="+" data-target="500">0</strong><span>entrevistas no acervo do YouTube</span></div>
+<div class="eco-stat"><strong class="count-up" data-format="plus" data-suffix="+" data-target="1000">0</strong><span>entrevistas no acervo do YouTube</span></div>
 <div class="eco-stat"><strong class="count-up" data-format="mil" data-suffix="+" data-target="10000">0</strong><span>horas de transmissão acumuladas</span></div>
 </div><p class="eco-note">Indicadores institucionais informados pela TV Voz de Brasília; atualizar periodicamente no mídia kit e no portal.</p>
 <section aria-label="TV Voz NEWS ao vivo" class="live-studio" id="tv-ao-vivo">
@@ -1495,7 +1501,6 @@
 <img alt="Paulo Fayad" class="studio-presenter-image" src="./studio-paulo-source.png"/>
 
 </div>
-<div aria-hidden="true" class="deijanete-live-blazer"></div>
 </div>
 <div class="anchor-name-tag tag-deijanete active" id="tagDeijanete"><strong>Deijanete Fayad</strong></div>
 <div class="anchor-name-tag tag-paulo active" id="tagPaulo"><strong>Paulo Fayad</strong></div>

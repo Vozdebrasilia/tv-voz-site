@@ -1,8 +1,8 @@
 (() => {
   'use strict';
   const clips = [
-    { presenter: 'paulo', src: './assets/v33-did/01-paulo.mp4' },
-    { presenter: 'deijanete', src: './assets/v33-did/02-deijanete.mp4' }
+    { presenter: 'deijanete', src: './assets/v33-did/02-deijanete.mp4', playbackRate: 1 },
+    { presenter: 'paulo', src: './assets/v33-did/01-paulo.mp4', playbackRate: 0.86 }
   ];
   const studio = document.getElementById('tv-ao-vivo');
   const status = document.getElementById('studioStatus');
@@ -23,6 +23,9 @@
     video.disablePictureInPicture = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('aria-label', `${clip.presenter === 'paulo' ? 'Paulo' : 'Deijanete'} Fayad no jornal`);
+    video.defaultPlaybackRate = clip.playbackRate;
+    video.playbackRate = clip.playbackRate;
+    video.preservesPitch = true;
     video.src = clip.src;
     hosts[clip.presenter].appendChild(video);
     videos.set(clip.presenter, video);
@@ -64,7 +67,11 @@
       await Promise.all(clips.map(clip => ready(videos.get(clip.presenter))));
       if (!running || token !== runToken) return;
       // Both video frames appear atomically and remain fixed for the whole bulletin.
-      videos.forEach(video => { video.currentTime = 0; });
+      clips.forEach(clip => {
+        const video = videos.get(clip.presenter);
+        video.currentTime = 0;
+        video.playbackRate = clip.playbackRate;
+      });
       studio.classList.add('v33-media-ready');
       for (const clip of clips) {
         if (!running || token !== runToken) return;
