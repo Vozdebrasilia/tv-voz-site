@@ -1,0 +1,5 @@
+# VOZ NEWS Editorial SEO Engine Design
+
+Approved scope: each headline must have its own non-repetitive journalist commentary, alternating Deijanete Fayad and Paulo Fayad. Commentary style is human, strong, provocative and polemical, but factual claims, numbers and quotations must remain attributable to sources. Each analysis gets its own crawlable URL under `/analises/`, unique title/description/canonical, author metadata, topic/entity keywords, Open Graph/Twitter metadata and `NewsArticle` structured data. The same official VOZ NEWS logo already used by the site is reused; no new logo is generated.
+
+Phase 1 creates the SEO/indexing core for analyses: direct URLs, server-rendered HTML, dynamic sitemap, robots file, author/topic internal links, and navigation from the homepage to the direct analysis URL. Phase 2 extends the same architecture to all articles, photos, interviews and portal content.
