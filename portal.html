@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<title>Portal VOZ NEWS Brasil</title>
+<meta name="description" content="Portal especializado do ecossistema VOZ NEWS Brasil.">
+<link rel="icon" href="/favicon-voznews.png">
+<link rel="canonical" id="canonical" href="https://www.voznewsbrasil.com.br/">
+<style>
+:root{--gold:#d4af37;--ink:#061423;--blue:#0f4c81;--white:#fff;--muted:#c9d8e8}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--white);background:radial-gradient(circle at 82% 12%,#1b629a55,transparent 28%),linear-gradient(145deg,#04101d,#0a2742 58%,#07111c);min-height:100vh}
+header{position:sticky;top:0;z-index:3;background:#061423ee;border-bottom:1px solid #d4af3744;backdrop-filter:blur(14px)}.bar{width:min(1120px,92%);height:92px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{width:235px;max-width:55vw}.back,.cta{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;font-weight:900;text-decoration:none}.back{color:#fff;border:1px solid #d4af3766}.cta{color:#07111c;background:linear-gradient(135deg,#f2d66c,#d4af37)}
+main{width:min(1120px,92%);margin:auto}.hero{padding:92px 0 54px;display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:center}.kicker{color:var(--gold);font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,72px);line-height:1.02;margin:16px 0}.lead{font-size:clamp(18px,2.2vw,23px);line-height:1.55;color:var(--muted)}.orb{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff,#e6c85f 18%,#1f73ad 42%,#081828 72%);box-shadow:0 0 75px #3c9ddb55,inset 0 0 0 10px #ffffff18}.orb strong{text-align:center;font-size:clamp(25px,4vw,46px);line-height:.9}.orb span{display:block;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:25px 0 74px}.card{padding:26px;border-radius:24px;background:#ffffff0b;border:1px solid #d4af3744;box-shadow:0 20px 60px #0004}.card h2{font-size:22px;margin:0 0 12px;color:var(--gold)}.card p{margin:0;color:var(--muted);line-height:1.55}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}footer{border-top:1px solid #d4af3733;padding:32px 4%;text-align:center;color:var(--muted)}
+@media(max-width:800px){.bar{height:78px}.hero{grid-template-columns:1fr;padding-top:60px}.orb{width:min(320px,80vw);margin:auto}.grid{grid-template-columns:1fr}.back{padding:10px 13px;font-size:13px}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a href="/"><img class="logo" src="/logo-voznews-oficial.png" alt="VOZ NEWS Brasil"></a><a class="back" href="/#ecossistema">← Voltar aos 40 portais</a></div></header>
+<main>
+<section class="hero"><div><div class="kicker">Portal especializado • V33</div><h1 id="title">VOZ NEWS Brasil</h1><p class="lead" id="description">Informação, autoridade e oportunidades em uma cobertura especializada.</p><div class="actions"><a class="cta" href="/#contato">Anuncie neste portal</a><a class="back" href="https://www.instagram.com/tvvozdebrasilia/" target="_blank" rel="noopener">Acompanhe no Instagram</a></div></div><div class="orb"><strong>VOZ <span id="shortName">NEWS</span></strong></div></section>
+<section class="grid"><article class="card"><h2>Notícias e tendências</h2><p>Conteúdo editorial para acompanhar decisões, movimentos de mercado e histórias que impactam o Brasil.</p></article><article class="card"><h2>Empresas e lideranças</h2><p>Entrevistas, projetos, marcas e protagonistas conectados à credibilidade da TV Voz de Brasília.</p></article><article class="card"><h2>Vitrine comercial</h2><p>Espaço profissional para campanhas, produtos, serviços, eventos e oportunidades de negócio.</p></article></section>
+</main>
+<footer>VOZ NEWS Brasil • TV Voz de Brasília • 50 anos de credibilidade</footer>
+<script>
+const portals={
+'energia': ['Energia, Petróleo e Transição Energética','Petrobras, pré-sal, combustíveis e energia limpa no centro da transformação brasileira.'],
+'bancos': ['Bancos, Fintechs e Mercado','Crédito, investimentos, inovação financeira e desenvolvimento conectando empresas e famílias.'],
+'aviacao': ['Aeroportos, Aviação e Mobilidade','Aeroportos, novas rotas e companhias aéreas conectam o Brasil aos grandes mercados do mundo.'],
+'automoveis': ['Automóveis, Indústria e Mobilidade','Elétricos, híbridos, indústria e novas tecnologias aceleram a mobilidade brasileira.'],
+'agro': ['Agronegócio e Alimentos','Tecnologia, produtividade e exportação ampliam a força do campo brasileiro.'],
+'tecnologia': ['Tecnologia, Inovação e IA','Inteligência artificial, software e conectividade transformam empresas e profissões.'],
+'saude-bem-estar': ['Saúde e Bem-Estar','Prevenção, qualidade de vida e inovação aproximam saúde e cotidiano.'],
+'farma': ['Saúde, Farma e Medicamentos','Pesquisa, indústria farmacêutica e acesso à saúde em destaque.'],
+'turismo': ['Turismo, Voos e Destinos','Destinos, voos, hotéis e experiências levam o Brasil para o mundo.'],
+'imoveis': ['Construção, Imóveis e Cidades','Novos empreendimentos, urbanismo e mercado imobiliário transformam cidades.'],
+'esg': ['Sustentabilidade, ESG e Meio Ambiente','Novos compromissos ambientais moldam investimentos, reputação e desenvolvimento.'],
+'logistica': ['Logística, Cargas e Transportes','Portos, rodovias, ferrovias e cargas sustentam o crescimento nacional.'],
+'poder': ['Poder, República e Esplanada','Decisões de Brasília que influenciam governos, empresas e cidadãos.'],
+'justica': ['Justiça e Constituição','Tribunais, direitos e Constituição no centro das grandes decisões.'],
+'seguranca': ['Segurança, Defesa e Cidadania','Segurança pública, defesa nacional e cidadania em pauta.'],
+'educacao': ['Educação, Ensino e Carreiras','Formação, universidades e novas profissões para o futuro do trabalho.'],
+'empreendedorismo': ['Empreendedorismo e Pequenos Negócios','Quem empreende movimenta empregos, renda e inovação no Brasil.'],
+'cultura': ['Cultura, Arte e Entretenimento','Shows, cinema, arte e cultura conectando públicos e marcas.'],
+'esportes': ['Esportes, Olimpíadas e Ligas','Clubes, atletas e competições movimentam paixão e grandes negócios.'],
+'ibj-acao-social': ['Instituto Brazil Just — Ação Social','Projetos sociais transformam comunidades e ampliam oportunidades.'],
+'fitness': ['Academias, Fitness e Vida Ativa','Academias e bem-estar conquistam um público cada vez mais conectado.'],
+'casa': ['Casa, Móveis e Decoração','Design, móveis e arquitetura transformam ambientes e decisões de compra.'],
+'drogarias': ['Drogarias, Farmácias e Cuidados','Conveniência, dermocosméticos e cuidado perto do consumidor.'],
+'beleza': ['Beleza, Estética e Salões','Beleza, estética e autocuidado formam um dos mercados mais dinâmicos.'],
+'computadores': ['Computadores, Informática e Games','Máquinas rápidas, periféricos e games impulsionam trabalho e entretenimento.'],
+'fotografia': ['Fotografia, Vídeo e Produção','Câmeras, drones e produção audiovisual ganham novas possibilidades com IA.'],
+'gastronomia-negocios': ['Gastronomia e Restaurantes','Restaurantes, chefs e experiências aproximam marcas e público.'],
+'adegas': ['Adegas, Vinhos e Bebidas','Experiências, gastronomia e consumo responsável movimentam o mercado premium.'],
+'pet': ['Pet, Veterinária e Mundo Animal','Saúde, alimentação e serviços para um mercado pet em expansão.'],
+'moda': ['Moda, Calçados e Acessórios','Tendências, marcas e varejo conectam estilo, comportamento e consumo.'],
+'oticas': ['Óticas e Saúde Visual','Tecnologia óptica, prevenção e novas experiências de consumo visual.'],
+'odontologia': ['Odontologia e Sorriso','Tecnologia, prevenção e estética transformam o mercado odontológico.'],
+'reforma': ['Construção, Reforma e Materiais','Materiais, acabamentos e serviços movimentam reformas e novos projetos.'],
+'varejo': ['Supermercados, Atacarejo e Consumo','Preço, conveniência e inovação disputam a preferência do consumidor.'],
+'hoteis': ['Hotéis, Resorts e Eventos','Hospitalidade, eventos e experiências premium movimentam negócios e turismo.'],
+'cursos': ['Cursos, Escolas e Idiomas','Qualificação e idiomas abrem novas oportunidades profissionais.'],
+'seguros': ['Seguros, Consórcios e Proteção','Proteção patrimonial e planejamento financeiro em um mercado de alta recorrência.'],
+'condominios': ['Condomínios e Serviços Residenciais','Gestão, segurança, manutenção e tecnologia para viver melhor.'],
+'festas': ['Casamentos, Festas e Eventos','Celebrações e fornecedores conectados em um mercado altamente visual.'],
+'motos': ['Motos, Bikes e Mobilidade Urbana','Duas rodas, mobilidade elétrica e novas formas de circular pelas cidades.']
+};
+const slug=(location.pathname.split('/').pop()||'').replace(/\.html$/,'')||new URLSearchParams(location.search).get('slug')||'energia';
+const item=portals[slug]||['Portal VOZ NEWS Brasil','Informação, autoridade e oportunidades em uma cobertura especializada.'];
+document.getElementById('title').textContent=item[0];
+document.getElementById('description').textContent=item[1];
+document.getElementById('shortName').textContent=(item[0].split(/[,&—]/)[0]||'NEWS').trim().toUpperCase();
+document.title=item[0]+' | VOZ NEWS Brasil';
+document.querySelector('meta[name="description"]').content=item[1];
+document.getElementById('canonical').href='https://www.voznewsbrasil.com.br/portais/'+slug+'.html';
+</script>
+</body></html>

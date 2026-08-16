@@ -27,4 +27,9 @@ for media in assets/v33-original/01-paulo-ola.mp4 assets/v33-original/02-deijane
   ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 "$media" | grep -q '^aac$'
 done
 
+# Os arquivos originais do D-ID tinham a marca no rodapé. A composição oficial
+# remove somente essa faixa, preservando rosto, voz e sincronização.
+test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 assets/v33-original/01-paulo-ola.mp4)" -le 495
+test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 assets/v33-original/02-deijanete-ola.mp4)" -le 470
+
 echo "V33 original professional presenters: OK"

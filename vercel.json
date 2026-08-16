@@ -1,0 +1,17 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/portais/:slug.html", "destination": "/portal.html" },
+    { "source": "/clientes/:slug.html", "destination": "/cliente.html" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/v33-original/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}
