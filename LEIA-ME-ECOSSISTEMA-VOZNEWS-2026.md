@@ -10,20 +10,19 @@ Esta versão preserva a estrutura original do site e acrescenta uma camada estra
 - Academia VOZ NEWS
 - expansão Voz dos Estados / Capitais / Cidades / Municípios
 - novas opções comerciais no formulário
-- estúdio e integração D-ID preservados sem reescrever as APIs existentes
+- estúdio em modo seguro, com bancada e apresentadores fixos
 
-## Arquivos de segurança
-- `index-backup-antes-ecossistema-2026-08-07.html`: cópia do index recebido no ZIP
-- `index.html`: nova versão integrada
+## Arquivo publicado
+- `index.html`: versão integrada em modo seguro
 
 ## Antes de publicar
 1. Fazer deploy de Preview no Vercel.
-2. Testar menu, estúdio, D-ID, ticker, formulário/WhatsApp e páginas de clientes.
+2. Testar menu, bancada estática, indicadores, formulário/WhatsApp e páginas de clientes.
 3. Abrir alguns links em `/portais/` no desktop e celular.
 4. Só então promover para Production.
 
 ## Métricas
-A homepage mostra 197 mil+ seguidores no Instagram, 200 milhões+ de interações/mês, 500+ entrevistas e 10 mil+ horas de transmissão conforme dados institucionais informados pela TV Voz de Brasília. Manter esses números atualizados e documentados no mídia kit.
+A homepage mostra 200 mil+ seguidores no Instagram, 200 milhões+ de interações, 1.000+ entrevistas e 10 mil+ horas de transmissão conforme dados institucionais informados pela TV Voz de Brasília. Manter esses números atualizados e documentados no mídia kit.
 
 
 ## Versão visual V4
