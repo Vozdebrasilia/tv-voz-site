@@ -10,7 +10,7 @@ Esta versão preserva a estrutura original do site e acrescenta uma camada estra
 - Academia VOZ NEWS
 - expansão Voz dos Estados / Capitais / Cidades / Municípios
 - novas opções comerciais no formulário
-- estúdio e integração D-ID preservados sem reescrever as APIs existentes
+- estúdio e identidade visual preservados sem integrações sintéticas
 
 ## Arquivos de segurança
 - `index-backup-antes-ecossistema-2026-08-07.html`: cópia do index recebido no ZIP
@@ -18,7 +18,7 @@ Esta versão preserva a estrutura original do site e acrescenta uma camada estra
 
 ## Antes de publicar
 1. Fazer deploy de Preview no Vercel.
-2. Testar menu, estúdio, D-ID, ticker, formulário/WhatsApp e páginas de clientes.
+2. Testar menu, estúdio, ticker, formulário/WhatsApp e páginas de clientes.
 3. Abrir alguns links em `/portais/` no desktop e celular.
 4. Só então promover para Production.
 

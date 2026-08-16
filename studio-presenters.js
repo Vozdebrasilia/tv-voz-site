@@ -6,23 +6,20 @@
   const overlay = document.getElementById('enterLiveOverlay');
   if (!studio) return;
 
-  studio.querySelectorAll('video, iframe, embed, .v33-real-source-frame, .v33-presenter-video').forEach(el => el.remove());
-  studio.classList.remove('v33-media-ready');
-  studio.classList.add('v33-static-presenters');
+  // Only final, editorially approved human footage may be mounted in the studio.
+  // Until that footage is part of the release, no synthetic or third-party player
+  // is allowed to replace the presenters' official photographs.
+  studio.querySelectorAll('video, iframe, embed').forEach(element => element.remove());
 
-  const setStatus = text => { if (status) status.textContent = text; };
   const hideControl = id => {
     const button = document.getElementById(id);
     if (!button) return;
     button.disabled = true;
-    button.setAttribute('aria-disabled', 'true');
     button.hidden = true;
     button.style.display = 'none';
   };
 
   ['startLiveNews', 'enterLiveButton', 'nextHeadline', 'stopLiveNews'].forEach(hideControl);
-  overlay?.classList.remove('show');
   if (overlay) overlay.hidden = true;
-
-  setStatus('Apresentadores em imagem real.');
+  if (status) status.hidden = true;
 })();
