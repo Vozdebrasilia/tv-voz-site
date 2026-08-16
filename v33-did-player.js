@@ -31,29 +31,72 @@
   video.preload='auto';
   video.playsInline=true;
   video.controls=false;
+  video.muted=false;
+  video.volume=1;
   video.disablePictureInPicture=true;
-  Object.assign(video.style,{position:'absolute',inset:'0',width:'100%',height:'100%',objectFit:'contain',objectPosition:'center bottom',zIndex:'3',background:'transparent',display:'none'});
+  video.setAttribute('playsinline','');
+  video.style.setProperty('position','absolute','important');
+  video.style.setProperty('inset','0','important');
+  video.style.setProperty('width','100%','important');
+  video.style.setProperty('height','100%','important');
+  video.style.setProperty('object-fit','contain','important');
+  video.style.setProperty('object-position','center bottom','important');
+  video.style.setProperty('z-index','3','important');
+  video.style.setProperty('background','transparent','important');
+  video.style.setProperty('pointer-events','none','important');
+  video.style.setProperty('display','block','important');
+  video.style.setProperty('opacity','0','important');
+  video.style.setProperty('visibility','hidden','important');
   host.appendChild(video);
 
-  const reset=()=>{try{video.pause();video.currentTime=0}catch{};video.style.display='none';image.style.visibility='visible';setStatus('Pronto para iniciar.');};
-  const start=()=>{
-    overlay?.classList.remove('show');
-    image.style.visibility='hidden';
-    video.style.display='block';
-    video.currentTime=0;
-    setStatus('Dra. Deijanete Fayad no ar.');
-    video.play().catch(()=>{reset();overlay?.classList.add('show');});
+  const showImage=()=>{
+    image.style.setProperty('visibility','visible','important');
+    image.style.setProperty('opacity','1','important');
   };
-  video.addEventListener('ended',()=>{image.style.visibility='visible';video.style.display='none';setStatus('Prévia concluída.');});
+  const showVideo=()=>{
+    image.style.setProperty('visibility','hidden','important');
+    video.style.setProperty('display','block','important');
+    video.style.setProperty('opacity','1','important');
+    video.style.setProperty('visibility','visible','important');
+  };
+  const hideVideo=()=>{
+    video.style.setProperty('opacity','0','important');
+    video.style.setProperty('visibility','hidden','important');
+  };
+  const reset=()=>{
+    try{video.pause();video.currentTime=0}catch{}
+    hideVideo();
+    showImage();
+    setStatus('Pronto para iniciar.');
+  };
+  const start=async event=>{
+    event?.preventDefault?.();
+    event?.stopImmediatePropagation?.();
+    overlay?.classList.remove('show');
+    try{
+      if(video.readyState<2) video.load();
+      video.currentTime=0;
+      showVideo();
+      setStatus('Dra. Deijanete Fayad no ar.');
+      await video.play();
+    }catch(e){
+      reset();
+      overlay?.classList.add('show');
+      setStatus('Clique novamente para iniciar.');
+    }
+  };
+
+  video.addEventListener('loadeddata',()=>setStatus('Prévia pronta para iniciar.'));
+  video.addEventListener('ended',()=>{hideVideo();showImage();setStatus('Prévia concluída.');});
   video.addEventListener('error',()=>{reset();setStatus('Prévia temporariamente indisponível.');});
 
   setDisabled('startLiveNews',false);
   setDisabled('enterLiveButton',false);
   setDisabled('stopLiveNews',false);
   setDisabled('nextHeadline',true);
-  document.getElementById('startLiveNews')?.addEventListener('click',start);
-  document.getElementById('enterLiveButton')?.addEventListener('click',start);
-  document.getElementById('stopLiveNews')?.addEventListener('click',reset);
+  document.getElementById('startLiveNews')?.addEventListener('click',start,true);
+  document.getElementById('enterLiveButton')?.addEventListener('click',start,true);
+  document.getElementById('stopLiveNews')?.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();reset();},true);
   overlay?.classList.add('show');
   setStatus('Prévia controlada pronta.');
 })();
