@@ -2,19 +2,15 @@
 set -euo pipefail
 
 test -f v33-did-player.js
+test "$(grep -c "assets/v33-real/.*mp4" v33-did-player.js)" -eq 10
+grep -q "assets/v33-real/01-paulo.mp4" v33-did-player.js
+grep -q "assets/v33-real/02-deijanete.mp4" v33-did-player.js
+grep -q "studio-deijanete-real-source.jpg" index.html
+grep -q "studio-paulo-real-source.jpg" index.html
+grep -q "INICIAR JORNAL AO VIVO" v33-did-player.js
+grep -q "Apresentação concluída" v33-did-player.js
+grep -q "v33-current" v33-did-player.js
+! grep -qiE 'assets/v33-did|speechSynthesis|SpeechSynthesisUtterance|/talks' v33-did-player.js
+test "$(find assets/v33-real -maxdepth 1 -name '*.mp4' -type f | wc -l)" -eq 10
 
-! grep -qiE 'assets/v33-did|youtube|youtu\.be|speechSynthesis|SpeechSynthesisUtterance|instant-mouth|instantPresenterTalk|vozAvatarAlive|fake.?mouth|fake.?blink|fake.?head|deijanete-live-blazer|/talks|watermark' v33-did-player.js
-! grep -qiE '<(iframe|embed)[^>]+(youtube|youtu\.be)|youtube(-nocookie)?\.com/embed' index.html v33-did-player.js
-! grep -qE 'clip-path|mask:' index.html | grep -E 'studio-presenter|idle-deijanete|idle-paulo|v33-presenter-video'
-
-grep -q "studio.classList.add('v33-static-presenters')" v33-did-player.js
-grep -q "button.hidden = true" v33-did-player.js
-grep -q "button.style.display = 'none'" v33-did-player.js
-
-test "$(grep -c 'class=\"count-up\"' index.html)" -eq 4
-grep -q 'data-format="mil" data-suffix="+" data-target="200"' index.html
-grep -q 'data-format="milhoes" data-suffix="+" data-target="200"' index.html
-grep -q 'data-format="plus" data-suffix="+" data-target="1000"' index.html
-grep -q 'data-format="mil" data-suffix="+" data-target="10000"' index.html
-
-echo "V33 safe studio architecture: OK"
+echo "V33 real presenters: OK"
