@@ -3,10 +3,23 @@ function authHeader(){
   if(!key) throw new Error('DID_API_KEY ausente');
   return key.startsWith('Basic ')?key:`Basic ${key}`;
 }
-
+async function did(path,options={}){
+  const r=await fetch(`https://api.d-id.com${path}`,{...options,headers:{Authorization:authHeader(),Accept:'application/json',...(options.body?{'Content-Type':'application/json'}:{}),...(options.headers||{})}});
+  const text=await r.text(); let data={}; try{data=text?JSON.parse(text):{}}catch{data={raw:text}};
+  return {r,data};
+}
 module.exports=async function handler(req,res){
   if(!['GET','POST'].includes(req.method)) return res.status(405).json({error:'method'});
   if(String(req.query?.token||'')!=='V33-UNICO-160826-X7Q9') return res.status(401).json({error:'unauthorized'});
+
+  const id=String(req.query?.id||'').trim();
+  if(id){
+    try{
+      const {r,data}=await did('/talks/'+encodeURIComponent(id));
+      return res.status(r.status).json({id:data.id||id,status:data.status||null,result_url:data.result_url||null,error:data.error||data.description||data.message||null});
+    }catch(e){return res.status(500).json({error:e.message})}
+  }
+
   const presenter=String(req.query?.presenter||'deijanete').toLowerCase();
   const item=presenter==='paulo'?{
     source_url:'https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/main/studio-paulo-source.png',
@@ -26,9 +39,7 @@ module.exports=async function handler(req,res){
     user_data:JSON.stringify({project:'V33',mode:'teste-unico',presenter})
   };
   try{
-    const r=await fetch('https://api.d-id.com/talks',{method:'POST',headers:{Authorization:authHeader(),Accept:'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)});
-    const text=await r.text();
-    let data={}; try{data=text?JSON.parse(text):{}}catch{data={raw:text}}
+    const {r,data}=await did('/talks',{method:'POST',body:JSON.stringify(payload)});
     return res.status(r.status).json({id:data.id||null,status:data.status||null,error:data.description||data.message||null});
-  }catch(e){ return res.status(500).json({error:e.message}); }
+  }catch(e){return res.status(500).json({error:e.message})}
 };
