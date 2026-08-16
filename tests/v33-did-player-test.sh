@@ -10,6 +10,7 @@ grep -q "studio-paulo-real-source.jpg" index.html
 grep -q "INICIAR JORNAL AO VIVO" v33-did-player.js
 grep -q "Apresentação concluída" v33-did-player.js
 grep -q "v33-current" v33-did-player.js
+grep -q "function buildTickerItems" index.html
 ! grep -qiE 'assets/v33-did|speechSynthesis|SpeechSynthesisUtterance|/talks' v33-did-player.js
 test "$(find assets/v33-real -maxdepth 1 -name '*.mp4' -type f | wc -l)" -eq 10
 

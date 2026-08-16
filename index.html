@@ -1530,6 +1530,12 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
       if(visibleNewsTickerClone) visibleNewsTickerClone.textContent=clean+'     •     ';
     }
 
+    function buildTickerItems(news,extras=[]){
+      const headlines=(Array.isArray(news)?news:[]).map(item=>String(item?.title||'').trim()).filter(Boolean);
+      const additions=(Array.isArray(extras)?extras:[]).map(item=>String(item?.title||item||'').trim()).filter(Boolean);
+      return [...headlines,...additions].length?[...headlines,...additions]:['Notícias em tempo real','Brasil','Mundo','Brasília'];
+    }
+
     function setNews(items){
       currentNews=(items&&items.length)?items.slice():fallbackNews.slice();
       if(currentIndex>=currentNews.length) currentIndex=0;
