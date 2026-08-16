@@ -1,102 +1,80 @@
 (() => {
   'use strict';
-  const studio=document.getElementById('tv-ao-vivo');
-  const status=document.getElementById('studioStatus');
-  const overlay=document.getElementById('enterLiveOverlay');
-  if(!studio) return;
 
+  const studio = document.getElementById('tv-ao-vivo');
+  const status = document.getElementById('studioStatus');
+  const overlay = document.getElementById('enterLiveOverlay');
+  if (!studio) return;
+
+  const setStatus = text => { if (status) status.textContent = text; };
+  const ids = ['startLiveNews','enterLiveButton','nextHeadline','stopLiveNews'];
+  const setDisabled = (id, value) => {
+    const button = document.getElementById(id);
+    if (!button) return;
+    button.disabled = value;
+    button.setAttribute('aria-disabled', String(value));
+  };
+
+  // Remove definitivamente qualquer mídia D-ID da interface pública/teste.
+  studio.querySelectorAll('.v33-presenter-video,.v33-did-video,.v33-real-source-frame').forEach(el => el.remove());
   studio.classList.remove('v33-media-ready');
-  studio.querySelectorAll('.v33-presenter-video,.v33-did-video').forEach(el=>el.remove());
-  const setStatus=t=>{if(status) status.textContent=t};
-  const ids=['startLiveNews','enterLiveButton','nextHeadline','stopLiveNews'];
-  const setDisabled=(id,value)=>{const b=document.getElementById(id);if(!b)return;b.disabled=value;b.setAttribute('aria-disabled',String(value));};
 
-  const testMode=new URLSearchParams(location.search).get('v33test')==='1';
-  if(!testMode){
+  const testMode = new URLSearchParams(location.search).get('v33test') === '1';
+  if (!testMode) {
     studio.classList.add('v33-static-presenters');
-    ids.forEach(id=>setDisabled(id,true));
+    ids.forEach(id => setDisabled(id, true));
     overlay?.classList.remove('show');
     setStatus('Apresentadores em imagem real.');
     return;
   }
 
   studio.classList.remove('v33-static-presenters');
-  const host=document.getElementById('idleDeijanete');
-  const image=host?.querySelector('.studio-presenter-image');
-  if(!host||!image) return;
 
-  const video=document.createElement('video');
-  video.className='v33-presenter-video';
-  video.src='/api/v33-test-media?id=tlk_vDcHm8tttp6BlDfWUtWp0';
-  video.preload='auto';
-  video.playsInline=true;
-  video.controls=false;
-  video.muted=false;
-  video.volume=1;
-  video.disablePictureInPicture=true;
-  video.setAttribute('playsinline','');
-  video.style.setProperty('position','absolute','important');
-  video.style.setProperty('inset','0','important');
-  video.style.setProperty('width','100%','important');
-  video.style.setProperty('height','100%','important');
-  video.style.setProperty('object-fit','contain','important');
-  video.style.setProperty('object-position','center bottom','important');
-  video.style.setProperty('z-index','3','important');
-  video.style.setProperty('background','transparent','important');
-  video.style.setProperty('pointer-events','none','important');
-  video.style.setProperty('display','block','important');
-  video.style.setProperty('opacity','0','important');
-  video.style.setProperty('visibility','hidden','important');
-  host.appendChild(video);
+  // Fonte real autorizada pelo usuário. Sem D-ID, sem geração paga e sem lip-sync artificial.
+  const frame = document.createElement('iframe');
+  frame.className = 'v33-real-source-frame';
+  frame.title = 'VOZ NEWS — fonte real dos apresentadores';
+  frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.src = 'https://www.youtube-nocookie.com/embed/BcZnEUc1zvU?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+  frame.style.setProperty('position','absolute','important');
+  frame.style.setProperty('left','50%','important');
+  frame.style.setProperty('top','50%','important');
+  frame.style.setProperty('transform','translate(-50%,-50%)','important');
+  frame.style.setProperty('width','92%','important');
+  frame.style.setProperty('height','82%','important');
+  frame.style.setProperty('border','0','important');
+  frame.style.setProperty('border-radius','18px','important');
+  frame.style.setProperty('z-index','8','important');
+  frame.style.setProperty('background','#000','important');
+  frame.style.setProperty('box-shadow','0 24px 80px rgba(0,0,0,.55)','important');
+  frame.style.setProperty('display','none','important');
+  studio.appendChild(frame);
 
-  const showImage=()=>{
-    image.style.setProperty('visibility','visible','important');
-    image.style.setProperty('opacity','1','important');
-  };
-  const showVideo=()=>{
-    image.style.setProperty('visibility','hidden','important');
-    video.style.setProperty('display','block','important');
-    video.style.setProperty('opacity','1','important');
-    video.style.setProperty('visibility','visible','important');
-  };
-  const hideVideo=()=>{
-    video.style.setProperty('opacity','0','important');
-    video.style.setProperty('visibility','hidden','important');
-  };
-  const reset=()=>{
-    try{video.pause();video.currentTime=0}catch{}
-    hideVideo();
-    showImage();
-    setStatus('Pronto para iniciar.');
-  };
-  const start=async event=>{
+  const start = event => {
     event?.preventDefault?.();
     event?.stopImmediatePropagation?.();
     overlay?.classList.remove('show');
-    try{
-      if(video.readyState<2) video.load();
-      video.currentTime=0;
-      showVideo();
-      setStatus('Dra. Deijanete Fayad no ar.');
-      await video.play();
-    }catch(e){
-      reset();
-      overlay?.classList.add('show');
-      setStatus('Clique novamente para iniciar.');
-    }
+    frame.style.setProperty('display','block','important');
+    setStatus('Fonte real dos apresentadores no ar.');
   };
 
-  video.addEventListener('loadeddata',()=>setStatus('Prévia pronta para iniciar.'));
-  video.addEventListener('ended',()=>{hideVideo();showImage();setStatus('Prévia concluída.');});
-  video.addEventListener('error',()=>{reset();setStatus('Prévia temporariamente indisponível.');});
+  const reset = event => {
+    event?.preventDefault?.();
+    event?.stopImmediatePropagation?.();
+    frame.style.setProperty('display','none','important');
+    setStatus('Pronto para iniciar.');
+  };
 
-  setDisabled('startLiveNews',false);
-  setDisabled('enterLiveButton',false);
-  setDisabled('stopLiveNews',false);
-  setDisabled('nextHeadline',true);
-  document.getElementById('startLiveNews')?.addEventListener('click',start,true);
-  document.getElementById('enterLiveButton')?.addEventListener('click',start,true);
-  document.getElementById('stopLiveNews')?.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();reset();},true);
+  setDisabled('startLiveNews', false);
+  setDisabled('enterLiveButton', false);
+  setDisabled('stopLiveNews', false);
+  setDisabled('nextHeadline', true);
+
+  document.getElementById('startLiveNews')?.addEventListener('click', start, true);
+  document.getElementById('enterLiveButton')?.addEventListener('click', start, true);
+  document.getElementById('stopLiveNews')?.addEventListener('click', reset, true);
+
   overlay?.classList.add('show');
-  setStatus('Prévia controlada pronta.');
+  setStatus('Prévia com fonte real pronta.');
 })();
