@@ -1,34 +1,59 @@
 (() => {
   'use strict';
-
-  // Modo seguro da V33: nenhum vídeo gerado é exibido enquanto os arquivos
-  // finais não forem aprovados visualmente. Isso evita figurino incorreto,
-  // marca do fornecedor e lip-sync artificial no portal público.
-  const studio = document.getElementById('tv-ao-vivo');
-  const status = document.getElementById('studioStatus');
-  const overlay = document.getElementById('enterLiveOverlay');
-  if (!studio) return;
+  const studio=document.getElementById('tv-ao-vivo');
+  const status=document.getElementById('studioStatus');
+  const overlay=document.getElementById('enterLiveOverlay');
+  if(!studio) return;
 
   studio.classList.remove('v33-media-ready');
-  studio.classList.add('v33-static-presenters');
+  studio.querySelectorAll('.v33-presenter-video,.v33-did-video').forEach(el=>el.remove());
+  const setStatus=t=>{if(status) status.textContent=t};
+  const ids=['startLiveNews','enterLiveButton','nextHeadline','stopLiveNews'];
+  const setDisabled=(id,value)=>{const b=document.getElementById(id);if(!b)return;b.disabled=value;b.setAttribute('aria-disabled',String(value));};
 
-  // Remove qualquer vídeo de apresentador que possa ter sido injetado por
-  // cache/navegação anterior e mantém somente as imagens reais do estúdio.
-  studio.querySelectorAll('.v33-presenter-video,.v33-did-video').forEach(el => el.remove());
+  const testMode=new URLSearchParams(location.search).get('v33test')==='1';
+  if(!testMode){
+    studio.classList.add('v33-static-presenters');
+    ids.forEach(id=>setDisabled(id,true));
+    overlay?.classList.remove('show');
+    setStatus('Apresentadores em imagem real.');
+    return;
+  }
 
-  const setStatus = text => { if (status) status.textContent = text; };
-  const disable = id => {
-    const button = document.getElementById(id);
-    if (!button) return;
-    button.disabled = true;
-    button.setAttribute('aria-disabled', 'true');
+  studio.classList.remove('v33-static-presenters');
+  const host=document.getElementById('idleDeijanete');
+  const image=host?.querySelector('.studio-presenter-image');
+  if(!host||!image) return;
+
+  const video=document.createElement('video');
+  video.className='v33-presenter-video';
+  video.src='/api/v33-test-media?id=tlk_vDcHm8tttp6BlDfWUtWp0';
+  video.preload='auto';
+  video.playsInline=true;
+  video.controls=false;
+  video.disablePictureInPicture=true;
+  Object.assign(video.style,{position:'absolute',inset:'0',width:'100%',height:'100%',objectFit:'contain',objectPosition:'center bottom',zIndex:'3',background:'transparent',display:'none'});
+  host.appendChild(video);
+
+  const reset=()=>{try{video.pause();video.currentTime=0}catch{};video.style.display='none';image.style.visibility='visible';setStatus('Pronto para iniciar.');};
+  const start=()=>{
+    overlay?.classList.remove('show');
+    image.style.visibility='hidden';
+    video.style.display='block';
+    video.currentTime=0;
+    setStatus('Dra. Deijanete Fayad no ar.');
+    video.play().catch(()=>{reset();overlay?.classList.add('show');});
   };
+  video.addEventListener('ended',()=>{image.style.visibility='visible';video.style.display='none';setStatus('Prévia concluída.');});
+  video.addEventListener('error',()=>{reset();setStatus('Prévia temporariamente indisponível.');});
 
-  disable('startLiveNews');
-  disable('enterLiveButton');
-  disable('nextHeadline');
-  disable('stopLiveNews');
-
-  overlay?.classList.remove('show');
-  setStatus('Apresentadores em imagem real.');
+  setDisabled('startLiveNews',false);
+  setDisabled('enterLiveButton',false);
+  setDisabled('stopLiveNews',false);
+  setDisabled('nextHeadline',true);
+  document.getElementById('startLiveNews')?.addEventListener('click',start);
+  document.getElementById('enterLiveButton')?.addEventListener('click',start);
+  document.getElementById('stopLiveNews')?.addEventListener('click',reset);
+  overlay?.classList.add('show');
+  setStatus('Prévia controlada pronta.');
 })();
