@@ -1,15 +1,7 @@
 (() => {
   const playlist = [
-    { presenter:'paulo',     src:'./assets/v33-real/01-paulo.mp4' },
-    { presenter:'deijanete', src:'./assets/v33-real/02-deijanete.mp4' },
-    { presenter:'paulo',     src:'./assets/v33-real/03-paulo.mp4' },
-    { presenter:'deijanete', src:'./assets/v33-real/04-deijanete.mp4' },
-    { presenter:'paulo',     src:'./assets/v33-real/05-paulo.mp4' },
-    { presenter:'deijanete', src:'./assets/v33-real/06-deijanete.mp4' },
-    { presenter:'paulo',     src:'./assets/v33-real/07-paulo.mp4' },
-    { presenter:'deijanete', src:'./assets/v33-real/08-deijanete.mp4' },
-    { presenter:'paulo',     src:'./assets/v33-real/09-paulo.mp4' },
-    { presenter:'deijanete', src:'./assets/v33-real/10-deijanete.mp4' }
+    { presenter:'paulo',     src:'./assets/v33-original/01-paulo-ola.mp4' },
+    { presenter:'deijanete', src:'./assets/v33-original/02-deijanete-ola.mp4' }
   ];
 
   const deijanete = document.getElementById('idleDeijanete');
