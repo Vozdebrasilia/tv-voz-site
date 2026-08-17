@@ -5,6 +5,7 @@
   const synth = window.speechSynthesis;
   const supportsSpeech = !!(synth && window.SpeechSynthesisUtterance);
   let activeUtterance = null;
+  let speechRun = 0;
   let fontScale = 1;
 
   const style = document.createElement('style');
@@ -72,27 +73,63 @@
     launcher.focus();
   };
 
-  function preferredText(full) {
-    const article = document.querySelector('[data-voznews-readable="article"], article, .wrap');
-    if (article) {
-      if (!full) {
-        const h1 = article.querySelector('h1');
-        const ps = [...article.querySelectorAll('p')].slice(0, 2);
-        return [h1?.innerText, ...ps.map(p => p.innerText)].filter(Boolean).join('. ');
-      }
-      const nodes = [...article.querySelectorAll('h1,h2,p')];
-      return nodes.map(n => n.innerText).filter(Boolean).join('. ');
+  function cleanForSpeech(text='') {
+    return String(text)
+      .replace(/VOZ NEWS/gi, 'Voz News')
+      .replace(/\bDF\b/g, 'Distrito Federal')
+      .replace(/\bSTF\b/g, 'Supremo Tribunal Federal')
+      .replace(/\bTSE\b/g, 'Tribunal Superior Eleitoral')
+      .replace(/\bGDF\b/g, 'Governo do Distrito Federal')
+      .replace(/\s*•\s*/g, '. ')
+      .replace(/\s*[|–—]\s*/g, '. ')
+      .replace(/\s+/g, ' ')
+      .replace(/([.!?])(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/g, '$1 ')
+      .trim();
+  }
+
+  function currentHomepageText(full) {
+    const title = document.querySelector('#v33head')?.innerText?.trim();
+    if (!title) return '';
+    const summary = document.querySelector('#v33source')?.innerText?.trim() || '';
+    const analyst = document.querySelector('#v33analystname')?.innerText?.trim() || '';
+    if (!full) return cleanForSpeech(`Manchete. ${title}. ${summary}`);
+    return cleanForSpeech(`Voz News. Manchete. ${title}. Análise de ${analyst || 'Voz News'}. ${summary}. Para ler a análise completa, abra esta notícia. Aconteceu? A Voz fala!`);
+  }
+
+  function articleText(full) {
+    const article = document.querySelector('[data-voznews-readable="article"], article');
+    if (!article) return '';
+    const h1 = article.querySelector('h1')?.innerText?.trim() || '';
+    if (!full) {
+      const firstParagraph = [...article.querySelectorAll('p')].find(p => !p.classList.contains('slogan'))?.innerText?.trim() || '';
+      return cleanForSpeech(`Manchete. ${h1}. ${firstParagraph}`);
     }
-    const title = document.querySelector('#v33head,h1')?.innerText || document.title;
-    const summary = document.querySelector('#v33source,.hero-copy,.subtitle')?.innerText || '';
-    if (!full) return [title, summary].filter(Boolean).join('. ');
-    const main = document.querySelector('main') || document.body;
-    return [...main.querySelectorAll('h1,h2,h3,p')].slice(0, 70).map(n => n.innerText).filter(Boolean).join('. ');
+    const paragraphs = [...article.querySelectorAll('p')]
+      .filter(p => !p.closest('.source') && !p.classList.contains('slogan'))
+      .map(p => p.innerText.trim()).filter(Boolean);
+    return cleanForSpeech(`${h1}. ${paragraphs.join(' ')}. Aconteceu? A Voz fala!`);
+  }
+
+  function preferredText(full) {
+    return currentHomepageText(full) || articleText(full) || cleanForSpeech(document.title);
   }
 
   function chooseVoice() {
     const voices = synth?.getVoices?.() || [];
-    return voices.find(v => /^pt-BR$/i.test(v.lang)) || voices.find(v => /^pt/i.test(v.lang)) || null;
+    const br = voices.filter(v => /^pt-BR$/i.test(v.lang));
+    return br.find(v => /luciana|francisca|antonio|maria|google|premium|natural|enhanced/i.test(v.name)) || br[0] || voices.find(v => /^pt/i.test(v.lang)) || null;
+  }
+
+  function sentenceChunks(text) {
+    const chunks = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+    return chunks.map(s => s.trim()).filter(Boolean);
+  }
+
+  function stopSpeech(message='Leitura interrompida.') {
+    speechRun += 1;
+    if (supportsSpeech) synth.cancel();
+    activeUtterance = null;
+    setStatus(message);
   }
 
   function speak(full) {
@@ -100,20 +137,41 @@
       setStatus('Este navegador não oferece leitura em voz alta. O conteúdo continua compatível com leitores de tela.');
       return;
     }
-    const text = preferredText(full).replace(/\s+/g, ' ').trim();
-    if (!text) { setStatus('Não encontrei texto disponível para leitura.'); return; }
+    const text = preferredText(full);
+    if (!text) { setStatus('Não encontrei a notícia atual para leitura.'); return; }
     synth.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'pt-BR';
-    u.rate = 0.92;
-    u.pitch = 1.02;
+    const run = ++speechRun;
+    const chunks = sentenceChunks(text);
     const voice = chooseVoice();
-    if (voice) u.voice = voice;
-    u.onstart = () => setStatus(full ? 'Lendo a notícia.' : 'Lendo o resumo.');
-    u.onend = () => setStatus('Leitura concluída. Aconteceu? A VOZ fala!');
-    u.onerror = () => setStatus('Não foi possível concluir a leitura. Tente novamente.');
-    activeUtterance = u;
-    synth.speak(u);
+    let pos = 0;
+    setStatus(full ? 'Lendo a notícia atual.' : 'Lendo o resumo da notícia atual.');
+
+    const nextChunk = () => {
+      if (run !== speechRun) return;
+      if (pos >= chunks.length) {
+        activeUtterance = null;
+        setStatus('Leitura concluída. Aconteceu? A VOZ fala!');
+        return;
+      }
+      const phrase = chunks[pos++];
+      const u = new SpeechSynthesisUtterance(phrase);
+      u.lang = 'pt-BR';
+      u.rate = 0.86;
+      u.pitch = 1.03;
+      u.volume = 1;
+      if (voice) u.voice = voice;
+      u.onend = () => {
+        if (run !== speechRun) return;
+        const delay = /[!?]$/.test(phrase) ? 420 : 260;
+        setTimeout(nextChunk, delay);
+      };
+      u.onerror = () => {
+        if (run === speechRun) setStatus('Não foi possível concluir a leitura. Tente novamente.');
+      };
+      activeUtterance = u;
+      synth.speak(u);
+    };
+    nextChunk();
   }
 
   function scalableElements() {
@@ -123,8 +181,7 @@
 
   function applyFontScale(next) {
     fontScale = Math.max(.8, Math.min(1.5, next));
-    const elements = scalableElements();
-    elements.forEach(el => {
+    scalableElements().forEach(el => {
       if (!el.dataset.voznewsBaseFontSize) {
         const size = parseFloat(getComputedStyle(el).fontSize);
         if (Number.isFinite(size) && size > 0) el.dataset.voznewsBaseFontSize = String(size);
@@ -151,7 +208,7 @@
     if (action === 'full') speak(true);
     if (action === 'pause' && supportsSpeech) { synth.pause(); setStatus('Leitura pausada.'); }
     if (action === 'resume' && supportsSpeech) { synth.resume(); setStatus('Leitura retomada.'); }
-    if (action === 'stop' && supportsSpeech) { synth.cancel(); activeUtterance = null; setStatus('Leitura interrompida.'); }
+    if (action === 'stop') stopSpeech();
     if (action === 'contrast') { document.body.classList.toggle('voznews-high-contrast'); setStatus(document.body.classList.contains('voznews-high-contrast') ? 'Alto contraste ativado.' : 'Alto contraste desativado.'); }
     if (action === 'smaller') applyFontScale(fontScale - .1);
     if (action === 'larger') applyFontScale(fontScale + .1);
