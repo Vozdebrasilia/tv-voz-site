@@ -14,8 +14,10 @@
     #voznews-a11y-launcher:hover,#voznews-a11y-launcher:focus-visible{outline:3px solid #fff;outline-offset:3px;background:#0c4f83}
     #voznews-a11y-panel{position:fixed;right:18px;bottom:78px;z-index:2147482999;width:min(390px,calc(100vw - 28px));background:#fff;color:#10243a;border:3px solid #d4af37;border-radius:20px;padding:18px;box-shadow:0 18px 55px rgba(0,0,0,.42);font-family:Arial,sans-serif;display:none}
     #voznews-a11y-panel.open{display:block}
-    #voznews-a11y-panel h2{font-size:21px;margin:0 0 5px;color:#082e55}
+    #voznews-a11y-panel h2{font-size:21px;margin:0 42px 5px 0;color:#082e55}
     #voznews-a11y-panel p{font-size:13px;line-height:1.45;margin:0 0 13px;color:#44576a}
+    #voznews-a11y-close{position:absolute;top:10px;right:10px;width:38px;height:38px;border:0;border-radius:50%;background:#082e55;color:#fff;font:900 22px/1 Arial,sans-serif;cursor:pointer;display:grid;place-items:center}
+    #voznews-a11y-close:hover,#voznews-a11y-close:focus-visible{outline:3px solid #d4af37;outline-offset:2px;background:#0c4f83}
     .voznews-a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .voznews-a11y-btn{min-height:46px;border:1px solid #b9c9d8;border-radius:12px;background:#eef6fb;color:#092b4b;padding:9px 10px;font:800 14px Arial,sans-serif;cursor:pointer}
     .voznews-a11y-btn:hover,.voznews-a11y-btn:focus-visible{outline:3px solid #d4af37;outline-offset:2px;background:#dceefa}
@@ -26,7 +28,7 @@
     body.voznews-high-contrast a,body.voznews-high-contrast button{color:#ffeb3b!important}
     body.voznews-high-contrast #voznews-a11y-panel{background:#000!important;color:#fff!important}
     body.voznews-high-contrast #voznews-a11y-panel p,body.voznews-high-contrast #voznews-a11y-panel h2{color:#fff!important}
-    body.voznews-high-contrast .voznews-a11y-btn{background:#000!important}
+    body.voznews-high-contrast .voznews-a11y-btn,body.voznews-high-contrast #voznews-a11y-close{background:#000!important}
     @media(max-width:620px){#voznews-a11y-launcher{right:10px;bottom:12px;font-size:13px;padding:11px 13px}#voznews-a11y-panel{right:10px;bottom:66px}.voznews-a11y-grid{grid-template-columns:1fr}.voznews-a11y-wide{grid-column:1}}
   `;
   document.head.appendChild(style);
@@ -44,6 +46,7 @@
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-label', 'Recursos de acessibilidade VOZ NEWS');
   panel.innerHTML = `
+    <button id="voznews-a11y-close" type="button" aria-label="Fechar acessibilidade" title="Fechar">×</button>
     <h2>VOZ NEWS Acessível</h2>
     <p>Informação para todos. Use leitura em voz alta, contraste e tamanho de texto.</p>
     <div class="voznews-a11y-grid">
@@ -61,7 +64,13 @@
   document.body.append(panel, launcher);
 
   const status = panel.querySelector('#voznews-a11y-status');
+  const closeButton = panel.querySelector('#voznews-a11y-close');
   const setStatus = text => { status.textContent = text; };
+  const closePanel = () => {
+    panel.classList.remove('open');
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.focus();
+  };
 
   function preferredText(full) {
     const article = document.querySelector('[data-voznews-readable="article"], article, .wrap');
@@ -130,8 +139,10 @@
     const open = !panel.classList.contains('open');
     panel.classList.toggle('open', open);
     launcher.setAttribute('aria-expanded', String(open));
-    if (open) panel.querySelector('button')?.focus();
+    if (open) closeButton?.focus();
   });
+
+  closeButton?.addEventListener('click', closePanel);
 
   panel.addEventListener('click', e => {
     const action = e.target.closest('[data-a11y]')?.dataset.a11y;
@@ -147,10 +158,6 @@
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && panel.classList.contains('open')) {
-      panel.classList.remove('open');
-      launcher.setAttribute('aria-expanded', 'false');
-      launcher.focus();
-    }
+    if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
   });
 })();
