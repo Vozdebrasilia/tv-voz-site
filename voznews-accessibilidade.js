@@ -96,8 +96,8 @@
     synth.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'pt-BR';
-    u.rate = 0.94;
-    u.pitch = 1;
+    u.rate = 0.92;
+    u.pitch = 1.02;
     const voice = chooseVoice();
     if (voice) u.voice = voice;
     u.onstart = () => setStatus(full ? 'Lendo a notícia.' : 'Lendo o resumo.');
@@ -107,9 +107,22 @@
     synth.speak(u);
   }
 
+  function scalableElements() {
+    return [...document.querySelectorAll('body h1,body h2,body h3,body h4,body p,body li,body a,body span,body strong,body em,body small,body button')]
+      .filter(el => !el.closest('#voznews-a11y-panel') && el.id !== 'voznews-a11y-launcher' && !el.closest('#voznews-a11y-launcher'));
+  }
+
   function applyFontScale(next) {
-    fontScale = Math.max(.9, Math.min(1.35, next));
-    document.documentElement.style.fontSize = `${fontScale * 100}%`;
+    fontScale = Math.max(.8, Math.min(1.5, next));
+    const elements = scalableElements();
+    elements.forEach(el => {
+      if (!el.dataset.voznewsBaseFontSize) {
+        const size = parseFloat(getComputedStyle(el).fontSize);
+        if (Number.isFinite(size) && size > 0) el.dataset.voznewsBaseFontSize = String(size);
+      }
+      const base = parseFloat(el.dataset.voznewsBaseFontSize || '');
+      if (Number.isFinite(base) && base > 0) el.style.fontSize = `${Math.round(base * fontScale * 100) / 100}px`;
+    });
     setStatus(`Tamanho do texto: ${Math.round(fontScale * 100)}%.`);
   }
 
