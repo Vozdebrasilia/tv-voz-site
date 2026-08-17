@@ -1,0 +1,1 @@
+Trigger de deploy após correção editorial do card Fábio Zuccaratto / Paulo Fayad.
