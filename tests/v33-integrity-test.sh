@@ -25,6 +25,9 @@ grep -q 'https://www.voznewsbrasil.com.br/' index.html
 grep -q 'https://www.voznewsbrasil.com.br/sitemap.xml' robots.txt
 grep -q '<loc>https://www.voznewsbrasil.com.br/</loc>' sitemap.xml
 
+grep -q "a_bright_high_resolution_outdoor_interview_thumbn.png" v33-did-player.js
+grep -q "a_bright_outdoor_interview_style_scene_in_a_landsc.png" v33-did-player.js
+
 python3 - <<'PY'
 import re
 from pathlib import Path
