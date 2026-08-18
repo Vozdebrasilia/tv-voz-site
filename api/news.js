@@ -1,41 +1,28 @@
-const items = [
-  {
-    title: 'Campanha eleitoral de 2026 entra oficialmente nas ruas e na internet',
-    summary: 'A propaganda eleitoral começou neste fim de semana. Candidatos à Presidência iniciam atos públicos pelo país e o TSE inaugura nesta segunda-feira o Centro de Divulgação das Eleições 2026.',
-    source: 'Política • 17/08/2026'
-  },
-  {
-    title: 'Casas Bahia entra com pedido de recuperação judicial',
-    summary: 'A companhia cita juros elevados, restrição de crédito, aumento do custo financeiro e pressão sobre o consumo no pedido apresentado nesta segunda-feira.',
-    source: 'Economia • 17/08/2026'
-  },
-  {
-    title: 'Dólar abre a semana pressionado após forte alta e Ibovespa tenta reagir',
-    summary: 'O mercado brasileiro inicia a semana após uma sequência de nove quedas do Ibovespa e avanço recente do dólar, com investidores atentos ao cenário fiscal, fluxo estrangeiro e indicadores econômicos.',
-    source: 'Mercados • 17/08/2026'
-  },
-  {
-    title: 'PIS/Pasep libera último lote do abono salarial para 4,1 milhões de trabalhadores',
-    summary: 'O pagamento contempla nascidos em novembro e dezembro e movimenta cerca de R$ 5,2 bilhões, segundo informações divulgadas nesta segunda-feira.',
-    source: 'Brasil • 17/08/2026'
-  },
-  {
-    title: 'Novo terremoto de magnitude 5,7 atinge a Indonésia',
-    summary: 'O novo tremor atingiu a ilha de Flores após o forte terremoto registrado no fim de semana. Autoridades mantêm ações de emergência e assistência à população afetada.',
-    source: 'Mundo • 17/08/2026'
-  },
-  {
-    title: 'Brasília tem manutenção programada na rede elétrica nesta segunda-feira',
-    summary: 'A Neoenergia Brasília conclui o cronograma de manutenção e modernização da rede previsto entre 11 e 17 de agosto, com intervenções programadas no Distrito Federal.',
-    source: 'Brasília • 17/08/2026'
-  }
+const people = [
+  {name:'Lula',query:'Lula presidente Brasil',handle:'lulaoficial',source:'Presidência • Brasil'},
+  {name:'Celina Leão',query:'Celina Leão Distrito Federal',handle:'celinaleao',source:'GDF • Brasília'},
+  {name:'Julio Cesar Ribeiro',query:'Julio Cesar Ribeiro deputado DF',handle:'juliocesarribeiro',source:'Câmara • DF'},
+  {name:'Gilberto Nascimento',query:'Gilberto Nascimento deputado SP',handle:'gnascimento_20',source:'Câmara • SP'},
+  {name:'Hermeto',query:'Deputado Hermeto DF',handle:'hermeto.oficial',source:'CLDF • Brasília'},
+  {name:'Paula Belmonte',query:'Paula Belmonte DF',handle:'paulabelmonteoficial',source:'Política • Brasília'}
 ];
-
-export default function handler(req, res) {
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
-  res.status(200).json({
-    updatedAt: '2026-08-17T08:46:00-03:00',
-    edition: 'VOZ NEWS • 17 de agosto de 2026',
-    items
-  });
+function clean(s=''){return String(s).replace(/<!\[CDATA\[|\]\]>/g,'').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").trim()}
+async function latest(p){
+  try{
+    const u='https://news.google.com/rss/search?q='+encodeURIComponent(p.query)+'&hl=pt-BR&gl=BR&ceid=BR:pt-419';
+    const r=await fetch(u,{headers:{'user-agent':'VOZNEWS/1.0'}});
+    if(!r.ok) throw new Error('rss');
+    const xml=await r.text(),item=(xml.match(/<item>[\s\S]*?<\/item>/)||[])[0]||'';
+    const title=clean((item.match(/<title>([\s\S]*?)<\/title>/)||[])[1]||'');
+    const link=clean((item.match(/<link>([\s\S]*?)<\/link>/)||[])[1]||'');
+    return title?{title,summary:`Acompanhe a atualização mais recente sobre ${p.name} na cobertura diária do VOZ NEWS.`,source:p.source,link,image:`/api/instagram-photo?handle=${encodeURIComponent(p.handle)}`,instagram:`https://www.instagram.com/${p.handle}/`}:null;
+  }catch(e){return null}
+}
+export default async function handler(req,res){
+  const rows=await Promise.all(people.map(latest));
+  const items=rows.filter(Boolean);
+  const now=new Date();
+  const edition=new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'long',year:'numeric'}).format(now);
+  res.setHeader('Cache-Control','s-maxage=900, stale-while-revalidate=3600');
+  res.status(200).json({updatedAt:now.toISOString(),edition:`VOZ NEWS • ${edition}`,requiredCoverage:people.map(p=>p.name),items});
 }
