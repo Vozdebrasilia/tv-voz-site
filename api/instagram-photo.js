@@ -1,10 +1,10 @@
 const sources = {
-  'lulaoficial': { direct:'https://www.gov.br/planejamento/pt-br/assuntos/noticias/2026/imagens/55156120202_eb131de887_o.jpg' },
-  'celinaleao': { page:'https://celina11.com/' },
+  'lulaoficial': { direct:'https://www.gov.br/planejamento/pt-br/assuntos/noticias/2026/imagens/55156120202_eb131de887_o.jpg/@@images/image-800-178cef2bb9f4c0f5ebc07851937db6f2.jpeg' },
+  'celinaleao': { page:'https://celina11.com/noticias/celina-leao-abre-campanha-de-reeleicao-ao-governo-do-df-ao-lado-de-michelle-bolsonaro-e-bia-kicis/' },
   'juliocesarribeiro': { direct:'https://www.camara.leg.br/internet/deputado/bandep/204372.jpg' },
   'gnascimento_20': { direct:'https://www.camara.leg.br/internet/deputado/bandep/74270.jpg' },
   'hermeto.oficial': { page:'https://hermeto.com.br/' },
-  'paulabelmonteoficial': { page:'https://paulabelmonte.com.br/paula-belmonte-leva-campanha-as-ruas-no-eixao-e-se-apresenta-como-alternativa-para-brasilia/' }
+  'paulabelmonteoficial': { page:'https://paulabelmonte.com.br/psdb-df-confirma-paula-belmonte-como-candidata-ao-gdf-em-convencao-no-dia-4-de-agosto/' }
 };
 
 function ogImage(html=''){
@@ -15,7 +15,9 @@ function ogImage(html=''){
 async function sendImage(url,res,referer){
   const img=await fetch(url.replace(/&amp;/g,'&'),{headers:{'user-agent':'Mozilla/5.0','referer':referer||url}});
   if(!img.ok) throw new Error('image');
-  res.setHeader('Content-Type',img.headers.get('content-type')||'image/jpeg');
+  const type=(img.headers.get('content-type')||'').toLowerCase();
+  if(!type.startsWith('image/')) throw new Error('not-image');
+  res.setHeader('Content-Type',type);
   res.setHeader('Cache-Control','public, s-maxage=86400, stale-while-revalidate=604800');
   return res.status(200).send(Buffer.from(await img.arrayBuffer()));
 }
@@ -34,6 +36,6 @@ export default async function handler(req,res){
     return await sendImage(image,res,src.page);
   }catch(e){
     res.setHeader('Cache-Control','no-store');
-    return res.redirect(302,'/Entrevista%20Exclusiva%20com%20Celina%20Le%C3%A3o(2).png');
+    return res.redirect(302,'/logo-voznews-oficial.png');
   }
 }
