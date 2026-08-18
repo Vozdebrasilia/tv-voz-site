@@ -4,7 +4,8 @@ const sources = {
   'juliocesarribeiro': { direct:'https://www.camara.leg.br/internet/deputado/bandep/204372.jpg' },
   'gnascimento_20': { direct:'https://www.camara.leg.br/internet/deputado/bandep/74270.jpg' },
   'hermeto.oficial': { page:'https://hermeto.com.br/' },
-  'paulabelmonteoficial': { page:'https://paulabelmonte.com.br/psdb-df-confirma-paula-belmonte-como-candidata-ao-gdf-em-convencao-no-dia-4-de-agosto/' }
+  'paulabelmonteoficial': { page:'https://paulabelmonte.com.br/psdb-df-confirma-paula-belmonte-como-candidata-ao-gdf-em-convencao-no-dia-4-de-agosto/' },
+  'flaviobolsonaro': { page:'https://www25.senado.leg.br/web/senadores/senador/-/perfil/5894' }
 };
 
 function ogImage(html=''){
