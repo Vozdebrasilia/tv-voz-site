@@ -31,38 +31,18 @@
   const canonStyle=document.createElement('style');
   canonStyle.textContent=`
     #empresas .canon-card-corrigido{position:relative;overflow:hidden;border:1px solid rgba(212,175,55,.55)!important;box-shadow:0 18px 46px rgba(0,0,0,.28)}
-    #empresas .canon-card-corrigido img{width:100%;height:330px!important;object-fit:cover!important;object-position:center center!important}
+    #empresas .canon-card-corrigido img{width:100%;height:330px!important;object-fit:contain!important;object-position:center center!important;background:#071a2b!important}
   `;
   document.head.appendChild(canonStyle);
 
-  // Miniaturas oficiais: Edmar preserva sua imagem própria; Fábio usa o vídeo correto da Canon.
   const fixInterviewThumbnails=()=>{
     const cards=[...document.querySelectorAll('#empresas .visual-card')];
-
     const edmarCard=cards.find(c=>/EDMAR\s+MOTH[ÉE]/i.test(c.textContent||''));
     const edmarImg=edmarCard?.querySelector('img');
-    if(edmarImg){
-      edmarImg.src='./a_bright_high_resolution_outdoor_interview_thumbn.png';
-      edmarImg.alt='Edmar Mothé — Bio Mundo em entrevista para a TV Voz de Brasília';
-      edmarImg.style.objectFit='cover';
-      edmarImg.style.objectPosition='center center';
-    }
-
+    if(edmarImg){edmarImg.src='./a_bright_high_resolution_outdoor_interview_thumbn.png';edmarImg.alt='Edmar Mothé — Bio Mundo em entrevista para a TV Voz de Brasília';edmarImg.style.objectFit='cover';edmarImg.style.objectPosition='center center';}
     const fabioCard=cards.find(c=>/F[ÁA]BIO\s+ZUCCARATTO/i.test(c.textContent||''));
     const fabioImg=fabioCard?.querySelector('img');
-    if(fabioImg){
-      fabioImg.src='https://img.youtube.com/vi/aK34W2Ob6ms/maxresdefault.jpg';
-      fabioImg.alt='Paulo Fayad e Fábio Zuccaratto — Canon do Brasil';
-      fabioImg.style.objectFit='cover';
-      fabioImg.style.objectPosition='center center';
-      fabioImg.style.filter='brightness(1.06) contrast(1.05) saturate(1.03)';
-    }
-    if(fabioCard){
-      const h3=fabioCard.querySelector('h3');
-      if(h3)h3.textContent='FÁBIO ZUCCARATTO | CANON DO BRASIL';
-      const p=fabioCard.querySelector('p');
-      if(p)p.textContent='Paulo Fayad entrevista Fábio Zuccaratto sobre tecnologia, fotografia, inovação e estratégia empresarial da Canon do Brasil.';
-    }
+    if(fabioImg){fabioImg.src='https://img.youtube.com/vi/aK34W2Ob6ms/maxresdefault.jpg';fabioImg.alt='Paulo Fayad e Fábio Zuccaratto — Canon do Brasil';fabioImg.style.setProperty('object-fit','contain','important');fabioImg.style.setProperty('object-position','center center','important');fabioImg.style.filter='brightness(1.06) contrast(1.05) saturate(1.03)';}
   };
   const runFixes=()=>{fixCanonCard();fixInterviewThumbnails();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',runFixes);else runFixes();
