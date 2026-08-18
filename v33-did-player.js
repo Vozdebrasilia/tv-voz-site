@@ -18,40 +18,34 @@
   let headlines=[],index=0,updatedAt=null,rotateTimer=null;const head=document.getElementById('v33head'),source=document.getElementById('v33source'),count=document.getElementById('v33count'),time=document.getElementById('v33time'),ticker=document.getElementById('v33ticker'),progress=document.getElementById('v33progress'),prev=document.getElementById('v33prev'),next=document.getElementById('v33next');const fmt=d=>new Date(d||Date.now()).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});function showAt(pos){if(!headlines.length)return;index=(pos+headlines.length)%headlines.length;const item=headlines[index];head.textContent=item.title;head.href=analysisUrl(item);source.textContent=`${item.topic||'Atualidade'} • cobertura rápida VOZ NEWS`;count.textContent=`${index+1} / ${headlines.length}`;time.textContent=`Atualizado às ${fmt(updatedAt)}`;progress.style.animation='none';void progress.offsetWidth;progress.style.animation='v33bar 10s linear infinite'}function nextItem(){showAt(index+1)}function restart(){clearInterval(rotateTimer);rotateTimer=setInterval(nextItem,10000)}prev.onclick=()=>{showAt(index-1);restart()};next.onclick=()=>{showAt(index+1);restart()};function renderTicker(){ticker.innerHTML='';headlines.forEach(item=>{const a=document.createElement('a');a.className='v33-ticker-link';a.href=analysisUrl(item);a.textContent=item.title;ticker.appendChild(a)})}async function load(){try{const r=await fetch('/api/headlines?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error();const data=await r.json();if(!Array.isArray(data.headlines)||!data.headlines.length)throw new Error();headlines=data.headlines.slice(0,20);updatedAt=data.updatedAt||new Date().toISOString();index=0;renderTicker();showAt(0);restart()}catch(e){head.textContent='As manchetes de hoje estão sendo atualizadas.';source.textContent='Nova tentativa automática em instantes.';ticker.textContent='VOZ NEWS • atualização contínua'}}load();setInterval(load,15*60*1000);
   if(!document.querySelector('script[data-voznews-a11y]')){const s=document.createElement('script');s.src='/voznews-accessibilidade.js';s.defer=true;s.dataset.voznewsA11y='1';document.head.appendChild(s)}
 
-  // Correção editorial do card Canon: remove a arte com nome incorreto,
-  // preserva Fábio Zuccaratto no texto e acrescenta Paulo Fayad como entrevistador.
-  const fixCanonCard=()=>{
+  // Miniaturas oficiais enviadas ao GitHub em 17/08/2026.
+  // Primeira: Edmar Mothé. Segunda: Fábio Zuccaratto.
+  const fixInterviewThumbnails=()=>{
     const cards=[...document.querySelectorAll('#empresas .visual-card')];
-    const card=cards.find(c=>/F[ÁA]BIO\s+ZUCCARATTO/i.test(c.textContent||''));
-    if(!card)return;
-    const img=card.querySelector('img');
-    if(img){
-      img.src='./studio-paulo-source.png';
-      img.alt='Paulo Fayad em entrevista para a TV Voz de Brasília — matéria com Fábio Zuccaratto, Canon do Brasil';
-      img.style.objectFit='cover';
-      img.style.objectPosition='center 18%';
-      img.style.background='linear-gradient(180deg,#0a1d34,#061423)';
+
+    const edmarCard=cards.find(c=>/EDMAR\s+MOTH[ÉE]/i.test(c.textContent||''));
+    const edmarImg=edmarCard?.querySelector('img');
+    if(edmarImg){
+      edmarImg.src='./a_bright_high_resolution_outdoor_interview_thumbn.png';
+      edmarImg.alt='Edmar Mothé — Bio Mundo em entrevista para a TV Voz de Brasília';
+      edmarImg.style.objectFit='cover';
+      edmarImg.style.objectPosition='center center';
     }
-    card.classList.add('canon-card-corrigido');
-    const h3=card.querySelector('h3');
-    if(h3)h3.textContent='FÁBIO ZUCCARATTO | CANON DO BRASIL';
-    const p=card.querySelector('p');
-    if(p)p.textContent='Paulo Fayad entrevista Fábio Zuccaratto sobre tecnologia, fotografia, inovação e estratégia empresarial da Canon do Brasil.';
-    if(!card.querySelector('.canon-interviewer-badge')){
-      const badge=document.createElement('div');
-      badge.className='canon-interviewer-badge';
-      badge.innerHTML='<strong>ENTREVISTA: PAULO FAYAD</strong><span>TV Voz de Brasília • VOZ NEWS</span>';
-      card.querySelector('.visual-body')?.prepend(badge);
+
+    const fabioCard=cards.find(c=>/F[ÁA]BIO\s+ZUCCARATTO/i.test(c.textContent||''));
+    const fabioImg=fabioCard?.querySelector('img');
+    if(fabioImg){
+      fabioImg.src='./a_bright_outdoor_interview_style_scene_in_a_landsc.png';
+      fabioImg.alt='Fábio Zuccaratto — Canon do Brasil em entrevista para a TV Voz de Brasília';
+      fabioImg.style.objectFit='cover';
+      fabioImg.style.objectPosition='center center';
+    }
+    if(fabioCard){
+      const h3=fabioCard.querySelector('h3');
+      if(h3)h3.textContent='FÁBIO ZUCCARATTO | CANON DO BRASIL';
+      const p=fabioCard.querySelector('p');
+      if(p)p.textContent='Paulo Fayad entrevista Fábio Zuccaratto sobre tecnologia, fotografia, inovação e estratégia empresarial da Canon do Brasil.';
     }
   };
-  const canonStyle=document.createElement('style');
-  canonStyle.textContent=`
-    #empresas .canon-card-corrigido{position:relative;overflow:hidden;border:1px solid rgba(212,175,55,.55)!important;box-shadow:0 18px 46px rgba(0,0,0,.28)}
-    #empresas .canon-card-corrigido img{width:100%;height:330px!important;object-fit:cover!important;object-position:center 18%!important}
-    #empresas .canon-interviewer-badge{display:flex;flex-direction:column;gap:3px;margin-bottom:12px;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,#d4af37,#f0cf69);color:#07172f}
-    #empresas .canon-interviewer-badge strong{font-size:12px;letter-spacing:.5px}
-    #empresas .canon-interviewer-badge span{font-size:10px;font-weight:800}
-  `;
-  document.head.appendChild(canonStyle);
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fixCanonCard);else fixCanonCard();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fixInterviewThumbnails);else fixInterviewThumbnails();
 })();
