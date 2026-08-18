@@ -2,6 +2,7 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/portais/poder.html", "destination": "/api/poder" },
     { "source": "/portais/:slug.html", "destination": "/portal.html" },
     { "source": "/clientes/:slug.html", "destination": "/cliente.html" },
     { "source": "/analises/:slug", "destination": "/api/analysis-page?slug=:slug" },
