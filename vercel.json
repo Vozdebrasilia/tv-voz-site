@@ -2,6 +2,8 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/energia", "destination": "/energia/home.html" },
+    { "source": "/energia/", "destination": "/energia/home.html" },
     { "source": "/portais/poder.html", "destination": "/api/poder" },
     { "source": "/portais/:slug.html", "destination": "/portal.html" },
     { "source": "/clientes/:slug.html", "destination": "/cliente.html" },
