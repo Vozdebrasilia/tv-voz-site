@@ -41,4 +41,21 @@
   <url><loc>https://www.voznewsbrasil.com.br/portais/condominios.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/portais/festas.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/portais/motos.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/</loc><priority>0.9</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=amapa-nova-fronteira-energetica</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=terminais-estacoes-petroleo</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=linhas-transmissao</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=itaipu-forca-das-aguas</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-solar</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=refino-petroquimica</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-e-dados</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=data-centers-ia</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=edificios-eficientes</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=eficiencia-empresarial</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=infraestrutura-integrada</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=eletrobras-rede-nacional</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=transicao-energetica</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=operacao-manutencao</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-eolica</loc><priority>0.8</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=schneider-electric</loc><priority>0.8</priority></url>
 </urlset>
