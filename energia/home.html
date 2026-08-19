@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>VOZ NEWS ENERGIA | Petróleo, Eletricidade e Transição Energética</title>
+<meta name="description" content="VOZ NEWS ENERGIA: petróleo, gás, hidrelétricas, transmissão, eficiência energética, transição energética, política, negócios e entrevistas.">
+<link rel="canonical" href="https://www.voznewsbrasil.com.br/energia/">
+<link rel="icon" href="/favicon-voznews.png">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#04101c;color:#fff;font-family:Arial,Helvetica,sans-serif}.energy-cover{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(90deg,rgba(2,12,25,.96) 0%,rgba(2,12,25,.77) 42%,rgba(2,12,25,.18) 72%),linear-gradient(0deg,rgba(2,12,25,.95) 0%,rgba(2,12,25,.04) 54%),url('https://agencia.petrobras.com.br/documents/10623376/0/Sonda%20NS-42%20%28ODN-II%29_Home_Divulga%C3%A7%C3%A3o%20Foresea.jpg/acf4da74-1259-31ac-5dcd-2655856b8571') center/cover no-repeat}.energy-cover:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 73% 28%,rgba(255,185,40,.26),transparent 23%),linear-gradient(120deg,transparent 50%,rgba(212,175,55,.15) 72%,transparent 88%);pointer-events:none}.cover-inner{position:relative;z-index:2;width:min(1220px,92%);margin:auto;padding:72px 0 58px}.cover-kicker{color:#d4af37;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.cover-title{font-size:clamp(58px,12vw,128px);line-height:.82;margin:14px 0 24px;letter-spacing:-5px;text-shadow:0 10px 35px rgba(0,0,0,.55)}.cover-title span{display:block;color:#d4af37}.cover-lead{max-width:760px;margin:0;color:#f0f5fb;font-size:clamp(19px,2.3vw,28px);line-height:1.42;text-shadow:0 3px 14px rgba(0,0,0,.75)}.cover-badge{display:inline-flex;margin-top:25px;padding:12px 18px;border:1px solid rgba(212,175,55,.72);border-radius:999px;background:rgba(2,12,25,.76);font-size:12px;font-weight:900;letter-spacing:1.1px}.cover-arrow{margin-top:34px;font-size:28px;color:#d4af37}.loading{padding:50px;text-align:center;color:#c7d6e6}@media(max-width:600px){.energy-cover{min-height:92svh;background-position:65% center}.cover-inner{padding:54px 0 38px}.cover-title{font-size:clamp(56px,18vw,92px);letter-spacing:-3px}.cover-lead{font-size:19px}.cover-badge{border-radius:18px;line-height:1.35}}
+</style>
+</head>
+<body>
+<section class="energy-cover" aria-label="Capa VOZ NEWS ENERGIA">
+  <div class="cover-inner">
+    <div class="cover-kicker">TV VOZ • PORTAL ESPECIALIZADO</div>
+    <h1 class="cover-title">VOZ NEWS <span>ENERGIA</span></h1>
+    <p class="cover-lead">Petróleo, gás, hidrelétricas, redes, inovação, eficiência e transição energética. Informação para quem decide o futuro da energia no Brasil.</p>
+    <div class="cover-badge">PETRÓLEO • ELETRICIDADE • RENOVÁVEIS • TECNOLOGIA</div>
+    <div class="cover-arrow">↓</div>
+  </div>
+</section>
+<div id="resto" class="loading">Carregando conteúdo...</div>
+<script>
+(async function(){
+  try{
+    const html=await fetch('/energia/index.html?v=base').then(r=>r.text());
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    const originalStyle=doc.querySelector('style');
+    if(originalStyle){const s=document.createElement('style');s.textContent=originalStyle.textContent;document.head.appendChild(s)}
+    const main=doc.querySelector('main');
+    const start=doc.querySelector('#petrobras');
+    const host=document.getElementById('resto');
+    host.className='';host.innerHTML='';
+    if(main&&start){let n=start;while(n){host.appendChild(n.cloneNode(true));n=n.nextElementSibling}}
+    const footer=doc.querySelector('footer');if(footer)host.appendChild(footer.cloneNode(true));
+    var frames=['hq1.jpg','hq2.jpg','hq3.jpg','hqdefault.jpg'];
+    document.querySelectorAll('.video-preview[data-youtube]').forEach(function(box,index){var id=box.dataset.youtube,img=box.querySelector('img'),step=index%frames.length;if(!img)return;setInterval(function(){step=(step+1)%frames.length;img.src='https://img.youtube.com/vi/'+id+'/'+frames[step]},1250)});
+  }catch(e){document.getElementById('resto').textContent='Conteúdo temporariamente indisponível.'}
+})();
+</script>
+</body>
+</html>
