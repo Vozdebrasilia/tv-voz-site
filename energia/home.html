@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap topbar"><a href="/"><img class="brand" src="/logo-voznews-oficial.png" alt="VOZ NEWS Brasil"></a><nav class="nav"><a href="/">Portal principal</a><a href="#conteudo">Notícias</a><a href="#entrevistas">Entrevistas</a><a href="/index.html">Acervo</a></nav></div></header>
+<header class="top"><div class="wrap topbar"><a href="/"><img class="brand" src="/logo-voznews-oficial.png" alt="VOZ NEWS Brasil"></a><nav class="nav"><a href="/">Portal principal</a><a href="#conteudo">Notícias</a><a href="#entrevistas">Entrevistas</a><a href="/energia/acervo.html">Acervo Energia</a></nav></div></header>
 <div class="sectorbar"><div class="wrap"><a href="#conteudo">Últimas</a><a href="#petroleo">Petróleo e Gás</a><a href="#eletricidade">Eletricidade</a><a href="#renovaveis">Renováveis</a><a href="#transicao">Transição Energética</a><a href="#entrevistas">Entrevistas</a><a href="/">VOZ NEWS Brasil</a></div></div>
 <main>
 <section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">VERTICAL ESPECIALIZADA • VOZ NEWS BRASIL</span><h1>VOZ NEWS <span>ENERGIA</span></h1><p>Informação, inovação e poder para quem move o Brasil. Petróleo, eletricidade, infraestrutura, transição energética, investimentos e entrevistas reunidos em uma cobertura setorial de alto nível.</p></div><div class="hero-art"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Renewable_energy_park.jpg/1280px-Renewable_energy_park.jpg" alt="Parque de energia renovável com painéis solares e turbinas eólicas"></div></div></section>
@@ -26,7 +26,7 @@
 <script>
 (async function(){
   try{
-    const html=await fetch('/energia/index.html?v=base').then(r=>r.text());
+    const html=await fetch('/energia/acervo.html?v=base').then(r=>r.text());
     const doc=new DOMParser().parseFromString(html,'text/html');
     const originalStyle=doc.querySelector('style');
     if(originalStyle){const s=document.createElement('style');s.textContent=originalStyle.textContent;document.head.appendChild(s)}
