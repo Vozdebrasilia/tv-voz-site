@@ -57,6 +57,17 @@ must(js.includes('--tomato:#e53935'),'cor tomate da identidade gastronômica aus
 must(js.includes('--orange:#ff7a00'),'laranja vibrante da identidade gastronômica ausente');
 must(js.includes('--warm-bg:#fff8f1'),'fundo claro e quente da identidade gastronômica ausente');
 
+must(!html.includes('Paulo Filho'),'nome real Paulo Filho ainda visível no HTML');
+must(!html.includes('Isabella'),'nome real Isabella ainda visível no HTML');
+must(!js.includes('Paulo Filho'),'nome real Paulo Filho ainda visível no JS');
+must(!js.includes('Isabella'),'nome real Isabella ainda visível no JS');
+must(html.includes('Lucas Ferraz') || js.includes('Lucas Ferraz'),'Lucas Ferraz ausente');
+must(html.includes('Sofia Martins') || js.includes('Sofia Martins'),'Sofia Martins ausente');
+for (const slug of ['hamburguer','pizza','cafes','doces','ambiente','fotos']) {
+  must(html.includes(`/gastronomia/jovens/${slug}.html`) || js.includes(`/gastronomia/jovens/${slug}.html`),`link jovem ausente: ${slug}`);
+  must(exists(`gastronomia/jovens/${slug}.html`),`página jovem ausente: ${slug}`);
+}
+
 for (const asset of ['gastronomia/media/paulo-jovem-ficticio.b64','gastronomia/media/isabella-jovem-ficticia.b64']) {
   must(exists(asset),`ativo jovem ausente: ${asset}`);
   must(read(asset).length > 1000,`ativo jovem vazio: ${asset}`);
