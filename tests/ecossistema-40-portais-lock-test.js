@@ -8,8 +8,10 @@ if (!source.includes('installProtectedEcosystem')) throw new Error('Ecossistema 
 if (!loader.includes('/ecossistema-40-portais.js')) throw new Error('Loader do ecossistema não está ativo');
 for (const slug of required) {
   if (!source.includes(`slug:'${slug}'`)) throw new Error(`Portal ausente: ${slug}`);
-  if (!source.includes(`portal-${slug}.svg`)) throw new Error(`Imagem do portal ausente: ${slug}`);
+  const image = `assets-v23/portal-${slug}.svg`;
+  if (!fs.existsSync(image)) throw new Error(`Imagem física do portal ausente: ${slug}`);
 }
 const cardCount = (source.match(/slug:'/g) || []).length;
 if (cardCount !== 40) throw new Error(`Esperados 40 portais, encontrados ${cardCount}`);
-console.log('PASS: 40 portais protegidos com imagens específicas');
+if (!source.includes("src=\"./assets-v23/portal-${p.slug}.svg\"")) throw new Error('Cards não usam imagens específicas por tema');
+console.log('PASS: 40 portais protegidos com 40 imagens específicas');
