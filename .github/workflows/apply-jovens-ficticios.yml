@@ -1,0 +1,85 @@
+name: Aplicar editoria jovem fictícia
+
+on:
+  push:
+    branches: ["fix-jovens-ficticios-links-2026-08-27"]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix-jovens-ficticios-links-2026-08-27
+          fetch-depth: 0
+      - name: Aplicar nomes fictícios e links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          html_path=Path('gastronomia/index.html')
+          js_path=Path('gastronomia/gastronomia.js')
+          test_path=Path('tests/gastronomia-portal-test.js')
+          html=html_path.read_text()
+          js=js_path.read_text()
+          test=test_path.read_text()
+
+          html=html.replace('Paulo Filho e Isabella','Lucas Ferraz e Sofia Martins')
+          html=html.replace('Paulo Filho','Lucas Ferraz')
+          html=html.replace('Isabella','Sofia Martins')
+          html=html.replace('.teen-tags span{font-size:10px', '.teen-tags span,.teen-tags a{font-size:10px')
+          html=html.replace('<div class="teen-tags"><span>HAMBÚRGUER</span><span>PIZZA</span><span>SOBREMESA</span><span>EXPERIÊNCIA</span></div>', '<div class="teen-tags"><a href="/gastronomia/jovens/hamburguer.html">HAMBÚRGUER</a><a href="/gastronomia/jovens/pizza.html">PIZZA</a><a href="/gastronomia/jovens/ambiente.html">AMBIENTE</a></div>')
+          html=html.replace('<div class="teen-tags"><span>CAFÉS</span><span>DOCES</span><span>AMBIENTE</span><span>FOTOS</span></div>', '<div class="teen-tags"><a href="/gastronomia/jovens/cafes.html">CAFÉS</a><a href="/gastronomia/jovens/doces.html">DOCES</a><a href="/gastronomia/jovens/fotos.html">FOTOS</a></div>')
+
+          js=js.replace('Paulo Filho','Lucas Ferraz').replace('Isabella','Sofia Martins')
+          js=js.replace('Paulo, personagem jovem fictício da editoria de gastronomia','Lucas Ferraz, personagem jovem fictício da editoria de gastronomia')
+          js=js.replace('Isabella, personagem jovem fictícia da editoria de gastronomia','Sofia Martins, personagem jovem fictícia da editoria de gastronomia')
+          js=js.replace('/gastronomia/media/paulo-jovem-ficticio.b64','/gastronomia/media/lucas-ferraz-ficticio.b64')
+          js=js.replace('/gastronomia/media/isabella-jovem-ficticia.b64','/gastronomia/media/sofia-martins-ficticia.b64')
+
+          old1=Path('gastronomia/media/paulo-jovem-ficticio.b64')
+          old2=Path('gastronomia/media/isabella-jovem-ficticia.b64')
+          new1=Path('gastronomia/media/lucas-ferraz-ficticio.b64')
+          new2=Path('gastronomia/media/sofia-martins-ficticia.b64')
+          if old1.exists(): new1.write_text(old1.read_text()); old1.unlink()
+          if old2.exists(): new2.write_text(old2.read_text()); old2.unlink()
+
+          test=test.replace("gastronomia/media/paulo-jovem-ficticio.b64","gastronomia/media/lucas-ferraz-ficticio.b64")
+          test=test.replace("gastronomia/media/isabella-jovem-ficticia.b64","gastronomia/media/sofia-martins-ficticia.b64")
+          test=test.replace("paulo-jovem-ficticio.b64","lucas-ferraz-ficticio.b64")
+          test=test.replace("isabella-jovem-ficticia.b64","sofia-martins-ficticia.b64")
+
+          html_path.write_text(html)
+          js_path.write_text(js)
+          test_path.write_text(test)
+
+          Path('gastronomia/jovens').mkdir(parents=True, exist_ok=True)
+          pages={
+            'hamburguer':('Hambúrguer','Clássico, smash e artesanal',['https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1200&q=85']),
+            'pizza':('Pizza','Napolitana, romana e brasileira',['https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1200&q=85']),
+            'cafes':('Cafés','Espresso, coados e brunch',['https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=85']),
+            'doces':('Doces','Confeitaria, chocolate e sobremesas',['https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=85']),
+            'ambiente':('Ambiente','Lugares para comer, conversar e voltar',['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85']),
+            'fotos':('Fotos','Pratos, bastidores e apresentação',['https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=1200&q=85'])
+          }
+          for slug,(title,subtitle,imgs) in pages.items():
+            cards=''.join(f'<article><img src="{u}" alt="{title}"/><h3>{subtitle}</h3><p>Seleção visual da editoria jovem Voz News Gastronomia.</p></article>' for u in imgs)
+            page=f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} • Voz News Gastronomia</title><style>*{{box-sizing:border-box}}body{{margin:0;font-family:Arial;background:#fff8f1;color:#3a211c}}header{{padding:20px 5%;background:linear-gradient(90deg,#e53935,#ff7a00);color:#fff}}header a{{color:#fff;text-decoration:none;font-weight:900}}main{{width:min(1120px,90%);margin:40px auto}}h1{{font-size:clamp(42px,7vw,78px);margin:0 0 8px}}.lead{{font-size:20px;color:#71554d}}.grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}}article{{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px #8a35161a}}article img{{width:100%;height:240px;object-fit:cover}}article h3,article p{{padding:0 18px}}article h3{{color:#e53935;margin-top:16px}}article p{{padding-bottom:18px;color:#71554d}}.cta{{display:inline-block;margin-top:28px;padding:13px 18px;border-radius:999px;background:#e53935;color:#fff;text-decoration:none;font-weight:900}}@media(max-width:800px){{.grid{{grid-template-columns:1fr}}}}</style></head><body><header><a href="/gastronomia/#adolescentes">← VOLTAR À GASTRONOMIA JOVEM</a></header><main><span>VOZ NEWS • EDITORIA JOVEM</span><h1>{title}</h1><p class="lead">{subtitle}. Lucas Ferraz e Sofia Martins são personagens editoriais fictícios.</p><div class="grid">{cards}</div><a class="cta" href="/gastronomia/#buscar">BUSCAR RESTAURANTES NO GUIA →</a></main></body></html>'''
+            Path(f'gastronomia/jovens/{slug}.html').write_text(page)
+          PY
+      - name: Validar alteração
+        run: |
+          node tests/gastronomia-portal-test.js
+          node tests/gastronomia-jovens-links-test.js
+          node --check gastronomia/gastronomia.js
+      - name: Commitar alteração
+        run: |
+          git config user.name "Voz News Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add gastronomia tests
+          git commit -m "Gastronomia: nomes fictícios e links da editoria jovem"
+          git push origin HEAD:fix-jovens-ficticios-links-2026-08-27
