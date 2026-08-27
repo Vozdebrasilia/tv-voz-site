@@ -16,17 +16,104 @@ A página terá:
 1. Hero “VOZ NEWS | GASTRONOMIA” com fotografia gastronômica de alto impacto.
 2. Busca de restaurantes em destaque logo no início da página.
 3. Seção “Brasília”.
-4. Seção “Brasil”.
-5. Seção “Mundo”.
-6. Matérias e entrevistas gastronômicas.
-7. Feiras, festivais e eventos de alimentação.
-8. Área de anunciantes e patrocinadores.
-9. Chamada comercial para restaurantes, bares, cafés, hotéis, delivery, supermercados, bebidas e fornecedores anunciarem no portal.
+4. Seção “Sabores de Brasília e do Cerrado”.
+5. Seção “Personalidades da Gastronomia de Brasília”.
+6. Seção “Brasil”.
+7. Seção “Mundo”.
+8. Matérias e entrevistas gastronômicas.
+9. Feiras, festivais e eventos de alimentação.
+10. Área de anunciantes e patrocinadores.
+11. Chamada comercial para restaurantes, bares, cafés, hotéis, delivery, supermercados, bebidas e fornecedores anunciarem no portal.
+
+## Regra editorial — análise de Deijanete Fayad e Paulo Fayad
+Toda matéria publicada na vertical Gastronomia terá um box editorial de análise/comentário ao final ou em posição destacada dentro do texto.
+
+### Deijanete Fayad
+- Será a principal voz analítica da vertical.
+- A grande maioria das matérias deverá conter o box “Análise de Deijanete Fayad”.
+- O comentário deverá acrescentar leitura cultural, social, comportamental, econômica, turística ou humana ao tema da matéria.
+- O texto deve ter conteúdo próprio e não apenas repetir a notícia.
+- A assinatura deve ficar visualmente destacada e separada do corpo jornalístico.
+
+### Paulo Fayad
+- Participará em quantidade menor, para preservar o protagonismo editorial de Deijanete.
+- O box “Comentário de Paulo Fayad” será usado principalmente em matérias ligadas à memória de Brasília, restaurantes tradicionais, história da capital, personagens históricos, turismo, diplomacia e experiências pessoais da cidade.
+- Quando houver comentário de Paulo, não é obrigatório retirar o comentário de Deijanete; algumas matérias especiais poderão conter os dois olhares.
+
+### Transparência editorial
+Os boxes devem ser identificados como análise, opinião ou comentário, sem se misturar com o texto factual da reportagem.
 
 ## Conteúdo herdado do site-mãe
 A vertical deve reaproveitar as matérias, entrevistas e anúncios gastronômicos já publicados no `index.html` do Voz News. O conteúdo deve ser migrado sem apagar ou alterar o original do site-mãe.
 
 Na implantação, serão identificados e incorporados os conteúdos gastronômicos já existentes, incluindo restaurantes e marcas citados no portal principal, com fotografia, chamada e link para matéria quando disponível.
+
+## Sabores de Brasília e do Cerrado
+A vertical não apresentará Brasília como uma cidade com uma única culinária típica fechada. A abordagem editorial será a de uma capital formada pela mistura de migrantes de todas as regiões do Brasil, somada aos ingredientes e tradições do Cerrado e do Centro-Oeste.
+
+A seção deverá trabalhar, entre outros:
+- pequi;
+- baru;
+- galinhada;
+- empadão goiano;
+- feijão tropeiro;
+- pamonha;
+- quiabo, jiló e torresmo em preparações regionais;
+- carne de sol;
+- buchada;
+- sarapatel;
+- rabada;
+- comida nordestina ligada à história dos candangos;
+- culinária mineira e goiana incorporada ao cotidiano do DF;
+- comidas de feira e mercados populares;
+- tradições que nasceram e se consolidaram em Brasília.
+
+### Símbolos genuinamente brasilienses
+Criar matérias específicas para hábitos e produtos que viraram patrimônio afetivo da cidade, como:
+- a “Dupla” da Pizzaria Dom Bosco — duas fatias de pizza acompanhadas de mate gelado;
+- Pastelaria Viçosa e a cultura de lanchonetes históricas da capital;
+- restaurantes e balcões tradicionais das superquadras;
+- gastronomia das feiras do DF, incluindo Ceilândia, Torre de TV e Núcleo Bandeirante.
+
+A seção deverá combinar história, memória afetiva, cultura, turismo e indicação de onde encontrar esses sabores.
+
+## Personalidades da Gastronomia de Brasília
+Criar uma área editorial de perfis e entrevistas com chefs, restaurateurs, empresários, cozinheiros populares, produtores e personagens que ajudam a formar a identidade gastronômica local.
+
+A primeira curadoria poderá incluir:
+- Bárbara “Babi” Frazão;
+- Dudu Camargo;
+- Francisco Ansiliero;
+- Karl Max;
+- Mara Alcamim;
+- Marco Espinoza;
+- Marcelo Petrarca;
+- Renata Carvalho;
+- Renata La Porta;
+- Ronny Peterson;
+- Rosario Tessier;
+- Paulo Tarso;
+- William Chen;
+- outros nomes relevantes identificados pelo acervo Voz News e por pesquisa editorial.
+
+Os perfis devem equilibrar alta gastronomia, restaurantes tradicionais, gastronomia popular e empreendedorismo.
+
+## Matéria especial — Renata La Porta
+Renata La Porta terá uma matéria própria e de destaque na vertical.
+
+Direção editorial sugerida:
+**“Renata La Porta: a chef que transformou o buffet em experiência gastronômica em Brasília”**.
+
+A reportagem deverá abordar:
+- trajetória profissional em Brasília;
+- consolidação de seu nome no segmento de buffets e eventos;
+- presença em grandes eventos e celebrações da capital;
+- sofisticação, serviço e construção de experiência gastronômica;
+- capacidade de adaptação e reinvenção do negócio;
+- liderança feminina e empreendedorismo;
+- relevância para a cena gastronômica de Brasília.
+
+A matéria deverá receber análise de Deijanete Fayad e poderá também receber comentário curto de Paulo Fayad quando houver abordagem histórica sobre eventos e vida social de Brasília.
 
 ## Busca de restaurantes
 A busca terá dois níveis:
@@ -113,13 +200,18 @@ Conteúdo patrocinado deve ser visualmente distinguível de matéria jornalísti
 1. `/gastronomia/` abre com identidade Voz News.
 2. Cabeçalho e métricas institucionais seguem o padrão do site-mãe.
 3. Matérias e anúncios gastronômicos existentes no site-mãe aparecem na nova vertical sem serem removidos do original.
-4. Busca encontra restaurantes do diretório Voz News por nome e localização.
-5. Busca ampliada permite pesquisar restaurantes fora de Brasília, incluindo Brasil e exterior.
-6. Seções Brasília, Brasil e Mundo estão visíveis e bem diagramadas.
-7. Mané Mercado aparece como anúncio premium claramente identificado.
-8. Há seção de feiras/festivais/eventos gastronômicos.
-9. Há formatos comerciais e CTA para novos anunciantes.
-10. A página funciona bem em celular e desktop.
-11. Nenhum card essencial aparece vazio ou quebrado.
-12. O restante do Voz News Brasil permanece inalterado.
-13. A alteração é validada antes de publicação em produção.
+4. Todas as matérias gastronômicas têm box editorial de análise/comentário, com Deijanete Fayad como voz predominante e Paulo Fayad em menor frequência.
+5. Há seção específica sobre Sabores de Brasília e do Cerrado, sem afirmar incorretamente que a cidade possui uma única culinária típica.
+6. Há matérias sobre tradições genuinamente brasilienses e memória gastronômica local.
+7. Há seção de Personalidades da Gastronomia de Brasília.
+8. Renata La Porta possui matéria própria de destaque.
+9. Busca encontra restaurantes do diretório Voz News por nome e localização.
+10. Busca ampliada permite pesquisar restaurantes fora de Brasília, incluindo Brasil e exterior.
+11. Seções Brasília, Brasil e Mundo estão visíveis e bem diagramadas.
+12. Mané Mercado aparece como anúncio premium claramente identificado.
+13. Há seção de feiras/festivais/eventos gastronômicos.
+14. Há formatos comerciais e CTA para novos anunciantes.
+15. A página funciona bem em celular e desktop.
+16. Nenhum card essencial aparece vazio ou quebrado.
+17. O restante do Voz News Brasil permanece inalterado.
+18. A alteração é validada antes de publicação em produção.
