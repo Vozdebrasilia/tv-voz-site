@@ -11,7 +11,7 @@
   const locationInput = document.getElementById('search-location');
   let catalogPromise;
 
-  const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+  const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[,.]/g,' ').replace(/\s+/g,' ').trim();
   const esc = value => String(value || '').replace(/[&<>"']/g,ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 
   function loadCatalog(){
@@ -23,14 +23,22 @@
     return catalogPromise;
   }
 
+  function locationMatches(item,location){
+    const l=normalize(location);
+    if(!l) return true;
+    const city=normalize(item.city), state=normalize(item.state), country=normalize(item.country);
+    const loc=normalize([item.city,item.state,item.country].filter(Boolean).join(' '));
+    if(city && (l===city || l.startsWith(`${city} `))) return true;
+    if(state && (l===state || l.startsWith(`${state} `))) return true;
+    if(country && l===country) return true;
+    return loc===l;
+  }
+
   function localMatches(catalog,term,location){
-    const t=normalize(term), l=normalize(location);
+    const t=normalize(term);
     return catalog.filter(item=>{
-      const loc=normalize([item.city,item.state,item.country].filter(Boolean).join(' '));
-      const city=normalize(item.city), state=normalize(item.state), country=normalize(item.country);
-      const locationOk=!l || loc.includes(l) || (city && l.includes(city)) || (state && l.includes(state)) || (country && l.includes(country));
       const hay=normalize([item.name,item.cuisine,item.category,item.profile,...(Array.isArray(item.tags)?item.tags:[])].join(' '));
-      return locationOk && (!t || hay.includes(t));
+      return locationMatches(item,location) && (!t || hay.includes(t));
     }).sort((a,b)=>{
       const tier=(tierWeight[a.tier]??9)-(tierWeight[b.tier]??9);
       if(tier) return tier;
