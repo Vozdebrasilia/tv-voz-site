@@ -28,6 +28,32 @@ const loader = read('gastronomia.js');
 must(loader.includes("/gastronomia/"),'loader não fixa a base /gastronomia/');
 must(loader.includes("/gastronomia/gastronomia.js"),'loader não chama o JavaScript real da vertical');
 
+// Guia próprio Brasil + Mundo: busca não pode depender exclusivamente de terceiros.
+must(exists('gastronomia/data/restaurants.json'),'catálogo próprio de restaurantes ausente');
+const catalog = exists('gastronomia/data/restaurants.json') ? JSON.parse(read('gastronomia/data/restaurants.json')) : [];
+must(Array.isArray(catalog) && catalog.length >= 80,'catálogo gastronômico precisa de pelo menos 80 registros');
+for (const city of ['Brasília','São Paulo','Rio de Janeiro','Belo Horizonte','Salvador','Recife','Fortaleza','Curitiba','Porto Alegre','Goiânia','Florianópolis','Campinas','Belém','Manaus','Nova York','Miami','Paris','Lisboa','Roma','Londres','Madri','Barcelona','Buenos Aires','Santiago','Cidade do México','Tóquio','Dubai','Bangkok']) {
+  must(catalog.some(r => r.city === city), `cidade ausente no catálogo: ${city}`);
+}
+for (const item of catalog) {
+  for (const key of ['id','name','city','country','cuisine','category','priceBand','profile','address','url','tier','source','featured','tags']) {
+    must(Object.prototype.hasOwnProperty.call(item,key),`campo ${key} ausente em ${item.id || item.name || 'registro'}`);
+  }
+}
+must(api.includes("require('../gastronomia/data/restaurants.json')"),'API não carrega catálogo próprio');
+must(api.includes('ownCount'),'API não informa quantidade de resultados próprios');
+must(api.includes('externalCount'),'API não informa quantidade de resultados públicos');
+must(api.includes('externalStatus'),'API não informa estado da camada externa');
+must(api.includes("externalStatus: 'degraded'") || api.includes('externalStatus = \'degraded\''),'API não prevê degradação da fonte externa');
+
+// Interface de guia inspirada em guias editoriais de viagem, sem copiar classificações proprietárias.
+must(html.includes('DESTINOS NO BRASIL'),'atalhos de destinos brasileiros ausentes');
+must(html.includes('DESTINOS NO MUNDO'),'atalhos de destinos internacionais ausentes');
+must(html.includes('Autoridade em Gastronomia e Eventos'),'Renata La Porta não está posicionada como autoridade');
+must(html.includes('Encontro Gastrô Brasília 2026'),'reconhecimento 2026 de Renata La Porta ausente');
+must(js.includes('externalStatus'),'cliente não trata falha/degradação da camada externa');
+must(js.includes('data-search-location'),'atalhos de localização não estão ligados à busca');
+
 // Paulo deve usar o mesmo avatar/presenter do portal-mãe.
 must(js.includes('/studio-paulo-source.png'),'Gastronomia não usa o avatar de Paulo do site-mãe');
 
