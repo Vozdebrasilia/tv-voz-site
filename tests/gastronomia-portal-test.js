@@ -68,12 +68,12 @@ for (const slug of ['hamburguer','pizza','cafes','doces','ambiente','fotos']) {
   must(exists(`gastronomia/jovens/${slug}.html`),`página jovem ausente: ${slug}`);
 }
 
-for (const asset of ['gastronomia/media/paulo-jovem-ficticio.b64','gastronomia/media/isabella-jovem-ficticia.b64']) {
+for (const asset of ['gastronomia/media/lucas-ferraz-ficticio.b64','gastronomia/media/sofia-martins-ficticia.b64']) {
   must(exists(asset),`ativo jovem ausente: ${asset}`);
   must(read(asset).length > 1000,`ativo jovem vazio: ${asset}`);
 }
-must(js.includes('paulo-jovem-ficticio.b64'),'card do Paulo jovem não usa personagem fictício');
-must(js.includes('isabella-jovem-ficticia.b64'),'card da Isabella jovem não usa personagem fictícia');
+must(js.includes('lucas-ferraz-ficticio.b64'),'card do Paulo jovem não usa personagem fictício');
+must(js.includes('sofia-martins-ficticia.b64'),'card da Isabella jovem não usa personagem fictícia');
 must(js.includes('PERSONAGEM FICTÍCIO'),'falta identificação de personagens fictícios');
 
 must(js.includes('data-reveal'),'elementos animados por scroll ausentes');
