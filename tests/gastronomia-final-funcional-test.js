@@ -30,7 +30,7 @@ const cerrado={
   'Buriti':['buriti','Mauritia-flexuosa-fruit.jpg'],
   'Cagaita':['cagaita','Cagaita.jpg'],
   'Guariroba':['guariroba','Syagrus-oleracea.jpg'],
-  'Cajuzinho-do-cerrado':['cajuzinho-do-cerrado','Cajuzinho_do_cerrado.JPG']
+  'Cajuzinho-do-cerrado':['cajuzinho-do-cerrado','Cajuzindo-do-cerrado.jpg']
 };
 for(const [name,[slug,image]] of Object.entries(cerrado)){
   const href=`/gastronomia/cerrado/${slug}.html`;
