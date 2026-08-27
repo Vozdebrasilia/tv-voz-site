@@ -1,0 +1,31 @@
+name: Gastronomia Portal
+
+on:
+  push:
+    branches: ["feat/gastronomia-portal"]
+  pull_request:
+    paths:
+      - "gastronomia/**"
+      - "api/restaurants.js"
+      - "tests/gastronomia-portal-test.js"
+      - "portais/gastronomia-negocios.html"
+      - "sitemap.xml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Acceptance test
+        run: node tests/gastronomia-portal-test.js
+      - name: Check browser JavaScript syntax
+        run: node --check gastronomia/gastronomia.js
+      - name: Check API JavaScript syntax
+        run: node --check api/restaurants.js
+      - name: Check redirect and sitemap
+        run: |
+          grep -q '/gastronomia/' portais/gastronomia-negocios.html
+          grep -q 'https://www.voznewsbrasil.com.br/gastronomia/' sitemap.xml
