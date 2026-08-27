@@ -31,7 +31,7 @@ must(loader.includes("/gastronomia/gastronomia.js"),'loader não chama o JavaScr
 must(exists('gastronomia/data/restaurants.json'),'catálogo próprio de restaurantes ausente');
 const catalog = JSON.parse(catalogText);
 must(Array.isArray(catalog) && catalog.length >= 80,'catálogo gastronômico precisa de pelo menos 80 registros');
-for (const city of ['Brasília','São Paulo','Rio de Janeiro','Belo Horizonte','Salvador','Recife','Fortaleza','Curitiba','Porto Alegre','Goiânia','Florianópolis','Campinas','Belém','Manaus','Nova York','Miami','Paris','Lisboa','Roma','Londres','Madri','Barcelona','Buenos Aires','Santiago','Cidade do México','Tóquio','Dubai','Bangkok']) {
+for (const city of ['Brasília','São Paulo','Rio de Janeiro','Belo Horizonte','Salvador','Recife','Fortaleza','Curitiba','Porto Alegre','Goiânia','Florianópolis','Campinas','Belém','Manaus','Nova York','Miami','Paris','Lisboa','Roma','Londres','Madrid','Barcelona','Buenos Aires','Santiago','Cidade do México','Tóquio','Dubai','Bangkok']) {
   must(catalog.some(r => r.city === city), `cidade ausente no catálogo: ${city}`);
 }
 for (const item of catalog) {
