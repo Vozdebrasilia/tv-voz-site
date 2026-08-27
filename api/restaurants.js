@@ -1,20 +1,93 @@
+const restaurantCatalog = require('../gastronomia/data/restaurants.json');
 const NOMINATIM = 'https://nominatim.openstreetmap.org/search';
 const PHOTON = 'https://photon.komoot.io/api/';
 const OVERPASS_ENDPOINTS = [
   'https://overpass.kumi.systems/api/interpreter',
   'https://overpass-api.de/api/interpreter'
 ];
-const USER_AGENT = 'VozNewsBrasil-Gastronomia/1.0 (https://www.voznewsbrasil.com.br/)';
+const USER_AGENT = 'VozNewsBrasil-Gastronomia/2.0 (https://www.voznewsbrasil.com.br/)';
+const TIER_WEIGHT = {sponsored: 0, partner: 1, editorial: 2, public: 3};
 
 function safeText(value, max = 120) {
   return String(value || '').replace(/[\u0000-\u001F\u007F]/g, ' ').trim().slice(0, max);
+}
+
+function normalize(value) {
+  return safeText(value, 300)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[,.]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/"/g, '\\"');
 }
 
-async function fetchJson(url, options = {}, timeoutMs = 8500) {
+function ownRestaurantResult(item) {
+  return {
+    id: item.id,
+    name: item.name,
+    cuisine: item.cuisine,
+    category: item.category,
+    priceBand: item.priceBand,
+    profile: item.profile,
+    address: item.address || [item.city, item.state, item.country].filter(Boolean).join(', '),
+    city: item.city,
+    state: item.state,
+    country: item.country,
+    url: item.url,
+    mapUrl: item.url,
+    tier: item.tier,
+    source: 'voznews',
+    featured: Boolean(item.featured),
+    tags: Array.isArray(item.tags) ? item.tags : []
+  };
+}
+
+function locationMatches(item, location) {
+  const l = normalize(location);
+  if (!l) return true;
+  const city = normalize(item.city);
+  const state = normalize(item.state);
+  const country = normalize(item.country);
+  const locationHaystack = normalize([item.city, item.state, item.country].filter(Boolean).join(' '));
+  if (city && (l === city || l.startsWith(`${city} `))) return true;
+  if (state && (l === state || l.startsWith(`${state} `))) return true;
+  if (country && l === country) return true;
+  return locationHaystack === l;
+}
+
+function termMatches(item, term) {
+  const t = normalize(term);
+  if (!t) return true;
+  const haystack = normalize([
+    item.name,
+    item.cuisine,
+    item.category,
+    item.profile,
+    ...(Array.isArray(item.tags) ? item.tags : [])
+  ].join(' '));
+  return haystack.includes(t);
+}
+
+function searchOwnCatalog(term, location) {
+  return restaurantCatalog
+    .filter(item => locationMatches(item, location) && termMatches(item, term))
+    .sort((a, b) => {
+      const tier = (TIER_WEIGHT[a.tier] ?? 9) - (TIER_WEIGHT[b.tier] ?? 9);
+      if (tier) return tier;
+      const featured = Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+      if (featured) return featured;
+      return a.name.localeCompare(b.name, 'pt-BR');
+    })
+    .slice(0, 30)
+    .map(ownRestaurantResult);
+}
+
+async function fetchJson(url, options = {}, timeoutMs = 5500) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -28,7 +101,7 @@ async function fetchJson(url, options = {}, timeoutMs = 8500) {
 
 async function geocodeWithNominatim(location) {
   const url = `${NOMINATIM}?format=jsonv2&limit=1&q=${encodeURIComponent(location)}`;
-  const data = await fetchJson(url, {headers: {'User-Agent': USER_AGENT, 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.7'}});
+  const data = await fetchJson(url, {headers: {'User-Agent': USER_AGENT, 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.7'}}, 4500);
   if (!Array.isArray(data) || !data.length) return null;
   const first = data[0];
   return {lat: Number(first.lat), lon: Number(first.lon), displayName: first.display_name || location};
@@ -36,7 +109,7 @@ async function geocodeWithNominatim(location) {
 
 async function geocodeWithPhoton(location) {
   const url = `${PHOTON}?limit=1&q=${encodeURIComponent(location)}`;
-  const data = await fetchJson(url, {headers: {'User-Agent': USER_AGENT, 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.7'}});
+  const data = await fetchJson(url, {headers: {'User-Agent': USER_AGENT, 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.7'}}, 4500);
   const feature = data && Array.isArray(data.features) ? data.features[0] : null;
   if (!feature || !feature.geometry || !Array.isArray(feature.geometry.coordinates)) return null;
   const [lon, lat] = feature.geometry.coordinates;
@@ -62,10 +135,10 @@ function buildOverpassQuery(lat, lon, term) {
   const radius = 14000;
   const filter = term ? `["name"~"${escapeRegex(term)}",i]` : '';
   const cuisineFilter = term ? `["cuisine"~"${escapeRegex(term)}",i]` : '';
-  return `[out:json][timeout:12];(
+  return `[out:json][timeout:7];(
     nwr["amenity"="restaurant"]${filter}(around:${radius},${lat},${lon});
     nwr["amenity"="restaurant"]${cuisineFilter}(around:${radius},${lat},${lon});
-  );out center tags 40;`;
+  );out center tags 35;`;
 }
 
 async function fetchOverpass(query) {
@@ -73,7 +146,7 @@ async function fetchOverpass(query) {
   for (const endpoint of OVERPASS_ENDPOINTS) {
     try {
       const getUrl = `${endpoint}?data=${encodeURIComponent(query)}`;
-      return await fetchJson(getUrl, {headers: {'User-Agent': USER_AGENT, 'Accept': 'application/json'}}, 11000);
+      return await fetchJson(getUrl, {headers: {'User-Agent': USER_AGENT, 'Accept': 'application/json'}}, 6000);
     } catch (error) {
       errors.push(error.message);
     }
@@ -83,8 +156,8 @@ async function fetchOverpass(query) {
 
 async function fallbackNominatimRestaurants(term, location) {
   const query = `${term ? `${term} ` : ''}restaurant ${location}`;
-  const url = `${NOMINATIM}?format=jsonv2&addressdetails=1&extratags=1&limit=25&q=${encodeURIComponent(query)}`;
-  const data = await fetchJson(url, {headers: {'User-Agent': USER_AGENT, 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.7'}}, 9000);
+  const url = `${NOMINATIM}?format=jsonv2&addressdetails=1&extratags=1&limit=20&q=${encodeURIComponent(query)}`;
+  const data = await fetchJson(url, {headers: {'User-Agent': USER_AGENT, 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.7'}}, 5000);
   if (!Array.isArray(data)) return [];
   return data.map(item => {
     const address = item.address || {};
@@ -93,10 +166,21 @@ async function fallbackNominatimRestaurants(term, location) {
     return {
       name: item.name || (item.display_name || '').split(',')[0] || 'Restaurante',
       cuisine: (item.extratags && item.extratags.cuisine) || '',
+      category: 'resultado público',
+      priceBand: '',
+      profile: 'Resultado público complementar.',
       address: item.display_name || [address.road, address.city, address.state, address.country].filter(Boolean).join(', '),
+      city: address.city || address.town || address.village || '',
+      state: address.state || '',
+      country: address.country || '',
       lat,
       lon,
-      mapUrl: Number.isFinite(lat) && Number.isFinite(lon) ? `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lon)}#map=17/${encodeURIComponent(lat)}/${encodeURIComponent(lon)}` : ''
+      mapUrl: Number.isFinite(lat) && Number.isFinite(lon) ? `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lon)}#map=17/${encodeURIComponent(lat)}/${encodeURIComponent(lon)}` : '',
+      url: Number.isFinite(lat) && Number.isFinite(lon) ? `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lon)}#map=17/${encodeURIComponent(lat)}/${encodeURIComponent(lon)}` : '',
+      tier: 'public',
+      source: 'public',
+      featured: false,
+      tags: []
     };
   });
 }
@@ -105,36 +189,55 @@ function normalizeElement(element) {
   const tags = element.tags || {};
   const lat = element.lat || (element.center && element.center.lat) || null;
   const lon = element.lon || (element.center && element.center.lon) || null;
-  const addressParts = [
-    tags['addr:street'],
-    tags['addr:housenumber'],
-    tags['addr:suburb'],
-    tags['addr:city'],
-    tags['addr:state'],
-    tags['addr:country']
-  ].filter(Boolean);
+  const addressParts = [tags['addr:street'], tags['addr:housenumber'], tags['addr:suburb'], tags['addr:city'], tags['addr:state'], tags['addr:country']].filter(Boolean);
+  const mapUrl = lat && lon ? `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lon)}#map=17/${encodeURIComponent(lat)}/${encodeURIComponent(lon)}` : '';
   return {
     name: tags.name || tags.brand || 'Restaurante',
     cuisine: tags.cuisine ? tags.cuisine.replace(/;/g, ', ') : '',
+    category: 'resultado público',
+    priceBand: '',
+    profile: 'Resultado público complementar.',
     address: addressParts.join(', ') || tags['contact:address'] || '',
+    city: tags['addr:city'] || '',
+    state: tags['addr:state'] || '',
+    country: tags['addr:country'] || '',
     lat,
     lon,
-    mapUrl: lat && lon ? `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lon)}#map=17/${encodeURIComponent(lat)}/${encodeURIComponent(lon)}` : ''
+    mapUrl,
+    url: mapUrl,
+    tier: 'public',
+    source: 'public',
+    featured: false,
+    tags: []
   };
 }
 
-function dedupe(results) {
-  const seen = new Set();
-  return results.filter(item => {
-    const key = `${String(item.name || '').toLowerCase()}|${item.lat}|${item.lon}`;
-    if (seen.has(key)) return false;
+function dedupeAgainstOwn(ownResults, externalResults) {
+  const seen = new Set(ownResults.map(item => normalize(item.name)));
+  return externalResults.filter(item => {
+    const key = normalize(item.name);
+    if (!key || seen.has(key)) return false;
     seen.add(key);
     return true;
-  }).slice(0, 30);
+  }).slice(0, 20);
+}
+
+async function fetchExternalRestaurants(term, location) {
+  const center = await geocode(location);
+  try {
+    const query = buildOverpassQuery(center.lat, center.lon, term);
+    const data = await fetchOverpass(query);
+    const results = (data.elements || []).map(normalizeElement).filter(item => item.name !== 'Restaurante');
+    if (results.length) return {location: center.displayName, results};
+  } catch (overpassError) {
+    console.error('[restaurants] overpass fallback:', overpassError.message);
+  }
+  const results = await fallbackNominatimRestaurants(term, location);
+  return {location: center.displayName, results};
 }
 
 module.exports = async function handler(req, res) {
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=900');
+  res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=3600');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   if (req.method !== 'GET') return res.status(405).json({error: 'Método não permitido'});
 
@@ -142,26 +245,28 @@ module.exports = async function handler(req, res) {
   const location = safeText(req.query.location || 'Brasília, DF, Brasil', 120);
   if (!location) return res.status(400).json({error: 'Informe uma cidade, estado ou país.'});
 
-  try {
-    const center = await geocode(location);
-    const query = buildOverpassQuery(center.lat, center.lon, term);
-    try {
-      const data = await fetchOverpass(query);
-      const results = dedupe((data.elements || []).map(normalizeElement));
-      if (results.length) return res.status(200).json({source: 'OpenStreetMap', location: center.displayName, results});
-    } catch (overpassError) {
-      console.error('[restaurants] overpass fallback:', overpassError.message);
-    }
+  const ownResults = searchOwnCatalog(term, location);
+  let externalResults = [];
+  let externalStatus = 'ok';
+  let resolvedLocation = location;
 
-    try {
-      const results = dedupe(await fallbackNominatimRestaurants(term, location));
-      return res.status(200).json({source: 'OpenStreetMap/Nominatim', location: center.displayName, results});
-    } catch (fallbackError) {
-      console.error('[restaurants] nominatim fallback:', fallbackError.message);
-      return res.status(200).json({source: 'OpenStreetMap', location: center.displayName, results: []});
-    }
+  try {
+    const external = await fetchExternalRestaurants(term, location);
+    resolvedLocation = external.location || location;
+    externalResults = dedupeAgainstOwn(ownResults, external.results || []);
   } catch (error) {
-    console.error('[restaurants] search failure:', error && error.message ? error.message : error);
-    return res.status(503).json({error: 'A busca externa está temporariamente indisponível.', results: []});
+    externalStatus = 'degraded';
+    console.error('[restaurants] external layer degraded:', error && error.message ? error.message : error);
   }
+
+  const results = [...ownResults, ...externalResults];
+  return res.status(200).json({
+    source: ownResults.length ? 'Voz News + OpenStreetMap' : 'OpenStreetMap',
+    location: resolvedLocation,
+    results,
+    ownCount: ownResults.length,
+    externalCount: externalResults.length,
+    externalStatus,
+    catalogSize: restaurantCatalog.length
+  });
 };
