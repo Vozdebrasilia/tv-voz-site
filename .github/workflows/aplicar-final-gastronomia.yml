@@ -1,0 +1,158 @@
+name: Aplicar fechamento final Gastronomia
+
+on:
+  push:
+    branches: ["finaliza-gastronomia-funcional-2026-08-27"]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: finaliza-gastronomia-funcional-2026-08-27
+          fetch-depth: 0
+      - name: Aplicar links, matérias, fotos e receitas
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          index=Path('gastronomia/index.html')
+          html=index.read_text()
+
+          personalities={
+            'Babi Frazão':('babi-frazao','cozinha autoral e alta gastronomia brasileira'),
+            'Dudu Camargo':('dudu-camargo','chef e restaurateur'),
+            'Francisco Ansiliero':('francisco-ansiliero','tradição e cozinha brasileira'),
+            'Mara Alcamim':('mara-alcamim','biodiversidade e cultura alimentar brasileira'),
+            'Marco Espinoza':('marco-espinoza','cozinha latino-americana e empreendedorismo'),
+            'Marcelo Petrarca':('marcelo-petrarca','restauração e experiências contemporâneas'),
+            'Paulo Tarso':('paulo-tarso','cozinha autoral e experiência gastronômica'),
+            'Renata La Porta':('renata-la-porta','autoridade em gastronomia e eventos')
+          }
+          for name,(slug,desc) in personalities.items():
+            pattern=rf'<div class="person-card"><strong>{re.escape(name)}</strong><span>.*?</span></div>'
+            repl=f'<a class="person-card" href="/gastronomia/personalidades/{slug}.html"><strong>{name}</strong><span>{desc}</span><small style="display:block;margin-top:12px;font-weight:900;color:var(--gold2)">ABRIR PERFIL →</small></a>'
+            html,n=re.subn(pattern,repl,html,count=1)
+            if not n: raise SystemExit(f'personalidade não localizada: {name}')
+
+          cerrado={
+            'Pequi':('pequi','https://commons.wikimedia.org/wiki/Special:FilePath/Pequi_do_cerrado.jpg','Pequi do Cerrado','Denibranco / Wikimedia Commons'),
+            'Baru':('baru','https://commons.wikimedia.org/wiki/Special:FilePath/Dipteryx_alata_fruits.jpg','Frutos de baru','João Medeiros / Wikimedia Commons'),
+            'Buriti':('buriti','https://commons.wikimedia.org/wiki/Special:FilePath/Mauritia-flexuosa-fruit.jpg','Frutos de buriti','Eurico Zimbres / Wikimedia Commons'),
+            'Cagaita':('cagaita','https://commons.wikimedia.org/wiki/Special:FilePath/Cagaita.jpg','Frutos de cagaita','Conrado / Wikimedia Commons'),
+            'Guariroba':('guariroba','https://commons.wikimedia.org/wiki/Special:FilePath/Syagrus-oleracea.jpg','Guariroba, palmeira do palmito amargo','Maurocruz / Wikimedia Commons'),
+            'Cajuzinho-do-cerrado':('cajuzinho-do-cerrado','https://commons.wikimedia.org/wiki/Special:FilePath/Cajuzindo-do-cerrado.jpg','Cajuzinho-do-cerrado','Brunoresende29 / Wikimedia Commons')
+          }
+          for name,(slug,img,alt,credit) in cerrado.items():
+            pattern=rf'<article class="cerrado-card"><img src="[^"]+" alt="[^"]*"/><div class="cerrado-copy"><h3>{re.escape(name)}</h3>(.*?)</div></article>'
+            m=re.search(pattern,html,re.S)
+            if not m: raise SystemExit(f'card Cerrado não localizado: {name}')
+            inner=m.group(1)
+            inner=re.sub(r'<div class="media-credit">.*?</div>','',inner,flags=re.S)
+            repl=f'<a class="cerrado-card" href="/gastronomia/cerrado/{slug}.html"><img src="{img}" alt="{alt}"/><div class="cerrado-copy"><h3>{name}</h3>{inner}<div class="media-credit">Foto real: {credit}</div><small style="display:block;margin-top:12px;font-weight:900;color:#fff">VER PRODUTO + RECEITA →</small></div></a>'
+            html=html[:m.start()]+repl+html[m.end():]
+
+          events={
+            'Brasília Restaurant Week':('brasilia-restaurant-week','Menus especiais, novos públicos e uma vitrine recorrente para restaurantes do Distrito Federal.'),
+            'Feiras do DF':('feiras-do-df','Torre de TV, Ceilândia, Núcleo Bandeirante e outros espaços onde comida, cultura e comércio se encontram.'),
+            'Festivais do Cerrado':('festivais-do-cerrado','Ingredientes nativos, produtores, chefs e sustentabilidade conectam território e inovação.')
+          }
+          for name,(slug,desc) in events.items():
+            old=f'<div class="event"><b>{name}</b><p>{desc}</p></div>'
+            new=f'<a class="event" href="/gastronomia/eventos/{slug}.html"><b>{name}</b><p>{desc}</p><span style="font-size:12px;font-weight:900;color:var(--gold2)">LER MATÉRIA →</span></a>'
+            if old not in html: raise SystemExit(f'evento não localizado: {name}')
+            html=html.replace(old,new,1)
+
+          young_cards={
+            'O hambúrguer que vale a foto e a mordida':'hamburguer',
+            'Sobremesas que viram assunto':'doces',
+            'Onde todo mundo encontra alguma coisa':'ambiente'
+          }
+          for title,slug in young_cards.items():
+            pattern=rf'(<h3>{re.escape(title)}</h3>.*?)(</div></article>)'
+            repl=rf'\1<a class="cta primary" href="/gastronomia/jovens/{slug}.html">ABRIR MATÉRIA →</a>\2'
+            html,n=re.subn(pattern,repl,html,count=1,flags=re.S)
+            if not n: raise SystemExit(f'card jovem não localizado: {title}')
+
+          html=html.replace('.person-card span{font-size:12px;color:#b9c7d4}', '.person-card span{font-size:12px;color:#b9c7d4}.person-card,.event{transition:transform .25s ease,border-color .25s ease}.person-card:hover,.event:hover{transform:translateY(-5px);border-color:#e53935}.cerrado-card{transition:transform .25s ease}.cerrado-card:hover{transform:translateY(-5px)}')
+          index.write_text(html)
+
+          css='''*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff8f1;color:#38231d}a{color:inherit}header{padding:18px 5%;background:linear-gradient(90deg,#e53935,#ff7a00);color:#fff;position:sticky;top:0;z-index:5}header a{color:#fff;text-decoration:none;font-weight:900}.hero{padding:58px 5%;background:linear-gradient(135deg,#fff0dd,#fff 55%,#ffe2bd)}.wrap{width:min(1080px,90%);margin:auto}.hero .wrap{width:min(1080px,90%)}h1{font-size:clamp(44px,7vw,82px);margin:8px 0;color:#b9221f;line-height:.95}h2{font-size:32px;color:#b9221f;margin-top:38px}.lead{font-size:20px;line-height:1.55;color:#684b43;max-width:850px}.hero img{width:100%;height:420px;object-fit:cover;border-radius:28px;margin-top:25px;box-shadow:0 20px 50px #7b301522}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 12px 32px #7b301514}.card img{width:100%;height:220px;object-fit:cover;border-radius:16px}.card h3{color:#d1372f}.btn{display:inline-block;background:#e53935;color:#fff;text-decoration:none;font-weight:900;padding:13px 18px;border-radius:999px;margin:10px 8px 10px 0}.btn.alt{background:#ff7a00}.recipe{background:#fff;border-left:7px solid #ff7a00;padding:24px;border-radius:18px;box-shadow:0 12px 30px #7b301514;line-height:1.6}.note{font-size:13px;color:#81675f;line-height:1.5}.credit{font-size:11px;color:#806b64;margin-top:8px}video{width:100%;max-height:520px;object-fit:cover;border-radius:24px;background:#222}@media(max-width:800px){.grid{grid-template-columns:1fr}.hero img{height:300px}}'''
+
+          personalities_dir=Path('gastronomia/personalidades'); personalities_dir.mkdir(parents=True,exist_ok=True)
+          personality_extra={
+            'Francisco Ansiliero':('O Dom Francisco integra a memória gastronômica de Brasília desde 1988, com forte presença de cozinha brasileira.','https://domfrancisco.com/'),
+            'Mara Alcamim':('Seu trabalho relaciona gastronomia, biodiversidade e cultura alimentar brasileira, com atenção a ingredientes nativos e território.','https://maraalcamim.com.br/'),
+            'Paulo Tarso':('Chef brasiliense com formação internacional e trabalho autoral no Tarso, na Asa Norte.','https://restaurantetarso.com/chef/'),
+            'Renata La Porta':('Nome de destaque em buffet e eventos, posicionada pela Voz News como autoridade em Gastronomia e Eventos.','/gastronomia/materias/renata-la-porta.html')
+          }
+          for name,(slug,desc) in personalities.items():
+            extra,source=personality_extra.get(name,(f'{name} integra a seleção editorial de personalidades acompanhadas pela Voz News Gastronomia em Brasília.','/gastronomia/#personalidades'))
+            page=f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{name} • Voz News Gastronomia</title><style>{css}</style></head><body><header><a href="/gastronomia/#personalidades">← PERSONALIDADES DA GASTRONOMIA</a></header><section class="hero"><div class="wrap"><span>VOZ NEWS GASTRONOMIA • PERSONALIDADE</span><h1>{name}</h1><p class="lead">{desc}. {extra}</p><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1600&q=85" alt="Cozinha profissional em movimento"></div></section><main class="wrap"><h2>Perfil editorial</h2><div class="recipe"><p>A Voz News reúne nesta página referências, entrevistas, matérias, restaurantes, projetos e atualizações relacionadas a {name}. O perfil fica preparado para receber novas fotos, vídeos e reportagens sem perder o link permanente.</p><a class="btn" href="{source}">VER REFERÊNCIA / MATÉRIA</a><a class="btn alt" href="/gastronomia/#buscar">BUSCAR RESTAURANTES</a></div><h2>Gastronomia é experiência</h2><div class="grid"><div class="card"><h3>Sabor</h3><p>Ingredientes, técnica e identidade.</p></div><div class="card"><h3>Ambiente</h3><p>Hospitalidade, serviço e memória.</p></div><div class="card"><h3>História</h3><p>Trajetória, projetos e influência na cena gastronômica.</p></div></div></main></body></html>'''
+            (personalities_dir/f'{slug}.html').write_text(page)
+
+          cerrado_dir=Path('gastronomia/cerrado'); cerrado_dir.mkdir(parents=True,exist_ok=True)
+          recipes={
+            'Pequi':('pequi',cerrado['Pequi'][1],'Arroz com pequi',['2 xícaras de arroz','6 a 8 caroços de pequi ou polpa preparada','alho e cebola','óleo ou azeite','água quente e sal'],['Refogue alho e cebola.','Junte o pequi e refogue alguns minutos.','Acrescente o arroz e misture.','Cubra com água quente, ajuste o sal e cozinhe até o arroz ficar macio.','Ao usar o caroço inteiro, raspe a polpa com cuidado: há espinhos sob a polpa.']),
+            'Baru':('baru',cerrado['Baru'][1],'Pesto de baru',['1 xícara de baru torrado','1 maço de manjericão','1 dente de alho','azeite','queijo curado opcional','sal'],['Triture o baru.','Junte manjericão e alho.','Adicione azeite aos poucos até formar um molho.','Ajuste sal e queijo.','Sirva com massas, pães ou legumes.']),
+            'Buriti':('buriti',cerrado['Buriti'][1],'Creme de buriti',['1 xícara de polpa de buriti','1 xícara de leite ou bebida vegetal','açúcar a gosto','canela opcional'],['Misture a polpa e o leite.','Leve ao fogo baixo mexendo.','Adoce a gosto.','Cozinhe até engrossar levemente.','Sirva frio ou morno.']),
+            'Cagaita':('cagaita',cerrado['Cagaita'][1],'Geleia de cagaita',['500 g de cagaita madura','250 g de açúcar','suco de meio limão','água se necessário'],['Retire sementes e partes duras.','Leve a fruta ao fogo com açúcar.','Mexa até desmanchar e ganhar textura de geleia.','Finalize com limão.','Guarde refrigerada em pote esterilizado.']),
+            'Guariroba':('guariroba',cerrado['Guariroba'][1],'Guariroba refogada',['500 g de guariroba fatiada','alho','cebola','óleo','sal','limão opcional'],['Fatie a guariroba e cozinhe rapidamente em água.','Escorra e reserve.','Refogue alho e cebola.','Junte a guariroba e cozinhe até ficar macia.','Ajuste o sal mantendo o amargor característico.']),
+            'Cajuzinho-do-cerrado':('cajuzinho-do-cerrado',cerrado['Cajuzinho-do-cerrado'][1],'Compota de cajuzinho-do-cerrado',['500 g de cajuzinho-do-cerrado','300 g de açúcar','água','cravo ou canela opcional'],['Lave os frutos.','Faça uma calda leve de açúcar e água.','Junte os cajuzinhos e cozinhe em fogo baixo.','Adicione especiarias se desejar.','Deixe esfriar na própria calda.'])
+          }
+          credits={k:v[3] for k,v in cerrado.items()}
+          for name,(slug,img,title,ingredients,steps) in recipes.items():
+            ing=''.join(f'<li>{x}</li>' for x in ingredients); st=''.join(f'<li>{x}</li>' for x in steps)
+            page=f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{name} • Cerrado • Voz News Gastronomia</title><style>{css}</style></head><body><header><a href="/gastronomia/#cerrado">← SABORES DO CERRADO</a></header><section class="hero"><div class="wrap"><span>VOZ NEWS GASTRONOMIA • CERRADO</span><h1>{name}</h1><p class="lead">Produto real do Cerrado, com imagem identificada e receita para transformar informação em experiência.</p><img src="{img}" alt="{name} do Cerrado"><div class="credit">Foto: {credits[name]}</div></div></section><main class="wrap"><h2>RECEITA • {title}</h2><div class="recipe"><h3>Ingredientes</h3><ul>{ing}</ul><h3>Modo de preparo</h3><ol>{st}</ol></div><h2>Continue explorando</h2><a class="btn" href="/gastronomia/#buscar">ENCONTRAR RESTAURANTES</a><a class="btn alt" href="/gastronomia/materias/sabores-brasilia-cerrado.html">ESPECIAL DO CERRADO</a></main></body></html>'''
+            (cerrado_dir/f'{slug}.html').write_text(page)
+
+          events_dir=Path('gastronomia/eventos'); events_dir.mkdir(parents=True,exist_ok=True)
+          for name,(slug,desc) in events.items():
+            page=f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{name} • Voz News Gastronomia</title><style>{css}</style></head><body><header><a href="/gastronomia/#eventos">← AGENDA GASTRONÔMICA</a></header><section class="hero"><div class="wrap"><span>VOZ NEWS GASTRONOMIA • AGENDA</span><h1>{name}</h1><p class="lead">{desc}</p><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=85" alt="Evento gastronômico"></div></section><main class="wrap"><h2>Matéria e cobertura</h2><div class="recipe"><p>Esta página concentra notícias, programação, fotos, vídeos, restaurantes participantes e oportunidades comerciais relacionadas ao evento. A programação deve ser conferida nos canais oficiais de cada edição.</p><a class="btn" href="/gastronomia/#buscar">BUSCAR RESTAURANTES</a><a class="btn alt" href="/gastronomia/#comunidade">ENVIAR FOTO OU RECEITA</a></div></main></body></html>'''
+            (events_dir/f'{slug}.html').write_text(page)
+
+          young_dir=Path('gastronomia/jovens')
+          youth={
+            'hamburguer':('Hambúrguer','Smash, artesanal e clássico','Hambúrguer caseiro', ['Carne moída com boa proporção de gordura','pão','queijo','sal','molho e salada'], ['Modele sem apertar demais.','Sele em chapa bem quente.','Tempere na hora.','Derreta o queijo e monte no pão.']),
+            'pizza':('Pizza','Napolitana, romana e brasileira','Pizza de frigideira', ['1 xícara de farinha','água','sal','azeite','molho de tomate','queijo'], ['Misture farinha, água, sal e azeite.','Abra a massa fina.','Doure na frigideira.','Vire, cubra com molho e queijo e tampe.']),
+            'cafes':('Cafés','Espresso, coados e brunch','Café gelado cremoso', ['café forte frio','leite','gelo','açúcar opcional'], ['Bata café, leite e gelo.','Ajuste a doçura.','Sirva imediatamente.']),
+            'doces':('Doces','Confeitaria, chocolate e sobremesas','Mousse rápida de chocolate', ['200 g de chocolate','200 g de creme de leite'], ['Derreta o chocolate.','Misture o creme de leite.','Leve à geladeira até firmar.']),
+            'ambiente':('Ambiente','Lugares para comer, conversar e voltar','Checklist de experiência', ['iluminação','conforto','som','atendimento','tempo de espera'], ['Observe o conjunto, não só o prato.','Compare preço e experiência.','Registre o que faria você voltar.']),
+            'fotos':('Fotos','Pratos, bastidores e apresentação','Foto gastronômica no celular', ['luz lateral natural','fundo limpo','ângulo de 45 graus','aproximação'], ['Limpe a lente.','Use luz lateral.','Evite zoom digital.','Faça foto geral e detalhe.'])
+          }
+          youth_imgs={
+            'hamburguer':['https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1200&q=85'],
+            'pizza':['https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1200&q=85'],
+            'cafes':['https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=85'],
+            'doces':['https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=85'],
+            'ambiente':['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85'],
+            'fotos':['https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1200&q=85','https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=1200&q=85']
+          }
+          for slug,(title,subtitle,recipe,ingredients,steps) in youth.items():
+            cards=''.join(f'<div class="card"><img src="{u}" alt="{title}"><h3>{title}</h3><p>Referência visual e pauta para avaliações da editoria jovem.</p></div>' for u in youth_imgs[slug])
+            ing=''.join(f'<li>{x}</li>' for x in ingredients); st=''.join(f'<li>{x}</li>' for x in steps)
+            page=f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} • Voz News Gastronomia</title><style>{css}</style></head><body><header><a href="/gastronomia/#adolescentes">← GASTRONOMIA JOVEM</a></header><section class="hero"><div class="wrap"><span>VOZ NEWS • EDITORIA JOVEM</span><h1>{title}</h1><p class="lead">{subtitle}. Lucas Ferraz e Sofia Martins são personagens editoriais fictícios. Esta página reúne matéria, imagens, vídeo, sugestões e conteúdo prático.</p><img src="{youth_imgs[slug][0]}" alt="{title}"></div></section><main class="wrap"><h2>Matéria visual</h2><div class="grid">{cards}</div><h2>VÍDEO • cozinha em movimento</h2><video controls muted playsinline poster="{youth_imgs[slug][1]}"><source src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cooking%20Plov.webm" type="video/webm"></video><h2>RECEITA / GUIA PRÁTICO • {recipe}</h2><div class="recipe"><h3>Você vai usar</h3><ul>{ing}</ul><h3>Como fazer</h3><ol>{st}</ol></div><a class="btn" href="/gastronomia/#buscar">BUSCAR RESTAURANTES</a><a class="btn alt" href="/gastronomia/#comunidade">ENVIAR SUA EXPERIÊNCIA</a></main></body></html>'''
+            (young_dir/f'{slug}.html').write_text(page)
+
+          test=Path('tests/gastronomia-final-funcional-test.js')
+          t=test.read_text().replace("'Cajuzinho_do_cerrado.JPG'","'Cajuzindo-do-cerrado.jpg'")
+          test.write_text(t)
+          PY
+      - name: Validar tudo
+        run: |
+          node tests/gastronomia-portal-test.js
+          node tests/gastronomia-final-funcional-test.js
+          node --check gastronomia/gastronomia.js
+      - name: Commitar
+        run: |
+          git config user.name "Voz News Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add gastronomia tests
+          git commit -m "Gastronomia: finalizar links, matérias, Cerrado e interatividade"
+          git push origin HEAD:finaliza-gastronomia-funcional-2026-08-27
