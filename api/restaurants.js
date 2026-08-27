@@ -17,6 +17,7 @@ function normalize(value) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
+    .replace(/[,.]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -53,7 +54,10 @@ function locationMatches(item, location) {
   const state = normalize(item.state);
   const country = normalize(item.country);
   const locationHaystack = normalize([item.city, item.state, item.country].filter(Boolean).join(' '));
-  return locationHaystack.includes(l) || l.includes(city) || (state && l.includes(state)) || l.includes(country);
+  if (city && (l === city || l.startsWith(`${city} `))) return true;
+  if (state && (l === state || l.startsWith(`${state} `))) return true;
+  if (country && l === country) return true;
+  return locationHaystack === l;
 }
 
 function termMatches(item, term) {
