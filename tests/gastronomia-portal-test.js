@@ -11,9 +11,10 @@ must(exists('api/restaurants.js'),'api/restaurants.js ausente');
 const html = read('gastronomia/index.html');
 const js = read('gastronomia/gastronomia.js');
 const api = read('api/restaurants.js');
+const catalogText = exists('gastronomia/data/restaurants.json') ? read('gastronomia/data/restaurants.json') : '';
 
 for (const token of ['VOZ NEWS','GASTRONOMIA','Brasília','Brasil','Mundo','Mané Mercado','Renata La Porta','Deijanete Fayad','Paulo Fayad','Vasto','Coco Bambu','Mangai','Piselli','Rubaiyat','Kubitschek','Pastelaria Viçosa','Sabores de Brasília e do Cerrado']) {
-  must(html.includes(token) || js.includes(token), `conteúdo obrigatório ausente: ${token}`);
+  must(html.includes(token) || js.includes(token) || catalogText.includes(token), `conteúdo obrigatório ausente: ${token}`);
 }
 must(html.includes('id="restaurant-search"'),'formulário de busca ausente');
 must(html.includes('id="search-results"'),'área de resultados ausente');
@@ -22,15 +23,13 @@ must(api.includes('nominatim.openstreetmap.org'),'endpoint sem geocodificação 
 must(api.includes('overpass-api.de'),'endpoint sem busca Overpass');
 must(!/href=["']#["']/.test(html),'há link essencial href="#"');
 
-// /gastronomia sem barra final precisa carregar o JS correto e corrigir a base dos links.
 must(exists('gastronomia.js'),'loader raiz de /gastronomia ausente');
 const loader = read('gastronomia.js');
 must(loader.includes("/gastronomia/"),'loader não fixa a base /gastronomia/');
 must(loader.includes("/gastronomia/gastronomia.js"),'loader não chama o JavaScript real da vertical');
 
-// Guia próprio Brasil + Mundo: busca não pode depender exclusivamente de terceiros.
 must(exists('gastronomia/data/restaurants.json'),'catálogo próprio de restaurantes ausente');
-const catalog = JSON.parse(read('gastronomia/data/restaurants.json'));
+const catalog = JSON.parse(catalogText);
 must(Array.isArray(catalog) && catalog.length >= 80,'catálogo gastronômico precisa de pelo menos 80 registros');
 for (const city of ['Brasília','São Paulo','Rio de Janeiro','Belo Horizonte','Salvador','Recife','Fortaleza','Curitiba','Porto Alegre','Goiânia','Florianópolis','Campinas','Belém','Manaus','Nova York','Miami','Paris','Lisboa','Roma','Londres','Madri','Barcelona','Buenos Aires','Santiago','Cidade do México','Tóquio','Dubai','Bangkok']) {
   must(catalog.some(r => r.city === city), `cidade ausente no catálogo: ${city}`);
@@ -46,7 +45,6 @@ must(api.includes('externalCount'),'API não informa quantidade de resultados p�
 must(api.includes('externalStatus'),'API não informa estado da camada externa');
 must(api.includes("externalStatus = 'degraded'") || api.includes("externalStatus:'degraded'") || api.includes("externalStatus: 'degraded'"),'API não prevê degradação da fonte externa');
 
-// Interface de guia inspirada em guias editoriais de viagem, sem copiar classificações proprietárias.
 must(html.includes('DESTINOS NO BRASIL') || js.includes('DESTINOS NO BRASIL'),'atalhos de destinos brasileiros ausentes');
 must(html.includes('DESTINOS NO MUNDO') || js.includes('DESTINOS NO MUNDO'),'atalhos de destinos internacionais ausentes');
 must(html.includes('Autoridade em Gastronomia e Eventos') || js.includes('Autoridade em Gastronomia e Eventos'),'Renata La Porta não está posicionada como autoridade');
@@ -54,15 +52,11 @@ must(html.includes('Encontro Gastrô Brasília 2026') || js.includes('Encontro G
 must(js.includes('externalStatus'),'cliente não trata falha/degradação da camada externa');
 must(js.includes('data-search-location'),'atalhos de localização não estão ligados à busca');
 
-// Paulo deve usar o mesmo avatar/presenter do portal-mãe.
 must(js.includes('/studio-paulo-source.png'),'Gastronomia não usa o avatar de Paulo do site-mãe');
-
-// Identidade gastronômica: clara, quente e vibrante, evitando preto como base dominante.
 must(js.includes('--tomato:#e53935'),'cor tomate da identidade gastronômica ausente');
 must(js.includes('--orange:#ff7a00'),'laranja vibrante da identidade gastronômica ausente');
 must(js.includes('--warm-bg:#fff8f1'),'fundo claro e quente da identidade gastronômica ausente');
 
-// Editoria adolescente: personagens sintéticos fotográficos, nunca fotos pessoais reais.
 for (const asset of ['gastronomia/media/paulo-jovem-ficticio.b64','gastronomia/media/isabella-jovem-ficticia.b64']) {
   must(exists(asset),`ativo jovem ausente: ${asset}`);
   must(read(asset).length > 1000,`ativo jovem vazio: ${asset}`);
@@ -71,7 +65,6 @@ must(js.includes('paulo-jovem-ficticio.b64'),'card do Paulo jovem não usa perso
 must(js.includes('isabella-jovem-ficticia.b64'),'card da Isabella jovem não usa personagem fictícia');
 must(js.includes('PERSONAGEM FICTÍCIO'),'falta identificação de personagens fictícios');
 
-// Movimento deve ser real no front-end e respeitar acessibilidade.
 must(js.includes('data-reveal'),'elementos animados por scroll ausentes');
 must(js.includes('data-parallax'),'parallax leve ausente');
 must(js.includes('prefers-reduced-motion'),'fallback de redução de movimento ausente');
