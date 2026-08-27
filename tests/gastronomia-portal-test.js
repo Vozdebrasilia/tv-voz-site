@@ -22,6 +22,17 @@ must(api.includes('nominatim.openstreetmap.org'),'endpoint sem geocodificação 
 must(api.includes('overpass-api.de'),'endpoint sem busca Overpass');
 must(!/href=["']#["']/.test(html),'há link essencial href="#"');
 
+// /gastronomia sem barra final precisa resolver JS, matérias e mídias dentro da vertical.
+must(html.includes('<base href="/gastronomia/">'),'base da vertical ausente: /gastronomia sem barra quebra JS e links relativos');
+
+// Paulo deve usar o mesmo avatar/presenter do portal-mãe.
+must(html.includes('../studio-paulo-source.png'),'Gastronomia não usa o avatar de Paulo do site-mãe');
+
+// Identidade gastronômica: clara, quente e vibrante, evitando preto como base dominante.
+must(html.includes('--tomato:#e53935'),'cor tomate da identidade gastronômica ausente');
+must(html.includes('--orange:#ff7a00'),'laranja vibrante da identidade gastronômica ausente');
+must(html.includes('--warm-bg:#fff8f1'),'fundo claro e quente da identidade gastronômica ausente');
+
 // Editoria adolescente: personagens sintéticos fotográficos, nunca fotos pessoais reais.
 for (const asset of ['gastronomia/media/paulo-jovem-ficticio.b64','gastronomia/media/isabella-jovem-ficticia.b64']) {
   must(exists(asset),`ativo jovem ausente: ${asset}`);
