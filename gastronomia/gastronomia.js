@@ -111,7 +111,107 @@
     }
   }
 
+  async function hydrateFictionalTeenPortraits(){
+    const cards = Array.from(document.querySelectorAll('#adolescentes .teen-card'));
+    const portraits = [
+      {file:'media/paulo-jovem-ficticio.b64',alt:'Paulo, personagem jovem fictício da editoria de gastronomia'},
+      {file:'media/isabella-jovem-ficticia.b64',alt:'Isabella, personagem jovem fictícia da editoria de gastronomia'}
+    ];
+    await Promise.all(portraits.map(async (portrait,index) => {
+      const card = cards[index];
+      if(!card) return;
+      const response = await fetch(portrait.file,{cache:'force-cache'});
+      if(!response.ok) throw new Error(`Falha ao carregar ${portrait.file}`);
+      const base64 = (await response.text()).trim();
+      const avatar = card.querySelector('.teen-avatar');
+      if(!avatar || !base64) return;
+      avatar.innerHTML = `<img src="data:image/webp;base64,${base64}" alt="${esc(portrait.alt)}" loading="lazy" decoding="async">`;
+      avatar.classList.add('photo-avatar');
+      if(!card.querySelector('.fictional-note')){
+        const note = document.createElement('small');
+        note.className = 'fictional-note';
+        note.textContent = 'PERSONAGEM FICTÍCIO • imagem sintética, sem relação com pessoa real';
+        const title = card.querySelector('h3');
+        if(title) title.insertAdjacentElement('afterend',note);
+      }
+    }));
+  }
+
+  function enableMotion(){
+    const style = document.createElement('style');
+    style.id = 'voznews-motion-runtime';
+    style.textContent = `
+      [data-reveal]{opacity:0;transform:translate3d(0,26px,0) scale(.985);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
+      [data-reveal].is-visible{opacity:1;transform:translate3d(0,0,0) scale(1)}
+      [data-parallax]{transform:translate3d(0,var(--parallax-y,0px),0);transition:transform .08s linear;will-change:transform}
+      .card,.teen-card,.editor-card,.analysis-card,.event,.result,.rank-card{transition:transform .32s ease,box-shadow .32s ease,border-color .32s ease}
+      .card:hover,.teen-card:hover,.editor-card:hover,.analysis-card:hover,.event:hover,.result:hover,.rank-card:hover{transform:translateY(-7px);box-shadow:0 24px 60px rgba(0,0,0,.34);border-color:rgba(243,215,123,.58)}
+      .photo-avatar{overflow:hidden;padding:0;background:#0a1622!important}
+      .photo-avatar img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:scale(1.03);transition:transform .55s ease}
+      .teen-card:hover .photo-avatar img{transform:scale(1.11)}
+      .fictional-note{display:block;margin:3px 0 8px;color:#9fb1c3;font-size:9px;font-weight:900;letter-spacing:.65px;line-height:1.35}
+      .search-form button,.cta,.submit-form button{position:relative;overflow:hidden;isolation:isolate}
+      .search-form button:after,.cta.primary:after,.submit-form button:after{content:"";position:absolute;inset:-120% auto -120% -45%;width:34%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.52),transparent);transform:rotate(14deg);animation:vozShine 4.8s ease-in-out infinite;z-index:-1}
+      @keyframes vozShine{0%,68%{left:-45%}88%,100%{left:125%}}
+      @media (prefers-reduced-motion: reduce){
+        [data-reveal],[data-reveal].is-visible,[data-parallax],.card,.teen-card,.editor-card,.analysis-card,.event,.result,.rank-card,.photo-avatar img{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
+        .search-form button:after,.cta.primary:after,.submit-form button:after{display:none!important}
+      }
+    `;
+    document.head.appendChild(style);
+
+    const revealTargets = document.querySelectorAll('.section-head,.editor-card,.search-card,.card,.teen-card,.premium-ad,.cerrado-card,.motion-wall,.analysis-card,.person-card,.event,.community-pitch,.submit-form,.commercial');
+    revealTargets.forEach((element,index) => {
+      element.setAttribute('data-reveal','');
+      element.style.setProperty('--reveal-delay',`${Math.min((index % 6) * 55,275)}ms`);
+    });
+
+    const parallaxTargets = [document.querySelector('.hero-content'),document.querySelector('.community-pitch')].filter(Boolean);
+    parallaxTargets.forEach(element => element.setAttribute('data-parallax',''));
+
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reducedMotion){
+      revealTargets.forEach(element => element.classList.add('is-visible'));
+      return;
+    }
+
+    if('IntersectionObserver' in window){
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+      revealTargets.forEach(element => observer.observe(element));
+    }else{
+      revealTargets.forEach(element => element.classList.add('is-visible'));
+    }
+
+    let ticking = false;
+    const updateParallax = () => {
+      parallaxTargets.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const centerDelta = (window.innerHeight / 2) - (rect.top + rect.height / 2);
+        const offset = Math.max(-18,Math.min(18,centerDelta * .022));
+        element.style.setProperty('--parallax-y',`${offset.toFixed(1)}px`);
+      });
+      ticking = false;
+    };
+    const requestParallax = () => {
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateParallax);
+    };
+    window.addEventListener('scroll',requestParallax,{passive:true});
+    window.addEventListener('resize',requestParallax,{passive:true});
+    requestParallax();
+  }
+
   if (!acceptanceCopy) return;
   renderFeatured();
   if(results) results.innerHTML = sortedDirectory().slice(0,3).map(localCard).join('') + '<div class="search-status">Digite um nome, cozinha ou destino para pesquisar.</div>';
+  enableMotion();
+  hydrateFictionalTeenPortraits().catch(error => console.warn('[gastronomia] personagens jovens:',error.message));
 })();
