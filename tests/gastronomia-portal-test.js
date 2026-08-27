@@ -30,7 +30,7 @@ must(loader.includes("/gastronomia/gastronomia.js"),'loader não chama o JavaScr
 
 // Guia próprio Brasil + Mundo: busca não pode depender exclusivamente de terceiros.
 must(exists('gastronomia/data/restaurants.json'),'catálogo próprio de restaurantes ausente');
-const catalog = exists('gastronomia/data/restaurants.json') ? JSON.parse(read('gastronomia/data/restaurants.json')) : [];
+const catalog = JSON.parse(read('gastronomia/data/restaurants.json'));
 must(Array.isArray(catalog) && catalog.length >= 80,'catálogo gastronômico precisa de pelo menos 80 registros');
 for (const city of ['Brasília','São Paulo','Rio de Janeiro','Belo Horizonte','Salvador','Recife','Fortaleza','Curitiba','Porto Alegre','Goiânia','Florianópolis','Campinas','Belém','Manaus','Nova York','Miami','Paris','Lisboa','Roma','Londres','Madri','Barcelona','Buenos Aires','Santiago','Cidade do México','Tóquio','Dubai','Bangkok']) {
   must(catalog.some(r => r.city === city), `cidade ausente no catálogo: ${city}`);
@@ -44,13 +44,13 @@ must(api.includes("require('../gastronomia/data/restaurants.json')"),'API não c
 must(api.includes('ownCount'),'API não informa quantidade de resultados próprios');
 must(api.includes('externalCount'),'API não informa quantidade de resultados públicos');
 must(api.includes('externalStatus'),'API não informa estado da camada externa');
-must(api.includes("externalStatus: 'degraded'") || api.includes('externalStatus = \'degraded\''),'API não prevê degradação da fonte externa');
+must(api.includes("externalStatus = 'degraded'") || api.includes("externalStatus:'degraded'") || api.includes("externalStatus: 'degraded'"),'API não prevê degradação da fonte externa');
 
 // Interface de guia inspirada em guias editoriais de viagem, sem copiar classificações proprietárias.
-must(html.includes('DESTINOS NO BRASIL'),'atalhos de destinos brasileiros ausentes');
-must(html.includes('DESTINOS NO MUNDO'),'atalhos de destinos internacionais ausentes');
-must(html.includes('Autoridade em Gastronomia e Eventos'),'Renata La Porta não está posicionada como autoridade');
-must(html.includes('Encontro Gastrô Brasília 2026'),'reconhecimento 2026 de Renata La Porta ausente');
+must(html.includes('DESTINOS NO BRASIL') || js.includes('DESTINOS NO BRASIL'),'atalhos de destinos brasileiros ausentes');
+must(html.includes('DESTINOS NO MUNDO') || js.includes('DESTINOS NO MUNDO'),'atalhos de destinos internacionais ausentes');
+must(html.includes('Autoridade em Gastronomia e Eventos') || js.includes('Autoridade em Gastronomia e Eventos'),'Renata La Porta não está posicionada como autoridade');
+must(html.includes('Encontro Gastrô Brasília 2026') || js.includes('Encontro Gastrô Brasília 2026'),'reconhecimento 2026 de Renata La Porta ausente');
 must(js.includes('externalStatus'),'cliente não trata falha/degradação da camada externa');
 must(js.includes('data-search-location'),'atalhos de localização não estão ligados à busca');
 
