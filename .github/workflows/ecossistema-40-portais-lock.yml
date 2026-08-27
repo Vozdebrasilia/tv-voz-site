@@ -1,0 +1,20 @@
+name: Proteção dos 40 Portais VOZ NEWS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  proteger-ecossistema:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verificar 40 temas e 40 imagens
+        run: node tests/ecossistema-40-portais-lock-test.js
