@@ -13,5 +13,8 @@ for (const slug of required) {
 }
 const cardCount = (source.match(/slug:'/g) || []).length;
 if (cardCount !== 40) throw new Error(`Esperados 40 portais, encontrados ${cardCount}`);
-if (!source.includes("src=\"./assets-v23/portal-${p.slug}.svg\"")) throw new Error('Cards não usam imagens específicas por tema');
-console.log('PASS: 40 portais protegidos com 40 imagens específicas');
+if (!source.includes('hydrateThemePhotos')) throw new Error('Carregamento direto das fotos temáticas não instalado');
+if (!source.includes('class="portal-theme-photo"')) throw new Error('Cards não possuem IMG direto para a foto temática');
+if (!source.includes('class="portal-brand-badge"')) throw new Error('Marca VOZ NEWS não está sobre as fotos');
+if (source.includes('<object class="eco-portal-img"')) throw new Error('SVG embutido por object não é compatível com Safari/iPhone');
+console.log('PASS: 40 portais protegidos com fotos temáticas diretas e marca VOZ NEWS');
