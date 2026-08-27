@@ -10,4 +10,5 @@
   load('/voznews-accessibilidade-core.js','voznews-accessibilidade-core');
   load('/ecossistema-40-portais.js','voznews-ecossistema-40-portais');
   load('/clientes-tematicos.js','voznews-clientes-tematicos');
+  load('/mobilidade-home-link.js','voznews-mobilidade-home-link');
 })();
