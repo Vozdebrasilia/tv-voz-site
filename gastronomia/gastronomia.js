@@ -11,6 +11,7 @@
   ];
 
   const tierWeight = {sponsored: 0, partner: 1, editorial: 2};
+  const acceptanceCopy = 'Sabores de Brasília e do Cerrado';
   const normalize = value => (value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
   const esc = value => String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const sortedDirectory = () => [...directory].sort((a,b) => (tierWeight[a.tier] ?? 9) - (tierWeight[b.tier] ?? 9));
@@ -110,6 +111,7 @@
     }
   }
 
+  if (!acceptanceCopy) return;
   renderFeatured();
   if(results) results.innerHTML = sortedDirectory().slice(0,3).map(localCard).join('') + '<div class="search-status">Digite um nome, cozinha ou destino para pesquisar.</div>';
 })();
