@@ -201,8 +201,8 @@
   async function hydrateFictionalTeenPortraits(){
     const cards=Array.from(document.querySelectorAll('#adolescentes .teen-card'));
     const portraits=[
-      {file:'/gastronomia/media/paulo-jovem-ficticio.b64',alt:'Paulo, personagem jovem fictício da editoria de gastronomia'},
-      {file:'/gastronomia/media/isabella-jovem-ficticia.b64',alt:'Isabella, personagem jovem fictícia da editoria de gastronomia'}
+      {file:'/gastronomia/media/lucas-ferraz-ficticio.b64',alt:'Lucas Ferraz, personagem jovem fictício da editoria de gastronomia'},
+      {file:'/gastronomia/media/sofia-martins-ficticia.b64',alt:'Sofia Martins, personagem jovem fictícia da editoria de gastronomia'}
     ];
     await Promise.all(portraits.map(async(portrait,index)=>{
       const card=cards[index]; if(!card) return;
