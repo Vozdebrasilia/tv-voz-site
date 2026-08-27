@@ -23,17 +23,18 @@ must(api.includes('overpass-api.de'),'endpoint sem busca Overpass');
 must(!/href=["']#["']/.test(html),'há link essencial href="#"');
 
 // Editoria adolescente: personagens sintéticos fotográficos, nunca fotos pessoais reais.
-for (const asset of ['gastronomia/media/paulo-jovem-ficticio.webp','gastronomia/media/isabella-jovem-ficticia.webp']) {
+for (const asset of ['gastronomia/media/paulo-jovem-ficticio.b64','gastronomia/media/isabella-jovem-ficticia.b64']) {
   must(exists(asset),`ativo jovem ausente: ${asset}`);
+  must(read(asset).length > 1000,`ativo jovem vazio: ${asset}`);
 }
-must(html.includes('media/paulo-jovem-ficticio.webp'),'card do Paulo jovem não usa personagem fictício');
-must(html.includes('media/isabella-jovem-ficticia.webp'),'card da Isabella jovem não usa personagem fictícia');
-must(html.includes('PERSONAGEM FICTÍCIO'),'falta identificação de personagens fictícios');
+must(js.includes('paulo-jovem-ficticio.b64'),'card do Paulo jovem não usa personagem fictício');
+must(js.includes('isabella-jovem-ficticia.b64'),'card da Isabella jovem não usa personagem fictícia');
+must(js.includes('PERSONAGEM FICTÍCIO'),'falta identificação de personagens fictícios');
 
 // Movimento deve ser real no front-end e respeitar acessibilidade.
-must(html.includes('data-reveal'),'elementos animados por scroll ausentes');
-must(html.includes('data-parallax'),'parallax leve ausente');
-must(html.includes('prefers-reduced-motion'),'fallback de redução de movimento ausente');
+must(js.includes('data-reveal'),'elementos animados por scroll ausentes');
+must(js.includes('data-parallax'),'parallax leve ausente');
+must(js.includes('prefers-reduced-motion'),'fallback de redução de movimento ausente');
 must(js.includes('IntersectionObserver'),'animação de entrada por scroll ausente');
 must(js.includes('requestAnimationFrame'),'loop de movimento otimizado ausente');
 
