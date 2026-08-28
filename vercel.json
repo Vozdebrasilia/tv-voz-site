@@ -1,6 +1,9 @@
 {
   "cleanUrls": false,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/tvvozdebrasiliafilmes/lunardi", "destination": "https://youtu.be/5zl9bu3rG-k", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/energia", "destination": "/energia/home.html" },
     { "source": "/energia/", "destination": "/energia/home.html" },
