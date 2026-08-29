@@ -1,194 +1,50 @@
 (() => {
+  const isHome=()=>location.pathname.replace(/\/$/,'')==='';
+  const addStyle=(id,css)=>{if(document.getElementById(id))return;const s=document.createElement('style');s.id=id;s.textContent=css;document.head.appendChild(s)};
+
   function installMobilidadeLink(){
     const eco=document.getElementById('ecossistema');
     if(!eco||document.getElementById('voznews-mobilidade-feature')) return;
     const grid=eco.querySelector('.protected-eco-grid');
     if(!grid) return;
     const card=document.createElement('a');
-    card.id='voznews-mobilidade-feature';
-    card.href='/mobilidade/';
+    card.id='voznews-mobilidade-feature'; card.href='/mobilidade/';
     card.innerHTML=`<div class="vmf-copy"><span>NOVA VERTICAL AGREGADORA</span><strong>VOZ NEWS MOBILIDADE</strong><p>Automóveis, motos, bikes, elétricos, locadoras, concessionárias, náutica e aviação reunidos em Terra, Água e Ar.</p><b>Abrir VOZ NEWS MOBILIDADE →</b></div><div class="vmf-media"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=84" alt="VOZ NEWS Mobilidade"/></div>`;
-    const style=document.createElement('style');
-    style.textContent=`#voznews-mobilidade-feature{display:grid;grid-template-columns:1.15fr .85fr;gap:0;margin:0 0 26px;border-radius:26px;overflow:hidden;border:2px solid #d4af37;background:linear-gradient(135deg,#0d3154,#071827);box-shadow:0 18px 45px rgba(0,0,0,.28)}#voznews-mobilidade-feature .vmf-copy{padding:28px}#voznews-mobilidade-feature span{display:block;color:#d4af37;font-size:12px;font-weight:900;letter-spacing:1.2px;margin-bottom:8px}#voznews-mobilidade-feature strong{display:block;font-size:clamp(28px,4vw,48px);line-height:1;color:#fff}#voznews-mobilidade-feature p{margin:13px 0 18px;color:#dce7f5;font-size:16px;line-height:1.5}#voznews-mobilidade-feature b{color:#d4af37}#voznews-mobilidade-feature .vmf-media{min-height:250px}#voznews-mobilidade-feature .vmf-media img{width:100%;height:100%;object-fit:cover}@media(max-width:680px){#voznews-mobilidade-feature{grid-template-columns:1fr}#voznews-mobilidade-feature .vmf-media{min-height:210px}}`;
-    document.head.appendChild(style);
+    addStyle('vmf-style',`#voznews-mobilidade-feature{display:grid;grid-template-columns:1.15fr .85fr;gap:0;margin:0 0 26px;border-radius:26px;overflow:hidden;border:2px solid #d4af37;background:linear-gradient(135deg,#0d3154,#071827);box-shadow:0 18px 45px rgba(0,0,0,.28)}#voznews-mobilidade-feature .vmf-copy{padding:28px}#voznews-mobilidade-feature span{display:block;color:#d4af37;font-size:12px;font-weight:900;letter-spacing:1.2px;margin-bottom:8px}#voznews-mobilidade-feature strong{display:block;font-size:clamp(28px,4vw,48px);line-height:1;color:#fff}#voznews-mobilidade-feature p{margin:13px 0 18px;color:#dce7f5;font-size:16px;line-height:1.5}#voznews-mobilidade-feature b{color:#d4af37}#voznews-mobilidade-feature .vmf-media{min-height:250px}#voznews-mobilidade-feature .vmf-media img{width:100%;height:100%;object-fit:cover}@media(max-width:680px){#voznews-mobilidade-feature{grid-template-columns:1fr}}`);
     grid.insertAdjacentElement('beforebegin',card);
-    const menu=document.getElementById('siteMenu');
-    if(menu&&!menu.querySelector('a[href="/mobilidade/"]')){const a=document.createElement('a');a.href='/mobilidade/';a.textContent='VOZ NEWS Mobilidade';menu.prepend(a)}
   }
 
   function installSeal40Animation(){
-    if(location.pathname.replace(/\/$/,'')!=='') return;
-    const seal=document.querySelector('.seal-box');
-    const img=seal?.querySelector('.seal-img');
-    if(!seal||!img) return;
-    seal.classList.add('seal-40-animated');
-    if(document.getElementById('seal-40-animation-style')) return;
-    const style=document.createElement('style');
-    style.id='seal-40-animation-style';
-    style.textContent=`
-      .seal-40-animated{perspective:900px;transform-style:preserve-3d;position:relative}
-      .seal-40-animated .seal-img{transform-style:preserve-3d;transform-origin:50% 50%;will-change:transform,filter;animation:seal3dFloat 3.4s ease-in-out infinite;filter:drop-shadow(0 18px 18px rgba(0,0,0,.38)) drop-shadow(0 0 20px rgba(212,175,55,.42))}
-      .seal-40-animated .seal-text{transform-style:preserve-3d;animation:sealTextFloat 2.25s ease-in-out infinite alternate}
-      .seal-40-animated .seal-text strong{display:inline-block;transform-origin:center;animation:seal40Pulse 1.35s cubic-bezier(.2,.8,.2,1) infinite;text-shadow:0 2px 0 #8d6a08,0 5px 10px rgba(0,0,0,.4),0 0 14px rgba(255,215,0,.45)}
-      .seal-40-animated::after{content:"";position:absolute;left:50%;top:50%;width:220px;height:220px;border-radius:50%;transform:translate(-50%,-50%) translateZ(-30px);background:radial-gradient(circle,rgba(255,215,0,.2),rgba(105,184,255,.08) 45%,transparent 70%);filter:blur(8px);animation:sealAura 1.8s ease-in-out infinite alternate;pointer-events:none}
-      @keyframes seal3dFloat{0%{transform:rotateY(-14deg) rotateX(5deg) translateY(0) scale(1)}25%{transform:rotateY(9deg) rotateX(-3deg) translateY(-9px) scale(1.035)}50%{transform:rotateY(16deg) rotateX(4deg) translateY(-2px) scale(1.02)}75%{transform:rotateY(-8deg) rotateX(-4deg) translateY(-10px) scale(1.04)}100%{transform:rotateY(-14deg) rotateX(5deg) translateY(0) scale(1)}}
-      @keyframes seal40Pulse{0%,100%{transform:translateZ(0) scale(1)}35%{transform:translateZ(28px) scale(1.12)}55%{transform:translateZ(8px) scale(.98)}75%{transform:translateZ(18px) scale(1.07)}}
-      @keyframes sealTextFloat{0%{transform:rotateY(-8deg) translateY(2px)}100%{transform:rotateY(8deg) translateY(-6px)}}
-      @keyframes sealAura{0%{opacity:.35;transform:translate(-50%,-50%) scale(.88)}100%{opacity:1;transform:translate(-50%,-50%) scale(1.16)}}
-      @media(max-width:760px){.seal-40-animated .seal-img{animation-duration:4s}.seal-40-animated::after{width:160px;height:160px}}
-    `;
-    document.head.appendChild(style);
+    if(!isHome())return; const seal=document.querySelector('.seal-box'); if(!seal)return; seal.classList.add('seal-40-animated');
+    addStyle('seal-40-animation-style',`.seal-40-animated{perspective:900px;transform-style:preserve-3d;position:relative}.seal-40-animated .seal-img{transform-style:preserve-3d;transform-origin:50% 50%;animation:seal3dFloat 3.4s ease-in-out infinite;filter:drop-shadow(0 18px 18px rgba(0,0,0,.38)) drop-shadow(0 0 20px rgba(212,175,55,.42))}.seal-40-animated .seal-text{animation:sealTextFloat 2.25s ease-in-out infinite alternate}.seal-40-animated .seal-text strong{display:inline-block;animation:seal40Pulse 1.35s cubic-bezier(.2,.8,.2,1) infinite;text-shadow:0 2px 0 #8d6a08,0 5px 10px rgba(0,0,0,.4),0 0 14px rgba(255,215,0,.45)}@keyframes seal3dFloat{0%,100%{transform:rotateY(-14deg) rotateX(5deg) translateY(0)}50%{transform:rotateY(16deg) rotateX(-4deg) translateY(-10px) scale(1.04)}}@keyframes seal40Pulse{0%,100%{transform:scale(1)}40%{transform:scale(1.14) translateZ(25px)}}@keyframes sealTextFloat{from{transform:translateY(2px)}to{transform:translateY(-7px)}}`);
   }
 
   function installInspireCardAnimation(){
-    if(location.pathname.replace(/\/$/,'')!=='') return;
-    const title=[...document.querySelectorAll('h3')].find(h=>(h.textContent||'').trim().toLowerCase()==='qual voz te inspira?');
-    const card=title?.closest('.suggestion-card');
-    if(!card) return;
-    card.classList.add('inspire-card-animated');
-    if(!card.querySelector('.inspire-orbit')){
-      const orbit=document.createElement('div');
-      orbit.className='inspire-orbit';
-      orbit.setAttribute('aria-hidden','true');
-      orbit.innerHTML='<i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i>';
-      card.appendChild(orbit);
-    }
-    if(document.getElementById('inspire-card-animation-style')) return;
-    const style=document.createElement('style');
-    style.id='inspire-card-animation-style';
-    style.textContent=`
-      .inspire-card-animated{position:relative!important;overflow:hidden!important;isolation:isolate!important;transform-style:preserve-3d!important;perspective:900px!important;background:linear-gradient(135deg,#071b52 0%,#0e3d86 42%,#3b176f 100%)!important;border:1px solid rgba(124,221,255,.72)!important;box-shadow:0 18px 45px rgba(0,0,0,.35),0 0 28px rgba(52,187,255,.16),inset 0 0 45px rgba(121,82,255,.12)!important;animation:inspireFloat 4.2s ease-in-out infinite!important}
-      .inspire-card-animated::before{content:"";position:absolute;inset:-45%;z-index:0;background:conic-gradient(from 0deg,transparent 0 16%,rgba(0,229,255,.42) 22%,transparent 30% 47%,rgba(255,215,0,.35) 55%,transparent 64% 79%,rgba(222,72,255,.38) 86%,transparent 94%);animation:inspireSweep 8s linear infinite;filter:blur(8px)}
-      .inspire-card-animated::after{content:"“";position:absolute;right:12px;top:-28px;z-index:1;font:900 170px/1 Georgia,serif;color:rgba(255,255,255,.08);text-shadow:0 0 24px rgba(93,210,255,.32);animation:inspireQuote 3.2s ease-in-out infinite alternate}
-      .inspire-card-animated .media-body{position:relative;z-index:3;transform-style:preserve-3d;animation:inspireBody 3.4s ease-in-out infinite alternate}
-      .inspire-card-animated .media-source{display:inline-flex!important;width:max-content;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.14);border:1px solid rgba(255,215,0,.6);color:#ffe36b!important;box-shadow:0 0 14px rgba(255,215,0,.16);animation:inspireBadge 1.8s ease-in-out infinite alternate}
-      .inspire-card-animated h3{position:relative;display:inline-block;color:#fff!important;text-shadow:0 3px 0 rgba(0,0,0,.18),0 0 18px rgba(111,212,255,.55);animation:inspireTitle 2.25s ease-in-out infinite}
-      .inspire-card-animated h3::after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:3px;border-radius:999px;background:linear-gradient(90deg,#ffe45c,#5ad7ff,#d56cff);box-shadow:0 0 14px rgba(90,215,255,.8);animation:inspireUnderline 2.3s ease-in-out infinite}
-      .inspire-card-animated p{animation:inspireCopy 3s ease-in-out infinite alternate}
-      .inspire-card-animated .real-link{display:inline-flex!important;width:max-content;position:relative;overflow:hidden;margin-top:4px;padding:11px 16px!important;border-radius:999px;background:linear-gradient(90deg,#ffd52e,#ffb000)!important;color:#10203a!important;box-shadow:0 8px 22px rgba(255,190,0,.24),0 0 18px rgba(255,215,0,.18);animation:inspireButton 1.4s ease-in-out infinite alternate}
-      .inspire-card-animated .real-link::after{content:"";position:absolute;top:-20%;left:-45%;width:32%;height:140%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);animation:inspireShine 2.4s ease-in-out infinite}
-      .inspire-orbit{position:absolute;inset:0;z-index:2;pointer-events:none}
-      .inspire-orbit i{position:absolute;font-style:normal;color:#fff7a6;text-shadow:0 0 8px #fff,0 0 16px #6fe8ff;opacity:.25;animation:inspireStar 2.1s ease-in-out infinite}
-      .inspire-orbit i:nth-child(1){left:7%;top:12%;font-size:18px}.inspire-orbit i:nth-child(2){right:10%;top:18%;font-size:13px;animation-delay:.3s}.inspire-orbit i:nth-child(3){left:16%;bottom:13%;font-size:12px;animation-delay:.6s}.inspire-orbit i:nth-child(4){right:14%;bottom:18%;font-size:20px;animation-delay:.9s}.inspire-orbit i:nth-child(5){left:48%;top:8%;font-size:10px;animation-delay:1.2s}.inspire-orbit i:nth-child(6){right:38%;bottom:8%;font-size:11px;animation-delay:1.5s}
-      @keyframes inspireFloat{0%,100%{transform:translateY(0) rotateX(0deg)}50%{transform:translateY(-7px) rotateX(1.2deg)}}
-      @keyframes inspireSweep{to{transform:rotate(360deg)}}
-      @keyframes inspireQuote{0%{transform:translateY(0) rotate(-4deg);opacity:.5}100%{transform:translateY(12px) rotate(4deg);opacity:1}}
-      @keyframes inspireBody{0%{transform:translateZ(0)}100%{transform:translateZ(18px)}}
-      @keyframes inspireBadge{0%{transform:translateY(0);box-shadow:0 0 8px rgba(255,215,0,.12)}100%{transform:translateY(-3px);box-shadow:0 0 18px rgba(255,215,0,.35)}}
-      @keyframes inspireTitle{0%,100%{transform:scale(1);letter-spacing:0}45%{transform:scale(1.035);letter-spacing:.2px}60%{transform:scale(1.01)}}
-      @keyframes inspireUnderline{0%,15%{width:0;opacity:.2}50%,80%{width:100%;opacity:1}100%{width:22%;opacity:.45}}
-      @keyframes inspireCopy{0%{transform:translateY(2px);opacity:.82}100%{transform:translateY(-2px);opacity:1}}
-      @keyframes inspireButton{0%{transform:scale(1);box-shadow:0 8px 22px rgba(255,190,0,.2)}100%{transform:scale(1.055);box-shadow:0 10px 26px rgba(255,190,0,.34),0 0 22px rgba(255,215,0,.22)}}
-      @keyframes inspireShine{0%,58%{left:-45%}78%,100%{left:120%}}
-      @keyframes inspireStar{0%,100%{opacity:.18;transform:scale(.65) rotate(0deg)}50%{opacity:1;transform:scale(1.35) rotate(45deg)}}
-      @media(max-width:760px){.inspire-card-animated{animation-duration:5s!important}.inspire-card-animated::after{font-size:120px}.inspire-orbit i:nth-child(n+5){display:none}}
-    `;
-    document.head.appendChild(style);
+    if(!isHome())return; const title=[...document.querySelectorAll('h3')].find(h=>(h.textContent||'').trim().toLowerCase()==='qual voz te inspira?'); const card=title?.closest('.suggestion-card'); if(!card)return; card.classList.add('inspire-card-animated');
+    if(!card.querySelector('.inspire-orbit')){const d=document.createElement('div');d.className='inspire-orbit';d.innerHTML='<i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i>';card.appendChild(d)}
+    addStyle('inspire-card-animation-style',`.inspire-card-animated{position:relative!important;overflow:hidden!important;background:linear-gradient(135deg,#071b52,#0e3d86 42%,#3b176f)!important;border:1px solid rgba(124,221,255,.72)!important;box-shadow:0 18px 45px rgba(0,0,0,.35),0 0 28px rgba(52,187,255,.18)!important;animation:inspireFloat 4.2s ease-in-out infinite!important}.inspire-card-animated:before{content:"";position:absolute;inset:-45%;background:conic-gradient(from 0deg,transparent,rgba(0,229,255,.42),transparent,rgba(255,215,0,.35),transparent,rgba(222,72,255,.38),transparent);animation:inspireSweep 8s linear infinite;filter:blur(8px)}.inspire-card-animated .media-body{position:relative;z-index:3}.inspire-card-animated h3{text-shadow:0 0 18px rgba(111,212,255,.7);animation:inspireTitle 2.25s ease-in-out infinite}.inspire-card-animated .real-link{padding:11px 16px!important;border-radius:999px;background:linear-gradient(90deg,#ffd52e,#ffb000)!important;color:#10203a!important;animation:inspireButton 1.4s ease-in-out infinite alternate}.inspire-orbit{position:absolute;inset:0;z-index:2;pointer-events:none}.inspire-orbit i{position:absolute;color:#fff7a6;text-shadow:0 0 8px #fff,0 0 16px #6fe8ff;animation:inspireStar 2.1s ease-in-out infinite}.inspire-orbit i:nth-child(1){left:8%;top:12%}.inspire-orbit i:nth-child(2){right:10%;top:18%;animation-delay:.4s}.inspire-orbit i:nth-child(3){left:16%;bottom:13%;animation-delay:.8s}.inspire-orbit i:nth-child(4){right:14%;bottom:18%;animation-delay:1.2s}.inspire-orbit i:nth-child(5){left:48%;top:8%;animation-delay:1.6s}@keyframes inspireFloat{50%{transform:translateY(-7px)}}@keyframes inspireSweep{to{transform:rotate(360deg)}}@keyframes inspireTitle{50%{transform:scale(1.04)}}@keyframes inspireButton{to{transform:scale(1.055)}}@keyframes inspireStar{50%{opacity:1;transform:scale(1.35) rotate(45deg)}}`);
   }
 
-  function installEmpresaCallout(){
-    if(location.pathname.replace(/\/$/,'')!=='') return;
-    const section=document.getElementById('empresas');
-    const grid=section?.querySelector('.visual-grid');
-    if(!grid||document.getElementById('empresa-chamada-animada')) return;
-    const card=document.createElement('a');
-    card.id='empresa-chamada-animada';
-    card.href='#contato';
-    card.setAttribute('data-interest','Publicidade e anúncios');
-    card.innerHTML=`<div class="empresa-callout-glow" aria-hidden="true"></div><div class="empresa-callout-copy"><span>ESPAÇO DE DESTAQUE</span><strong>SUA EMPRESA<br>PODE ESTAR AQUI</strong><p>Transforme sua história em presença, autoridade e visibilidade na VOZ NEWS.</p><b>QUERO MINHA MARCA EM DESTAQUE →</b></div>`;
+  function makeCallout({sectionId,gridSelector,id,label,title,copy,button,waText,theme}){
+    if(!isHome())return; const section=document.getElementById(sectionId); const grid=section?.querySelector(gridSelector); if(!grid||document.getElementById(id))return;
+    const card=document.createElement('a'); card.id=id; card.href=`https://wa.me/5561999812341?text=${encodeURIComponent(waText)}`; card.target='_blank'; card.rel='noopener';
+    card.innerHTML=`<div class="vn-callout-stars" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><div class="vn-callout-copy"><span>${label}</span><strong>${title}</strong><p>${copy}</p><b>${button} →</b></div>`; grid.appendChild(card);
+    addStyle(`style-${id}`,`#${id}{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;border:2px solid ${theme.border};background:${theme.bg};box-shadow:0 18px 42px rgba(0,0,0,.4),0 0 30px ${theme.glow};isolation:isolate;animation:vnFloat 3.1s ease-in-out infinite;transform-style:preserve-3d;perspective:900px}#${id}:before{content:"";position:absolute;inset:-42%;z-index:0;background:conic-gradient(from 0deg,transparent 0 14%,${theme.c1} 20%,transparent 28% 46%,${theme.c2} 54%,transparent 62% 78%,${theme.c3} 85%,transparent 94%);animation:vnSpin 5.8s linear infinite;filter:blur(11px)}#${id}:after{content:"";position:absolute;inset:11px;border-radius:18px;border:2px dashed rgba(255,255,255,.55);box-shadow:0 0 12px ${theme.glow};animation:vnBorder 1.15s ease-in-out infinite alternate;z-index:1}.vn-callout-copy{position:relative;z-index:3;padding:31px 24px;text-align:center;animation:vnDepth 2.2s ease-in-out infinite alternate}.vn-callout-copy>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.16);border:1px solid rgba(255,215,0,.72);color:#ffe76a;font-size:10px;font-weight:900;letter-spacing:1.25px;animation:vnBlink 1.05s steps(2,end) infinite}.vn-callout-copy strong{display:block;margin:16px 0 12px;font-size:clamp(25px,2.8vw,40px);line-height:.98;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.32),0 0 10px #fff,0 0 22px ${theme.glow};animation:vnTitle 1.45s ease-in-out infinite alternate}.vn-callout-copy p{margin:0 auto 18px;max-width:320px;color:#eef6ff!important;font-size:15px!important;line-height:1.45!important}.vn-callout-copy b{display:inline-flex;padding:11px 16px;border-radius:999px;background:linear-gradient(90deg,#ffe22f,#ffb400);color:#142139;font-size:12px;font-weight:1000;box-shadow:0 8px 22px rgba(255,190,0,.28);animation:vnButton 1s ease-in-out infinite alternate}.vn-callout-stars{position:absolute;inset:0;z-index:2;pointer-events:none}.vn-callout-stars i{position:absolute;font-style:normal;color:#fff5a4;text-shadow:0 0 8px #fff,0 0 16px ${theme.glow};animation:vnStar 1.8s ease-in-out infinite}.vn-callout-stars i:nth-child(1){left:8%;top:10%}.vn-callout-stars i:nth-child(2){right:10%;top:14%;animation-delay:.35s}.vn-callout-stars i:nth-child(3){left:13%;bottom:13%;animation-delay:.7s}.vn-callout-stars i:nth-child(4){right:14%;bottom:11%;animation-delay:1.05s}.vn-callout-stars i:nth-child(5){left:48%;top:6%;animation-delay:1.4s}@keyframes vnFloat{50%{transform:translateY(-7px)}}@keyframes vnSpin{to{transform:rotate(360deg)}}@keyframes vnBorder{to{opacity:1;filter:hue-rotate(100deg)}}@keyframes vnDepth{to{transform:translateZ(20px) rotateY(4deg)}}@keyframes vnBlink{46%,58%{opacity:.35}}@keyframes vnTitle{to{transform:scale(1.05)}}@keyframes vnButton{to{transform:scale(1.055)}}@keyframes vnStar{50%{opacity:1;transform:scale(1.35) rotate(45deg)}}@media(max-width:760px){#${id}{min-height:300px}.vn-callout-copy strong{font-size:29px}}`);
+  }
+
+  function installEmpresaCallout(){makeCallout({sectionId:'empresas',gridSelector:'.visual-grid',id:'empresa-chamada-animada',label:'ESPAÇO DE DESTAQUE',title:'SUA EMPRESA<br>PODE ESTAR AQUI',copy:'Transforme sua história em presença, autoridade e visibilidade na VOZ NEWS.',button:'QUERO MINHA MARCA EM DESTAQUE',waText:'Quero colocar minha empresa em destaque na VOZ NEWS.',theme:{border:'rgba(255,215,0,.82)',bg:'linear-gradient(145deg,#090025,#0d2e70 46%,#37005d)',glow:'rgba(0,232,255,.55)',c1:'rgba(255,225,0,.55)',c2:'rgba(0,232,255,.55)',c3:'rgba(255,0,210,.5)'}})}
+  function installInternationalCallout(){makeCallout({sectionId:'internacional',gridSelector:'.media-grid',id:'internacional-indique-banner',label:'DIPLOMACIA • PARTICIPE',title:'INDIQUE UM<br>EMBAIXADOR OU<br>ORGANISMO INTERNACIONAL',copy:'Ajude a VOZ NEWS a ampliar suas conexões com a diplomacia, cooperação e relações internacionais.',button:'FAZER UMA INDICAÇÃO',waText:'Quero indicar um embaixador ou organismo internacional para a VOZ NEWS.',theme:{border:'rgba(75,205,255,.8)',bg:'linear-gradient(145deg,#041938,#092e65 45%,#251055)',glow:'rgba(0,217,255,.65)',c1:'rgba(0,221,255,.52)',c2:'rgba(255,215,0,.5)',c3:'rgba(155,88,255,.48)'}})}
+  function installPoliticalCallout(){makeCallout({sectionId:'politica',gridSelector:'.media-grid',id:'politica-indique-banner',label:'PARTICIPE DA EDITORIA',title:'INDIQUE UMA<br>LIDERANÇA POLÍTICA',copy:'Senadores, deputados, governadores, ministros e outras lideranças que você gostaria de ver entrevistadas pela VOZ NEWS.',button:'FAZER UMA INDICAÇÃO',waText:'Quero indicar uma liderança política para a VOZ NEWS.',theme:{border:'rgba(255,215,0,.82)',bg:'linear-gradient(145deg,#07172e,#123f78 48%,#360f58)',glow:'rgba(0,217,255,.65)',c1:'rgba(255,215,0,.55)',c2:'rgba(0,220,255,.5)',c3:'rgba(184,82,255,.45)'}})}
+
+  function installCultureCallout(){
+    if(!isHome())return; const section=document.getElementById('shows-eventos'); const grid=section?.querySelector('.visual-grid'); if(!grid||document.getElementById('cultura-indique-banner'))return;
+    const sourceImg=grid.querySelector('.visual-card img')?.src || 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85';
+    const card=document.createElement('a'); card.id='cultura-indique-banner'; card.href='https://wa.me/5561999812341?text='+encodeURIComponent('Quero indicar um evento cultural para aparecer na VOZ NEWS.'); card.target='_blank'; card.rel='noopener';
+    card.innerHTML=`<div class="cultura-moving-photo"><img src="${sourceImg}" alt="Agenda cultural VOZ NEWS"></div><div class="cultura-color-wash"></div><div class="cultura-copy"><span>🔥 CHAMA CULTURAL • PARTICIPE</span><strong>INDIQUE O EVENTO.<br><em>O BRASIL APARECE AQUI.</em></strong><p>Shows, festivais, cinema, teatro, arte, gastronomia e experiências de todo o país podem ganhar destaque na VOZ NEWS.</p><b>INDICAR UM EVENTO AGORA →</b></div><div class="cultura-marquee"><span>BRASÍLIA • BRASIL • CULTURA • ARTE • CINEMA • MÚSICA • EVENTOS • EXPERIÊNCIAS •</span></div>`;
     grid.appendChild(card);
-    if(document.getElementById('empresa-callout-style')) return;
-    const style=document.createElement('style');
-    style.id='empresa-callout-style';
-    style.textContent=`
-      #empresa-chamada-animada{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;border:2px solid rgba(255,215,0,.78);background:radial-gradient(circle at 50% 20%,rgba(0,232,255,.28),transparent 36%),linear-gradient(145deg,#090025 0%,#0d2e70 46%,#37005d 100%);box-shadow:0 18px 45px rgba(0,0,0,.38),0 0 28px rgba(0,232,255,.24),0 0 50px rgba(255,0,210,.18),inset 0 0 40px rgba(255,215,0,.08);isolation:isolate;animation:empresaCalloutFloat 3.1s ease-in-out infinite}
-      #empresa-chamada-animada::before{content:"";position:absolute;inset:-35%;background:conic-gradient(from 0deg,transparent 0 12%,rgba(255,225,0,.55) 18%,transparent 25% 44%,rgba(0,232,255,.55) 51%,transparent 60% 74%,rgba(255,0,210,.5) 82%,transparent 90%);animation:empresaCalloutSpin 5.5s linear infinite;filter:blur(10px);z-index:0}
-      #empresa-chamada-animada::after{content:"";position:absolute;inset:10px;border-radius:18px;border:2px dashed rgba(255,255,255,.68);box-shadow:0 0 12px rgba(255,255,255,.45),inset 0 0 18px rgba(0,232,255,.18);animation:empresaCalloutDash 1.6s linear infinite;z-index:1}
-      .empresa-callout-glow{position:absolute;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#ffe600 15%,rgba(255,0,210,.58) 38%,rgba(0,232,255,.2) 60%,transparent 72%);filter:blur(8px);opacity:.52;animation:empresaCalloutGlow 1.35s ease-in-out infinite alternate;z-index:1}
-      .empresa-callout-copy{position:relative;z-index:3;padding:34px 28px;text-align:center;transform-style:preserve-3d;animation:empresaCalloutDepth 2.2s ease-in-out infinite alternate}
-      .empresa-callout-copy>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.16);border:1px solid rgba(255,215,0,.72);color:#ffe66b;font-size:11px;font-weight:900;letter-spacing:1.4px;box-shadow:0 0 16px rgba(255,215,0,.2);animation:empresaCalloutBlink 1.1s steps(2,end) infinite}
-      .empresa-callout-copy strong{display:block;margin:16px 0 12px;font-size:clamp(28px,3vw,46px);line-height:.96;color:#fff;text-shadow:0 3px 0 #0a0a1d,0 0 12px #fff,0 0 24px #00e8ff,0 0 38px #ff00d2;animation:empresaCalloutTitle 1.5s ease-in-out infinite alternate}
-      .empresa-callout-copy p{margin:0 auto 18px;max-width:320px;color:#eef7ff!important;font-size:16px!important;line-height:1.45!important;text-shadow:0 1px 0 rgba(0,0,0,.35)}
-      .empresa-callout-copy b{display:inline-flex;position:relative;overflow:hidden;padding:12px 18px;border-radius:999px;background:linear-gradient(90deg,#ffe22f,#ffb800);color:#151225;font-size:13px;font-weight:1000;box-shadow:0 8px 24px rgba(255,190,0,.3),0 0 24px rgba(255,215,0,.28);animation:empresaCalloutButton 1.05s ease-in-out infinite alternate}
-      .empresa-callout-copy b::after{content:"";position:absolute;top:-25%;left:-45%;width:30%;height:150%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);animation:empresaCalloutShine 2.1s ease-in-out infinite}
-      @keyframes empresaCalloutFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-      @keyframes empresaCalloutSpin{to{transform:rotate(360deg)}}
-      @keyframes empresaCalloutDash{to{filter:hue-rotate(360deg)}}
-      @keyframes empresaCalloutGlow{0%{transform:scale(.78);opacity:.25}100%{transform:scale(1.22);opacity:.7}}
-      @keyframes empresaCalloutDepth{0%{transform:translateZ(0) rotateY(-4deg)}100%{transform:translateZ(22px) rotateY(4deg)}}
-      @keyframes empresaCalloutBlink{0%,45%{opacity:1}46%,58%{opacity:.35}59%,100%{opacity:1}}
-      @keyframes empresaCalloutTitle{0%{transform:scale(.98);filter:hue-rotate(0deg)}100%{transform:scale(1.055);filter:hue-rotate(35deg)}}
-      @keyframes empresaCalloutButton{0%{transform:scale(1)}100%{transform:scale(1.06)}}
-      @keyframes empresaCalloutShine{0%,55%{left:-45%}78%,100%{left:125%}}
-      @media(max-width:760px){#empresa-chamada-animada{min-height:290px}.empresa-callout-copy strong{font-size:34px}}
-    `;
-    document.head.appendChild(style);
+    addStyle('cultura-indique-style',`#cultura-indique-banner{grid-column:span 2;position:relative;min-height:350px;overflow:hidden;border-radius:26px;border:2px solid #ffd43b;box-shadow:0 20px 55px rgba(0,0,0,.42),0 0 30px rgba(255,60,190,.28),0 0 42px rgba(0,225,255,.2);isolation:isolate;background:#070817}.cultura-moving-photo{position:absolute;inset:0;z-index:0;overflow:hidden}.cultura-moving-photo img{width:115%;height:115%;object-fit:cover;filter:saturate(1.35) contrast(1.08) brightness(.58);animation:culturaKenBurns 8s ease-in-out infinite alternate}.cultura-color-wash{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 16% 20%,rgba(255,0,185,.42),transparent 30%),radial-gradient(circle at 82% 28%,rgba(0,225,255,.34),transparent 28%),linear-gradient(90deg,rgba(5,8,26,.92) 0%,rgba(5,8,26,.60) 48%,rgba(5,8,26,.78) 100%);animation:culturaHue 4.5s linear infinite}.cultura-copy{position:relative;z-index:3;min-height:350px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:40px 44px 62px;max-width:760px}.cultura-copy>span{display:inline-flex;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,#ff3d00,#ff00a8,#7b2cff);color:#fff;font-size:11px;font-weight:1000;letter-spacing:1.2px;box-shadow:0 0 18px rgba(255,42,161,.6);animation:culturaBlink 1s steps(2,end) infinite}.cultura-copy strong{display:block;margin:16px 0 13px;font-size:clamp(34px,4.6vw,64px);line-height:.94;color:#fff;text-shadow:0 3px 0 #120519,0 0 12px #fff,0 0 24px #00e5ff,0 0 42px #ff00b8;animation:culturaTitle 1.55s ease-in-out infinite alternate}.cultura-copy strong em{font-style:normal;color:#ffe35b;text-shadow:0 0 12px #ffb300,0 0 26px #ff3d00}.cultura-copy p{max-width:620px;color:#fff!important;font-size:17px!important;line-height:1.45!important;text-shadow:0 2px 7px rgba(0,0,0,.8)}.cultura-copy b{display:inline-flex;margin-top:18px;padding:13px 19px;border-radius:999px;background:linear-gradient(90deg,#ffe02c,#ff9f00);color:#101527;font-size:13px;font-weight:1000;box-shadow:0 0 20px rgba(255,204,0,.55);animation:culturaButton 1s ease-in-out infinite alternate}.cultura-marquee{position:absolute;left:0;right:0;bottom:0;z-index:4;height:38px;overflow:hidden;background:linear-gradient(90deg,#ff005d,#761cff,#00c9ff,#ffd300);color:#fff;border-top:1px solid rgba(255,255,255,.5)}.cultura-marquee span{display:inline-block;padding-left:100%;white-space:nowrap;font-size:12px;line-height:38px;font-weight:1000;letter-spacing:1.2px;animation:culturaMarquee 12s linear infinite}@keyframes culturaKenBurns{from{transform:scale(1.02) translate3d(-2%,0,0)}to{transform:scale(1.18) translate3d(3%,-2%,0)}}@keyframes culturaHue{to{filter:hue-rotate(360deg)}}@keyframes culturaBlink{45%,58%{opacity:.38}}@keyframes culturaTitle{to{transform:translateY(-4px) scale(1.025)}}@keyframes culturaButton{to{transform:scale(1.06)}}@keyframes culturaMarquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}@media(max-width:980px){#cultura-indique-banner{grid-column:span 1}.cultura-copy{padding:34px 28px 58px}.cultura-copy strong{font-size:42px}}@media(max-width:620px){.cultura-copy strong{font-size:32px}.cultura-copy p{font-size:15px!important}}`);
   }
 
-  function installInternationalCallout(){
-    if(location.pathname.replace(/\/$/,'')!=='') return;
-    const section=document.getElementById('internacional');
-    const grid=section?.querySelector('.media-grid');
-    if(!grid||document.getElementById('internacional-indique-banner')) return;
-    const card=document.createElement('a');
-    card.id='internacional-indique-banner';
-    card.href='https://wa.me/5561999812341?text=Quero%20indicar%20um%20embaixador%20ou%20organismo%20internacional%20para%20a%20VOZ%20NEWS.';
-    card.target='_blank';
-    card.rel='noopener';
-    card.innerHTML=`<div class="intl-callout-orbit" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><div class="intl-callout-copy"><span>DIPLOMACIA • PARTICIPE</span><strong>INDIQUE UM<br>EMBAIXADOR OU<br>ORGANISMO INTERNACIONAL</strong><p>Ajude a VOZ NEWS a ampliar suas conexões com a diplomacia, cooperação e relações internacionais.</p><b>FAZER UMA INDICAÇÃO →</b></div>`;
-    grid.appendChild(card);
-    if(document.getElementById('internacional-indique-style')) return;
-    const style=document.createElement('style');
-    style.id='internacional-indique-style';
-    style.textContent=`
-      #internacional-indique-banner{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;border:2px solid rgba(75,205,255,.8);background:radial-gradient(circle at 50% 16%,rgba(255,215,0,.22),transparent 28%),linear-gradient(145deg,#041938 0%,#092e65 45%,#251055 100%);box-shadow:0 18px 42px rgba(0,0,0,.38),0 0 25px rgba(0,211,255,.24),0 0 45px rgba(255,215,0,.14),inset 0 0 42px rgba(63,174,255,.12);isolation:isolate;animation:intlCalloutFloat 3.2s ease-in-out infinite;transform-style:preserve-3d;perspective:900px}
-      #internacional-indique-banner::before{content:"";position:absolute;inset:-45%;z-index:0;background:conic-gradient(from 0deg,transparent 0 14%,rgba(0,221,255,.52) 20%,transparent 28% 46%,rgba(255,215,0,.5) 54%,transparent 62% 78%,rgba(155,88,255,.48) 85%,transparent 94%);animation:intlCalloutSpin 6s linear infinite;filter:blur(12px)}
-      #internacional-indique-banner::after{content:"";position:absolute;inset:11px;border-radius:18px;border:2px solid rgba(255,255,255,.34);box-shadow:0 0 12px rgba(89,215,255,.55),inset 0 0 18px rgba(255,215,0,.12);animation:intlCalloutBorder 1.25s ease-in-out infinite alternate;z-index:1}
-      .intl-callout-copy{position:relative;z-index:3;padding:30px 24px;text-align:center;animation:intlCalloutDepth 2.3s ease-in-out infinite alternate;transform-style:preserve-3d}
-      .intl-callout-copy>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.14);border:1px solid rgba(255,215,0,.72);color:#ffe46d;font-size:10px;font-weight:900;letter-spacing:1.2px;box-shadow:0 0 15px rgba(255,215,0,.22);animation:intlCalloutBlink 1.1s steps(2,end) infinite}
-      .intl-callout-copy strong{display:block;margin:15px 0 12px;font-size:clamp(23px,2.6vw,38px);line-height:1;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.32),0 0 10px #fff,0 0 22px #00d9ff,0 0 34px #7a52ff;animation:intlCalloutTitle 1.55s ease-in-out infinite alternate}
-      .intl-callout-copy p{margin:0 auto 18px;max-width:310px;color:#eaf5ff!important;font-size:15px!important;line-height:1.45!important}
-      .intl-callout-copy b{display:inline-flex;position:relative;overflow:hidden;padding:11px 16px;border-radius:999px;background:linear-gradient(90deg,#ffe233,#ffb800);color:#10223b;font-size:12px;font-weight:1000;box-shadow:0 8px 22px rgba(255,190,0,.28),0 0 20px rgba(255,215,0,.24);animation:intlCalloutButton 1.05s ease-in-out infinite alternate}
-      .intl-callout-copy b::after{content:"";position:absolute;top:-25%;left:-45%;width:32%;height:150%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);animation:intlCalloutShine 2.15s ease-in-out infinite}
-      .intl-callout-orbit{position:absolute;inset:0;z-index:2;pointer-events:none}.intl-callout-orbit i{position:absolute;font-style:normal;color:#fff6a3;text-shadow:0 0 8px #fff,0 0 18px #00d9ff;animation:intlCalloutStar 1.9s ease-in-out infinite}.intl-callout-orbit i:nth-child(1){left:7%;top:9%;font-size:17px}.intl-callout-orbit i:nth-child(2){right:9%;top:13%;font-size:11px;animation-delay:.3s}.intl-callout-orbit i:nth-child(3){left:12%;bottom:13%;font-size:12px;animation-delay:.6s}.intl-callout-orbit i:nth-child(4){right:13%;bottom:11%;font-size:19px;animation-delay:.9s}.intl-callout-orbit i:nth-child(5){left:47%;top:6%;font-size:9px;animation-delay:1.2s}.intl-callout-orbit i:nth-child(6){right:42%;bottom:7%;font-size:10px;animation-delay:1.5s}
-      @keyframes intlCalloutFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes intlCalloutSpin{to{transform:rotate(360deg)}}@keyframes intlCalloutBorder{0%{opacity:.48;filter:hue-rotate(0deg)}100%{opacity:1;filter:hue-rotate(90deg)}}@keyframes intlCalloutDepth{0%{transform:translateZ(0) rotateY(-4deg)}100%{transform:translateZ(20px) rotateY(4deg)}}@keyframes intlCalloutBlink{0%,45%{opacity:1}46%,58%{opacity:.35}59%,100%{opacity:1}}@keyframes intlCalloutTitle{0%{transform:scale(.98)}100%{transform:scale(1.045)}}@keyframes intlCalloutButton{0%{transform:scale(1)}100%{transform:scale(1.055)}}@keyframes intlCalloutShine{0%,55%{left:-45%}78%,100%{left:125%}}@keyframes intlCalloutStar{0%,100%{opacity:.18;transform:scale(.7) rotate(0deg)}50%{opacity:1;transform:scale(1.35) rotate(45deg)}}
-      @media(max-width:760px){#internacional-indique-banner{min-height:300px}.intl-callout-copy strong{font-size:28px}}
-    `;
-    document.head.appendChild(style);
-  }
-
-  function installPoliticalCallout(){
-    if(location.pathname.replace(/\/$/,'')!=='') return;
-    const section=document.getElementById('politica');
-    const grid=section?.querySelector('.media-grid');
-    if(!grid||document.getElementById('politica-indique-banner')) return;
-    const card=document.createElement('a');
-    card.id='politica-indique-banner';
-    card.href='https://wa.me/5561999812341?text=Quero%20indicar%20uma%20lideran%C3%A7a%20pol%C3%ADtica%20para%20a%20VOZ%20NEWS.';
-    card.target='_blank';
-    card.rel='noopener';
-    card.innerHTML=`<div class="politica-callout-stars" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><div class="politica-callout-copy"><span>PARTICIPE DA EDITORIA</span><strong>INDIQUE UMA<br>LIDERANÇA POLÍTICA</strong><p>Senadores, deputados, governadores, ministros e outras lideranças que você gostaria de ver entrevistadas pela VOZ NEWS.</p><b>FAZER UMA INDICAÇÃO →</b></div>`;
-    grid.appendChild(card);
-    if(document.getElementById('politica-indique-style')) return;
-    const style=document.createElement('style');
-    style.id='politica-indique-style';
-    style.textContent=`
-      #politica-indique-banner{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;border:2px solid rgba(255,215,0,.82);background:radial-gradient(circle at 50% 15%,rgba(0,224,255,.24),transparent 30%),linear-gradient(145deg,#07172e 0%,#123f78 48%,#360f58 100%);box-shadow:0 18px 42px rgba(0,0,0,.4),0 0 28px rgba(255,215,0,.18),0 0 42px rgba(0,216,255,.2),inset 0 0 40px rgba(255,255,255,.05);isolation:isolate;animation:politicaFloat 3s ease-in-out infinite;transform-style:preserve-3d;perspective:900px}
-      #politica-indique-banner::before{content:"";position:absolute;inset:-42%;z-index:0;background:conic-gradient(from 0deg,transparent 0 14%,rgba(255,215,0,.55) 20%,transparent 28% 46%,rgba(0,220,255,.5) 54%,transparent 62% 78%,rgba(184,82,255,.45) 85%,transparent 94%);animation:politicaSpin 5.8s linear infinite;filter:blur(11px)}
-      #politica-indique-banner::after{content:"";position:absolute;inset:11px;border-radius:18px;border:2px dashed rgba(255,255,255,.58);box-shadow:0 0 12px rgba(255,215,0,.42),inset 0 0 18px rgba(0,220,255,.14);animation:politicaBorder 1.15s ease-in-out infinite alternate;z-index:1}
-      .politica-callout-copy{position:relative;z-index:3;padding:31px 24px;text-align:center;transform-style:preserve-3d;animation:politicaDepth 2.2s ease-in-out infinite alternate}
-      .politica-callout-copy>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.16);border:1px solid rgba(255,215,0,.72);color:#ffe76a;font-size:10px;font-weight:900;letter-spacing:1.25px;box-shadow:0 0 15px rgba(255,215,0,.2);animation:politicaBlink 1.05s steps(2,end) infinite}
-      .politica-callout-copy strong{display:block;margin:16px 0 12px;font-size:clamp(25px,2.8vw,40px);line-height:.98;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.32),0 0 10px #fff,0 0 22px #00d9ff,0 0 34px #ffca28;animation:politicaTitle 1.45s ease-in-out infinite alternate}
-      .politica-callout-copy p{margin:0 auto 18px;max-width:320px;color:#eef6ff!important;font-size:15px!important;line-height:1.45!important}
-      .politica-callout-copy b{display:inline-flex;position:relative;overflow:hidden;padding:11px 16px;border-radius:999px;background:linear-gradient(90deg,#ffe22f,#ffb400);color:#142139;font-size:12px;font-weight:1000;box-shadow:0 8px 22px rgba(255,190,0,.28),0 0 20px rgba(255,215,0,.22);animation:politicaButton 1s ease-in-out infinite alternate}
-      .politica-callout-copy b::after{content:"";position:absolute;top:-25%;left:-45%;width:32%;height:150%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);animation:politicaShine 2s ease-in-out infinite}
-      .politica-callout-stars{position:absolute;inset:0;z-index:2;pointer-events:none}.politica-callout-stars i{position:absolute;font-style:normal;color:#fff5a4;text-shadow:0 0 8px #fff,0 0 16px #00d9ff;animation:politicaStar 1.8s ease-in-out infinite}.politica-callout-stars i:nth-child(1){left:8%;top:10%;font-size:17px}.politica-callout-stars i:nth-child(2){right:10%;top:14%;font-size:12px;animation-delay:.35s}.politica-callout-stars i:nth-child(3){left:13%;bottom:13%;font-size:11px;animation-delay:.7s}.politica-callout-stars i:nth-child(4){right:14%;bottom:11%;font-size:18px;animation-delay:1.05s}.politica-callout-stars i:nth-child(5){left:48%;top:6%;font-size:10px;animation-delay:1.4s}
-      @keyframes politicaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes politicaSpin{to{transform:rotate(360deg)}}@keyframes politicaBorder{0%{opacity:.48;filter:hue-rotate(0deg)}100%{opacity:1;filter:hue-rotate(100deg)}}@keyframes politicaDepth{0%{transform:translateZ(0) rotateY(-4deg)}100%{transform:translateZ(20px) rotateY(4deg)}}@keyframes politicaBlink{0%,45%{opacity:1}46%,58%{opacity:.35}59%,100%{opacity:1}}@keyframes politicaTitle{0%{transform:scale(.98)}100%{transform:scale(1.05)}}@keyframes politicaButton{0%{transform:scale(1)}100%{transform:scale(1.055)}}@keyframes politicaShine{0%,55%{left:-45%}78%,100%{left:125%}}@keyframes politicaStar{0%,100%{opacity:.18;transform:scale(.7) rotate(0deg)}50%{opacity:1;transform:scale(1.35) rotate(45deg)}}
-      @media(max-width:760px){#politica-indique-banner{min-height:300px}.politica-callout-copy strong{font-size:29px}}
-    `;
-    document.head.appendChild(style);
-  }
-
-  const start=()=>{setTimeout(installMobilidadeLink,300);setTimeout(installSeal40Animation,120);setTimeout(installInspireCardAnimation,180);setTimeout(installEmpresaCallout,220);setTimeout(installInternationalCallout,240);setTimeout(installPoliticalCallout,260)};
+  const start=()=>{setTimeout(installMobilidadeLink,300);setTimeout(installSeal40Animation,120);setTimeout(installInspireCardAnimation,180);setTimeout(installEmpresaCallout,220);setTimeout(installInternationalCallout,240);setTimeout(installPoliticalCallout,260);setTimeout(installCultureCallout,280)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
