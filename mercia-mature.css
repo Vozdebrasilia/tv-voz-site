@@ -7,17 +7,17 @@
 
 #pescarias .visual-grid > a.visual-card:first-child > img,
 #pescarias .mercia-comic-img{
-  content:url('/mercia-crema-caricatura.jpg') !important;
+  content:url('https://www.vozdebrasilia.com.br/wp-content/uploads/2025/09/06c16b00-bf6a-47da-aff9-5741136da875-990x742.jpg') !important;
   display:block !important;
   width:100% !important;
-  height:330px !important;
-  aspect-ratio:auto !important;
+  height:auto !important;
+  aspect-ratio:16/9 !important;
   object-fit:cover !important;
-  object-position:center 18% !important;
-  filter:none !important;
+  object-position:center 24% !important;
+  background:#07172f !important;
+  filter:saturate(1.22) contrast(1.10) brightness(1.03) !important;
   transform:none !important;
   animation:none !important;
-  background:#07172f !important;
 }
 
 #pescarias .visual-grid > a.visual-card:first-child .visual-body{
@@ -49,5 +49,11 @@
 
 @media(max-width:760px){
   #pescarias .visual-grid > a.visual-card:first-child > img,
-  #pescarias .mercia-comic-img{height:260px !important;}
+  #pescarias .mercia-comic-img{
+    width:100% !important;
+    height:auto !important;
+    aspect-ratio:16/9 !important;
+    object-fit:cover !important;
+    object-position:center 24% !important;
+  }
 }
