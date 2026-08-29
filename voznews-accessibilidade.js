@@ -10,12 +10,35 @@
   if(path===''){
     const titulo=[...document.querySelectorAll('h3')].find(h=>(h.textContent||'').toUpperCase().includes('PAULO OCTÁVIO:'));
     const card=titulo?.closest('.media-card');
-    if(card && !document.getElementById('banner-legado-40-anos')){
-      const banner=document.createElement('article');
-      banner.id='banner-legado-40-anos';
-      banner.className='media-card promo-card';
-      banner.innerHTML=`<div class="media-body" style="min-height:100%;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(18,52,91,.62));border-radius:inherit"><span class="media-source">40 ANOS • SUA HISTÓRIA NA VOZ</span><h3>ESPAÇO RESERVADO PARA SUA EMPRESA, SUA HISTÓRIA E SEU LEGADO</h3><p>Faça parte das mais de 1.000 participações que marcaram os 40 anos da Voz de Brasília. Sua empresa pode ocupar este espaço com entrevista, história, trajetória e posicionamento institucional.</p><div class="interview-links" style="margin-top:18px"><a href="#contato" data-interest="Participar dos 40 anos da Voz de Brasília">QUERO PARTICIPAR / ANUNCIE AGORA →</a></div></div>`;
-      card.insertAdjacentElement('afterend',banner);
+    if(card){
+      let banner=document.getElementById('banner-legado-40-anos');
+      if(!banner){
+        banner=document.createElement('article');
+        banner.id='banner-legado-40-anos';
+        banner.className='media-card promo-card';
+        banner.innerHTML=`<div class="media-body" style="min-height:100%;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(18,52,91,.62));border-radius:inherit"><span class="media-source">40 ANOS • SUA HISTÓRIA NA VOZ</span><h3>ESPAÇO RESERVADO PARA SUA EMPRESA, SUA HISTÓRIA E SEU LEGADO</h3><p>Faça parte das mais de 1.000 participações que marcaram os 40 anos da Voz de Brasília. Sua empresa pode ocupar este espaço com entrevista, história, trajetória e posicionamento institucional.</p><div class="interview-links" style="margin-top:18px"><a href="#contato" data-interest="Participar dos 40 anos da Voz de Brasília">QUERO PARTICIPAR / ANUNCIE AGORA →</a></div></div>`;
+        card.insertAdjacentElement('afterend',banner);
+      }
+      if(!document.getElementById('seta-legado-40-anos')){
+        const seta=document.createElement('div');
+        seta.id='seta-legado-40-anos';
+        seta.setAttribute('aria-label','Seta apontando para o espaço reservado para empresas');
+        seta.innerHTML='<div class="seta-legado-icone">⬅</div><strong>OLHE ESTE ESPAÇO</strong>';
+        banner.insertAdjacentElement('afterend',seta);
+      }
+      if(!document.getElementById('seta-legado-style')){
+        const style=document.createElement('style');
+        style.id='seta-legado-style';
+        style.textContent=`
+          #seta-legado-40-anos{min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:transparent;border:0;color:#ffd83d;text-align:center;overflow:visible}
+          #seta-legado-40-anos strong{font-size:15px;letter-spacing:1.2px;color:#ffd83d;text-shadow:0 0 12px rgba(255,216,61,.65)}
+          .seta-legado-icone{font-size:118px;line-height:1;filter:drop-shadow(0 0 14px rgba(255,216,61,.9));animation:setaLegadoAnim 1.15s ease-in-out infinite}
+          @keyframes setaLegadoAnim{0%{opacity:.25;transform:rotate(-16deg) scale(.88)}35%{opacity:1;transform:rotate(10deg) scale(1.08)}70%{opacity:.55;transform:rotate(-8deg) scale(.96)}100%{opacity:1;transform:rotate(0deg) scale(1.04)}}
+          @media(max-width:900px){#seta-legado-40-anos{min-height:180px}.seta-legado-icone{font-size:86px}}
+          @media(prefers-reduced-motion:reduce){.seta-legado-icone{animation:none!important}}
+        `;
+        document.head.appendChild(style);
+      }
     }
   }
 
