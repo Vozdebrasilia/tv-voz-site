@@ -19,6 +19,12 @@
   ],
   "headers": [
     {
+      "source": "/",
+      "headers": [
+        { "key": "Link", "value": "</mercia-mature.css>; rel=stylesheet" }
+      ]
+    },
+    {
       "source": "/assets/v33-original/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
