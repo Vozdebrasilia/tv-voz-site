@@ -86,5 +86,33 @@
     banner.insertAdjacentElement('afterend',arrow);
   }
 
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{install();installBannerArrow()},{once:true});else{install();installBannerArrow()}
+  function installIBJHome(attempt=0){
+    if(location.pathname.replace(/\/$/,'')!=='') return;
+    const section=document.getElementById('sustentabilidade');
+    if(!section){if(attempt<30)setTimeout(()=>installIBJHome(attempt+1),120);return;}
+    const cards=[...section.querySelectorAll('.visual-grid .visual-card')];
+    if(cards.length<6)return;
+    const IBJ='https://www.institutobraziljust.org/';
+    const setCard=(card,{href,img,alt,title,brand,body,link})=>{
+      if(!card)return;
+      card.href=href;card.target='_blank';card.rel='noopener';
+      let picture=card.querySelector(':scope > img');
+      const frame=card.querySelector('.deijanete-card-photo');
+      if(frame){frame.innerHTML=`<img alt="${alt}" loading="lazy" src="${img}" style="width:100%;height:330px;object-fit:cover;object-position:center 18%;border-radius:0;background:#07182e"/>`;picture=frame.querySelector('img')}
+      else if(picture){picture.src=img;picture.alt=alt;picture.loading='lazy';picture.style.objectFit='cover';picture.style.objectPosition='center';picture.style.background='#07182e'}
+      const bodyEl=card.querySelector('.visual-body');
+      if(bodyEl)bodyEl.innerHTML=`<span class="brand-mark">${brand}</span><h3>${title}</h3><p>${body}</p><div class="contact-meta"><strong>Site oficial:</strong> institutobraziljust.org</div><span class="real-link">${link} →</span>`;
+    };
+    setCard(cards[0],{href:IBJ,img:'./studio-deijanete-source.png',alt:'Dra. Deijanete Fayad — Instituto Brazil Just',brand:'IBJ',title:'Dra. Deijanete Fayad | Instituto Brazil Just',body:'A presidente do Instituto Brazil Just em destaque na frente dos projetos sociais, cidadania, inclusão e desenvolvimento humano do Instituto.',link:'Conhecer o IBJ'});
+    cards[1].href='https://www.youtube.com/watch?v=njhX5yXo9B0';cards[1].target='_blank';cards[1].rel='noopener';
+    setCard(cards[2],{href:IBJ,img:'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=86',alt:'Floresta preservada',brand:'FLORESTAS',title:'Preservação de florestas e consciência ambiental',body:'Educação ambiental, proteção da natureza e práticas sustentáveis fazem parte da agenda de impacto social. Preservar florestas é proteger recursos, comunidades e o futuro.',link:'Conhecer projetos'});
+    setCard(cards[3],{href:IBJ,img:'https://images.unsplash.com/photo-1576765608866-5b51046452be?auto=format&fit=crop&w=1200&q=86',alt:'Acolhimento e atenção à pessoa idosa',brand:'IDOSOS',title:'Acolhimento e apoio à pessoa idosa',body:'Ações sociais voltadas à pessoa idosa fortalecem vínculos, convivência, dignidade e cuidado. O espaço passa a usar uma imagem humana e relacionada ao tema.',link:'Ver ações sociais'});
+    setCard(cards[4],{href:IBJ,img:'https://www.institutobraziljust.org/strips/strip5.jpg',alt:'Ação do Instituto Brazil Just com crianças',brand:'CRIANÇAS',title:'Crianças, esporte e inclusão',body:'Imagem real de ação social publicada pelo próprio Instituto Brazil Just, reunindo crianças, famílias, doações e apoio comunitário.',link:'Conhecer ações com crianças'});
+    setCard(cards[5],{href:IBJ,img:'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=86',alt:'Inclusão social e apoio comunitário',brand:'INCLUSÃO',title:'Impacto social que transforma vidas',body:'Inclusão, esporte, educação e acesso a oportunidades aproximam parceiros de projetos com resultado humano real e compromisso comunitário.',link:'Apoiar o IBJ'});
+    if(!document.getElementById('ibj-home-fix-style')){
+      const st=document.createElement('style');st.id='ibj-home-fix-style';st.textContent='#sustentabilidade .visual-card>img,#sustentabilidade .deijanete-card-photo img{width:100%!important;height:330px!important;object-fit:cover!important;background:#07182e!important}#sustentabilidade .deijanete-card-photo{padding:0!important;background:#07182e!important}#sustentabilidade .deijanete-card-photo img{object-position:center 18%!important}@media(max-width:760px){#sustentabilidade .visual-card>img,#sustentabilidade .deijanete-card-photo img{height:260px!important}}';document.head.appendChild(st)
+    }
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{install();installBannerArrow();installIBJHome()},{once:true});else{install();installBannerArrow();installIBJHome()}
 })();
