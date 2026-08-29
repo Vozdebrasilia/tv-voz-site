@@ -27,49 +27,15 @@
       ? 'Proposta comercial — Voz News Móveis & Decoração'
       : 'Contato — Voz News Móveis & Decoração';
 
-    const garantirIframe=()=>{
-      let frame=document.getElementById('voznews-email-frame');
-      if(!frame){
-        frame=document.createElement('iframe');
-        frame.id='voznews-email-frame';
-        frame.name='voznews-email-frame';
-        frame.style.display='none';
-        document.body.appendChild(frame);
-      }
-      return frame;
-    };
-
-    const enviarEmail=(form,titulo,status)=>{
-      garantirIframe();
-      const envio=document.createElement('form');
-      envio.method='POST';
-      envio.action=`https://formsubmit.co/${EMAIL}`;
-      envio.target='voznews-email-frame';
-      envio.style.display='none';
-
-      const add=(name,value)=>{
-        const i=document.createElement('input');
-        i.type='hidden'; i.name=name; i.value=value;
-        envio.appendChild(i);
-      };
-
-      add('_subject',assuntoDe(titulo));
-      add('_template','table');
-      add('_captcha','false');
-      add('_next','https://www.voznewsbrasil.com.br/moveis-decoracao');
-      add('origem','Voz News Móveis & Decoração');
-      add('mensagem',textoForm(form,titulo));
-      for(const [k,v] of new FormData(form).entries()) add(k,v);
-
-      document.body.appendChild(envio);
-      envio.submit();
-      setTimeout(()=>envio.remove(),1500);
-      if(status) status.textContent='Mensagem encaminhada para '+EMAIL+'.';
-    };
-
-    const abrirWhatsApp=(form,titulo)=>{
+    const urlWhatsApp=(form,titulo)=>{
       const texto=textoForm(form,titulo);
-      location.href=`whatsapp://send?phone=${WHATSAPP}&text=${encodeURIComponent(texto)}`;
+      return `https://web.whatsapp.com/send/?phone=${WHATSAPP}&text=${encodeURIComponent(texto)}&type=phone_number&app_absent=0`;
+    };
+
+    const urlGmail=(form,titulo)=>{
+      const assunto=assuntoDe(titulo);
+      const corpo=textoForm(form,titulo);
+      return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}&su=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
     };
 
     const preparar=(formId,titulo)=>{
@@ -87,13 +53,13 @@
         submit.insertAdjacentElement('beforebegin',status);
       }
 
-      submit.textContent='ENVIAR PELO WHATSAPP + E-MAIL';
+      submit.textContent='ABRIR WHATSAPP + E-MAIL';
       submit.onclick=null;
       form.onsubmit=(e)=>{
         e.preventDefault();
-        status.textContent='Enviando...';
-        enviarEmail(form,titulo,status);
-        setTimeout(()=>abrirWhatsApp(form,titulo),250);
+        status.textContent='Abrindo WhatsApp e e-mail com a mensagem preenchida...';
+        window.open(urlGmail(form,titulo),'_blank','noopener');
+        window.location.href=urlWhatsApp(form,titulo);
       };
 
       let email=form.querySelector('[data-email-direto]');
@@ -102,15 +68,14 @@
         email.type='button';
         email.dataset.emailDireto='1';
         email.className='btn light full';
-        email.textContent='ENVIAR SOMENTE POR E-MAIL';
         submit.insertAdjacentElement('afterend',email);
       }
       email.removeAttribute('href');
-      email.textContent='ENVIAR SOMENTE POR E-MAIL';
+      email.textContent='ABRIR E-MAIL PRONTO PARA ENVIAR';
       email.onclick=(e)=>{
         e.preventDefault();
-        status.textContent='Enviando e-mail...';
-        enviarEmail(form,titulo,status);
+        status.textContent='Abrindo o Gmail com destinatário e mensagem preenchidos...';
+        window.open(urlGmail(form,titulo),'_blank','noopener');
       };
     };
 
