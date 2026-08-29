@@ -157,6 +157,38 @@
     document.head.appendChild(style);
   }
 
-  const start=()=>{setTimeout(installMobilidadeLink,300);setTimeout(installSeal40Animation,120);setTimeout(installInspireCardAnimation,180);setTimeout(installEmpresaCallout,220);setTimeout(installInternationalCallout,240)};
+  function installPoliticalCallout(){
+    if(location.pathname.replace(/\/$/,'')!=='') return;
+    const section=document.getElementById('politica');
+    const grid=section?.querySelector('.media-grid');
+    if(!grid||document.getElementById('politica-indique-banner')) return;
+    const card=document.createElement('a');
+    card.id='politica-indique-banner';
+    card.href='https://wa.me/5561999812341?text=Quero%20indicar%20uma%20lideran%C3%A7a%20pol%C3%ADtica%20para%20a%20VOZ%20NEWS.';
+    card.target='_blank';
+    card.rel='noopener';
+    card.innerHTML=`<div class="politica-callout-stars" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><div class="politica-callout-copy"><span>PARTICIPE DA EDITORIA</span><strong>INDIQUE UMA<br>LIDERANÇA POLÍTICA</strong><p>Senadores, deputados, governadores, ministros e outras lideranças que você gostaria de ver entrevistadas pela VOZ NEWS.</p><b>FAZER UMA INDICAÇÃO →</b></div>`;
+    grid.appendChild(card);
+    if(document.getElementById('politica-indique-style')) return;
+    const style=document.createElement('style');
+    style.id='politica-indique-style';
+    style.textContent=`
+      #politica-indique-banner{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;border:2px solid rgba(255,215,0,.82);background:radial-gradient(circle at 50% 15%,rgba(0,224,255,.24),transparent 30%),linear-gradient(145deg,#07172e 0%,#123f78 48%,#360f58 100%);box-shadow:0 18px 42px rgba(0,0,0,.4),0 0 28px rgba(255,215,0,.18),0 0 42px rgba(0,216,255,.2),inset 0 0 40px rgba(255,255,255,.05);isolation:isolate;animation:politicaFloat 3s ease-in-out infinite;transform-style:preserve-3d;perspective:900px}
+      #politica-indique-banner::before{content:"";position:absolute;inset:-42%;z-index:0;background:conic-gradient(from 0deg,transparent 0 14%,rgba(255,215,0,.55) 20%,transparent 28% 46%,rgba(0,220,255,.5) 54%,transparent 62% 78%,rgba(184,82,255,.45) 85%,transparent 94%);animation:politicaSpin 5.8s linear infinite;filter:blur(11px)}
+      #politica-indique-banner::after{content:"";position:absolute;inset:11px;border-radius:18px;border:2px dashed rgba(255,255,255,.58);box-shadow:0 0 12px rgba(255,215,0,.42),inset 0 0 18px rgba(0,220,255,.14);animation:politicaBorder 1.15s ease-in-out infinite alternate;z-index:1}
+      .politica-callout-copy{position:relative;z-index:3;padding:31px 24px;text-align:center;transform-style:preserve-3d;animation:politicaDepth 2.2s ease-in-out infinite alternate}
+      .politica-callout-copy>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.16);border:1px solid rgba(255,215,0,.72);color:#ffe76a;font-size:10px;font-weight:900;letter-spacing:1.25px;box-shadow:0 0 15px rgba(255,215,0,.2);animation:politicaBlink 1.05s steps(2,end) infinite}
+      .politica-callout-copy strong{display:block;margin:16px 0 12px;font-size:clamp(25px,2.8vw,40px);line-height:.98;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.32),0 0 10px #fff,0 0 22px #00d9ff,0 0 34px #ffca28;animation:politicaTitle 1.45s ease-in-out infinite alternate}
+      .politica-callout-copy p{margin:0 auto 18px;max-width:320px;color:#eef6ff!important;font-size:15px!important;line-height:1.45!important}
+      .politica-callout-copy b{display:inline-flex;position:relative;overflow:hidden;padding:11px 16px;border-radius:999px;background:linear-gradient(90deg,#ffe22f,#ffb400);color:#142139;font-size:12px;font-weight:1000;box-shadow:0 8px 22px rgba(255,190,0,.28),0 0 20px rgba(255,215,0,.22);animation:politicaButton 1s ease-in-out infinite alternate}
+      .politica-callout-copy b::after{content:"";position:absolute;top:-25%;left:-45%;width:32%;height:150%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);animation:politicaShine 2s ease-in-out infinite}
+      .politica-callout-stars{position:absolute;inset:0;z-index:2;pointer-events:none}.politica-callout-stars i{position:absolute;font-style:normal;color:#fff5a4;text-shadow:0 0 8px #fff,0 0 16px #00d9ff;animation:politicaStar 1.8s ease-in-out infinite}.politica-callout-stars i:nth-child(1){left:8%;top:10%;font-size:17px}.politica-callout-stars i:nth-child(2){right:10%;top:14%;font-size:12px;animation-delay:.35s}.politica-callout-stars i:nth-child(3){left:13%;bottom:13%;font-size:11px;animation-delay:.7s}.politica-callout-stars i:nth-child(4){right:14%;bottom:11%;font-size:18px;animation-delay:1.05s}.politica-callout-stars i:nth-child(5){left:48%;top:6%;font-size:10px;animation-delay:1.4s}
+      @keyframes politicaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes politicaSpin{to{transform:rotate(360deg)}}@keyframes politicaBorder{0%{opacity:.48;filter:hue-rotate(0deg)}100%{opacity:1;filter:hue-rotate(100deg)}}@keyframes politicaDepth{0%{transform:translateZ(0) rotateY(-4deg)}100%{transform:translateZ(20px) rotateY(4deg)}}@keyframes politicaBlink{0%,45%{opacity:1}46%,58%{opacity:.35}59%,100%{opacity:1}}@keyframes politicaTitle{0%{transform:scale(.98)}100%{transform:scale(1.05)}}@keyframes politicaButton{0%{transform:scale(1)}100%{transform:scale(1.055)}}@keyframes politicaShine{0%,55%{left:-45%}78%,100%{left:125%}}@keyframes politicaStar{0%,100%{opacity:.18;transform:scale(.7) rotate(0deg)}50%{opacity:1;transform:scale(1.35) rotate(45deg)}}
+      @media(max-width:760px){#politica-indique-banner{min-height:300px}.politica-callout-copy strong{font-size:29px}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  const start=()=>{setTimeout(installMobilidadeLink,300);setTimeout(installSeal40Animation,120);setTimeout(installInspireCardAnimation,180);setTimeout(installEmpresaCallout,220);setTimeout(installInternationalCallout,240);setTimeout(installPoliticalCallout,260)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
