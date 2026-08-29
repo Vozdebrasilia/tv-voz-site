@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.voznewsbrasil.com.br/</loc><priority>1.0</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/gastronomia/</loc><priority>0.9</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/gastronomia/</loc><priority>0.95</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/mobilidade/</loc><priority>0.95</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/moveis-decoracao/</loc><priority>0.95</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/</loc><priority>0.9</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/ibj.html</loc><priority>0.85</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/anunciantes.html</loc><priority>0.8</priority></url>
+
   <url><loc>https://www.voznewsbrasil.com.br/gastronomia/materias/renata-la-porta.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/gastronomia/materias/sabores-brasilia-cerrado.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/gastronomia/materias/pastelaria-vicosa.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/gastronomia/materias/mane-mercado.html</loc><priority>0.8</priority></url>
+
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/styllus-lavie.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/concessionaria-modelo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/imobiliaria-modelo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/energia-solar.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/materiais-eletricos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/automoveis-locadoras.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/imoveis-construcao.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/saude-clinicas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/turismo-hoteis.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/restaurantes.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/pet-veterinaria.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/moda-beleza.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/oticas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/cursos-educacao.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/clientes/nautica-motos.html</loc><priority>0.6</priority></url>
+
   <url><loc>https://www.voznewsbrasil.com.br/portais/energia.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/portais/bancos.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/portais/aviacao.html</loc><priority>0.7</priority></url>
@@ -46,21 +69,21 @@
   <url><loc>https://www.voznewsbrasil.com.br/portais/condominios.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/portais/festas.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.voznewsbrasil.com.br/portais/motos.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/</loc><priority>0.9</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=amapa-nova-fronteira-energetica</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=terminais-estacoes-petroleo</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=linhas-transmissao</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=itaipu-forca-das-aguas</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-solar</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=refino-petroquimica</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-e-dados</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=data-centers-ia</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=edificios-eficientes</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=eficiencia-empresarial</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=infraestrutura-integrada</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=eletrobras-rede-nacional</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=transicao-energetica</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=operacao-manutencao</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-eolica</loc><priority>0.8</priority></url>
-  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=schneider-electric</loc><priority>0.8</priority></url>
+
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=amapa-nova-fronteira-energetica</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=terminais-estacoes-petroleo</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=linhas-transmissao</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=itaipu-forca-das-aguas</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-solar</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=refino-petroquimica</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-e-dados</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=data-centers-ia</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=edificios-eficientes</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=eficiencia-empresarial</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=infraestrutura-integrada</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=eletrobras-rede-nacional</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=transicao-energetica</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=operacao-manutencao</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=energia-eolica</loc><priority>0.7</priority></url>
+  <url><loc>https://www.voznewsbrasil.com.br/energia/materia.html?tema=schneider-electric</loc><priority>0.7</priority></url>
 </urlset>
