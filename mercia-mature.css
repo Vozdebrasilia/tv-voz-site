@@ -1,9 +1,17 @@
+#pescarias .visual-grid > a.visual-card:first-child{
+  background:rgba(255,255,255,.08) !important;
+  border:1px solid var(--line) !important;
+  box-shadow:0 20px 50px rgba(0,0,0,.24) !important;
+  overflow:hidden !important;
+}
+
 #pescarias .visual-grid > a.visual-card:first-child > img,
 #pescarias .mercia-comic-img{
   content:url('/mercia-crema-caricatura.jpg') !important;
+  display:block !important;
   width:100% !important;
-  aspect-ratio:16/9 !important;
-  height:auto !important;
+  height:330px !important;
+  aspect-ratio:auto !important;
   object-fit:cover !important;
   object-position:center 18% !important;
   filter:none !important;
@@ -11,5 +19,35 @@
   animation:none !important;
   background:#07172f !important;
 }
+
+#pescarias .visual-grid > a.visual-card:first-child .visual-body{
+  background:rgba(255,255,255,.08) !important;
+  color:#fff !important;
+  padding:20px !important;
+  filter:none !important;
+  transform:none !important;
+  animation:none !important;
+  box-shadow:none !important;
+}
+
+#pescarias .visual-grid > a.visual-card:first-child .visual-body h3{
+  color:#fff !important;
+}
+
+#pescarias .visual-grid > a.visual-card:first-child .visual-body p,
+#pescarias .visual-grid > a.visual-card:first-child .contact-meta{
+  color:var(--muted) !important;
+}
+
+#pescarias .visual-grid > a.visual-card:first-child:before,
+#pescarias .visual-grid > a.visual-card:first-child:after,
 #pescarias .mercia-comic-media:before,
-#pescarias .mercia-comic-media:after{display:none !important;content:none !important;}
+#pescarias .mercia-comic-media:after{
+  display:none !important;
+  content:none !important;
+}
+
+@media(max-width:760px){
+  #pescarias .visual-grid > a.visual-card:first-child > img,
+  #pescarias .mercia-comic-img{height:260px !important;}
+}
