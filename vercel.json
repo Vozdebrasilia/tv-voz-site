@@ -5,6 +5,8 @@
     { "source": "/tvvozdebrasiliafilmes/lunardi", "destination": "https://youtu.be/5zl9bu3rG-k", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/moveis-decoracao", "destination": "/moveis-decoracao/index.html" },
+    { "source": "/moveis-decoracao/", "destination": "/moveis-decoracao/index.html" },
     { "source": "/energia", "destination": "/energia/home.html" },
     { "source": "/energia/", "destination": "/energia/home.html" },
     { "source": "/portais/poder.html", "destination": "/api/poder" },
