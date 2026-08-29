@@ -27,28 +27,44 @@
       ? 'Proposta comercial — Voz News Móveis & Decoração'
       : 'Contato — Voz News Móveis & Decoração';
 
-    const enviarEmail=async(form,titulo,status)=>{
-      const payload={
-        _subject: assuntoDe(titulo),
-        _template: 'table',
-        _captcha: 'false',
-        origem: 'Voz News Móveis & Decoração',
-        mensagem: textoForm(form,titulo)
-      };
-      for(const [k,v] of new FormData(form).entries()) payload[k]=v;
-      try{
-        const r=await fetch(`https://formsubmit.co/ajax/${EMAIL}`,{
-          method:'POST',
-          headers:{'Content-Type':'application/json','Accept':'application/json'},
-          body:JSON.stringify(payload)
-        });
-        if(!r.ok) throw new Error('Falha no envio');
-        if(status) status.textContent='E-mail encaminhado para '+EMAIL+'.';
-        return true;
-      }catch(err){
-        if(status) status.textContent='Não foi possível confirmar o e-mail agora. Tente novamente.';
-        return false;
+    const garantirIframe=()=>{
+      let frame=document.getElementById('voznews-email-frame');
+      if(!frame){
+        frame=document.createElement('iframe');
+        frame.id='voznews-email-frame';
+        frame.name='voznews-email-frame';
+        frame.style.display='none';
+        document.body.appendChild(frame);
       }
+      return frame;
+    };
+
+    const enviarEmail=(form,titulo,status)=>{
+      garantirIframe();
+      const envio=document.createElement('form');
+      envio.method='POST';
+      envio.action=`https://formsubmit.co/${EMAIL}`;
+      envio.target='voznews-email-frame';
+      envio.style.display='none';
+
+      const add=(name,value)=>{
+        const i=document.createElement('input');
+        i.type='hidden'; i.name=name; i.value=value;
+        envio.appendChild(i);
+      };
+
+      add('_subject',assuntoDe(titulo));
+      add('_template','table');
+      add('_captcha','false');
+      add('_next','https://www.voznewsbrasil.com.br/moveis-decoracao');
+      add('origem','Voz News Móveis & Decoração');
+      add('mensagem',textoForm(form,titulo));
+      for(const [k,v] of new FormData(form).entries()) add(k,v);
+
+      document.body.appendChild(envio);
+      envio.submit();
+      setTimeout(()=>envio.remove(),1500);
+      if(status) status.textContent='Mensagem encaminhada para '+EMAIL+'.';
     };
 
     const abrirWhatsApp=(form,titulo)=>{
@@ -73,11 +89,11 @@
 
       submit.textContent='ENVIAR PELO WHATSAPP + E-MAIL';
       submit.onclick=null;
-      form.onsubmit=async(e)=>{
+      form.onsubmit=(e)=>{
         e.preventDefault();
-        status.textContent='Enviando e-mail e abrindo o WhatsApp...';
+        status.textContent='Enviando...';
         enviarEmail(form,titulo,status);
-        setTimeout(()=>abrirWhatsApp(form,titulo),120);
+        setTimeout(()=>abrirWhatsApp(form,titulo),250);
       };
 
       let email=form.querySelector('[data-email-direto]');
@@ -87,20 +103,15 @@
         email.dataset.emailDireto='1';
         email.className='btn light full';
         email.textContent='ENVIAR SOMENTE POR E-MAIL';
-        email.addEventListener('click',async()=>{
-          status.textContent='Enviando e-mail...';
-          await enviarEmail(form,titulo,status);
-        });
         submit.insertAdjacentElement('afterend',email);
-      }else{
-        email.removeAttribute('href');
-        email.textContent='ENVIAR SOMENTE POR E-MAIL';
-        email.onclick=async(e)=>{
-          e.preventDefault();
-          status.textContent='Enviando e-mail...';
-          await enviarEmail(form,titulo,status);
-        };
       }
+      email.removeAttribute('href');
+      email.textContent='ENVIAR SOMENTE POR E-MAIL';
+      email.onclick=(e)=>{
+        e.preventDefault();
+        status.textContent='Enviando e-mail...';
+        enviarEmail(form,titulo,status);
+      };
     };
 
     preparar('formContato','Fale Conosco — Voz News Móveis & Decoração');
