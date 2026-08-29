@@ -5,7 +5,21 @@
   load('/clientes-tematicos.js','voznews-clientes-tematicos');
   load('/mobilidade-home-link.js','voznews-mobilidade-home-link');
 
-  if(location.pathname.replace(/\/$/,'')!=='/moveis-decoracao') return;
+  const path=location.pathname.replace(/\/$/,'');
+
+  if(path===''){
+    const titulo=[...document.querySelectorAll('h3')].find(h=>(h.textContent||'').toUpperCase().includes('PAULO OCTÁVIO:'));
+    const card=titulo?.closest('.media-card');
+    if(card && !document.getElementById('banner-legado-40-anos')){
+      const banner=document.createElement('article');
+      banner.id='banner-legado-40-anos';
+      banner.className='media-card promo-card';
+      banner.innerHTML=`<div class="media-body" style="min-height:100%;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(18,52,91,.62));border-radius:inherit"><span class="media-source">40 ANOS • SUA HISTÓRIA NA VOZ</span><h3>ESPAÇO RESERVADO PARA SUA EMPRESA, SUA HISTÓRIA E SEU LEGADO</h3><p>Faça parte das mais de 1.000 participações que marcaram os 40 anos da Voz de Brasília. Sua empresa pode ocupar este espaço com entrevista, história, trajetória e posicionamento institucional.</p><div class="interview-links" style="margin-top:18px"><a href="#contato" data-interest="Participar dos 40 anos da Voz de Brasília">QUERO PARTICIPAR / ANUNCIE AGORA →</a></div></div>`;
+      card.insertAdjacentElement('afterend',banner);
+    }
+  }
+
+  if(path!=='/moveis-decoracao') return;
 
   const WHATSAPP='5561999812341';
   const EMAIL='paulofayad@gmail.com';
