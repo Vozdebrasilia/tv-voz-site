@@ -24,5 +24,32 @@
       if(!card.querySelector('.client-theme-badge')){const badge=document.createElement('span');badge.className='client-theme-badge';badge.innerHTML='<img src="/favicon-voznews.png" alt=""><span>VOZ NEWS</span>';card.appendChild(badge)}
     });
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
+
+  function installBannerArrow(attempt=0){
+    if(location.pathname.replace(/\/$/,'')!=='') return;
+    const banner=document.getElementById('banner-legado-40-anos');
+    if(!banner){if(attempt<20)setTimeout(()=>installBannerArrow(attempt+1),150);return;}
+    if(document.getElementById('seta-legado-40-anos')) return;
+    if(!document.getElementById('seta-legado-style')){
+      const style=document.createElement('style');
+      style.id='seta-legado-style';
+      style.textContent=`
+        #banner-legado-40-anos{position:relative!important;overflow:visible!important}
+        #seta-legado-40-anos{position:absolute;left:-118px;top:50%;transform:translateY(-50%);width:96px;height:96px;z-index:12;display:grid;place-items:center;pointer-events:none;filter:drop-shadow(0 0 16px rgba(255,215,0,.9))}
+        #seta-legado-40-anos span{display:block;font-size:82px;line-height:1;color:#ffd700;text-shadow:0 0 12px rgba(255,215,0,.95),0 0 28px rgba(255,143,0,.75);animation:setaLegadoGiroPisca 1.15s ease-in-out infinite alternate}
+        @keyframes setaLegadoGiroPisca{0%{opacity:.35;transform:translateX(-10px) rotate(-10deg) scale(.9)}45%{opacity:1;transform:translateX(6px) rotate(8deg) scale(1.12)}100%{opacity:.65;transform:translateX(0) rotate(-4deg) scale(1)}}
+        @media(max-width:980px){#seta-legado-40-anos{left:-82px;width:70px;height:70px}#seta-legado-40-anos span{font-size:60px}}
+        @media(max-width:760px){#seta-legado-40-anos{display:none!important}}
+        @media(prefers-reduced-motion:reduce){#seta-legado-40-anos span{animation:none!important;opacity:1!important}}
+      `;
+      document.head.appendChild(style);
+    }
+    const arrow=document.createElement('div');
+    arrow.id='seta-legado-40-anos';
+    arrow.setAttribute('aria-hidden','true');
+    arrow.innerHTML='<span>➜</span>';
+    banner.appendChild(arrow);
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{install();installBannerArrow()},{once:true});else{install();installBannerArrow()}
 })();
