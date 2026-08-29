@@ -16,6 +16,16 @@
     const WHATSAPP='5561999812341';
     const EMAIL='paulofayad@gmail.com';
 
+    document.querySelectorAll('a').forEach((a)=>{
+      const texto=(a.textContent||'').trim().toUpperCase();
+      const href=a.getAttribute('href')||'';
+      if(texto.includes('CONHEÇA A CORETO') || (href.includes('google.com') && href.toLowerCase().includes('coreto'))){
+        a.href='https://coreto.com.br/';
+        a.target='_blank';
+        a.rel='noopener';
+      }
+    });
+
     const textoForm=(form,titulo)=>{
       const d=new FormData(form);
       const linhas=[titulo,''];
