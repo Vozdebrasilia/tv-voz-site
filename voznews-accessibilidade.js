@@ -23,33 +23,83 @@
       return linhas.join('\n');
     };
 
+    const assuntoDe=(titulo)=>titulo.includes('Proposta')
+      ? 'Proposta comercial — Voz News Móveis & Decoração'
+      : 'Contato — Voz News Móveis & Decoração';
+
+    const enviarEmail=async(form,titulo,status)=>{
+      const payload={
+        _subject: assuntoDe(titulo),
+        _template: 'table',
+        _captcha: 'false',
+        origem: 'Voz News Móveis & Decoração',
+        mensagem: textoForm(form,titulo)
+      };
+      for(const [k,v] of new FormData(form).entries()) payload[k]=v;
+      try{
+        const r=await fetch(`https://formsubmit.co/ajax/${EMAIL}`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(payload)
+        });
+        if(!r.ok) throw new Error('Falha no envio');
+        if(status) status.textContent='E-mail encaminhado para '+EMAIL+'.';
+        return true;
+      }catch(err){
+        if(status) status.textContent='Não foi possível confirmar o e-mail agora. Tente novamente.';
+        return false;
+      }
+    };
+
+    const abrirWhatsApp=(form,titulo)=>{
+      const texto=textoForm(form,titulo);
+      location.href=`whatsapp://send?phone=${WHATSAPP}&text=${encodeURIComponent(texto)}`;
+    };
+
     const preparar=(formId,titulo)=>{
       const form=document.getElementById(formId);
       if(!form) return;
       const submit=form.querySelector('button[type="submit"]');
       if(!submit) return;
 
-      submit.textContent='ENVIAR PELO WHATSAPP';
+      let status=form.querySelector('[data-envio-status]');
+      if(!status){
+        status=document.createElement('div');
+        status.dataset.envioStatus='1';
+        status.className='full';
+        status.style.cssText='font-size:13px;font-weight:700;color:#49657d;margin-top:2px';
+        submit.insertAdjacentElement('beforebegin',status);
+      }
+
+      submit.textContent='ENVIAR PELO WHATSAPP + E-MAIL';
       submit.onclick=null;
-      form.onsubmit=(e)=>{
+      form.onsubmit=async(e)=>{
         e.preventDefault();
-        const texto=textoForm(form,titulo);
-        window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`,'_blank','noopener');
+        status.textContent='Enviando e-mail e abrindo o WhatsApp...';
+        enviarEmail(form,titulo,status);
+        setTimeout(()=>abrirWhatsApp(form,titulo),120);
       };
 
-      if(!form.querySelector('[data-email-direto]')){
-        const email=document.createElement('a');
-        email.href='#';
+      let email=form.querySelector('[data-email-direto]');
+      if(!email){
+        email=document.createElement('button');
+        email.type='button';
         email.dataset.emailDireto='1';
         email.className='btn light full';
-        email.textContent='ENVIAR POR E-MAIL';
-        email.addEventListener('click',(e)=>{
-          e.preventDefault();
-          const texto=textoForm(form,titulo);
-          const assunto=titulo.includes('Proposta')?'Proposta comercial — Voz News Móveis & Decoração':'Contato — Voz News Móveis & Decoração';
-          location.href=`mailto:${EMAIL}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(texto)}`;
+        email.textContent='ENVIAR SOMENTE POR E-MAIL';
+        email.addEventListener('click',async()=>{
+          status.textContent='Enviando e-mail...';
+          await enviarEmail(form,titulo,status);
         });
         submit.insertAdjacentElement('afterend',email);
+      }else{
+        email.removeAttribute('href');
+        email.textContent='ENVIAR SOMENTE POR E-MAIL';
+        email.onclick=async(e)=>{
+          e.preventDefault();
+          status.textContent='Enviando e-mail...';
+          await enviarEmail(form,titulo,status);
+        };
       }
     };
 
