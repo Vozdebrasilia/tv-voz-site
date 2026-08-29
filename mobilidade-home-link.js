@@ -125,6 +125,38 @@
     document.head.appendChild(style);
   }
 
-  const start=()=>{setTimeout(installMobilidadeLink,300);setTimeout(installSeal40Animation,120);setTimeout(installInspireCardAnimation,180);setTimeout(installEmpresaCallout,220)};
+  function installInternationalCallout(){
+    if(location.pathname.replace(/\/$/,'')!=='') return;
+    const section=document.getElementById('internacional');
+    const grid=section?.querySelector('.media-grid');
+    if(!grid||document.getElementById('internacional-indique-banner')) return;
+    const card=document.createElement('a');
+    card.id='internacional-indique-banner';
+    card.href='https://wa.me/5561999812341?text=Quero%20indicar%20um%20embaixador%20ou%20organismo%20internacional%20para%20a%20VOZ%20NEWS.';
+    card.target='_blank';
+    card.rel='noopener';
+    card.innerHTML=`<div class="intl-callout-orbit" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><div class="intl-callout-copy"><span>DIPLOMACIA • PARTICIPE</span><strong>INDIQUE UM<br>EMBAIXADOR OU<br>ORGANISMO INTERNACIONAL</strong><p>Ajude a VOZ NEWS a ampliar suas conexões com a diplomacia, cooperação e relações internacionais.</p><b>FAZER UMA INDICAÇÃO →</b></div>`;
+    grid.appendChild(card);
+    if(document.getElementById('internacional-indique-style')) return;
+    const style=document.createElement('style');
+    style.id='internacional-indique-style';
+    style.textContent=`
+      #internacional-indique-banner{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;border:2px solid rgba(75,205,255,.8);background:radial-gradient(circle at 50% 16%,rgba(255,215,0,.22),transparent 28%),linear-gradient(145deg,#041938 0%,#092e65 45%,#251055 100%);box-shadow:0 18px 42px rgba(0,0,0,.38),0 0 25px rgba(0,211,255,.24),0 0 45px rgba(255,215,0,.14),inset 0 0 42px rgba(63,174,255,.12);isolation:isolate;animation:intlCalloutFloat 3.2s ease-in-out infinite;transform-style:preserve-3d;perspective:900px}
+      #internacional-indique-banner::before{content:"";position:absolute;inset:-45%;z-index:0;background:conic-gradient(from 0deg,transparent 0 14%,rgba(0,221,255,.52) 20%,transparent 28% 46%,rgba(255,215,0,.5) 54%,transparent 62% 78%,rgba(155,88,255,.48) 85%,transparent 94%);animation:intlCalloutSpin 6s linear infinite;filter:blur(12px)}
+      #internacional-indique-banner::after{content:"";position:absolute;inset:11px;border-radius:18px;border:2px solid rgba(255,255,255,.34);box-shadow:0 0 12px rgba(89,215,255,.55),inset 0 0 18px rgba(255,215,0,.12);animation:intlCalloutBorder 1.25s ease-in-out infinite alternate;z-index:1}
+      .intl-callout-copy{position:relative;z-index:3;padding:30px 24px;text-align:center;animation:intlCalloutDepth 2.3s ease-in-out infinite alternate;transform-style:preserve-3d}
+      .intl-callout-copy>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,215,0,.14);border:1px solid rgba(255,215,0,.72);color:#ffe46d;font-size:10px;font-weight:900;letter-spacing:1.2px;box-shadow:0 0 15px rgba(255,215,0,.22);animation:intlCalloutBlink 1.1s steps(2,end) infinite}
+      .intl-callout-copy strong{display:block;margin:15px 0 12px;font-size:clamp(23px,2.6vw,38px);line-height:1;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.32),0 0 10px #fff,0 0 22px #00d9ff,0 0 34px #7a52ff;animation:intlCalloutTitle 1.55s ease-in-out infinite alternate}
+      .intl-callout-copy p{margin:0 auto 18px;max-width:310px;color:#eaf5ff!important;font-size:15px!important;line-height:1.45!important}
+      .intl-callout-copy b{display:inline-flex;position:relative;overflow:hidden;padding:11px 16px;border-radius:999px;background:linear-gradient(90deg,#ffe233,#ffb800);color:#10223b;font-size:12px;font-weight:1000;box-shadow:0 8px 22px rgba(255,190,0,.28),0 0 20px rgba(255,215,0,.24);animation:intlCalloutButton 1.05s ease-in-out infinite alternate}
+      .intl-callout-copy b::after{content:"";position:absolute;top:-25%;left:-45%;width:32%;height:150%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);animation:intlCalloutShine 2.15s ease-in-out infinite}
+      .intl-callout-orbit{position:absolute;inset:0;z-index:2;pointer-events:none}.intl-callout-orbit i{position:absolute;font-style:normal;color:#fff6a3;text-shadow:0 0 8px #fff,0 0 18px #00d9ff;animation:intlCalloutStar 1.9s ease-in-out infinite}.intl-callout-orbit i:nth-child(1){left:7%;top:9%;font-size:17px}.intl-callout-orbit i:nth-child(2){right:9%;top:13%;font-size:11px;animation-delay:.3s}.intl-callout-orbit i:nth-child(3){left:12%;bottom:13%;font-size:12px;animation-delay:.6s}.intl-callout-orbit i:nth-child(4){right:13%;bottom:11%;font-size:19px;animation-delay:.9s}.intl-callout-orbit i:nth-child(5){left:47%;top:6%;font-size:9px;animation-delay:1.2s}.intl-callout-orbit i:nth-child(6){right:42%;bottom:7%;font-size:10px;animation-delay:1.5s}
+      @keyframes intlCalloutFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes intlCalloutSpin{to{transform:rotate(360deg)}}@keyframes intlCalloutBorder{0%{opacity:.48;filter:hue-rotate(0deg)}100%{opacity:1;filter:hue-rotate(90deg)}}@keyframes intlCalloutDepth{0%{transform:translateZ(0) rotateY(-4deg)}100%{transform:translateZ(20px) rotateY(4deg)}}@keyframes intlCalloutBlink{0%,45%{opacity:1}46%,58%{opacity:.35}59%,100%{opacity:1}}@keyframes intlCalloutTitle{0%{transform:scale(.98)}100%{transform:scale(1.045)}}@keyframes intlCalloutButton{0%{transform:scale(1)}100%{transform:scale(1.055)}}@keyframes intlCalloutShine{0%,55%{left:-45%}78%,100%{left:125%}}@keyframes intlCalloutStar{0%,100%{opacity:.18;transform:scale(.7) rotate(0deg)}50%{opacity:1;transform:scale(1.35) rotate(45deg)}}
+      @media(max-width:760px){#internacional-indique-banner{min-height:300px}.intl-callout-copy strong{font-size:28px}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  const start=()=>{setTimeout(installMobilidadeLink,300);setTimeout(installSeal40Animation,120);setTimeout(installInspireCardAnimation,180);setTimeout(installEmpresaCallout,220);setTimeout(installInternationalCallout,240)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
