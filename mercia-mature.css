@@ -1,1 +1,15 @@
-.mercia-comic-img{filter:url(#merciaCaricature) saturate(1.45) contrast(1.3) brightness(.96) sepia(.24) grayscale(.1)!important;transform-origin:center;animation:merciaComicMoveMature 4.6s ease-in-out infinite alternate!important}.mercia-comic-media:before{background:linear-gradient(135deg,rgba(255,218,42,.12),transparent 38%,rgba(74,42,24,.22))!important;mix-blend-mode:multiply!important}.mercia-comic-media:after{background:repeating-linear-gradient(8deg,rgba(25,20,16,.10) 0 1px,transparent 1px 5px),radial-gradient(circle,rgba(18,18,18,.2) 0 1px,transparent 1.8px) 0 0/7px 7px!important;mix-blend-mode:multiply!important;opacity:.48!important}.mercia-comic-card{box-shadow:0 16px 38px rgba(0,0,0,.38),0 0 0 5px rgba(226,69,33,.12),0 0 26px rgba(255,212,38,.22)!important}@keyframes merciaComicMoveMature{from{transform:scale(1.04) rotate(-.7deg)}to{transform:scale(1.1) rotate(.7deg)}}
+#pescarias .visual-grid > a.visual-card:first-child > img,
+#pescarias .mercia-comic-img{
+  content:url('/mercia-crema-caricatura.jpg') !important;
+  width:100% !important;
+  aspect-ratio:16/9 !important;
+  height:auto !important;
+  object-fit:cover !important;
+  object-position:center 18% !important;
+  filter:none !important;
+  transform:none !important;
+  animation:none !important;
+  background:#07172f !important;
+}
+#pescarias .mercia-comic-media:before,
+#pescarias .mercia-comic-media:after{display:none !important;content:none !important;}
