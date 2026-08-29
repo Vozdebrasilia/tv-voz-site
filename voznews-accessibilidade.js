@@ -18,6 +18,31 @@
     const google=(q)=>`https://www.google.com/search?q=${encodeURIComponent(q)}`;
     const abrir=(url)=>window.open(url,'_blank','noopener');
 
+    if(!document.getElementById('casacor-abertura')){
+      const hero=document.querySelector('.hero');
+      if(hero){
+        const destaque=document.createElement('section');
+        destaque.id='casacor-abertura';
+        destaque.style.cssText='background:#fff;border-bottom:1px solid #dfe7ee;padding:26px 0';
+        destaque.innerHTML=`
+          <div class="container" style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:0;overflow:hidden;border-radius:30px;border:1px solid #dce5ec;box-shadow:0 18px 45px rgba(41,69,94,.14);background:#fff">
+            <a href="https://casacor.abril.com.br/pt-BR/mostras/brasilia" target="_blank" rel="noopener" style="display:block;min-height:420px;background:url('https://midias.correiobraziliense.com.br/_midias/jpg/2026/08/11/675x450/1_whatsapp-image-2026-08-11-at-12-45-00-67387900.jpeg') center/cover no-repeat" aria-label="Ambiente da CASACOR Brasília 2026"></a>
+            <div style="padding:38px;display:flex;flex-direction:column;justify-content:center">
+              <span style="display:inline-flex;width:max-content;padding:8px 12px;border-radius:999px;background:#fff6dc;color:#8a6111;border:1px solid #ecd59a;font-size:11px;font-weight:900;letter-spacing:1px">DESTAQUE NA ABERTURA</span>
+              <h2 style="font-size:clamp(34px,4.2vw,56px);line-height:1.02;color:#0d3152;margin:16px 0 10px">34ª CASACOR Brasília 2026</h2>
+              <p style="font-size:18px;line-height:1.5;color:#607488;margin:0 0 14px"><strong style="color:#0d3152">Tema: “Mente e Coração”</strong><br>Arquitetura, interiores, design e mobiliário em ambientes que mostram as principais tendências do morar.</p>
+              <p style="font-size:17px;line-height:1.5;color:#607488;margin:0 0 20px"><strong style="color:#0d3152">Quando:</strong> 12 de agosto a 12 de outubro de 2026<br><strong style="color:#0d3152">Onde:</strong> Casa do Candango — SGAS 603, Brasília</p>
+              <a href="https://casacor.abril.com.br/pt-BR/mostras/brasilia" target="_blank" rel="noopener" class="btn gold" style="width:max-content">ABRIR PÁGINA OFICIAL DA CASACOR ↗</a>
+              <small style="margin-top:12px;color:#7a8d9e">Foto: ambiente da CASACOR Brasília 2026 — Edgard Cesar/Divulgação.</small>
+            </div>
+          </div>`;
+        hero.insertAdjacentElement('beforebegin',destaque);
+        const mq=document.createElement('style');
+        mq.textContent='@media(max-width:800px){#casacor-abertura .container{grid-template-columns:1fr!important}#casacor-abertura .container>a{min-height:300px!important}}';
+        document.head.appendChild(mq);
+      }
+    }
+
     const linksOficiais={
       'CORETO':'https://coreto.com.br/',
       'BONTEMPO':'https://www.bontempo.com.br/site/lojas',
