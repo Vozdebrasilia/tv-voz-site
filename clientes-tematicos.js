@@ -28,27 +28,62 @@
   function installBannerArrow(attempt=0){
     if(location.pathname.replace(/\/$/,'')!=='') return;
     const banner=document.getElementById('banner-legado-40-anos');
-    if(!banner){if(attempt<20)setTimeout(()=>installBannerArrow(attempt+1),150);return;}
-    if(document.getElementById('seta-legado-40-anos')) return;
-    if(!document.getElementById('seta-legado-style')){
+    if(!banner){if(attempt<30)setTimeout(()=>installBannerArrow(attempt+1),120);return;}
+
+    const antiga=document.getElementById('seta-legado-40-anos');
+    if(antiga) antiga.remove();
+
+    if(!document.getElementById('seta-legado-neon-style')){
       const style=document.createElement('style');
-      style.id='seta-legado-style';
+      style.id='seta-legado-neon-style';
       style.textContent=`
-        #banner-legado-40-anos{position:relative!important;overflow:visible!important}
-        #seta-legado-40-anos{position:absolute;left:-118px;top:50%;transform:translateY(-50%);width:96px;height:96px;z-index:12;display:grid;place-items:center;pointer-events:none;filter:drop-shadow(0 0 16px rgba(255,215,0,.9))}
-        #seta-legado-40-anos span{display:block;font-size:82px;line-height:1;color:#ffd700;text-shadow:0 0 12px rgba(255,215,0,.95),0 0 28px rgba(255,143,0,.75);animation:setaLegadoGiroPisca 1.15s ease-in-out infinite alternate}
-        @keyframes setaLegadoGiroPisca{0%{opacity:.35;transform:translateX(-10px) rotate(-10deg) scale(.9)}45%{opacity:1;transform:translateX(6px) rotate(8deg) scale(1.12)}100%{opacity:.65;transform:translateX(0) rotate(-4deg) scale(1)}}
-        @media(max-width:980px){#seta-legado-40-anos{left:-82px;width:70px;height:70px}#seta-legado-40-anos span{font-size:60px}}
-        @media(max-width:760px){#seta-legado-40-anos{display:none!important}}
-        @media(prefers-reduced-motion:reduce){#seta-legado-40-anos span{animation:none!important;opacity:1!important}}
+        #seta-legado-40-anos{
+          min-height:330px!important;position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;
+          overflow:visible!important;background:radial-gradient(circle at 50% 50%,rgba(23,0,43,.78),rgba(0,0,0,.96) 72%)!important;
+          border:2px solid rgba(255,255,255,.12)!important;border-radius:28px!important;perspective:900px!important;isolation:isolate!important
+        }
+        #seta-legado-40-anos:before{
+          content:"";position:absolute;inset:12px;border-radius:22px;border:4px solid #ff2fd1;
+          box-shadow:0 0 7px #fff,0 0 16px #ff2fd1,0 0 34px #ff2fd1,0 0 58px #7b2cff,inset 0 0 24px rgba(0,238,255,.32);
+          animation:vegasFrame .72s steps(2,end) infinite
+        }
+        #seta-legado-40-anos:after{
+          content:"";position:absolute;inset:22px;border-radius:18px;border:2px dashed #00f7ff;
+          box-shadow:0 0 12px #00f7ff,inset 0 0 15px #00f7ff;animation:vegasDash 1.1s linear infinite
+        }
+        .vegas-neon{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transform-style:preserve-3d;animation:vegasTilt 1.55s ease-in-out infinite alternate}
+        .vegas-neon .vegas-kicker{font:1000 13px/1 Arial,sans-serif;letter-spacing:2px;color:#fff;text-shadow:0 0 5px #fff,0 0 10px #00eaff,0 0 20px #00eaff,0 0 38px #0077ff;animation:vegasBlink .62s steps(2,end) infinite}
+        .vegas-arrow{
+          display:block;font-size:136px;line-height:.8;font-weight:1000;color:#fff200;-webkit-text-stroke:3px #fff;
+          text-shadow:8px 10px 0 #6514a8,12px 15px 0 rgba(0,0,0,.72),0 0 7px #fff,0 0 16px #fff200,0 0 34px #ff8a00,0 0 58px #ff2b9b,0 0 82px #00f7ff;
+          filter:drop-shadow(0 0 18px #ff2bd6);transform-origin:center;animation:vegasArrow .82s cubic-bezier(.2,.8,.2,1) infinite
+        }
+        .vegas-neon strong{
+          display:block;padding:10px 18px;border-radius:999px;font:1000 16px/1 Arial,sans-serif;letter-spacing:1.5px;color:#fff;
+          background:#2b003c;border:2px solid #ffea00;text-shadow:0 0 7px #fff,0 0 15px #ff2bd6,0 0 26px #00eaff;
+          box-shadow:0 0 8px #fff200,0 0 20px #ff2bd6,0 0 38px #00eaff,inset 0 0 16px rgba(255,43,214,.55);animation:vegasLabel .9s ease-in-out infinite alternate
+        }
+        .vegas-bulbs{position:absolute;inset:3px;z-index:2;pointer-events:none}
+        .vegas-bulbs i{position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 5px #fff,0 0 13px currentColor,0 0 24px currentColor;animation:vegasBulb .75s steps(2,end) infinite}
+        .vegas-bulbs i:nth-child(1){left:7%;top:8%;color:#ff2bd6}.vegas-bulbs i:nth-child(2){left:28%;top:5%;color:#00f7ff;animation-delay:.12s}.vegas-bulbs i:nth-child(3){left:50%;top:4%;color:#fff200;animation-delay:.24s}.vegas-bulbs i:nth-child(4){right:28%;top:5%;color:#ff5a00;animation-delay:.36s}.vegas-bulbs i:nth-child(5){right:7%;top:8%;color:#7b2cff;animation-delay:.48s}.vegas-bulbs i:nth-child(6){right:4%;top:44%;color:#00f7ff;animation-delay:.18s}.vegas-bulbs i:nth-child(7){right:7%;bottom:8%;color:#ff2bd6;animation-delay:.3s}.vegas-bulbs i:nth-child(8){right:32%;bottom:5%;color:#fff200;animation-delay:.42s}.vegas-bulbs i:nth-child(9){left:32%;bottom:5%;color:#00f7ff;animation-delay:.54s}.vegas-bulbs i:nth-child(10){left:7%;bottom:8%;color:#ff5a00;animation-delay:.66s}.vegas-bulbs i:nth-child(11){left:4%;top:44%;color:#7b2cff;animation-delay:.27s}.vegas-bulbs i:nth-child(12){left:50%;bottom:4%;color:#ff2bd6;animation-delay:.39s}
+        @keyframes vegasFrame{0%,100%{border-color:#ff2fd1;filter:hue-rotate(0deg);opacity:1}50%{border-color:#00f7ff;filter:hue-rotate(120deg);opacity:.72}}
+        @keyframes vegasDash{to{transform:rotate(360deg);filter:hue-rotate(360deg)}}
+        @keyframes vegasBlink{0%,42%{opacity:1}43%,58%{opacity:.18}59%,100%{opacity:1}}
+        @keyframes vegasTilt{0%{transform:rotateY(-18deg) rotateX(5deg) translateZ(4px)}100%{transform:rotateY(18deg) rotateX(-4deg) translateZ(18px)}}
+        @keyframes vegasArrow{0%{transform:translateX(18px) rotateZ(0deg) rotateY(-10deg) scale(.92);filter:hue-rotate(0deg) drop-shadow(0 0 18px #ff2bd6)}45%{transform:translateX(-13px) rotateZ(-8deg) rotateY(16deg) scale(1.12);filter:hue-rotate(110deg) drop-shadow(0 0 30px #00f7ff)}70%{transform:translateX(-3px) rotateZ(5deg) rotateY(-12deg) scale(1.04);filter:hue-rotate(220deg) drop-shadow(0 0 26px #fff200)}100%{transform:translateX(18px) rotateZ(0deg) rotateY(-10deg) scale(.92);filter:hue-rotate(360deg) drop-shadow(0 0 18px #ff2bd6)}}
+        @keyframes vegasLabel{0%{transform:scale(.96);filter:hue-rotate(0deg)}100%{transform:scale(1.06);filter:hue-rotate(140deg)}}
+        @keyframes vegasBulb{0%,100%{opacity:1;transform:scale(1.35)}50%{opacity:.15;transform:scale(.7)}}
+        @media(max-width:980px){#seta-legado-40-anos{min-height:240px!important}.vegas-arrow{font-size:96px}.vegas-neon strong{font-size:12px}.vegas-neon .vegas-kicker{font-size:10px}}
+        @media(max-width:760px){#seta-legado-40-anos{min-height:210px!important}.vegas-arrow{font-size:82px}}
       `;
       document.head.appendChild(style);
     }
+
     const arrow=document.createElement('div');
     arrow.id='seta-legado-40-anos';
-    arrow.setAttribute('aria-hidden','true');
-    arrow.innerHTML='<span>➜</span>';
-    banner.appendChild(arrow);
+    arrow.setAttribute('aria-label','Letreiro de neon apontando para o espaço reservado para empresas');
+    arrow.innerHTML='<div class="vegas-bulbs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="vegas-neon"><span class="vegas-kicker">★ DESTAQUE ★</span><span class="vegas-arrow">⬅</span><strong>SEU ESPAÇO AQUI</strong></div>';
+    banner.insertAdjacentElement('afterend',arrow);
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{install();installBannerArrow()},{once:true});else{install();installBannerArrow()}
