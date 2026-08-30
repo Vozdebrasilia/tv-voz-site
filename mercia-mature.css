@@ -83,20 +83,19 @@
 }
 
 .eco-stats::after{
-  content:"" !important;
+  content:url('/approved-seals-sheet.jpg') !important;
   display:block !important;
   grid-column:1 / -1 !important;
   width:100% !important;
-  aspect-ratio:1 / 1 !important;
-  margin:20px 0 4px !important;
-  border-radius:0 !important;
-  background-color:transparent !important;
-  background-image:url('https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/1cc8534eab68dc60a55cee1c0d2a42ecfd1c74ad/approved-seals-sheet.svg') !important;
-  background-position:center !important;
-  background-size:contain !important;
-  background-repeat:no-repeat !important;
+  height:auto !important;
+  max-width:100% !important;
+  margin:18px auto 4px !important;
+  padding:0 !important;
   border:0 !important;
+  border-radius:0 !important;
+  background:none !important;
   box-shadow:none !important;
+  object-fit:contain !important;
   transform-origin:center !important;
   animation:vozSelosAprovados 5.2s ease-in-out infinite !important;
 }
@@ -123,7 +122,6 @@
   }
   .eco-stats::after{
     margin-top:14px !important;
-    border-radius:0 !important;
   }
 }
 
