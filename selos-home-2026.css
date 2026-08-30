@@ -1,19 +1,59 @@
-/* Selos e premiações logo abaixo dos indicadores */
-.eco-stats{position:relative!important;overflow:visible!important;padding-bottom:520px!important}
+/* Selos e premiações aprovados — somente os nove itens confirmados */
+.eco-stats{
+  position:relative!important;
+  overflow:visible!important;
+  padding-bottom:560px!important;
+}
 .eco-stat{overflow:visible!important}
 .eco-stat strong,.eco-stat span{position:relative!important}
-.eco-stat strong::after,.eco-stat span::before,.eco-stat span::after{position:absolute!important;display:flex!important;align-items:center!important;justify-content:center!important;width:158px!important;height:158px!important;left:50%!important;transform:translateX(-50%)!important;border-radius:24px!important;background-color:rgba(255,255,255,.97)!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;border:1px solid rgba(212,175,55,.58)!important;box-shadow:0 14px 30px rgba(0,0,0,.28),0 0 18px rgba(212,175,55,.18)!important;color:#0d2745!important;text-align:center!important;font:900 15px/1.08 Arial,sans-serif!important;letter-spacing:.2px!important;padding:14px!important;pointer-events:none!important;z-index:7!important;animation:vozSeloHome 4.8s ease-in-out infinite!important}
-.eco-stat:nth-child(1) strong::after{content:""!important;top:88px!important;background-image:url("data:image/webp;base64,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")!important;background-size:contain!important;background-color:#fff9d8!important}
-.eco-stat:nth-child(2) strong::after{content:""!important;top:88px!important;background-image:url('/capa-anuario.jpg')!important;background-size:cover!important}
-.eco-stat:nth-child(3) strong::after{content:""!important;top:88px!important;background-image:url('/logo-ibj.jpg')!important;background-size:contain!important}
-.eco-stat:nth-child(4) strong::after{content:"TV VOZ DE BRASÍLIA\A FILMES"!important;white-space:pre-line!important;top:88px!important;background:radial-gradient(circle at 50% 35%,#f7d970 0 12%,#0b6b33 13% 46%,#05251a 47% 100%)!important;color:#ffd761!important;text-shadow:0 2px 3px #000!important;border-radius:50%!important}
-.eco-stat:nth-child(1) span::before{content:""!important;top:255px!important;background-image:url('/logo-premio.jpg')!important;background-size:contain!important;animation-delay:-.8s!important}
-.eco-stat:nth-child(2) span::before{content:"SELO\A VOZ GLOBAL"!important;white-space:pre-line!important;top:255px!important;border-radius:50%!important;background:radial-gradient(circle,#163c2c 0 55%,#d4af37 56% 62%,#0a261b 63% 100%)!important;color:#ffe39a!important;animation-delay:-1.4s!important}
-.eco-stat:nth-child(3) span::before{content:"EXCELÊNCIA\A EDITORIAL"!important;white-space:pre-line!important;top:255px!important;background:linear-gradient(145deg,#fff9df,#f4e0a4)!important;color:#12345b!important;animation-delay:-2s!important}
-.eco-stat:nth-child(4) span::before{content:"IMPACTO\A SOCIAL"!important;white-space:pre-line!important;top:255px!important;border-radius:50%!important;background:radial-gradient(circle,#f6efd7 0 44%,#176236 45% 58%,#d4af37 59% 66%,#0c2d1f 67% 100%)!important;color:#143b28!important;animation-delay:-2.6s!important}
-.eco-stat:nth-child(2) span::after{content:"PARCEIRO\A ESTRATÉGICO"!important;white-space:pre-line!important;top:422px!important;border-radius:50%!important;background:radial-gradient(circle,#f8e5a8 0 40%,#0e5a31 41% 58%,#d4af37 59% 66%,#08291c 67% 100%)!important;color:#163f28!important;animation-delay:-3.2s!important}
-.eco-stat:nth-child(1) span::after,.eco-stat:nth-child(3) span::after,.eco-stat:nth-child(4) span::after{display:none!important}
-@keyframes vozSeloHome{0%,100%{margin-top:0;filter:drop-shadow(0 12px 22px rgba(0,0,0,.26)) drop-shadow(0 0 8px rgba(212,175,55,.18))}50%{margin-top:-7px;filter:drop-shadow(0 16px 26px rgba(0,0,0,.32)) drop-shadow(0 0 16px rgba(255,215,0,.38))}}
-@media(max-width:820px){.eco-stats{padding-bottom:670px!important}.eco-stat strong::after,.eco-stat span::before,.eco-stat span::after{width:138px!important;height:138px!important}.eco-stat:nth-child(1) span::before,.eco-stat:nth-child(2) span::before,.eco-stat:nth-child(3) span::before,.eco-stat:nth-child(4) span::before{top:235px!important}.eco-stat:nth-child(2) span::after{top:382px!important}}
-@media(max-width:560px){.eco-stats{padding-bottom:0!important}.eco-stat{margin-bottom:175px!important}.eco-stat strong::after{top:88px!important;width:145px!important;height:145px!important}.eco-stat span::before,.eco-stat span::after{display:none!important}}
-@media(prefers-reduced-motion:reduce){.eco-stat strong::after,.eco-stat span::before,.eco-stat span::after{animation:none!important}}
+.eco-stat strong::after,.eco-stat span::before,.eco-stat span::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  width:168px!important;
+  height:168px!important;
+  transform:translateX(-50%)!important;
+  background-image:url('/approved-seals-sheet.svg')!important;
+  background-repeat:no-repeat!important;
+  background-color:#fffdf6!important;
+  border:1px solid rgba(212,175,55,.55)!important;
+  border-radius:22px!important;
+  box-shadow:0 16px 34px rgba(0,0,0,.28),0 0 18px rgba(212,175,55,.16)!important;
+  pointer-events:none!important;
+  z-index:8!important;
+  animation:vozSeloAprovado 5.2s ease-in-out infinite!important;
+}
+.eco-stat:nth-child(1) strong::after{top:92px!important;background-size:475% 380%!important;background-position:2.22% 6.71%!important;animation-delay:0s!important}
+.eco-stat:nth-child(2) strong::after{top:92px!important;background-size:400.64% 380%!important;background-position:31.03% 6.71%!important;animation-delay:-1.1s!important}
+.eco-stat:nth-child(3) strong::after{top:92px!important;background-size:422.22% 380%!important;background-position:64.26% 6.71%!important;animation-delay:-2.2s!important}
+.eco-stat:nth-child(4) strong::after{top:92px!important;background-size:395.58% 403.22%!important;background-position:97.65% 7.85%!important;animation-delay:-3.3s!important}
+
+.eco-stat:nth-child(1) span::before{top:278px!important;background-size:585.98% 464.44%!important;background-position:3.27% 56.40%!important;animation-delay:-.7s!important}
+.eco-stat:nth-child(2) span::before{top:278px!important;background-size:575.23% 482.31%!important;background-position:73.17% 56.34%!important;animation-delay:-1.8s!important}
+.eco-stat:nth-child(3) span::before{top:278px!important;background-size:564.86% 469.66%!important;background-position:96.32% 56.53%!important;animation-delay:-2.9s!important}
+.eco-stat:nth-child(4) span::before{display:none!important}
+
+.eco-stat:nth-child(2) span::after{top:464px!important;background-size:552.42% 471.43%!important;background-position:34.76% 91.30%!important;animation-delay:-1.4s!important}
+.eco-stat:nth-child(3) span::after{top:464px!important;background-size:535.90% 467.91%!important;background-position:60.49% 91.28%!important;animation-delay:-2.5s!important}
+.eco-stat:nth-child(1) span::after,.eco-stat:nth-child(4) span::after{display:none!important}
+
+@keyframes vozSeloAprovado{
+  0%,100%{margin-top:0;filter:drop-shadow(0 10px 16px rgba(0,0,0,.20)) drop-shadow(0 0 6px rgba(212,175,55,.14))}
+  50%{margin-top:-7px;filter:drop-shadow(0 15px 22px rgba(0,0,0,.28)) drop-shadow(0 0 15px rgba(255,215,0,.30))}
+}
+@media(max-width:820px){
+  .eco-stats{padding-bottom:520px!important}
+  .eco-stat strong::after,.eco-stat span::before,.eco-stat span::after{width:145px!important;height:145px!important}
+  .eco-stat strong::after{top:88px!important}
+  .eco-stat:nth-child(1) span::before,.eco-stat:nth-child(2) span::before,.eco-stat:nth-child(3) span::before{top:250px!important}
+  .eco-stat:nth-child(2) span::after,.eco-stat:nth-child(3) span::after{top:412px!important}
+}
+@media(max-width:560px){
+  .eco-stats{padding-bottom:0!important}
+  .eco-stat{margin-bottom:190px!important}
+  .eco-stat strong::after{top:92px!important;width:155px!important;height:155px!important}
+  .eco-stat span::before,.eco-stat span::after{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .eco-stat strong::after,.eco-stat span::before,.eco-stat span::after{animation:none!important}
+}
