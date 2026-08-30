@@ -1,6 +1,4 @@
 @import url('/brand-refresh-2026.css');
-@import url('/credibilidade-bright-2026.css');
-@import url('/selos-home-2026.css');
 
 #pescarias .visual-grid > a.visual-card:first-child{
   background:rgba(255,255,255,.08) !important;
@@ -60,6 +58,28 @@
   font-size:clamp(28px,3vw,42px);
   line-height:1;
   font-weight:900;
+}
+
+/* Remoção definitiva de prêmios, troféus e selos */
+.hero .seal-box,
+#credibilidade{
+  display:none !important;
+}
+.eco-stats{
+  padding-bottom:0 !important;
+  overflow:visible !important;
+}
+.eco-stat{
+  margin-bottom:0 !important;
+  overflow:hidden !important;
+}
+.eco-stat strong::after,
+.eco-stat span::before,
+.eco-stat span::after{
+  content:none !important;
+  display:none !important;
+  background-image:none !important;
+  animation:none !important;
 }
 
 @media(max-width:760px){
