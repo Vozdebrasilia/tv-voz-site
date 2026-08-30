@@ -73,3 +73,14 @@
 #voznews-awards-grid .voznews-award-card:nth-child(9) .voznews-award-img{background-position:-307px -187px !important}
 #voznews-awards-grid .voznews-award-card:nth-child(10) .voznews-award-img{background-position:-100px -301px !important}
 #voznews-awards-grid .voznews-award-card:nth-child(11) .voznews-award-img{background-position:-186px -301px !important}
+
+/* Exibe as imagens individuais aprovadas dos cards */
+#voznews-awards-grid .voznews-award-img{
+  background-image:none !important;
+  background-position:center !important;
+  background-size:auto !important;
+}
+#voznews-awards-grid .voznews-award-img img{
+  opacity:1 !important;
+  visibility:visible !important;
+}
