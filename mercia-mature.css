@@ -53,3 +53,23 @@
   #voznews-awards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.voznews-award-card{min-height:165px}.voznews-award-dialog{grid-template-columns:1fr;text-align:center}.voznews-award-modal-img{width:170px;height:170px;margin:auto}.voznews-award-dialog p{text-align:left}
 }
 @media(prefers-reduced-motion:reduce){.voznews-award-card{transition:none !important}}
+
+/* Novas logos aprovadas — substituição visual nos quadradinhos */
+#voznews-awards-grid .voznews-award-img{
+  background-image:url('/assets/awards/approved-logos-2026.jpg') !important;
+  background-repeat:no-repeat !important;
+  background-size:420px 420px !important;
+  background-color:#fbf7ed !important;
+}
+#voznews-awards-grid .voznews-award-img img{opacity:0 !important;visibility:hidden !important}
+#voznews-awards-grid .voznews-award-card:nth-child(1) .voznews-award-img{background-position:8px -28px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(2) .voznews-award-img{background-position:-89px -33px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(3) .voznews-award-img{background-position:-191px -31px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(4) .voznews-award-img{background-position:-297px -28px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(5) .voznews-award-img{background-position:8px -187px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(6) .voznews-award-img{background-position:-67px -187px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(7) .voznews-award-img{background-position:-144px -187px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(8) .voznews-award-img{background-position:-224px -187px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(9) .voznews-award-img{background-position:-307px -187px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(10) .voznews-award-img{background-position:-100px -301px !important}
+#voznews-awards-grid .voznews-award-card:nth-child(11) .voznews-award-img{background-position:-186px -301px !important}
