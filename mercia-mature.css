@@ -60,7 +60,7 @@
   font-weight:900;
 }
 
-/* Remoção definitiva de prêmios, troféus e selos */
+/* Mantém ocultos os prêmios antigos e mostra somente a folha aprovada abaixo dos números */
 .hero .seal-box,
 #credibilidade{
   display:none !important;
@@ -82,6 +82,36 @@
   animation:none !important;
 }
 
+.eco-stats::after{
+  content:"" !important;
+  display:block !important;
+  grid-column:1 / -1 !important;
+  width:100% !important;
+  aspect-ratio:1 / 1 !important;
+  margin:20px 0 4px !important;
+  border-radius:24px !important;
+  background-color:#fffaf0 !important;
+  background-image:url('https://raw.githubusercontent.com/Vozdebrasilia/tv-voz-site/1cc8534eab68dc60a55cee1c0d2a42ecfd1c74ad/approved-seals-sheet.svg') !important;
+  background-position:center !important;
+  background-size:contain !important;
+  background-repeat:no-repeat !important;
+  border:1px solid rgba(212,175,55,.46) !important;
+  box-shadow:0 18px 42px rgba(0,0,0,.22),0 0 24px rgba(212,175,55,.15) !important;
+  transform-origin:center !important;
+  animation:vozSelosAprovados 5.2s ease-in-out infinite !important;
+}
+
+@keyframes vozSelosAprovados{
+  0%,100%{
+    transform:translateY(0) scale(1);
+    filter:brightness(1) drop-shadow(0 8px 16px rgba(0,0,0,.14)) drop-shadow(0 0 5px rgba(212,175,55,.12));
+  }
+  50%{
+    transform:translateY(-5px) scale(1.006);
+    filter:brightness(1.04) drop-shadow(0 12px 20px rgba(0,0,0,.18)) drop-shadow(0 0 14px rgba(255,215,0,.28));
+  }
+}
+
 @media(max-width:760px){
   #pescarias .visual-grid > a.visual-card:first-child > img,
   #pescarias .mercia-comic-img{
@@ -91,4 +121,12 @@
     object-fit:cover !important;
     object-position:center 24% !important;
   }
+  .eco-stats::after{
+    margin-top:14px !important;
+    border-radius:16px !important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .eco-stats::after{animation:none !important;}
 }
