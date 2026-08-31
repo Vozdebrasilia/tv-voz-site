@@ -1,4 +1,4 @@
-name: One-time first logo update
+name: Fix logos direct
 
 on:
   push:
@@ -6,12 +6,13 @@ on:
       - main
     paths:
       - .github/workflows/fix-logos-direct.yml
+  workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  update:
+  fix:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,24 +21,18 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Replace only first logo card src
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('index.html')
-          html = p.read_text(encoding='utf-8')
-          old = '<article class="logo-card"><img alt="Selo 40 anos" loading="lazy" src="https://voz-central-ai.lovable.app/__l5e/assets-v1/92b171bb-b9d6-4d6b-bb14-1b435045a89f/logo-voz-de-brasilia-40anos.png?v=2"/>'
-          new = '<article class="logo-card"><img alt="Selo 40 anos" loading="lazy" src="https://voz-central-ai.lovable.app/__l5e/assets-v1/0647affc-2a0a-41b9-a99c-62b7694c2c8f/logo-voz-de-brasilia-40anos-oficial.png"/>'
-          if html.count(old) != 1:
-              raise SystemExit(f'Esperava exatamente 1 primeiro card; encontrei {html.count(old)}')
-          p.write_text(html.replace(old, new, 1), encoding='utf-8')
-          PY
+      - name: Apply direct logo fix
+        run: python3 .github/scripts/fix-logos.py
 
-      - name: Commit only index.html
+      - name: Commit changes
         run: |
           git config user.name "Vozdebrasilia"
           git config user.email "paulofayad@gmail.com"
-          git add index.html
-          git diff --cached --check
-          git commit -m "fix: usar logo oficial de 40 anos no primeiro card"
+          git add index.html voznews-accessibilidade.js
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "fix: substituir logos diretamente no index em alta resolução"
           git push origin main
+
+# rerun
