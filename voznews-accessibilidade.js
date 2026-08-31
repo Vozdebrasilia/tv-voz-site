@@ -5,19 +5,6 @@
   const path=location.pathname.replace(/\/$/,'');
   if(path!=='') return;
 
-  document.querySelectorAll('img[src*="logo-voznews-oficial"]').forEach(img=>{
-    const src='https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/logo-voz-de-brasilia-40anos.png';
-    img.src=src;
-    img.setAttribute('src',src);
-  });
-
-  if(!document.getElementById('voznews-credibilidade-logo-size')){
-    const style=document.createElement('style');
-    style.id='voznews-credibilidade-logo-size';
-    style.textContent='#credibilidade img{width:190px!important;height:auto!important;max-width:190px!important;}#credibilidade .logo-card img{width:190px!important;}';
-    document.head.appendChild(style);
-  }
-
   const stats=document.querySelector('.eco-stats');
   if(!stats || document.getElementById('voznews-awards-grid')) return;
 
