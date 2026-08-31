@@ -6,20 +6,36 @@
   if(path!=='') return;
 
   const credibilityLogoMap=new Map([
-    ['./selo-40anos-transparente.png','/assets/awards/card-01.webp'],
+    ['./selo-40anos-transparente.png','https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/logo-voz-de-brasilia-40anos.png'],
     ['./capa-anuario.jpg','/assets/awards/card-02.webp'],
     ['./logo-ibj.jpg','/assets/awards/card-03.webp'],
     ['./logo-trofeu.jpg','/assets/awards/card-05.webp'],
-    ['./assets-v23/selo-internacional-1.svg','/assets/awards/card-08.webp'],
-    ['./assets-v23/selo-internacional-2.svg','/assets/awards/card-09.webp'],
-    ['./assets-v23/selo-internacional-3.svg','/assets/awards/card-10.webp'],
-    ['./assets-v23/selo-internacional-4.svg','/assets/awards/card-11.webp']
+    ['./assets-v23/selo-internacional-1.svg','https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/selo-voz-global.png'],
+    ['./assets-v23/selo-internacional-2.svg','https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/selo-excelencia-editorial.png'],
+    ['./assets-v23/selo-internacional-3.svg','https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/selo-impacto-social.png'],
+    ['./assets-v23/selo-internacional-4.svg','https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/selo-parceiro-estrategico.png']
   ]);
   document.querySelectorAll('#credibilidade img').forEach(img=>{
     const current=img.getAttribute('src');
     const replacement=credibilityLogoMap.get(current);
-    if(replacement) img.setAttribute('src',replacement);
+    if(replacement){
+      img.src=replacement;
+      img.setAttribute('src',replacement);
+    }
   });
+
+  document.querySelectorAll('img[src*="logo-voznews-oficial"]').forEach(img=>{
+    const src='https://cdn.lovable.dev/proj-f505fab0-ea9d-472a-a153-75d3d91d7b8b/logos-voznews/logo-voz-de-brasilia-40anos.png';
+    img.src=src;
+    img.setAttribute('src',src);
+  });
+
+  if(!document.getElementById('voznews-credibilidade-logo-size')){
+    const style=document.createElement('style');
+    style.id='voznews-credibilidade-logo-size';
+    style.textContent='#credibilidade img{width:190px!important;height:auto!important;max-width:190px!important;}#credibilidade .logo-card img{width:190px!important;}';
+    document.head.appendChild(style);
+  }
 
   const stats=document.querySelector('.eco-stats');
   if(!stats || document.getElementById('voznews-awards-grid')) return;
