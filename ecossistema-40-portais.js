@@ -66,6 +66,10 @@
     const section=document.getElementById('ecossistema');
     if(!section)return;
 
+    const followerStat=[...document.querySelectorAll('.eco-stat')].find(el=>/seguidores no Instagram/i.test(el.textContent||''));
+    const followerCount=followerStat?.querySelector('.count-up');
+    if(followerCount){followerCount.dataset.target='240';followerCount.textContent='240 mil+';}
+
     if(!document.getElementById('eco-strong-photo-style')){
       const st=document.createElement('style');st.id='eco-strong-photo-style';st.textContent=`
         #ecossistema .eco-portal{position:relative!important;overflow:hidden!important;background:linear-gradient(160deg,#07182c,#10263e)!important;border:1px solid rgba(212,175,55,.34)!important}
