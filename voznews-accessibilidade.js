@@ -5,6 +5,22 @@
   const path=location.pathname.replace(/\/$/,'');
   if(path!=='') return;
 
+  const credibilityLogoMap=new Map([
+    ['./selo-40anos-transparente.png','/assets/awards/card-01.webp'],
+    ['./capa-anuario.jpg','/assets/awards/card-02.webp'],
+    ['./logo-ibj.jpg','/assets/awards/card-03.webp'],
+    ['./logo-trofeu.jpg','/assets/awards/card-05.webp'],
+    ['./assets-v23/selo-internacional-1.svg','/assets/awards/card-08.webp'],
+    ['./assets-v23/selo-internacional-2.svg','/assets/awards/card-09.webp'],
+    ['./assets-v23/selo-internacional-3.svg','/assets/awards/card-10.webp'],
+    ['./assets-v23/selo-internacional-4.svg','/assets/awards/card-11.webp']
+  ]);
+  document.querySelectorAll('#credibilidade img').forEach(img=>{
+    const current=img.getAttribute('src');
+    const replacement=credibilityLogoMap.get(current);
+    if(replacement) img.setAttribute('src',replacement);
+  });
+
   const stats=document.querySelector('.eco-stats');
   if(!stats || document.getElementById('voznews-awards-grid')) return;
 
