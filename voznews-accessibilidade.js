@@ -1,3 +1,4 @@
+(()=>{if(!document.getElementById('voznews-ecossistema-40-portais')){const s=document.createElement('script');s.id='voznews-ecossistema-40-portais';s.src='/ecossistema-40-portais.js';s.async=false;document.head.appendChild(s)}})();
 (()=>{const path=location.pathname.replace(/\/$/,'');if(path!=='')return;
 const stats=document.querySelector('.eco-stats');if(!stats)return;
 const old=document.getElementById('voznews-awards-grid');if(old)old.remove();
