@@ -1,10 +1,14 @@
 const fs = require('fs');
 const html = fs.readFileSync('mobilidade/index.html','utf8');
 const must=(c,m)=>{if(!c) throw new Error(m)};
-['230K+','200M+','1.000+','10.000+','40 anos'].forEach(v=>must(html.includes(v),`métrica ausente: ${v}`));
+['240K+','200M+','1.000+','10.000+','40 anos'].forEach(v=>must(html.includes(v),`métrica ausente: ${v}`));
 ['logo-voznews-oficial.png','selo-40anos-transparente.png','logo-ibj.jpg','capa-anuario.jpg','logo-trofeu.jpg'].forEach(v=>must(html.includes(v),`logo ausente: ${v}`));
 ['automoveis','motos','bikes','eletricos','locadoras','concessionarias','nautica','aviacao','tecnologia','lancamentos'].forEach(v=>must(html.includes(`/mobilidade/tema.html?tema=${v}`),`editoria sem link: ${v}`));
 ['carros','nautica','bikes','aviacao','locadoras','eletricos','test-drive','entrevistas','paulo-fayad','deijanete-fayad'].forEach(v=>must(html.includes(`/mobilidade/tema.html?tema=${v}`),`destaque sem link: ${v}`));
+['mobility-search','search-term','search-location','search-vehicle','search-service','search-category','search-results'].forEach(v=>must(html.includes(v),`controle de pesquisa ausente: ${v}`));
+['Localiza','Movida','Unidas','Foco','Avis','Hertz','Europcar','Sixt','Enterprise'].forEach(v=>must(html.includes(v),`locadora inicial ausente: ${v}`));
+must(html.includes('/api/mobilidade-search'),'endpoint de pesquisa não conectado');
 must(html.includes('class="brand-item" href='),'logos institucionais sem clique');
+must(fs.existsSync('api/mobilidade-search.js'),'endpoint de pesquisa ausente');
 must(fs.existsSync('mobilidade/tema.html'),'página de destino ausente');
-console.log('Mobilidade: links, logos e números OK');
+console.log('Mobilidade: estrutura, pesquisa e números OK');
