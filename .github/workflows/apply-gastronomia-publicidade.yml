@@ -1,0 +1,66 @@
+name: Aplicar Gastronomia Publicidade
+on:
+  push:
+    branches:
+      - feat/gastronomia-publicidade-hoteis-restaurantes
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/gastronomia-publicidade-hoteis-restaurantes
+      - name: Aplicar vitrine publicitaria
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('gastronomia/index.html')
+          html=p.read_text()
+          marker='data-ad-zone="hotels-top"'
+          if marker not in html:
+              css='''
+          .ad-showcase{padding:38px 0 62px;background:linear-gradient(180deg,rgba(212,175,55,.055),rgba(255,255,255,.012));border-bottom:1px solid rgba(212,175,55,.15)}.ad-showcase.restaurant-zone{padding-top:22px;background:rgba(255,255,255,.018)}.ad-showcase-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}.ad-showcase-head h2{font-size:clamp(30px,4vw,48px);margin:5px 0 0;line-height:1}.ad-showcase-head p{max-width:580px;color:var(--muted);line-height:1.45;margin:0}.ad-market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.market-ad{overflow:hidden;border-radius:26px;background:linear-gradient(145deg,rgba(17,38,55,.98),rgba(5,17,28,.98));border:1px solid rgba(212,175,55,.38);box-shadow:0 20px 48px rgba(0,0,0,.26)}.ad-gallery{height:252px;display:grid;grid-template-columns:1.7fr 1fr;grid-template-rows:1fr 1fr;gap:4px;background:#07111a}.ad-gallery img{width:100%;height:100%;object-fit:cover;transition:.45s}.ad-gallery img:first-child{grid-row:1/3}.market-ad:hover .ad-gallery img{transform:scale(1.035)}.market-copy{padding:19px 20px 22px}.market-copy .ad-flag{display:inline-flex;background:var(--gold2);color:#171000}.market-copy h3{font-size:25px;line-height:1.05;margin:12px 0 8px}.market-copy p{font-size:13px;line-height:1.5;color:#cad8e4;margin:0 0 14px}.ad-locale{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.ad-locale span{padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.13);font-size:9px;font-weight:900;color:#f4e2a5}.market-copy .cta{width:100%}
+          '''
+              html=html.replace('@media(max-width:980px){',css+'@media(max-width:980px){',1)
+              html=html.replace('.premium-ad,.analysis-strip,.community-grid,.motion-wall{grid-template-columns:1fr}', '.premium-ad,.analysis-strip,.community-grid,.motion-wall{grid-template-columns:1fr}.ad-market-grid{grid-template-columns:1fr 1fr}',1)
+              html=html.replace('.metric-grid,.grid.three,.grid.four,.results,.people,.event-list,.cerrado-grid,.rank-grid{grid-template-columns:1fr}', '.metric-grid,.grid.three,.grid.four,.results,.people,.event-list,.cerrado-grid,.rank-grid,.ad-market-grid{grid-template-columns:1fr}',1)
+              html=html.replace('>230K+</strong><span>seguidores no Instagram', '>240K+</strong><span>seguidores no Instagram',1)
+              hotels='''
+          <section class="ad-showcase" data-ad-zone="hotels-top"><div class="container"><div class="ad-showcase-head"><div><span class="kicker">HOSPEDAGEM • VITRINE PREMIUM</span><h2>Hotéis em destaque</h2></div><p>Três posições nobres no topo do VOZ NEWS Gastronomia para marcas de hotelaria em Brasília, Rio de Janeiro e São Paulo.</p></div><div class="ad-market-grid">
+          <article class="market-ad" data-ad-kind="hotel"><div class="ad-gallery"><img data-ad-photo src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=88" alt="Hotel sofisticado em Brasília"/><img data-ad-photo src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=86" alt="Quarto de hotel contemporâneo"/><img data-ad-photo src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=86" alt="Suíte de hotel"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Hotel em Brasília</h3><p>Hospedagem executiva, gastronomia, eventos e localização estratégica no coração da capital federal.</p><div class="ad-locale"><span>BRASÍLIA</span><span>HOTELARIA</span><span>EVENTOS</span></div><a class="cta primary" href="mailto:paulofayad@gmail.com?subject=Espaço%20publicitário%20Hotel%20Brasília">SUA MARCA AQUI →</a></div></article>
+          <article class="market-ad" data-ad-kind="hotel"><div class="ad-gallery"><img data-ad-photo src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=88" alt="Hotel de alto padrão no Rio de Janeiro"/><img data-ad-photo src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=86" alt="Suíte com vista"/><img data-ad-photo src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=700&q=86" alt="Área de hotel no Rio"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Hotel no Rio de Janeiro</h3><p>Experiência carioca com conforto, lazer, gastronomia e proximidade dos grandes cartões-postais.</p><div class="ad-locale"><span>RIO DE JANEIRO</span><span>TURISMO</span><span>LAZER</span></div><a class="cta primary" href="mailto:paulofayad@gmail.com?subject=Espaço%20publicitário%20Hotel%20Rio">SUA MARCA AQUI →</a></div></article>
+          <article class="market-ad" data-ad-kind="hotel"><div class="ad-gallery"><img data-ad-photo src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=88" alt="Hotel urbano em São Paulo"/><img data-ad-photo src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=86" alt="Quarto de hotel em São Paulo"/><img data-ad-photo src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=86" alt="Lobby de hotel"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Hotel em São Paulo</h3><p>Hospitalidade para negócios, cultura, compras e gastronomia na maior metrópole brasileira.</p><div class="ad-locale"><span>SÃO PAULO</span><span>NEGÓCIOS</span><span>GASTRONOMIA</span></div><a class="cta primary" href="mailto:paulofayad@gmail.com?subject=Espaço%20publicitário%20Hotel%20São%20Paulo">SUA MARCA AQUI →</a></div></article>
+          </div></div></section>
+          '''
+              restaurants='''
+          <section class="ad-showcase restaurant-zone" data-ad-zone="restaurants-brasilia"><div class="container"><div class="ad-showcase-head"><div><span class="kicker">BRASÍLIA • RESTAURANTES • PUBLICIDADE</span><h2>Mesas em destaque</h2></div><p>Três vitrines publicitárias para restaurantes de Brasília, com imagem forte, localização e chamada comercial.</p></div><div class="ad-market-grid">
+          <article class="market-ad" data-ad-kind="restaurant"><div class="ad-gallery"><img data-ad-photo src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=88" alt="Restaurante elegante em Brasília"/><img data-ad-photo src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=86" alt="Prato de alta gastronomia"/><img data-ad-photo src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=700&q=86" alt="Mesa de restaurante"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Restaurante no Lago Sul</h3><p>Gastronomia, ambiente e serviço pensados para encontros especiais, negócios e celebrações.</p><div class="ad-locale"><span>LAGO SUL</span><span>BRASÍLIA</span><span>ALTA GASTRONOMIA</span></div><a class="cta primary" href="mailto:paulofayad@gmail.com?subject=Espaço%20publicitário%20Restaurante%20Lago%20Sul">SUA MARCA AQUI →</a></div></article>
+          <article class="market-ad" data-ad-kind="restaurant"><div class="ad-gallery"><img data-ad-photo src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=88" alt="Restaurante contemporâneo na Asa Sul"/><img data-ad-photo src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=700&q=86" alt="Prato servido em restaurante"/><img data-ad-photo src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=700&q=86" alt="Ambiente gastronômico"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Restaurante na Asa Sul</h3><p>Cozinha autoral e experiência urbana para quem procura sabor, design e uma boa história à mesa.</p><div class="ad-locale"><span>ASA SUL</span><span>BRASÍLIA</span><span>COZINHA AUTORAL</span></div><a class="cta primary" href="mailto:paulofayad@gmail.com?subject=Espaço%20publicitário%20Restaurante%20Asa%20Sul">SUA MARCA AQUI →</a></div></article>
+          <article class="market-ad" data-ad-kind="restaurant"><div class="ad-gallery"><img data-ad-photo src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=88" alt="Restaurante acolhedor na Asa Norte"/><img data-ad-photo src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=700&q=86" alt="Prato contemporâneo"/><img data-ad-photo src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=86" alt="Salão de restaurante"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Restaurante na Asa Norte</h3><p>Um endereço para almoço, jantar e encontros, com presença premium diante do público do VOZ NEWS.</p><div class="ad-locale"><span>ASA NORTE</span><span>BRASÍLIA</span><span>EXPERIÊNCIA</span></div><a class="cta primary" href="mailto:paulofayad@gmail.com?subject=Espaço%20publicitário%20Restaurante%20Asa%20Norte">SUA MARCA AQUI →</a></div></article>
+          </div></div></section>
+          '''
+              html=html.replace('<section id="editores"',hotels+'<section id="editores"',1)
+              html=html.replace('<section id="adolescentes"',restaurants+'<section id="adolescentes"',1)
+              html=html.replace('PUBLICIDADE • DESTAQUE PREMIUM','ESPAÇO PUBLICITÁRIO',1)
+              p.write_text(html)
+          PY
+      - name: Teste novo
+        run: node tests/gastronomia-publicidade-test.js
+      - name: Testes existentes de gastronomia
+        run: |
+          node tests/gastronomia-final-funcional-test.js
+          node tests/gastronomia-jovens-links-test.js
+          node tests/gastronomia-portal-test.js
+      - name: Commit da implementação
+        run: |
+          if git diff --quiet; then
+            echo "Nenhuma alteração pendente."
+            exit 0
+          fi
+          git config user.name "Voz News Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add gastronomia/index.html
+          git commit -m "feat: adiciona publicidade de hotéis e restaurantes em gastronomia"
+          git push origin HEAD:feat/gastronomia-publicidade-hoteis-restaurantes
