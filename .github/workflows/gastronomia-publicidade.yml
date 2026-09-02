@@ -1,0 +1,19 @@
+name: Gastronomia Publicidade
+on:
+  push:
+    branches:
+      - feat/gastronomia-publicidade-hoteis-restaurantes
+  pull_request:
+    paths:
+      - 'gastronomia/**'
+      - 'tests/gastronomia-publicidade-test.js'
+      - '.github/workflows/gastronomia-publicidade.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node tests/gastronomia-publicidade-test.js
