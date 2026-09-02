@@ -17,4 +17,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node tests/gastronomia-marcas-reais-seo-test.js
+      - name: Validar Gastronomia completa
+        run: |
+          node tests/gastronomia-marcas-reais-seo-test.js
+          node tests/gastronomia-publicidade-test.js
+          node tests/gastronomia-final-funcional-test.js
+          node tests/gastronomia-jovens-links-test.js
+          node tests/gastronomia-portal-test.js
