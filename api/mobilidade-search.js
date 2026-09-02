@@ -1,10 +1,5 @@
 const NOMINATIM = 'https://nominatim.openstreetmap.org/search';
-const OVERPASS_ENDPOINTS = [
-  'https://overpass-api.de/api/interpreter',
-  'https://overpass.kumi.systems/api/interpreter'
-];
-const USER_AGENT = 'VozNewsBrasil-Mobilidade/1.1 (https://www.voznewsbrasil.com.br/)';
-const SEARCH_RADIUS_METERS = 35000;
+const USER_AGENT = 'VozNewsBrasil-Mobilidade/1.2 (https://www.voznewsbrasil.com.br/)';
 
 function safeText(value, max = 100) {
   return String(value || '')
@@ -24,14 +19,7 @@ function buildQuery({term, location, vehicle, service, category}) {
   ].filter(Boolean).join(' ');
 }
 
-function escapeOverpassRegex(value) {
-  return safeText(value, 70)
-    .replace(/\\/g, '\\\\')
-    .replace(/"/g, '\\"')
-    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-async function fetchJson(url, timeoutMs = 7000) {
+async function fetchJson(url, timeoutMs = 5500) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -54,7 +42,7 @@ async function geocodeLocation(location) {
   const q = safeText(location, 120);
   if (!q) return null;
   const url = `${NOMINATIM}?format=jsonv2&addressdetails=1&limit=1&q=${encodeURIComponent(q)}`;
-  const data = await fetchJson(url, 5500);
+  const data = await fetchJson(url, 4500);
   const first = Array.isArray(data) ? data[0] : null;
   if (!first) return null;
   const lat = Number(first.lat);
@@ -69,98 +57,68 @@ async function geocodeLocation(location) {
   };
 }
 
-function genericSelectors(fields, around) {
+function localSearchTerm(fields) {
+  if (fields.term) return fields.term;
   const intent = `${fields.category} ${fields.service} ${fields.vehicle}`.toLowerCase();
-  const selectors = [];
-  const add = selector => selectors.push(`nwr${selector}(${around});`);
-
-  if (/locadora|aluguel|rental|assinatura|compartilhamento/.test(intent)) {
-    add('["amenity"="car_rental"]');
-    add('["amenity"="car_sharing"]');
-  }
-  if (/concession|seminovo|compra|venda|montadora|carro|suv|sed[aã]|hatch|picape|luxo|el[eé]tric/.test(intent)) {
-    add('["shop"="car"]');
-  }
-  if (/moto/.test(intent)) add('["shop"="motorcycle"]');
-  if (/bike|bici/.test(intent)) add('["shop"="bicycle"]');
-  if (/oficina|manuten/.test(intent)) add('["shop"="car_repair"]');
-  if (/n[aá]ut|barco|embarca/.test(intent)) {
-    add('["shop"="boat"]');
-    add('["leisure"="marina"]');
-  }
-  if (/avia|aeronave|aeroporto/.test(intent)) {
-    add('["aeroway"="terminal"]');
-    add('["aeroway"="aerodrome"]');
-  }
-
-  if (!selectors.length) {
-    add('["amenity"="car_rental"]');
-    add('["shop"="car"]');
-    add('["shop"="motorcycle"]');
-    add('["shop"="bicycle"]');
-    add('["shop"="car_repair"]');
-  }
-  return selectors;
+  if (/locadora|aluguel|rental|assinatura|compartilhamento/.test(intent)) return 'car rental';
+  if (/concession|seminovo|compra|venda|montadora/.test(intent)) return 'car dealer';
+  if (/oficina|manuten/.test(intent)) return 'car repair';
+  if (/moto/.test(intent)) return 'motorcycle';
+  if (/bike|bici/.test(intent)) return 'bicycle';
+  if (/n[aá]ut|barco|embarca/.test(intent)) return 'marina';
+  if (/avia|aeronave|aeroporto/.test(intent)) return 'airport';
+  if (/el[eé]tric/.test(intent)) return 'electric vehicle';
+  return safeText([fields.category, fields.service, fields.vehicle].filter(Boolean).join(' '), 90) || 'mobility';
 }
 
-function buildOverpassQuery(fields, geo) {
-  const around = `around:${SEARCH_RADIUS_METERS},${geo.lat},${geo.lon}`;
-  const term = escapeOverpassRegex(fields.term);
-  const selectors = term
-    ? [
-        `nwr["name"~"${term}",i](${around});`,
-        `nwr["brand"~"${term}",i](${around});`,
-        `nwr["operator"~"${term}",i](${around});`
-      ]
-    : genericSelectors(fields, around);
-  return `[out:json][timeout:9];(${selectors.join('')});out center tags 50;`;
+function buildViewbox(geo) {
+  const latDelta = 0.35;
+  const cos = Math.max(Math.cos((geo.lat * Math.PI) / 180), 0.35);
+  const lonDelta = Math.min(0.65, latDelta / cos);
+  const left = geo.lon - lonDelta;
+  const top = geo.lat + latDelta;
+  const right = geo.lon + lonDelta;
+  const bottom = geo.lat - latDelta;
+  return [left, top, right, bottom].map(value => value.toFixed(6)).join(',');
 }
 
-async function queryOverpass(query) {
-  let lastError;
-  for (const endpoint of OVERPASS_ENDPOINTS) {
-    try {
-      return await fetchJson(`${endpoint}?data=${encodeURIComponent(query)}`, 9000);
-    } catch (error) {
-      lastError = error;
-    }
-  }
-  throw lastError || new Error('Overpass indisponível');
+async function searchBounded(fields, geo) {
+  const term = localSearchTerm(fields);
+  const viewbox = buildViewbox(geo);
+  const url = `${NOMINATIM}?format=jsonv2&addressdetails=1&extratags=1&namedetails=1&limit=30&bounded=1&viewbox=${encodeURIComponent(viewbox)}&q=${encodeURIComponent(term)}`;
+  const data = await fetchJson(url, 5000);
+  return Array.isArray(data) ? data : [];
 }
 
-function websiteValue(tags) {
-  const raw = tags.website || tags['contact:website'] || tags.url || '';
+function websiteValue(extra) {
+  const raw = extra.website || extra['contact:website'] || extra.url || '';
   if (!raw) return '';
   if (/^https?:\/\//i.test(raw)) return raw;
   if (/^www\./i.test(raw)) return `https://${raw}`;
   return raw;
 }
 
-function normalizeOverpassPlace(item, geo) {
-  const tags = item.tags || {};
-  const center = item.center || {};
-  const lat = Number(item.lat ?? center.lat);
-  const lon = Number(item.lon ?? center.lon);
-  const city = tags['addr:city'] || tags['addr:municipality'] || geo.address.city || geo.address.town || geo.address.municipality || '';
-  const state = tags['addr:state'] || geo.address.state || '';
-  const taggedCountry = tags['addr:country'] || '';
-  const country = taggedCountry.length > 3 ? taggedCountry : (geo.address.country || taggedCountry || '');
-  const street = [tags['addr:street'], tags['addr:housenumber']].filter(Boolean).join(', ');
-  const address = [street, city, state, country].filter(Boolean).join(' • ') || geo.displayName;
-  const category = [tags.amenity, tags.shop, tags.aeroway, tags.leisure, tags.office].filter(Boolean).join(' • ');
+function normalizeNominatimPlace(item, geo) {
+  const address = item.address || {};
+  const extra = item.extratags || {};
+  const lat = Number(item.lat);
+  const lon = Number(item.lon);
+  const city = address.city || address.town || address.village || address.municipality || geo.address.city || geo.address.town || geo.address.municipality || '';
+  const state = address.state || geo.address.state || '';
+  const country = address.country || geo.address.country || '';
   const mapUrl = Number.isFinite(lat) && Number.isFinite(lon)
     ? `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lon)}#map=17/${encodeURIComponent(lat)}/${encodeURIComponent(lon)}`
     : '';
 
   return {
-    name: tags.name || tags.brand || tags.operator || 'Empresa de mobilidade',
-    category: category || 'mobilidade',
-    address,
+    name: item.name || (item.namedetails && (item.namedetails.name || item.namedetails['name:pt'])) || (item.display_name || '').split(',')[0] || 'Empresa de mobilidade',
+    category: [item.type, item.category].filter(Boolean).join(' • ') || 'mobilidade',
+    address: item.display_name || [city, state, country].filter(Boolean).join(' • '),
     city,
     state,
     country,
-    phone: tags.phone || tags['contact:phone'] || '',
-    site: websiteValue(tags),
+    phone: extra.phone || extra['contact:phone'] || '',
+    site: websiteValue(extra),
     lat,
     lon,
     mapUrl,
@@ -171,7 +129,9 @@ function normalizeOverpassPlace(item, geo) {
 function dedupeResults(results) {
   const seen = new Set();
   return results.filter(item => {
-    const key = `${String(item.name).toLowerCase()}|${Number(item.lat).toFixed(5)}|${Number(item.lon).toFixed(5)}`;
+    const lat = Number.isFinite(Number(item.lat)) ? Number(item.lat).toFixed(5) : '';
+    const lon = Number.isFinite(Number(item.lon)) ? Number(item.lon).toFixed(5) : '';
+    const key = `${String(item.name).toLowerCase()}|${lat}|${lon}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -214,10 +174,8 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const overpassQuery = buildOverpassQuery(fields, geo);
-    const data = await queryOverpass(overpassQuery);
-    const elements = data && Array.isArray(data.elements) ? data.elements : [];
-    const results = dedupeResults(elements.map(item => normalizeOverpassPlace(item, geo))).slice(0, 30);
+    const data = await searchBounded(fields, geo);
+    const results = dedupeResults(data.map(item => normalizeNominatimPlace(item, geo))).slice(0, 30);
 
     return res.status(200).json({
       query,
@@ -241,8 +199,8 @@ module.exports = async function handler(req, res) {
 module.exports._test = {
   safeText,
   buildQuery,
-  escapeOverpassRegex,
-  buildOverpassQuery,
-  normalizeOverpassPlace,
+  localSearchTerm,
+  buildViewbox,
+  normalizeNominatimPlace,
   dedupeResults
 };
