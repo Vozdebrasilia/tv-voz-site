@@ -5,7 +5,7 @@ global.fetch = async (url) => {
   const value = String(url);
   fetchedUrls.push(value);
 
-  if (value.includes('nominatim.openstreetmap.org/search')) {
+  if (value.includes('nominatim.openstreetmap.org/search') && !value.includes('bounded=1')) {
     return {
       ok: true,
       json: async () => [{
@@ -20,23 +20,20 @@ global.fetch = async (url) => {
     };
   }
 
-  if (value.includes('overpass')) {
+  if (value.includes('nominatim.openstreetmap.org/search') && value.includes('bounded=1')) {
     return {
       ok: true,
-      json: async () => ({
-        elements: [{
-          type: 'node', id: 20, lat: -15.794, lon: -47.89,
-          tags: {
-            name: 'Localiza',
-            amenity: 'car_rental',
-            'addr:city': 'Brasília',
-            'addr:state': 'Distrito Federal',
-            'addr:country': 'BR',
-            'contact:website': 'https://www.localiza.com/',
-            'contact:phone': '+55 61 0000-0000'
-          }
-        }]
-      })
+      json: async () => [{
+        place_id: 20,
+        name: 'Localiza',
+        display_name: 'Localiza, Asa Norte, Brasília, Distrito Federal, Brasil',
+        lat: '-15.7800',
+        lon: '-47.8900',
+        type: 'car_rental',
+        category: 'amenity',
+        address: {city:'Brasília', state:'Distrito Federal', country:'Brasil'},
+        extratags: {'contact:website':'https://www.localiza.com/', 'contact:phone':'+55 61 0000-0000'}
+      }]
     };
   }
 
@@ -54,13 +51,15 @@ const res = {
 (async()=>{
   await handler(req,res);
   if(res.statusCode!==200) throw new Error('status inesperado');
-  if(fetchedUrls.length < 2) throw new Error('busca deve geocodificar e depois pesquisar na área');
+  if(fetchedUrls.length !== 2) throw new Error(`esperadas 2 consultas Nominatim, recebidas ${fetchedUrls.length}`);
   if(!fetchedUrls[0].includes('Bras')) throw new Error('localização não foi geocodificada primeiro');
-  const overpassUrl = fetchedUrls.find(url => url.includes('overpass')) || '';
-  const decoded = decodeURIComponent(overpassUrl);
-  if(!decoded.includes('around:35000,-15.7934036,-47.8823172')) throw new Error('pesquisa não ficou ancorada em Brasília');
-  if(!decoded.includes('Localiza')) throw new Error('empresa não entrou no filtro da área');
+  const localUrl = fetchedUrls[1];
+  if(!localUrl.includes('bounded=1')) throw new Error('segunda consulta não está limitada à área geográfica');
+  if(!localUrl.includes('viewbox=')) throw new Error('segunda consulta não recebeu viewbox da cidade');
+  if(!decodeURIComponent(localUrl).includes('q=Localiza')) throw new Error('empresa não entrou na consulta local');
+  if(decodeURIComponent(localUrl).includes('SUV') || decodeURIComponent(localUrl).includes('aluguel')) throw new Error('filtros de intenção não devem tornar a busca por empresa excessivamente restritiva');
+  if(res.payload.externalStatus !== 'ok') throw new Error('busca local deve concluir sem degradação');
   if(!res.payload.results[0] || res.payload.results[0].name !== 'Localiza') throw new Error('resultado não normalizado');
   if(res.payload.results[0].city !== 'Brasília') throw new Error('resultado não preservou a cidade pesquisada');
-  console.log('Mobilidade API: localização ancorada e resultado normalizado OK');
+  console.log('Mobilidade API: busca local rápida, limitada e normalizada OK');
 })().catch(e=>{console.error(e); process.exit(1)});
