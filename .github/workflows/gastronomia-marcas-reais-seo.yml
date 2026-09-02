@@ -1,0 +1,20 @@
+name: Gastronomia Marcas Reais SEO
+on:
+  push:
+    branches:
+      - feat/gastronomia-marcas-reais-seo-tdd
+  pull_request:
+    paths:
+      - 'gastronomia/**'
+      - 'sitemap.xml'
+      - 'tests/gastronomia-marcas-reais-seo-test.js'
+      - '.github/workflows/gastronomia-marcas-reais-seo.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node tests/gastronomia-marcas-reais-seo-test.js
