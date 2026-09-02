@@ -67,7 +67,7 @@
 // Publicação eleitoral solicitada em 02/09/2026 — adição isolada, sem alterar o estúdio.
 (()=>{
   const installRoneyNemerFeature=()=>{
-    const grid=document.querySelector('#politica .media-grid');
+    const grid=document.querySelector('#entrevistas .media-grid');
     if(!grid||grid.querySelector('[data-roney-nemer="2026"]'))return;
     const card=document.createElement('a');
     card.className='media-card voice-featured';
