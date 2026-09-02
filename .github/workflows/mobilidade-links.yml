@@ -3,7 +3,9 @@ on:
   pull_request:
     paths:
       - 'mobilidade/**'
+      - 'api/mobilidade-search.js'
       - 'tests/mobilidade-links-test.js'
+      - 'tests/mobilidade-search-test.js'
       - '.github/workflows/mobilidade-links.yml'
 jobs:
   verify:
@@ -14,3 +16,4 @@ jobs:
         with:
           node-version: 20
       - run: node tests/mobilidade-links-test.js
+      - run: node tests/mobilidade-search-test.js
