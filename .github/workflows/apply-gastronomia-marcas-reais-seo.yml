@@ -1,0 +1,96 @@
+name: Aplicar Gastronomia Marcas Reais SEO
+on:
+  push:
+    branches:
+      - feat/gastronomia-marcas-reais-seo-tdd
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/gastronomia-marcas-reais-seo-tdd
+      - name: Aplicar marcas reais e SEO
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+
+          p=Path('gastronomia/index.html')
+          html=p.read_text()
+
+          html=html.replace(
+            'content="VOZ NEWS Gastronomia: restaurantes, chefs, sabores do Cerrado, avaliações, vídeos, receitas do público e busca de restaurantes em Brasília, no Brasil e no mundo."',
+            'content="VOZ NEWS Gastronomia: hotéis, restaurantes, chefs, sabores do Cerrado, avaliações, vídeos, experiências e busca gastronômica em Brasília, no Brasil e no mundo."',
+            1
+          )
+          html=html.replace(
+            '.market-ad{overflow:hidden;',
+            '.market-ad{display:block;color:inherit;text-decoration:none;overflow:hidden;',
+            1
+          )
+
+          hotels='''<section id="hoteis" class="ad-showcase" data-ad-zone="hotels-top"><div class="container"><div class="ad-showcase-head"><div><span class="kicker">HOSPEDAGEM • VITRINE PREMIUM</span><h2>Hotéis em destaque</h2></div><p>Três hotéis reais em Brasília, Rio de Janeiro e São Paulo, com acesso direto aos seus sites oficiais.</p></div><div class="ad-market-grid">
+          <a class="market-ad" data-ad-kind="hotel" href="https://www.plazabrasilia.com.br/brasilia-palace" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial do Brasília Palace Hotel"><div class="ad-gallery"><img data-ad-photo src="https://irp.cdn-website.com/304c28f0/dms3rep/multi/opt/brasilia%2Bpalace%2Bfotos-1022-HDR-Edit_Easy-Resize.com-1920w.jpg" alt="Brasília Palace Hotel"/><img data-ad-photo src="https://irp.cdn-website.com/304c28f0/dms3rep/multi/opt/piscina-02-1920w.jpg" alt="Piscina do Brasília Palace Hotel"/><img data-ad-photo src="https://irp.cdn-website.com/304c28f0/dms3rep/multi/opt/brasilia-palace-evt-01-1920w.jpg" alt="Espaço de eventos do Brasília Palace Hotel"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Brasília Palace Hotel</h3><p>Ícone modernista projetado por Oscar Niemeyer, às margens do Lago Paranoá, com obras de Athos Bulcão e o Oscar Restaurante.</p><div class="ad-locale"><span>BRASÍLIA</span><span>HOTEL HISTÓRICO</span><span>LAGO PARANOÁ</span></div><span class="cta primary">VISITAR SITE OFICIAL →</span></div></a>
+          <a class="market-ad" data-ad-kind="hotel" href="https://www.belmond.com/en/hotels/south-america/brazil/copacabana-palace-rio-de-janeiro" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial do Copacabana Palace"><div class="ad-gallery"><img data-ad-photo src="https://img.belmond.com/f_auto/t_320_ar_4_5/photos/cop/cop-ext13.jpg" alt="Fachada do Copacabana Palace"/><img data-ad-photo src="https://img.belmond.com/f_auto/t_320_ar_5_4/photos/cop/cop-acc-suite-penthouse-city-view01.jpg" alt="Suíte do Copacabana Palace"/><img data-ad-photo src="https://img.belmond.com/f_auto/t_320_ar_4_5/photos/cop/cop-acc-suite-penthouse-black-pool01.jpg" alt="Piscina de suíte do Copacabana Palace"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Copacabana Palace</h3><p>Hotel histórico em frente à Praia de Copacabana, na Avenida Atlântica, com hospedagem, gastronomia, eventos e experiências no Rio de Janeiro.</p><div class="ad-locale"><span>RIO DE JANEIRO</span><span>COPACABANA</span><span>BELMOND</span></div><span class="cta primary">VISITAR SITE OFICIAL →</span></div></a>
+          <a class="market-ad" data-ad-kind="hotel" href="https://www.rosewoodhotels.com/pt/sao-paulo" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial do Rosewood São Paulo"><div class="ad-gallery"><img data-ad-photo src="https://picasso.rosewoodhotelgroup.com/transform/f3513874-c538-43df-b198-c0c70dd87464/RWSPO_Facilities_Exteriors-Facades_EmeraldPool-8" alt="Rosewood São Paulo"/><img data-ad-photo src="https://picasso.rosewoodhotelgroup.com/transform/7456ce2e-f51a-47fe-b0bc-da2f0f32bc55/RWSPO_3-0_Brand-com_Assets_HERO_Room_MatarazzoSuite" alt="Matarazzo Suite no Rosewood São Paulo"/><img data-ad-photo src="https://picasso.rosewoodhotelgroup.com/transform/73070b3b-c940-49df-8fbc-c4d8161b1950/RWSPO_3-0_Brand-com_Assets_ROOMS_MatarazzoSuiteRoom" alt="Acomodação do Rosewood São Paulo"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Rosewood São Paulo</h3><p>Hotel de luxo na Cidade Matarazzo, na Bela Vista, reunindo hospitalidade, arte, gastronomia, bem-estar e arquitetura em São Paulo.</p><div class="ad-locale"><span>SÃO PAULO</span><span>CIDADE MATARAZZO</span><span>LUXO</span></div><span class="cta primary">VISITAR SITE OFICIAL →</span></div></a>
+          </div></div></section>'''
+
+          restaurants='''<section id="restaurantes-destaque" class="ad-showcase restaurant-zone" data-ad-zone="restaurants-brasilia"><div class="container"><div class="ad-showcase-head"><div><span class="kicker">BRASÍLIA • RESTAURANTES • PUBLICIDADE</span><h2>Mesas em destaque</h2></div><p>Três restaurantes reais de Brasília, com fotos e acesso direto aos canais oficiais.</p></div><div class="ad-market-grid">
+          <a class="market-ad" data-ad-kind="restaurant" href="https://www.cocobambu.com/unidades/cb-lagosul" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial do Coco Bambu Lago Sul"><div class="ad-gallery"><img data-ad-photo src="https://www.cocobambu.com/web/image/1601-e5e4c5f5/IMG_7801.webp" alt="Coco Bambu Lago Sul"/><img data-ad-photo src="https://www.cocobambu.com/web/image/1604-252aae64/IMG_7890.webp" alt="Ambiente do Coco Bambu Lago Sul"/><img data-ad-photo src="https://www.cocobambu.com/web/image/1605-8f0b42b7/IMG_7846.webp" alt="Experiência no Coco Bambu Lago Sul"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Coco Bambu Lago Sul</h3><p>Às margens do Lago Paranoá, a unidade reúne cardápio de frutos do mar, áreas para eventos, happy hour e estrutura para famílias.</p><div class="ad-locale"><span>LAGO SUL</span><span>BRASÍLIA</span><span>FRUTOS DO MAR</span></div><span class="cta primary">VISITAR SITE OFICIAL →</span></div></a>
+          <a class="market-ad" data-ad-kind="restaurant" href="https://vastorestaurante.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial do Vasto Restaurante"><div class="ad-gallery"><img data-ad-photo src="https://www.vastorestaurante.com/wp-content/uploads/2020/02/camarao-banner-2.jpg" alt="Vasto Restaurante"/><img data-ad-photo src="https://vastorestaurante.com/wp-content/uploads/2020/12/Maionese-de-batata-600x402.jpg" alt="Prato do Vasto Restaurante"/><img data-ad-photo src="https://vastorestaurante.com/wp-content/uploads/2020/03/camarao-600x402.jpeg" alt="Prato do Vasto Restaurante em Brasília"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Vasto Brasília Shopping</h3><p>Steakhouse com cortes de carnes, sushi, frutos do mar, coquetéis e ambiente de inspiração americana no Brasília Shopping.</p><div class="ad-locale"><span>ASA NORTE</span><span>BRASÍLIA SHOPPING</span><span>STEAKHOUSE</span></div><span class="cta primary">VISITAR SITE OFICIAL →</span></div></a>
+          <a class="market-ad" data-ad-kind="restaurant" href="https://www.restaurante.piselli.com.br/brasilia" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial do Piselli Brasília"><div class="ad-gallery"><img data-ad-photo src="https://www.restaurante.piselli.com.br/images/produto/Brasilia/Lounge.jpg" alt="Ambiente do Piselli Brasília"/><img data-ad-photo src="https://www.restaurante.piselli.com.br/images/produto/Brasilia/Carpaccio_di_pesce.jpg" alt="Carpaccio di Pesce do Piselli Brasília"/><img data-ad-photo src="https://www.restaurante.piselli.com.br/images/produto/Brasilia/Spaghetti_Alla_carbonara.jpg" alt="Spaghetti alla carbonara do Piselli Brasília"/></div><div class="market-copy"><span class="ad-flag">ESPAÇO PUBLICITÁRIO</span><h3>Piselli Brasília</h3><p>No Iguatemi Brasília, combina clássicos da casa com menu inspirado na Toscana, além de terraço, salão e ambientes para diferentes ocasiões.</p><div class="ad-locale"><span>LAGO NORTE</span><span>IGUATEMI BRASÍLIA</span><span>ITALIANO</span></div><span class="cta primary">VISITAR SITE OFICIAL →</span></div></a>
+          </div></div></section>'''
+
+          html,n1=re.subn(r'<section class="ad-showcase" data-ad-zone="hotels-top">.*?</section>',hotels,html,count=1,flags=re.S)
+          html,n2=re.subn(r'<section class="ad-showcase restaurant-zone" data-ad-zone="restaurants-brasilia">.*?</section>',restaurants,html,count=1,flags=re.S)
+          if n1!=1 or n2!=1:
+              raise SystemExit(f'blocos não encontrados: hotels={n1} restaurants={n2}')
+
+          places={
+            '@context':'https://schema.org',
+            '@graph':[
+              {'@type':'Hotel','name':'Brasília Palace Hotel','url':'https://www.plazabrasilia.com.br/brasilia-palace','address':{'@type':'PostalAddress','streetAddress':'SHTN Trecho 01, Conjunto 01','addressLocality':'Brasília','addressRegion':'DF','addressCountry':'BR'}},
+              {'@type':'Hotel','name':'Copacabana Palace','url':'https://www.belmond.com/en/hotels/south-america/brazil/copacabana-palace-rio-de-janeiro','address':{'@type':'PostalAddress','streetAddress':'Avenida Atlântica 1702','addressLocality':'Rio de Janeiro','addressRegion':'RJ','postalCode':'22021-001','addressCountry':'BR'}},
+              {'@type':'Hotel','name':'Rosewood São Paulo','url':'https://www.rosewoodhotels.com/pt/sao-paulo','address':{'@type':'PostalAddress','streetAddress':'Rua Itapeva, 435','addressLocality':'São Paulo','addressRegion':'SP','postalCode':'01332-000','addressCountry':'BR'}},
+              {'@type':'Restaurant','name':'Coco Bambu Lago Sul','url':'https://www.cocobambu.com/unidades/cb-lagosul','servesCuisine':['Frutos do mar','Brasileira'],'address':{'@type':'PostalAddress','streetAddress':'Setor de Clubes Esportivos Sul, Edifício Ícone Parque','addressLocality':'Brasília','addressRegion':'DF','addressCountry':'BR'}},
+              {'@type':'Restaurant','name':'Vasto Brasília Shopping','url':'https://vastorestaurante.com/','servesCuisine':['Steakhouse','Sushi','Frutos do mar'],'address':{'@type':'PostalAddress','streetAddress':'SCN Quadra 5, Brasília Shopping','addressLocality':'Brasília','addressRegion':'DF','addressCountry':'BR'}},
+              {'@type':'Restaurant','name':'Piselli Brasília','url':'https://www.restaurante.piselli.com.br/brasilia','servesCuisine':['Italiana','Toscana'],'address':{'@type':'PostalAddress','streetAddress':'Iguatemi Brasília, Loja 22, Lago Norte','addressLocality':'Brasília','addressRegion':'DF','addressCountry':'BR'}}
+            ]
+          }
+          jsonld='<script id="seo-places-jsonld" type="application/ld+json">'+json.dumps(places,ensure_ascii=False,separators=(',',':'))+'</script>'
+          if 'id="seo-places-jsonld"' not in html:
+              html=html.replace('</head>',jsonld+'\n</head>',1)
+
+          p.write_text(html)
+
+          s=Path('sitemap.xml')
+          sm=s.read_text()
+          old='<url><loc>https://www.voznewsbrasil.com.br/gastronomia/</loc><priority>0.95</priority></url>'
+          new='<url><loc>https://www.voznewsbrasil.com.br/gastronomia/</loc><lastmod>2026-09-02</lastmod><priority>0.95</priority></url>'
+          if old in sm:
+              sm=sm.replace(old,new,1)
+          elif '<loc>https://www.voznewsbrasil.com.br/gastronomia/</loc><lastmod>2026-09-02</lastmod>' not in sm:
+              raise SystemExit('entrada Gastronomia no sitemap não encontrada')
+          s.write_text(sm)
+          PY
+      - name: Validar implementação
+        run: |
+          node tests/gastronomia-marcas-reais-seo-test.js
+          node tests/gastronomia-publicidade-test.js
+          node tests/gastronomia-final-funcional-test.js
+          node tests/gastronomia-jovens-links-test.js
+          node tests/gastronomia-portal-test.js
+      - name: Commit da implementação
+        run: |
+          if git diff --quiet; then
+            echo "Nenhuma alteração pendente."
+            exit 0
+          fi
+          git config user.name "Voz News Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add gastronomia/index.html sitemap.xml
+          git commit -m "feat: usar hotéis e restaurantes reais com SEO em gastronomia"
+          git push origin HEAD:feat/gastronomia-marcas-reais-seo-tdd
