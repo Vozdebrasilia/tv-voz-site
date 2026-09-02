@@ -28,5 +28,10 @@ must(materia.includes('240K+'),'matéria não usa métrica atualizada');
 ['aviacao-companhias','aviacao-taxi-aereo','aviacao-aeroportos','aviacao-executiva'].forEach(id=>must(conteudo.includes(id),`subtema de aviação ausente: ${id}`));
 must(conteudo.includes('Jeep Avenger'),'lançamento atual do mercado ausente');
 must(conteudo.includes('02 de setembro de 2026'),'data do lançamento atual ausente');
-['automoveis','motos','bikes','eletricos','locadoras','concessionarias','nautica','aviacao','tecnologia','lancamentos','carros','test-drive','entrevistas','paulo-fayad','deijanete-fayad'].forEach(v=>must(conteudo.includes(`${v}:`),`tema sem conteúdo específico: ${v}`));
+['automoveis','motos','bikes','eletricos','locadoras','concessionarias','nautica','aviacao','tecnologia','lancamentos','carros','test-drive','entrevistas','paulo-fayad','deijanete-fayad'].forEach(v=>{
+  const plain=`${v}:`;
+  const quoted1=`'${v}':`;
+  const quoted2=`"${v}":`;
+  must(conteudo.includes(plain)||conteudo.includes(quoted1)||conteudo.includes(quoted2),`tema sem conteúdo específico: ${v}`);
+});
 console.log('Mobilidade: estrutura, pesquisa, matérias, premiações e anúncios OK');
