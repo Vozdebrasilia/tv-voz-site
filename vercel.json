@@ -7,6 +7,8 @@
   "rewrites": [
     { "source": "/moveis-decoracao", "destination": "/moveis-decoracao/index.html" },
     { "source": "/moveis-decoracao/", "destination": "/moveis-decoracao/index.html" },
+    { "source": "/mobilidade", "destination": "/mobilidade/index.html" },
+    { "source": "/mobilidade/", "destination": "/mobilidade/index.html" },
     { "source": "/energia", "destination": "/energia/home.html" },
     { "source": "/energia/", "destination": "/energia/home.html" },
     { "source": "/portais/poder.html", "destination": "/api/poder" },
