@@ -11,4 +11,22 @@ must(html.includes('/api/mobilidade-search'),'endpoint de pesquisa não conectad
 must(html.includes('class="brand-item" href='),'logos institucionais sem clique');
 must(fs.existsSync('api/mobilidade-search.js'),'endpoint de pesquisa ausente');
 must(fs.existsSync('mobilidade/tema.html'),'página de destino ausente');
-console.log('Mobilidade: estrutura, pesquisa e números OK');
+
+// Nova camada editorial e comercial.
+for(let i=1;i<=6;i++) must(html.includes(`../assets/awards/card-0${i}.jpg`),`premiação ausente: card-0${i}.jpg`);
+const adCount=(html.match(/ESPAÇO PUBLICITÁRIO • DEMONSTRAÇÃO/g)||[]).length;
+must(adCount===4,`esperados 4 anúncios demonstrativos, encontrados ${adCount}`);
+must(fs.existsSync('mobilidade/conteudo.js'),'base editorial da Mobilidade ausente');
+must(fs.existsSync('mobilidade/materia.html'),'página de matéria ausente');
+const tema=fs.readFileSync('mobilidade/tema.html','utf8');
+const materia=fs.readFileSync('mobilidade/materia.html','utf8');
+const conteudo=fs.readFileSync('mobilidade/conteudo.js','utf8');
+must(tema.includes('conteudo.js'),'tema não carrega a base editorial');
+must(tema.includes('/mobilidade/materia.html?id='),'cards de tema não abrem matérias');
+must(materia.includes('conteudo.js'),'matéria não carrega a base editorial');
+must(materia.includes('240K+'),'matéria não usa métrica atualizada');
+['aviacao-companhias','aviacao-taxi-aereo','aviacao-aeroportos','aviacao-executiva'].forEach(id=>must(conteudo.includes(id),`subtema de aviação ausente: ${id}`));
+must(conteudo.includes('Jeep Avenger'),'lançamento atual do mercado ausente');
+must(conteudo.includes('02 de setembro de 2026'),'data do lançamento atual ausente');
+['automoveis','motos','bikes','eletricos','locadoras','concessionarias','nautica','aviacao','tecnologia','lancamentos','carros','test-drive','entrevistas','paulo-fayad','deijanete-fayad'].forEach(v=>must(conteudo.includes(`${v}:`),`tema sem conteúdo específico: ${v}`));
+console.log('Mobilidade: estrutura, pesquisa, matérias, premiações e anúncios OK');
