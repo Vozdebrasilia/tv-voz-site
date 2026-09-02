@@ -63,3 +63,18 @@
   const runFixes=()=>{fixCanonCard();fixInterviewThumbnails();updateAgendaBrasilia();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',runFixes);else runFixes();
 })();
+
+// Publicação eleitoral solicitada em 02/09/2026 — adição isolada, sem alterar o estúdio.
+(()=>{
+  const installRoneyNemerFeature=()=>{
+    const grid=document.querySelector('#politica .media-grid');
+    if(!grid||grid.querySelector('[data-roney-nemer="2026"]'))return;
+    const card=document.createElement('a');
+    card.className='media-card voice-featured';
+    card.dataset.roneyNemer='2026';
+    card.href='/materias/roney-nemer-11111.html';
+    card.innerHTML='<img alt="Rôney Nemer — candidato a deputado distrital pelo DF" loading="eager" src="https://dados.agenciasertao.com/json/v1/eleicoes/2026/fotos/70002538503.jpg"/><div class="media-body"><span class="media-source">ELEIÇÕES 2026 • DISTRITO FEDERAL</span><h3>RÔNEY NEMER: EXPERIÊNCIA E DIÁLOGO PELO DISTRITO FEDERAL</h3><p>Paulo Fayad apresenta uma análise propositiva sobre a trajetória pública e a candidatura de Rôney Nemer a deputado distrital pelo PP, número 11111.</p><span class="real-link">Ler a matéria completa →</span></div>';
+    grid.appendChild(card);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installRoneyNemerFeature,{once:true});else installRoneyNemerFeature();
+})();

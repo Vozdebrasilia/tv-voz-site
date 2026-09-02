@@ -27,7 +27,7 @@ const CLIENTES=[
 ];
 
 const AUTORES=['deijanete-fayad','paulo-fayad'];
-const FIXED=['/','/anunciantes.html','/ibj.html'];
+const FIXED=['/','/anunciantes.html','/ibj.html','/materias/roney-nemer-11111.html'];
 
 function decode(s=''){return String(s).replace(/<!\[CDATA\[|\]\]>/g,'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>')}
 function clean(t=''){return decode(t).replace(/\s+-\s+[^-]{2,90}$/,'').replace(/\s+/g,' ').trim()}
