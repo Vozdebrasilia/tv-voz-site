@@ -1,0 +1,4 @@
+/* Cenário V34 aprovado — somente cenário; não altera avatares */
+#tv-ao-vivo .studio-bg{background:#071426 url('./studio-cenario-v34.svg') center center/cover no-repeat!important;opacity:1!important;filter:none!important}
+#tv-ao-vivo .studio-bg:before,#tv-ao-vivo .studio-bg:after,#tv-ao-vivo .studio-lights,#tv-ao-vivo .studio-screen{display:none!important}
+#tv-ao-vivo{background:#071426!important}
