@@ -11,7 +11,7 @@ assert(/\.voznews-award-dialog\{[^}]*max-width:920px/.test(source), 'o modal dev
 assert(/\.voznews-award-modal-img\{[^}]*width:320px/.test(source), 'a arte deve abrir ampliada com 320px');
 assert(/\.voznews-award-body p\{[^}]*text-align:justify/.test(source), 'os parágrafos devem ser justificados');
 assert(/text-justify:inter-word/.test(source), 'o texto deve usar justificação entre palavras');
-assert(/<h3 id=\\"voznews-award-title\\"><\/h3><img class=\\"voznews-award-modal-img\\"/.test(source), 'o título deve aparecer acima da arte no modal');
+assert(source.includes('<h3 id="voznews-award-title"></h3><img class="voznews-award-modal-img"'), 'o título deve aparecer acima da arte no modal');
 
 const itemCount = (source.match(/\{title:'/g) || []).length;
 assert.strictEqual(itemCount, 11, 'devem permanecer exatamente 11 marcas e selos no conjunto institucional');
