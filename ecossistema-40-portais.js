@@ -2,7 +2,9 @@
   const liveRoutes={
     'automoveis':'/mobilidade/',
     'casa':'/moveis-decoracao/',
-    'gastronomia-negocios':'/gastronomia/'
+    'gastronomia-negocios':'/gastronomia/',
+    'saude-bem-estar':'/saude-beleza/',
+    'beleza':'/saude-beleza/'
   };
 
   const fallback={
