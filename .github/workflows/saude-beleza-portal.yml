@@ -18,3 +18,5 @@ jobs:
           node-version: '20'
       - name: Validar portal Saúde & Beleza
         run: node tests/saude-beleza-portal-test.js
+      - name: Validar proteção dos 40 portais
+        run: node tests/ecossistema-40-portais-lock-test.js
