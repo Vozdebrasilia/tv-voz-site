@@ -20,3 +20,11 @@ jobs:
         run: node tests/saude-beleza-portal-test.js
       - name: Validar proteção dos 40 portais
         run: node tests/ecossistema-40-portais-lock-test.js
+      - name: Validar suíte estática do repositório
+        shell: bash
+        run: |
+          set -e
+          for test_file in tests/*-test.js; do
+            echo "== $test_file =="
+            node "$test_file"
+          done
