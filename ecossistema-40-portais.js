@@ -2,14 +2,16 @@
   const liveRoutes={
     'automoveis':'/mobilidade/',
     'casa':'/moveis-decoracao/',
-    'gastronomia-negocios':'/gastronomia/'
+    'gastronomia-negocios':'/gastronomia/',
+    'saude-bem-estar':'/saude-beleza/',
+    'beleza':'/saude-beleza/'
   };
 
   const fallback={
     energia:'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1400&q=88',
     bancos:'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=88',
     aviacao:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=88',
-    automoveis:'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=88',
+    automoveis:'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7e?auto=format&fit=crop&w=1400&q=88',
     agro:'https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1400&q=88',
     tecnologia:'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=88',
     'saude-bem-estar':'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=88',
