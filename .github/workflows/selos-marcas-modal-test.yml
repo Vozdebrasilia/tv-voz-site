@@ -1,0 +1,22 @@
+name: Selos e marcas — contrato visual
+
+on:
+  push:
+    branches:
+      - main
+      - feature/padronizar-selos-marcas
+    paths:
+      - 'voznews-accessibilidade.js'
+      - 'tests/selos-marcas-modal-test.js'
+      - '.github/workflows/selos-marcas-modal-test.yml'
+  workflow_dispatch:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node tests/selos-marcas-modal-test.js
