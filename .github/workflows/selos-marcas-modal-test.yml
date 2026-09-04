@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feature/padronizar-selos-marcas
+      - 'fix/**'
     paths:
       - 'voznews-accessibilidade.js'
       - 'tests/selos-marcas-modal-test.js'
