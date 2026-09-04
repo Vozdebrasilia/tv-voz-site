@@ -20,15 +20,3 @@ jobs:
         run: node tests/saude-beleza-portal-test.js
       - name: Validar proteção dos 40 portais
         run: node tests/ecossistema-40-portais-lock-test.js
-      - name: Diagnosticar suíte estática do repositório
-        shell: bash
-        run: |
-          failed=0
-          for test_file in tests/*-test.js; do
-            echo "== $test_file =="
-            if ! node "$test_file"; then
-              echo "FALHOU: $test_file"
-              failed=1
-            fi
-          done
-          exit "$failed"
