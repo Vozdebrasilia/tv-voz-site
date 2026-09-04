@@ -1,0 +1,20 @@
+name: Validar VOZ NEWS Saúde & Beleza
+
+on:
+  push:
+    branches: [feature/saude-beleza, main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validar-saude-beleza:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validar portal Saúde & Beleza
+        run: node tests/saude-beleza-portal-test.js
