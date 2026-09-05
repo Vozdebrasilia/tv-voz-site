@@ -1,10 +1,11 @@
 const fs=require('fs');
 const js=fs.readFileSync('v33-did-player.js','utf8');
 const checks=[
- ['mercado corre continuamente e mais visivel',/\.vn-market-runner\{[\s\S]*animation:vnMarket 18s linear infinite/],
- ['noticias quentes correm continuamente',/\.vn-hot-runner\{[\s\S]*animation:vnHot 22s linear infinite/],
- ['leds recebem varredura luminosa',/\.vn-lightfx::after\{[\s\S]*animation:vnLedSweep 5\.8s linear infinite/],
- ['varredura atravessa o estudio',/@keyframes vnLedSweep\{[\s\S]*translate3d\(220%,0,0\)/],
+ ['mercado continua exatamente como aprovado',/\.vn-market-runner\{[\s\S]*animation:vnMarket 18s linear infinite/],
+ ['faixa branca frontal foi removida',/\.vn-lightfx::after\{content:none!important;display:none!important;animation:none!important\}/],
+ ['leds de fundo foram reforcados',/radial-gradient\(circle at 7% 5%[\s\S]*radial-gradient\(circle at 95% 4%[\s\S]*radial-gradient\(circle at 94% 28%/],
+ ['noticias quentes passam mais suavemente',/\.vn-hot-runner\{[\s\S]*animation:vnHot 36s linear infinite[\s\S]*backface-visibility:hidden[\s\S]*transform:translateZ\(0\)/],
+ ['noticias mantem loop continuo',/@keyframes vnHot\{from\{transform:translate3d\(0,0,0\)\}to\{transform:translate3d\(-50%,0,0\)\}\}/],
  ['movimento solicitado nao pode ser desligado por prefers-reduced-motion',!/prefers-reduced-motion:reduce[\s\S]*\.vn-market-runner[\s\S]*animation:none!important/.test(js)]
 ];
 let failed=0;
