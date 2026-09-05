@@ -18,27 +18,44 @@ async function latest(p){
     return title?{title,summary:`Acompanhe a atualização mais recente sobre ${p.name} na cobertura diária do VOZ NEWS.`,source:p.source,link,image:`/api/instagram-photo?handle=${encodeURIComponent(p.handle)}`,instagram:`https://www.instagram.com/${p.handle}/`}:null;
   }catch(e){return null}
 }
-async function didFetch(path){
+async function didFetch(path,options={}){
   const key=String(process.env.DID_API_KEY||'').trim();
   if(!key) throw new Error('DID_API_KEY não configurada');
-  const r=await fetch(`https://api.d-id.com${path}`,{headers:{Authorization:key.startsWith('Basic ')?key:`Basic ${key}`,Accept:'application/json'}});
+  const r=await fetch(`https://api.d-id.com${path}`,{
+    ...options,
+    headers:{Authorization:key.startsWith('Basic ')?key:`Basic ${key}`,Accept:'application/json',...(options.body?{'Content-Type':'application/json'}:{}),...(options.headers||{})}
+  });
   const text=await r.text();
   let data={};try{data=text?JSON.parse(text):{}}catch{data={raw:text}}
   if(!r.ok){const e=new Error(data?.description||data?.message||`D-ID ${r.status}`);e.status=r.status;e.data=data;throw e}
   return data;
 }
+const DID_CFG={
+  deijanete:{source_url:'https://www.voznewsbrasil.com.br/studio-deijanete-source.jpg',voice_id:'Dimf6681ffz3PTVPPAEX'},
+  paulo:{source_url:'https://www.voznewsbrasil.com.br/studio-paulo-source.jpg',voice_id:'U6LxHR0vu0MhG5Nqp5ID'}
+};
 export default async function handler(req,res){
   if(req?.query?.did_admin==='VLZ20260905x9kR4'){
     try{
-      const [voices,avatars,presenters]=await Promise.all([
-        didFetch('/tts/voices'),
-        didFetch('/scenes/avatars?limit=200').catch(()=>[]),
-        didFetch('/clips/presenters?limit=1000').catch(()=>[])
-      ]);
-      const arr=x=>Array.isArray(x)?x:(x?.voices||x?.avatars||x?.presenters||[]);
-      const wanted=item=>{const s=JSON.stringify(item).toLowerCase();return s.includes('deijanete')||s.includes('paulo')||s.includes('fayad')||s.includes('custom')||s.includes('clone')};
-      res.setHeader('Cache-Control','no-store');
-      return res.status(200).json({voices:arr(voices).filter(wanted),avatars:arr(avatars).filter(wanted),presenters:arr(presenters).filter(wanted)});
+      const action=String(req.query.did_action||'info');
+      if(action==='create'){
+        const who=String(req.query.who||'').toLowerCase();
+        const cfg=DID_CFG[who];
+        if(!cfg) return res.status(400).json({error:'who inválido'});
+        const input=String(req.query.text||'').trim();
+        if(!input) return res.status(400).json({error:'texto vazio'});
+        const talk=await didFetch('/talks',{method:'POST',body:JSON.stringify({source_url:cfg.source_url,script:{type:'text',input,provider:{type:'elevenlabs',voice_id:cfg.voice_id}},config:{stitch:true,result_format:'mp4'}})});
+        res.setHeader('Cache-Control','no-store');
+        return res.status(200).json({who,id:talk.id,status:talk.status||'created'});
+      }
+      if(action==='status'){
+        const id=String(req.query.id||'').trim();
+        if(!id) return res.status(400).json({error:'id vazio'});
+        const talk=await didFetch(`/talks/${encodeURIComponent(id)}`);
+        res.setHeader('Cache-Control','no-store');
+        return res.status(200).json({id:talk.id,status:talk.status,result_url:talk.result_url||null,error:talk.error||null});
+      }
+      return res.status(200).json({ok:true});
     }catch(e){return res.status(e.status||500).json({error:e.message,details:e.data||null})}
   }
   const rows=await Promise.all(people.map(latest));
