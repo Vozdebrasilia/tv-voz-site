@@ -87,3 +87,5 @@
   }
   if(!init()){document.addEventListener('DOMContentLoaded',init,{once:true});setTimeout(init,1200)}
 })();
+
+(()=>{if(!document.getElementById('voznews-studio-live-runtime')){const s=document.createElement('script');s.id='voznews-studio-live-runtime';s.src='/studio-live-player.js?v=20260905-live1';s.defer=true;document.head.appendChild(s)}})();
