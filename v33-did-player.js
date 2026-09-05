@@ -5,7 +5,7 @@
   if(!studio)return;
 
   studio.innerHTML=`
-    <div class="vn-approved-image" aria-label="Estúdio futurista VOZ NEWS com Deijanete Fayad e Paulo Fayad"></div>
+    <img class="vn-approved-image" src="./studio-voznews-clean-light.png?v=20260905-fallback" alt="Estúdio futurista VOZ NEWS com Deijanete Fayad e Paulo Fayad" decoding="async" fetchpriority="high">
     <div class="vn-market" aria-label="Mercado e clima">
       <div class="vn-market-label">MERCADO &amp; CLIMA</div>
       <div class="vn-market-track"><div class="vn-market-runner"><span id="marketInfo">Dólar • Euro • Brasília • São Paulo • Rio de Janeiro</span><span id="marketInfoClone" aria-hidden="true">Dólar • Euro • Brasília • São Paulo • Rio de Janeiro</span></div></div>
@@ -23,11 +23,10 @@
 #tv-ao-vivo{position:relative!important;aspect-ratio:700/385!important;min-height:0!important;height:auto!important;overflow:hidden!important;border-radius:26px!important;background:#04142b!important;isolation:isolate!important;box-shadow:0 30px 80px rgba(0,0,0,.52),0 0 36px rgba(0,119,255,.20)!important}
 #tv-ao-vivo::before,#tv-ao-vivo::after{content:none!important;display:none!important}
 #tv-ao-vivo>*{box-sizing:border-box}
-.vn-approved-image{position:absolute;inset:0;z-index:1;background-position:center top;background-repeat:no-repeat;background-size:100% 100%;background-color:#04142b}
-.vn-market{position:absolute;z-index:50;left:0;right:0;bottom:5.2%;height:5.2%;display:flex;background:#fff;color:#07172f;overflow:hidden;border-top:1px solid rgba(0,0,0,.12)}
-.vn-market-label{flex:0 0 auto;display:flex;align-items:center;padding:0 15px;background:#081a37;color:#fff;font-size:clamp(8px,.9vw,14px);font-weight:950;white-space:nowrap;border-right:3px solid #f1c746}
-.vn-market-track{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.vn-market-runner{display:flex;align-items:center;width:max-content;min-width:max-content;animation:vnMarket 26s linear infinite;will-change:transform}.vn-market-runner span{display:block;flex:0 0 auto;white-space:nowrap;padding-right:90px;font-size:clamp(8px,.9vw,14px);font-weight:900}
-.vn-hot{position:absolute;z-index:51;left:0;right:0;bottom:0;height:5.2%;display:flex;background:#07172f;color:#fff;overflow:hidden}.vn-hot-label{flex:0 0 auto;display:flex;align-items:center;padding:0 15px;background:#e61d2b;font-size:clamp(8px,.85vw,13px);font-weight:950;white-space:nowrap}.vn-hot-track{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.vn-hot-runner{display:flex;align-items:center;width:max-content;min-width:max-content;animation:vnHot 32s linear infinite;will-change:transform}.vn-hot-runner span{display:block;flex:0 0 auto;white-space:nowrap;padding-right:100px;font-size:clamp(8px,.85vw,13px);font-weight:850}.vn-market-runner span+span,.vn-hot-runner span+span{padding-left:20px}
+.vn-approved-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;display:block!important;visibility:visible!important;opacity:1!important;z-index:1!important;object-fit:cover!important;object-position:center top!important;background:#04142b!important}
+.vn-market{position:absolute!important;z-index:50!important;left:0!important;right:0!important;bottom:5.2%!important;height:5.2%!important;display:flex!important;background:#fff!important;color:#07172f!important;overflow:hidden!important;border-top:1px solid rgba(0,0,0,.12)!important}
+.vn-market-label{flex:0 0 auto;display:flex;align-items:center;padding:0 15px;background:#081a37;color:#fff;font-size:clamp(8px,.9vw,14px);font-weight:950;white-space:nowrap;border-right:3px solid #f1c746}.vn-market-track{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.vn-market-runner{display:flex;align-items:center;width:max-content;min-width:max-content;animation:vnMarket 26s linear infinite;will-change:transform}.vn-market-runner span{display:block;flex:0 0 auto;white-space:nowrap;padding-right:90px;font-size:clamp(8px,.9vw,14px);font-weight:900}
+.vn-hot{position:absolute!important;z-index:51!important;left:0!important;right:0!important;bottom:0!important;height:5.2%!important;display:flex!important;background:#07172f!important;color:#fff!important;overflow:hidden!important}.vn-hot-label{flex:0 0 auto;display:flex;align-items:center;padding:0 15px;background:#e61d2b;font-size:clamp(8px,.85vw,13px);font-weight:950;white-space:nowrap}.vn-hot-track{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.vn-hot-runner{display:flex;align-items:center;width:max-content;min-width:max-content;animation:vnHot 32s linear infinite;will-change:transform}.vn-hot-runner span{display:block;flex:0 0 auto;white-space:nowrap;padding-right:100px;font-size:clamp(8px,.85vw,13px);font-weight:850}.vn-market-runner span+span,.vn-hot-runner span+span{padding-left:20px}
 @keyframes vnMarket{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}@keyframes vnHot{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @media(max-width:760px){#tv-ao-vivo{border-radius:16px!important}.vn-market-label,.vn-hot-label{padding:0 7px}.vn-market-runner span,.vn-hot-runner span{padding-right:42px}}
 @media(prefers-reduced-motion:reduce){.vn-market-runner,.vn-hot-runner{animation:none!important}}
@@ -35,10 +34,23 @@
   document.head.appendChild(style);
 
   const imageLayer=studio.querySelector('.vn-approved-image');
-  fetch('/studio-voznews-futurista.b64?v=20260905-1',{cache:'no-store'})
-    .then(r=>{if(!r.ok)throw new Error('asset');return r.text()})
-    .then(data=>{imageLayer.style.backgroundImage=`url("data:image/webp;base64,${data.trim()}")`})
-    .catch(()=>{imageLayer.style.backgroundImage="url('./studio-voznews-clean-light.png')"});
+  function base64ToBlobUrl(base64,type='image/webp'){
+    const clean=String(base64||'').replace(/\s+/g,'');
+    const binary=atob(clean);
+    const bytes=new Uint8Array(binary.length);
+    for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+    return URL.createObjectURL(new Blob([bytes],{type}));
+  }
+  fetch('/studio-voznews-futurista.b64?v=20260905-blob3',{cache:'no-store'})
+    .then(r=>{if(!r.ok)throw new Error(`asset ${r.status}`);return r.text()})
+    .then(data=>{
+      const objectUrl=base64ToBlobUrl(data);
+      const cleanup=()=>{try{URL.revokeObjectURL(objectUrl)}catch(e){}};
+      imageLayer.onload=cleanup;
+      imageLayer.onerror=()=>{cleanup();imageLayer.onerror=null;imageLayer.src='./studio-voznews-clean-light.png?v=20260905-fallback2'};
+      imageLayer.src=objectUrl;
+    })
+    .catch(()=>{imageLayer.src='./studio-voznews-clean-light.png?v=20260905-fallback2'});
 
   const marketInfo=document.getElementById('marketInfo');
   const marketInfoClone=document.getElementById('marketInfoClone');
