@@ -1,3 +1,4 @@
+(()=>{if(!document.getElementById('voznews-accessibilidade-runtime')){const s=document.createElement('script');s.id='voznews-accessibilidade-runtime';s.src='/voznews-accessibilidade.js?v=20260904-selos';s.async=false;document.head.appendChild(s)}})();
 (() => {
   const playlist=[
     {presenter:'paulo',src:'./assets/v33-original/01-paulo-ola.mp4'},
