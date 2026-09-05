@@ -1,0 +1,13 @@
+const assert=require('assert'),fs=require('fs');
+process.env.VOZNEWS_LIVE_SIGNING_SECRET='0123456789abcdef0123456789abcdef';
+const p=require('../api/_studio-live-provider');
+const payload={blockId:'abc',videos:[{speaker:'deijanete',videoId:'v1'}]};
+const token=p.signJob(payload);
+assert.deepStrictEqual(p.verifyJob(token),payload);
+assert.throws(()=>p.verifyJob(token.slice(0,-1)+(token.endsWith('a')?'b':'a')));
+const src=fs.readFileSync('api/_studio-live-provider.js','utf8');
+assert.ok(src.includes("'/v3/videos'"));
+assert.ok(src.includes("`/v3/videos/${videoId}`"));
+assert.ok(src.includes('process.env.HEYGEN_API_KEY'));
+assert.ok(!/sk[-_][A-Za-z0-9]{20,}/.test(src),'nenhuma chave literal');
+console.log('OK studio-live-provider');
