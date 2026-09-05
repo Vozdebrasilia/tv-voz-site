@@ -8,15 +8,9 @@ const checks=[
  ['noticias quentes passam mais suavemente',/\.vn-hot-runner\{[\s\S]*animation:vnHot 36s linear infinite[\s\S]*backface-visibility:hidden[\s\S]*transform:translateZ\(0\)/],
  ['noticias mantem loop continuo',/@keyframes vnHot\{from\{transform:translate3d\(0,0,0\)\}to\{transform:translate3d\(-50%,0,0\)\}\}/],
  ['movimento solicitado nao pode ser desligado por prefers-reduced-motion',!/prefers-reduced-motion:reduce[\s\S]*\.vn-market-runner[\s\S]*animation:none!important/.test(js)],
- ['camada de avatares e isolada do restante do studio',/class="vn-avatar-stage"/],
- ['Deijanete usa camada propria sem substituir o cenario',/class="vn-avatar-host vn-avatar-deijanete"/],
- ['Paulo usa camada propria sem substituir o cenario',/class="vn-avatar-host vn-avatar-paulo"/],
- ['conversa usa os dez clipes aprovados de apresentadores reais',/assets\/v33-real\/01-paulo\.mp4[\s\S]*assets\/v33-real\/02-deijanete\.mp4[\s\S]*assets\/v33-real\/09-paulo\.mp4[\s\S]*assets\/v33-real\/10-deijanete\.mp4/],
- ['lip sync vem do video aprovado e fica acima da imagem mas abaixo dos efeitos',/\.vn-avatar-video\{[\s\S]*z-index:4!important/],
- ['reacao de Deijanete se orienta para Paulo',/@keyframes vnPartnerRight\{/],
- ['reacao de Paulo se orienta para Deijanete',/@keyframes vnPartnerLeft\{/],
- ['camada animada e recortada antes das duas faixas inferiores',/\.vn-avatar-stage\{[\s\S]*clip-path:inset\(0 0 10\.4% 0\)!important/],
- ['audio so e liberado por gesto do visitante sem criar novo controle visual',/addEventListener\('pointerdown',enableAvatarAudio/]
+ ['videos enviados para clonagem de voz nao podem ser usados como camada visual',!/assets\/v33-real\//.test(js)],
+ ['estudio aprovado nao pode receber overlay visual dos videos enviados',!/vn-avatar-video/.test(js)],
+ ['camada aprovada do estudio continua sendo o unico visual dos apresentadores',!/vn-avatar-stage/.test(js)]
 ];
 let failed=0;
 for(const [name,test] of checks){const ok=test instanceof RegExp?test.test(js):test;if(!ok){console.error('FAIL:',name);failed++}else console.log('OK:',name)}
