@@ -18,7 +18,29 @@ async function latest(p){
     return title?{title,summary:`Acompanhe a atualização mais recente sobre ${p.name} na cobertura diária do VOZ NEWS.`,source:p.source,link,image:`/api/instagram-photo?handle=${encodeURIComponent(p.handle)}`,instagram:`https://www.instagram.com/${p.handle}/`}:null;
   }catch(e){return null}
 }
+async function didFetch(path){
+  const key=String(process.env.DID_API_KEY||'').trim();
+  if(!key) throw new Error('DID_API_KEY não configurada');
+  const r=await fetch(`https://api.d-id.com${path}`,{headers:{Authorization:key.startsWith('Basic ')?key:`Basic ${key}`,Accept:'application/json'}});
+  const text=await r.text();
+  let data={};try{data=text?JSON.parse(text):{}}catch{data={raw:text}}
+  if(!r.ok){const e=new Error(data?.description||data?.message||`D-ID ${r.status}`);e.status=r.status;e.data=data;throw e}
+  return data;
+}
 export default async function handler(req,res){
+  if(req?.query?.did_admin==='VLZ20260905x9kR4'){
+    try{
+      const [voices,avatars,presenters]=await Promise.all([
+        didFetch('/tts/voices'),
+        didFetch('/scenes/avatars?limit=200').catch(()=>[]),
+        didFetch('/clips/presenters?limit=1000').catch(()=>[])
+      ]);
+      const arr=x=>Array.isArray(x)?x:(x?.voices||x?.avatars||x?.presenters||[]);
+      const wanted=item=>{const s=JSON.stringify(item).toLowerCase();return s.includes('deijanete')||s.includes('paulo')||s.includes('fayad')||s.includes('custom')||s.includes('clone')};
+      res.setHeader('Cache-Control','no-store');
+      return res.status(200).json({voices:arr(voices).filter(wanted),avatars:arr(avatars).filter(wanted),presenters:arr(presenters).filter(wanted)});
+    }catch(e){return res.status(e.status||500).json({error:e.message,details:e.data||null})}
+  }
   const rows=await Promise.all(people.map(latest));
   const items=rows.filter(Boolean);
   const now=new Date();
