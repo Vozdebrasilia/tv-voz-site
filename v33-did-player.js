@@ -2,59 +2,75 @@
 (()=>{
   const studio=document.getElementById('tv-ao-vivo');
   if(!studio)return;
-  const old=document.getElementById('studioHQBackdrop');if(old)old.remove();
-  const backdrop=document.createElement('div');
-  backdrop.id='studioHQBackdrop';
-  backdrop.innerHTML=`
-    <div class="hq-city hq-brasilia"><div class="hq-landmark brasilia-mark"><i></i><b></b><em></em></div><span>BRASÍLIA<small>BRASIL</small></span></div>
-    <div class="hq-center">
-      <div class="hq-network"></div>
-      <img class="hq-logo" src="./logo-voznews-oficial.png" alt="VOZNEWS VISIBILIDADE">
-      <div class="hq-subline">BRASÍLIA • BRASIL • MUNDO</div>
-      <div class="hq-tagline">INFORMAÇÃO QUE CONECTA</div>
+
+  /* Regra desta versão: nenhum elemento visual do Studio anterior é reaproveitado.
+     Únicos arquivos preservados: as imagens-base dos dois avatares. */
+  studio.innerHTML=`
+    <div class="vn-studio-bg" aria-hidden="true">
+      <div class="vn-ceiling">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="vn-stars"></div>
+      <div class="vn-brand">
+        <strong><span>VOZ</span> NEWS</strong>
+        <b>VISIBILIDADE</b>
+        <small>BRASÍLIA • BRASIL • MUNDO</small>
+      </div>
+      <div class="vn-city vn-city-bsb"><div class="vn-city-art bsb"></div><span>BRASÍLIA<small>BRASIL</small></span></div>
+      <div class="vn-city vn-city-sp"><div class="vn-city-art sp"></div><span>SÃO PAULO<small>BRASIL</small></span></div>
+      <div class="vn-city vn-city-ny"><div class="vn-city-art ny"></div><span>NOVA YORK<small>ESTADOS UNIDOS</small></span></div>
+      <div class="vn-desk"><div class="vn-desk-logo"><strong>VOZ NEWS</strong><b>VISIBILIDADE</b><small>40 ANOS DE CREDIBILIDADE</small></div></div>
     </div>
-    <div class="hq-city hq-saopaulo"><div class="hq-landmark sp-mark"><i></i><b></b><em></em></div><span>SÃO PAULO<small>BRASIL</small></span></div>
-    <div class="hq-city hq-ny"><div class="hq-landmark ny-mark"><i></i><b></b><em></em></div><span>NOVA YORK<small>ESTADOS UNIDOS</small></span></div>
-    <div class="hq-desk"><div class="hq-desk-brand"><img src="./logo-voznews-oficial.png" alt="VOZNEWS VISIBILIDADE"><strong>40 ANOS DE CREDIBILIDADE</strong></div></div>
-    <div class="hq-live">● AO VIVO</div>
-    <div class="hq-values">JORNALISMO<br>CREDIBILIDADE<br>RESULTADOS</div>
+
+    <div class="vn-live">● AO VIVO</div>
+    <div class="vn-values">JORNALISMO<br>VISIBILIDADE<br>RESULTADOS</div>
+
+    <div class="vn-presenters" aria-label="Apresentadores VOZ NEWS">
+      <div class="vn-presenter vn-deijanete"><img src="./studio-deijanete-source.png" alt="Deijanete Fayad"><div class="vn-name">Deijanete Fayad</div></div>
+      <div class="vn-presenter vn-paulo"><img src="./studio-paulo-source.png" alt="Paulo Fayad"><div class="vn-name">Paulo Fayad</div></div>
+    </div>
+
+    <div class="vn-market" aria-label="Mercado e clima">
+      <div class="vn-market-label">MERCADO &amp; CLIMA</div>
+      <div class="vn-market-track"><div class="vn-market-runner"><span id="marketInfo">Dólar • Euro • Ibovespa • Brasília • São Paulo • Rio de Janeiro</span><span id="marketInfoClone" aria-hidden="true">Dólar • Euro • Ibovespa • Brasília • São Paulo • Rio de Janeiro</span></div></div>
+    </div>
+
+    <div class="vn-hot" aria-label="Notícias quentes">
+      <div class="vn-hot-label">🔥 NOTÍCIAS QUENTES</div>
+      <div class="vn-hot-track"><div class="vn-hot-runner"><span id="visibleNewsTicker">Notícias em tempo real • Brasília • Brasil • Mundo</span><span id="visibleNewsTickerClone" aria-hidden="true">Notícias em tempo real • Brasília • Brasil • Mundo</span></div></div>
+    </div>
   `;
-  studio.insertBefore(backdrop,studio.firstChild);
-  const style=document.createElement('style');
-  style.id='voznews-studio-hq-css';
-  style.textContent=`
-#tv-ao-vivo{position:relative!important;aspect-ratio:16/9!important;min-height:0!important;height:auto!important;overflow:hidden!important;background:#03142e!important;border-radius:24px!important;isolation:isolate!important;box-shadow:0 28px 80px rgba(0,0,0,.52),0 0 42px rgba(0,90,255,.22)!important}
-#studioHQBackdrop{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:20% 47% 16.5% 16.5%;background:linear-gradient(180deg,#021128 0%,#05265f 42%,#03142e 100%);overflow:hidden}
-#studioHQBackdrop:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,91,255,.18),transparent 22%,transparent 78%,rgba(0,91,255,.18)),repeating-linear-gradient(90deg,transparent 0 52px,rgba(0,143,255,.05) 53px,transparent 54px);z-index:0}
-#studioHQBackdrop:after{content:"";position:absolute;left:-25%;right:-25%;top:-10%;height:44%;background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.16) 46%,transparent 59%);animation:hqSweep 7s linear infinite;z-index:3;pointer-events:none;mix-blend-mode:screen}
-.hq-center,.hq-city{position:relative;z-index:1;border-right:2px solid rgba(218,177,63,.55);overflow:hidden}
-.hq-center{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:7%;background:radial-gradient(circle at 50% 42%,rgba(0,94,255,.28),transparent 34%),linear-gradient(180deg,#031a47,#062767 56%,#041832)}
-.hq-network{position:absolute;inset:0;opacity:.7;background-image:radial-gradient(circle at 10% 18%,#1aa7ff 0 2px,transparent 3px),radial-gradient(circle at 27% 38%,#68c8ff 0 2px,transparent 3px),radial-gradient(circle at 43% 20%,#0c84ff 0 2px,transparent 3px),radial-gradient(circle at 58% 42%,#9fdcff 0 2px,transparent 3px),radial-gradient(circle at 74% 25%,#0877ff 0 2px,transparent 3px),radial-gradient(circle at 87% 49%,#55bdff 0 2px,transparent 3px),linear-gradient(18deg,transparent 46%,rgba(0,157,255,.24) 47% 48%,transparent 49%),linear-gradient(-24deg,transparent 46%,rgba(76,182,255,.2) 47% 48%,transparent 49%);background-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,180px 180px,210px 210px;animation:hqStars 3.2s ease-in-out infinite alternate}
-.hq-logo{position:relative;width:64%;max-height:22%;object-fit:contain;z-index:2;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45));margin-top:2%}
-.hq-subline{position:relative;z-index:2;color:#fff;font-weight:900;letter-spacing:.19em;font-size:clamp(8px,1vw,16px);margin-top:1%}
-.hq-tagline{position:relative;z-index:2;color:#dbe9ff;letter-spacing:.28em;font-size:clamp(6px,.75vw,12px);margin-top:1.4%}
-.hq-city{background:linear-gradient(180deg,#031d4e,#062558 62%,#031225);display:flex;align-items:flex-end;justify-content:center;padding-bottom:20%}
-.hq-city span{position:absolute;left:10%;bottom:15.5%;border-left:4px solid #e1b43f;padding-left:10px;color:#fff;font-weight:950;font-size:clamp(9px,1.15vw,18px);line-height:1.05;text-shadow:0 2px 4px #000}
-.hq-city span small{display:block;font-size:.68em;margin-top:4px;font-weight:800}
-.hq-landmark{position:absolute;left:7%;right:7%;bottom:26%;height:49%;filter:drop-shadow(0 0 14px rgba(255,192,72,.35))}
-.brasilia-mark:before,.brasilia-mark:after{content:"";position:absolute;bottom:10%;width:34%;height:13%;border:4px solid #e7edf8;border-top-width:8px;border-radius:50% 50% 12% 12%/100% 100% 20% 20%;box-shadow:0 0 12px rgba(255,210,110,.4)}.brasilia-mark:before{left:2%}.brasilia-mark:after{right:2%}.brasilia-mark i,.brasilia-mark b{position:absolute;bottom:22%;width:11%;height:69%;border:3px solid #e7edf8;background:linear-gradient(180deg,rgba(220,235,255,.1),rgba(255,255,255,.04));box-shadow:0 0 16px rgba(255,210,110,.28)}.brasilia-mark i{left:38%}.brasilia-mark b{right:38%}.brasilia-mark em{position:absolute;left:13%;right:13%;bottom:8%;height:2px;background:#e1b43f;box-shadow:0 0 12px #e1b43f}
-.sp-mark:before,.sp-mark:after{content:"";position:absolute;bottom:8%;left:9%;right:9%;height:4px;background:#e1b43f;transform:rotate(-6deg);box-shadow:0 0 14px #e1b43f}.sp-mark:after{transform:rotate(6deg)}.sp-mark i,.sp-mark b{position:absolute;bottom:8%;width:10%;height:72%;border:4px solid #e8eef8;border-bottom:0}.sp-mark i{left:33%;transform:rotate(9deg)}.sp-mark b{right:33%;transform:rotate(-9deg)}.sp-mark em{position:absolute;left:15%;right:15%;bottom:34%;height:2px;background:#e8eef8;box-shadow:0 0 9px rgba(255,255,255,.6)}
-.ny-mark:before{content:"";position:absolute;bottom:7%;left:38%;width:24%;height:70%;background:linear-gradient(90deg,#dbe8ff 0 16%,#254a85 17% 32%,#e7f0ff 33% 48%,#24477e 49% 64%,#dce9ff 65% 82%,#224375 83%);clip-path:polygon(40% 0,60% 0,60% 10%,72% 10%,72% 24%,84% 24%,84% 100%,16% 100%,16% 24%,28% 24%,28% 10%,40% 10%);box-shadow:0 0 18px rgba(255,255,255,.25)}.ny-mark:after{content:"";position:absolute;left:49%;bottom:77%;width:2px;height:18%;background:#e1b43f;box-shadow:0 0 8px #e1b43f}.ny-mark i{position:absolute;bottom:7%;left:4%;width:26%;height:45%;background:repeating-linear-gradient(90deg,#173863 0 6px,#dce8fa 7px 9px)}.ny-mark b{position:absolute;bottom:7%;right:4%;width:27%;height:54%;background:repeating-linear-gradient(90deg,#183861 0 7px,#dae6f8 8px 10px)}
-.hq-desk{position:absolute;left:12%;right:10%;bottom:11.8%;height:25%;z-index:8;background:linear-gradient(180deg,rgba(245,249,255,.88) 0 7%,#173764 8% 27%,#06172d 28% 100%);border:2px solid rgba(215,179,62,.68);border-radius:50% 50% 7% 7%/18% 18% 8% 8%;box-shadow:0 18px 30px rgba(0,0,0,.5),inset 0 0 30px rgba(0,102,255,.35);clip-path:polygon(2% 0,98% 0,93% 100%,7% 100%)}
-.hq-desk-brand{position:absolute;left:31%;right:31%;top:27%;bottom:8%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#0d4fa5,#05152c 75%);border:1px solid rgba(225,180,63,.35)}.hq-desk-brand img{width:70%;height:58%;object-fit:contain}.hq-desk-brand strong{color:#fff;font-size:clamp(7px,.8vw,13px);letter-spacing:.12em;white-space:nowrap}
-.hq-live{position:absolute;left:1.2%;top:2.2%;z-index:25;background:#ec1425;color:#fff;font-weight:950;padding:.8% 1.4%;border-radius:9px;font-size:clamp(10px,1.45vw,24px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.hq-values{position:absolute;right:1.6%;top:3%;z-index:25;color:#fff;border-left:4px solid #e1b43f;padding-left:10px;font-weight:800;font-size:clamp(7px,.75vw,13px);letter-spacing:.05em;line-height:1.45}
-#tv-ao-vivo .enter-live-overlay,#tv-ao-vivo .live-badge,#tv-ao-vivo .studio-topline,#tv-ao-vivo .studio-controls,#tv-ao-vivo .studio-status,#tv-ao-vivo .studio-overlay-logo,#tv-ao-vivo .studio-headline-panel{display:none!important}
-#tv-ao-vivo .studio-presenters{display:block!important;position:absolute!important;inset:0!important;z-index:12!important;pointer-events:none!important;overflow:hidden!important;opacity:1!important;visibility:visible!important}
-#tv-ao-vivo .studio-presenter{display:block!important;position:absolute!important;top:23.5%!important;width:27%!important;height:50%!important;opacity:1!important;visibility:visible!important;overflow:visible!important;filter:drop-shadow(0 16px 16px rgba(0,0,0,.45))!important;background:transparent!important}
-#tv-ao-vivo .idle-deijanete{left:20.5%!important}#tv-ao-vivo .idle-paulo{left:51.8%!important}
-#tv-ao-vivo .studio-presenter-image{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;opacity:1!important;visibility:visible!important;image-rendering:auto!important;filter:contrast(1.04) saturate(1.03) sharpness(1)!important}
-#tv-ao-vivo .anchor-name-tag{display:block!important;position:absolute!important;z-index:18!important;bottom:29.5%!important;background:linear-gradient(180deg,#183b79,#091a39)!important;color:#fff!important;border:2px solid #c79a30!important;border-radius:7px!important;padding:.55% 2%!important;box-shadow:0 8px 14px rgba(0,0,0,.38)!important;font-size:clamp(9px,1vw,16px)!important}.tag-deijanete{left:24.7%!important}.tag-paulo{left:57.1%!important}
-#tv-ao-vivo .market-strip{display:flex!important;position:absolute!important;left:0!important;right:0!important;bottom:6.1%!important;height:6.2%!important;z-index:50!important;background:rgba(248,250,253,.99)!important;color:#07172f!important;border:0!important;border-radius:0!important;overflow:hidden!important}.market-label{display:flex!important;align-items:center!important;padding:0 14px!important;background:#07172f!important;color:#fff!important;font-weight:950!important;white-space:nowrap!important}.market-track{flex:1!important;overflow:hidden!important;display:flex!important;align-items:center!important}.market-runner{display:flex!important;gap:38px!important;min-width:max-content!important;white-space:nowrap!important;animation:hqMarket 28s linear infinite!important;font-weight:850!important;font-size:clamp(9px,1vw,16px)!important}
-#tv-ao-vivo .ticker{display:block!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:6.2%!important;z-index:51!important;background:#07172f!important;border:0!important;border-radius:0!important;overflow:hidden!important}.ticker:before{content:'🔥 NOTÍCIAS QUENTES';display:flex;align-items:center;position:absolute;left:0;top:0;bottom:0;z-index:3;padding:0 18px;background:#ef1325;color:#fff;font-weight:950;white-space:nowrap;font-size:clamp(9px,1vw,16px)}.ticker-track{height:100%!important;display:flex!important;align-items:center!important;overflow:hidden!important;padding-left:180px!important}.ticker-runner{display:flex!important;gap:42px!important;min-width:max-content!important;white-space:nowrap!important;animation:hqNews 38s linear infinite!important;color:#fff!important;font-size:clamp(8px,.9vw,15px)!important}
-@keyframes hqSweep{0%{transform:translateX(-55%)}100%{transform:translateX(55%)}}@keyframes hqStars{0%{opacity:.45}100%{opacity:.95}}@keyframes hqMarket{to{transform:translateX(-50%)}}@keyframes hqNews{to{transform:translateX(-50%)}}
-@media(max-width:760px){#tv-ao-vivo{border-radius:16px!important}.hq-values{display:none}.hq-city span{font-size:6px!important;border-left-width:2px;padding-left:4px}.hq-logo{width:74%}.hq-subline{font-size:5px!important}.hq-tagline{font-size:4px!important}.hq-desk-brand strong{font-size:5px!important}#tv-ao-vivo .studio-presenter{top:24%!important;height:49%!important;width:28%!important}#tv-ao-vivo .idle-deijanete{left:19.5%!important}#tv-ao-vivo .idle-paulo{left:51.2%!important}#tv-ao-vivo .anchor-name-tag{font-size:7px!important;padding:2px 6px!important}.tag-deijanete{left:23%!important}.tag-paulo{left:56%!important}.market-label{padding:0 5px!important;font-size:7px!important}.ticker:before{padding:0 5px!important;font-size:7px!important}.ticker-track{padding-left:88px!important}.market-runner,.ticker-runner{font-size:6px!important}}
-@media(prefers-reduced-motion:reduce){#studioHQBackdrop:after,.hq-network,.market-runner,.ticker-runner{animation:none!important}}
-  `;
-  const oldStyle=document.getElementById('voznews-studio-hq-css');if(oldStyle)oldStyle.remove();document.head.appendChild(style);
+
+  const oldStyle=document.getElementById('voznews-new-studio-only');if(oldStyle)oldStyle.remove();
+  const style=document.createElement('style');style.id='voznews-new-studio-only';style.textContent=`
+#tv-ao-vivo{position:relative!important;aspect-ratio:16/9!important;min-height:0!important;height:auto!important;overflow:hidden!important;border-radius:26px!important;background:#020b1b!important;isolation:isolate!important;box-shadow:0 30px 80px rgba(0,0,0,.52),0 0 36px rgba(0,119,255,.2)!important}
+#tv-ao-vivo>*{box-sizing:border-box}.vn-studio-bg{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 34%,rgba(24,105,255,.24),transparent 30%),linear-gradient(180deg,#03122c 0%,#06235b 44%,#03132d 100%);overflow:hidden}.vn-studio-bg:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 0 36%,rgba(126,208,255,.11) 46%,transparent 55%);animation:vnSweep 7s linear infinite;pointer-events:none}.vn-ceiling{position:absolute;left:6%;right:6%;top:2%;height:8%;display:flex;justify-content:space-between;align-items:flex-start;z-index:3}.vn-ceiling i{width:6%;height:20%;border-radius:999px;background:#57c7ff;box-shadow:0 0 8px #57c7ff,0 0 22px rgba(87,199,255,.66);animation:vnLed 1.7s ease-in-out infinite alternate}.vn-ceiling i:nth-child(even){animation-delay:-.85s}.vn-stars{position:absolute;inset:7% 17% 27% 17%;opacity:.9;background-image:radial-gradient(circle at 10% 18%,#fff 0 1.2px,transparent 2px),radial-gradient(circle at 24% 45%,#85cfff 0 1.3px,transparent 2.1px),radial-gradient(circle at 38% 17%,#fff 0 1px,transparent 2px),radial-gradient(circle at 51% 38%,#bde6ff 0 1.2px,transparent 2.1px),radial-gradient(circle at 67% 22%,#fff 0 1.2px,transparent 2px),radial-gradient(circle at 78% 48%,#6cc7ff 0 1.2px,transparent 2px),radial-gradient(circle at 91% 25%,#fff 0 1px,transparent 2px);animation:vnStars 2.6s ease-in-out infinite alternate}.vn-brand{position:absolute;left:50%;top:12%;transform:translateX(-50%);z-index:5;width:44%;text-align:center}.vn-brand strong{display:block;color:#eef6ff;font-size:clamp(30px,4.7vw,76px);line-height:.86;letter-spacing:-.055em;text-shadow:0 5px 16px rgba(0,0,0,.45)}.vn-brand strong span{color:#f4c744}.vn-brand b{display:block;color:#f4c744;font-size:clamp(14px,2vw,31px);letter-spacing:.16em;margin-top:1.2%}.vn-brand small{display:block;color:#d8e8ff;font-size:clamp(7px,.82vw,13px);font-weight:900;letter-spacing:.18em;margin-top:1.2%}.vn-city{position:absolute;top:10%;bottom:23%;width:18%;border:1px solid rgba(232,194,67,.32);background:linear-gradient(180deg,rgba(5,34,79,.88),rgba(2,15,39,.95));overflow:hidden}.vn-city-bsb{left:1.4%}.vn-city-sp{right:19.7%}.vn-city-ny{right:1.4%}.vn-city span{position:absolute;left:9%;bottom:7%;border-left:3px solid #f1c746;padding-left:8px;color:#fff;font-size:clamp(8px,.95vw,15px);font-weight:950;line-height:1.05;text-shadow:0 2px 5px #000}.vn-city span small{display:block;margin-top:3px;font-size:.66em}.vn-city-art{position:absolute;inset:12% 9% 17%;filter:drop-shadow(0 0 9px rgba(255,224,146,.2))}.vn-city-art.bsb:before,.vn-city-art.bsb:after{content:"";position:absolute;bottom:10%;width:38%;height:16%;border:4px solid #eef5ff;border-radius:50% 50% 10% 10%/100% 100% 18% 18%}.vn-city-art.bsb:before{left:2%}.vn-city-art.bsb:after{right:2%}.vn-city-art.bsb{background:linear-gradient(90deg,transparent 42%,#eef5ff 43% 47%,transparent 48% 53%,#eef5ff 54% 58%,transparent 59%) center bottom 22%/100% 66% no-repeat}.vn-city-art.sp{background:linear-gradient(90deg,transparent 0 15%,#e8f1ff 16% 19%,transparent 20% 32%,#e8f1ff 33% 37%,transparent 38% 52%,#e8f1ff 53% 58%,transparent 59% 70%,#e8f1ff 71% 75%,transparent 76%),linear-gradient(180deg,transparent 62%,#f0c748 63% 65%,transparent 66%)}.vn-city-art.ny{background:linear-gradient(90deg,transparent 0 8%,#c9dbf4 9% 19%,transparent 20% 25%,#edf4ff 26% 38%,transparent 39% 45%,#bdd4ef 46% 57%,transparent 58% 63%,#edf4ff 64% 80%,transparent 81%);clip-path:polygon(0 100%,0 50%,8% 50%,8% 34%,19% 34%,19% 56%,27% 56%,27% 26%,38% 26%,38% 47%,46% 47%,46% 12%,58% 12%,58% 42%,65% 42%,65% 29%,80% 29%,80% 58%,88% 58%,88% 39%,100% 39%,100% 100%)}.vn-desk{position:absolute;left:17%;right:17%;bottom:12.2%;height:27%;z-index:9;background:linear-gradient(180deg,#e9f3ff 0 5%,#1b4b90 6% 16%,#071832 17% 100%);border:2px solid rgba(240,196,62,.65);border-radius:46% 46% 5% 5%/20% 20% 8% 8%;clip-path:polygon(2% 0,98% 0,92% 100%,8% 100%);box-shadow:0 18px 30px rgba(0,0,0,.52),inset 0 0 30px rgba(31,114,255,.28)}.vn-desk-logo{position:absolute;left:33%;right:33%;top:28%;bottom:10%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#0b4aa1,#041327 75%);border:1px solid rgba(238,193,61,.42)}.vn-desk-logo strong{color:#fff;font-size:clamp(12px,1.7vw,27px);line-height:.9}.vn-desk-logo b{color:#f2c847;font-size:clamp(7px,.9vw,14px);letter-spacing:.12em}.vn-desk-logo small{color:#fff;font-size:clamp(5px,.58vw,9px);letter-spacing:.1em;margin-top:4px}.vn-live{position:absolute;z-index:30;left:1.5%;top:2%;background:#e51d2d;color:#fff;font-size:clamp(10px,1.2vw,19px);font-weight:950;padding:.7% 1.25%;border-radius:9px;box-shadow:0 8px 22px rgba(0,0,0,.35)}.vn-values{position:absolute;z-index:30;right:1.8%;top:3%;border-left:4px solid #f1c746;padding-left:9px;color:#fff;font-size:clamp(7px,.75vw,12px);font-weight:900;line-height:1.45;letter-spacing:.05em}.vn-presenters{position:absolute;inset:0;z-index:14;pointer-events:none}.vn-presenter{position:absolute;top:25%;width:27%;height:48%;display:flex;align-items:flex-end;justify-content:center}.vn-deijanete{left:21%}.vn-paulo{left:52%}.vn-presenter img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;image-rendering:auto;filter:contrast(1.06) saturate(1.04) drop-shadow(0 15px 16px rgba(0,0,0,.44))}.vn-name{position:absolute;bottom:-4%;left:50%;transform:translateX(-50%);min-width:64%;padding:2.8% 8%;border:1px solid #e4ba43;border-radius:6px;background:linear-gradient(180deg,#19437f,#071a38);color:#fff;text-align:center;font-size:clamp(9px,1vw,16px);font-weight:950;white-space:nowrap;box-shadow:0 7px 14px rgba(0,0,0,.4)}.vn-market{position:absolute;z-index:50;left:0;right:0;bottom:6.2%;height:6.2%;display:flex;background:#fff;color:#07172f;overflow:hidden;border-top:1px solid rgba(0,0,0,.12)}.vn-market-label{flex:0 0 auto;display:flex;align-items:center;padding:0 15px;background:#081a37;color:#fff;font-size:clamp(8px,.9vw,14px);font-weight:950;white-space:nowrap;border-right:3px solid #f1c746}.vn-market-track{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.vn-market-runner{display:flex;align-items:center;width:max-content;min-width:max-content;animation:vnMarket 26s linear infinite;will-change:transform}.vn-market-runner span{display:block;flex:0 0 auto;white-space:nowrap;padding-right:90px;font-size:clamp(8px,.9vw,14px);font-weight:900}.vn-hot{position:absolute;z-index:51;left:0;right:0;bottom:0;height:6.2%;display:flex;background:#07172f;color:#fff;overflow:hidden}.vn-hot-label{flex:0 0 auto;display:flex;align-items:center;padding:0 15px;background:#e61d2b;font-size:clamp(8px,.85vw,13px);font-weight:950;white-space:nowrap}.vn-hot-track{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.vn-hot-runner{display:flex;align-items:center;width:max-content;min-width:max-content;animation:vnHot 32s linear infinite;will-change:transform}.vn-hot-runner span{display:block;flex:0 0 auto;white-space:nowrap;padding-right:100px;font-size:clamp(8px,.85vw,13px);font-weight:850}.vn-market-runner span+span,.vn-hot-runner span+span{padding-left:20px}@keyframes vnSweep{from{transform:translateX(-45%)}to{transform:translateX(45%)}}@keyframes vnLed{from{opacity:.45;transform:scaleX(.9)}to{opacity:1;transform:scaleX(1.08)}}@keyframes vnStars{from{opacity:.42}to{opacity:1}}@keyframes vnMarket{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}@keyframes vnHot{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media(max-width:760px){#tv-ao-vivo{border-radius:16px!important}.vn-values{display:none}.vn-brand{top:13%;width:47%}.vn-city{top:11%;bottom:23%;width:19%}.vn-city-bsb{left:.5%}.vn-city-sp{right:19.6%}.vn-city-ny{right:.5%}.vn-presenter{top:26%;height:47%;width:28%}.vn-deijanete{left:20%}.vn-paulo{left:52%}.vn-market-label,.vn-hot-label{padding:0 7px}.vn-market-runner span,.vn-hot-runner span{padding-right:42px}.vn-city span{font-size:5px!important;border-left-width:2px;padding-left:3px}.vn-desk-logo small{display:none}}
+@media(prefers-reduced-motion:reduce){.vn-ceiling i,.vn-stars,.vn-studio-bg:before,.vn-market-runner,.vn-hot-runner{animation:none!important}}
+`;
+  document.head.appendChild(style);
+
+  const marketInfo=document.getElementById('marketInfo');
+  const marketInfoClone=document.getElementById('marketInfoClone');
+  const ticker=document.getElementById('visibleNewsTicker');
+  const tickerClone=document.getElementById('visibleNewsTickerClone');
+  const money=v=>Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  const pct=v=>`${Number(v)>=0?'▲':'▼'} ${Math.abs(Number(v)).toFixed(2)}%`;
+  async function get(url){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;return await r.json()}catch(e){return null}}
+  async function updateMarket(){
+    const p=[];
+    const fx=await get('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL');
+    if(fx?.USDBRL)p.push(`Dólar ${money(fx.USDBRL.bid)} ${pct(fx.USDBRL.pctChange)}`);
+    if(fx?.EURBRL)p.push(`Euro ${money(fx.EURBRL.bid)} ${pct(fx.EURBRL.pctChange)}`);
+    const cities=[['Brasília',-15.7939,-47.8828],['São Paulo',-23.5505,-46.6333],['Rio de Janeiro',-22.9068,-43.1729]];
+    for(const [name,lat,lon] of cities){const w=await get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m`);if(w?.current)p.push(`${name} ${Math.round(w.current.temperature_2m)}°C`)}
+    const text=(p.length?p:['Mercado e clima em atualização']).join('   •   ')+'   •   ';
+    marketInfo.textContent=text;marketInfoClone.textContent=text;
+  }
+  async function updateNews(){
+    let items=[];const n=await get('/api/news');if(Array.isArray(n?.items))items=n.items.map(x=>x?.title).filter(Boolean).slice(0,8);
+    if(!items.length)items=['Notícias em tempo real','Brasília em destaque','Brasil e mundo agora'];
+    const text=items.join('   •   ')+'   •   ';ticker.textContent=text;tickerClone.textContent=text;
+  }
+  updateMarket();updateNews();setInterval(updateMarket,600000);setInterval(updateNews,300000);
 })();
