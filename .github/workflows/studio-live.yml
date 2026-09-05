@@ -1,0 +1,28 @@
+name: studio-live
+on:
+  push:
+    paths:
+      - 'studio-live-core.js'
+      - 'studio-live-player.js'
+      - 'v33-did-player.js'
+      - 'api/studio-live-*.js'
+      - 'api/_studio-live-provider.js'
+      - 'tests/studio-live-*.js'
+      - '.github/workflows/studio-live.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node tests/studio-live-core-test.js
+      - run: node tests/studio-live-provider-test.js
+      - run: node tests/studio-live-api-test.js
+      - run: node tests/studio-live-player-test.js
+      - run: node tests/studio-motion-v36-test.js
+      - run: node --check studio-live-player.js
+      - run: node --check api/_studio-live-provider.js
+      - run: node --check api/studio-live-prepare.js
+      - run: node --check api/studio-live-state.js
+      - name: Reject leaked provider secrets
+        run: |
+          ! grep -RIE "sk[-_][A-Za-z0-9]{20,}|HEYGEN_API_KEY\\s*=\\s*['\"][^'\"]+" --exclude-dir=.git .
