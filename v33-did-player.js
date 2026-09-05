@@ -17,17 +17,21 @@
   const visualCss=document.createElement('style');
   visualCss.id='voznews-approved-studio';
   visualCss.textContent=`
-    #tv-ao-vivo{background:#071426!important}
+    #tv-ao-vivo{background:#071426!important;min-height:760px!important}
     #tv-ao-vivo .studio-bg{position:absolute!important;inset:0!important;background:#071426!important;background-image:none!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important;opacity:1!important;filter:none!important;z-index:1!important}
-    #tv-ao-vivo .studio-bg:before,#tv-ao-vivo .studio-bg:after,#tv-ao-vivo .studio-lights,#tv-ao-vivo .studio-screen,#tv-ao-vivo .studio-presenters,#tv-ao-vivo .desk,#tv-ao-vivo .anchor-stage{display:none!important}
-    #tv-ao-vivo .live-badge,#tv-ao-vivo .studio-topline,#tv-ao-vivo .studio-buttons,#tv-ao-vivo .news-control,#tv-ao-vivo .ticker,#tv-ao-vivo .studio-status,#tv-ao-vivo .enter-live-overlay{position:relative;z-index:20}
+    #tv-ao-vivo .studio-bg:before,#tv-ao-vivo .studio-bg:after,#tv-ao-vivo .studio-lights,#tv-ao-vivo .studio-screen,#tv-ao-vivo .desk,#tv-ao-vivo .anchor-stage{display:none!important}
+    #tv-ao-vivo .studio-presenters{display:block!important;position:absolute!important;inset:0!important;z-index:12!important;visibility:visible!important;opacity:1!important;pointer-events:none!important}
+    #tv-ao-vivo .studio-presenter{display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;top:18%!important;width:30%!important;height:63%!important;overflow:visible!important;background:transparent!important}
+    #tv-ao-vivo .idle-deijanete{left:16%!important}#tv-ao-vivo .idle-paulo{left:54%!important}
+    #tv-ao-vivo .studio-presenter-image{display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;z-index:13!important;background:transparent!important}
+    #tv-ao-vivo .live-badge,#tv-ao-vivo .studio-topline,#tv-ao-vivo .studio-buttons,#tv-ao-vivo .studio-controls,#tv-ao-vivo .news-control,#tv-ao-vivo .ticker,#tv-ao-vivo .market-strip,#tv-ao-vivo .studio-status,#tv-ao-vivo .enter-live-overlay,#tv-ao-vivo .anchor-name-tag,#tv-ao-vivo .studio-overlay-logo{position:relative;z-index:20}
     #tv-ao-vivo .v33-did-video{position:absolute!important;width:1px!important;height:1px!important;left:-9999px!important;top:-9999px!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important}
-    @media(max-width:760px){#tv-ao-vivo .studio-bg{background-size:cover!important;background-position:center center!important}}
+    @media(max-width:760px){#tv-ao-vivo{min-height:700px!important}#tv-ao-vivo .studio-bg{background-size:cover!important;background-position:center center!important}#tv-ao-vivo .studio-presenter{top:20%!important;height:59%!important;width:34%!important}#tv-ao-vivo .idle-deijanete{left:12%!important}#tv-ao-vivo .idle-paulo{left:54%!important}}
   `;
   document.head.appendChild(visualCss);
 
-  Promise.all([0,1,2,3,4].map(i=>fetch(`./assets/studio-v35/part${i}.txt?v=35`).then(r=>{if(!r.ok)throw new Error('studio');return r.text()})))
-    .then(parts=>{const bg=studio.querySelector('.studio-bg');if(bg)bg.style.setProperty('background-image',`url("data:image/jpeg;base64,${parts.join('')}")`,'important')})
+  Promise.all([0,1,2,3,4].map(i=>fetch(`./assets/studio-v35/part${i}.txt?v=36`).then(r=>{if(!r.ok)throw new Error('studio');return r.text()})))
+    .then(parts=>{let bg=studio.querySelector('.studio-bg');if(!bg){bg=document.createElement('div');bg.className='studio-bg';studio.insertBefore(bg,studio.firstChild)}bg.style.setProperty('background-image',`url("data:image/jpeg;base64,${parts.join('').replace(/\s+/g,'')}")`,'important')})
     .catch(()=>{});
 
   if(!deijanete||!paulo)return;
