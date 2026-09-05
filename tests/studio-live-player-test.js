@@ -1,0 +1,12 @@
+const fs=require('fs'),assert=require('assert');
+const base=fs.readFileSync('v33-did-player.js','utf8');
+const live=fs.readFileSync('studio-live-player.js','utf8');
+assert.ok(base.includes('studio-live-player.js'),'runtime separado');
+assert.ok(base.includes('animation:vnMarket 18s linear infinite'),'Mercado preservado');
+assert.ok(base.includes('animation:vnHot 36s linear infinite'),'Notícias Quentes preservada');
+assert.ok(base.includes('.vn-lightfx::after{content:none!important;display:none!important;animation:none!important}'),'faixa branca continua removida');
+assert.ok(live.includes('AO VIVO / OUVIR AGORA'));
+assert.ok(live.includes('/api/studio-live-prepare'));
+assert.ok(live.includes('/api/studio-live-state'));
+assert.ok(!/getUserMedia|mediaDevices/.test(live),'não captura câmera/microfone');
+console.log('OK studio-live-player');
