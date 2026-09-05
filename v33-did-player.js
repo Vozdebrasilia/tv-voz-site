@@ -43,7 +43,6 @@
 @keyframes vnRayB{0%{transform:translate3d(250%,0,0) rotate(5deg);opacity:0}12%{opacity:.5}88%{opacity:.4}100%{transform:translate3d(-40%,0,0) rotate(5deg);opacity:0}}
 @keyframes vnMarket{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}@keyframes vnHot{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @media(max-width:760px){#tv-ao-vivo{border-radius:16px!important}.vn-market-label,.vn-hot-label{padding:0 7px}.vn-market-runner span,.vn-hot-runner span{padding-right:42px}.vn-image-status{font-size:10px;padding:8px 12px}.vn-ray{height:1px}.vn-lightfx::after{filter:blur(5px)}}
-@media(prefers-reduced-motion:reduce){.vn-market-runner,.vn-hot-runner,.vn-lightfx::before,.vn-lightfx::after,.vn-ray{animation:none!important}}
 `;
     document.head.appendChild(style);
 
