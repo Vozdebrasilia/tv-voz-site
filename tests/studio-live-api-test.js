@@ -1,0 +1,10 @@
+const fs=require('fs'),assert=require('assert');
+const prepare=fs.readFileSync('api/studio-live-prepare.js','utf8');
+const state=fs.readFileSync('api/studio-live-state.js','utf8');
+assert.ok(prepare.includes('/api/news'),'mesmo feed do rodapé');
+assert.ok(prepare.includes('buildStudioBlock'));
+assert.ok(prepare.includes('signJob'));
+assert.ok(state.includes('verifyJob'));
+assert.ok(!prepare.includes('process.env.HEYGEN_API_KEY'),'endpoint não manipula segredo diretamente');
+assert.ok(!state.includes('process.env.HEYGEN_API_KEY'),'endpoint não manipula segredo diretamente');
+console.log('OK studio-live-api');
