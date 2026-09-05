@@ -5,8 +5,9 @@ on:
       - 'studio-live-core.js'
       - 'studio-live-player.js'
       - 'v33-did-player.js'
-      - 'api/studio-live-*.js'
+      - 'api/news.js'
       - 'api/_studio-live-provider.js'
+      - 'vercel.json'
       - 'tests/studio-live-*.js'
       - '.github/workflows/studio-live.yml'
 jobs:
@@ -21,8 +22,7 @@ jobs:
       - run: node tests/studio-motion-v36-test.js
       - run: node --check studio-live-player.js
       - run: node --check api/_studio-live-provider.js
-      - run: node --check api/studio-live-prepare.js
-      - run: node --check api/studio-live-state.js
+      - run: node --check api/news.js
       - name: Reject leaked provider secrets
         run: |
           ! grep -RIE "sk[-_][A-Za-z0-9]{20,}|HEYGEN_API_KEY\\s*=\\s*['\"][^'\"]+" --exclude-dir=.git .
