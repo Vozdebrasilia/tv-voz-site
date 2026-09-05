@@ -1,0 +1,14 @@
+name: studio-motion-v36
+on:
+  push:
+    paths:
+      - 'v33-did-player.js'
+      - 'tests/studio-motion-v36-test.js'
+      - '.github/workflows/studio-motion-v36.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify studio ticker and LED motion
+        run: node tests/studio-motion-v36-test.js
