@@ -15,7 +15,7 @@ const checks=[
  ['lip sync vem do video aprovado e fica acima da imagem mas abaixo dos efeitos',/\.vn-avatar-video\{[\s\S]*z-index:4!important/],
  ['reacao de Deijanete se orienta para Paulo',/@keyframes vnPartnerRight\{/],
  ['reacao de Paulo se orienta para Deijanete',/@keyframes vnPartnerLeft\{/],
- ['camada animada nunca cobre as faixas inferiores',/\.vn-avatar-stage\{[\s\S]*bottom:10\.4%!important/],
+ ['camada animada e recortada antes das duas faixas inferiores',/\.vn-avatar-stage\{[\s\S]*clip-path:inset\(0 0 10\.4% 0\)!important/],
  ['audio so e liberado por gesto do visitante sem criar novo controle visual',/addEventListener\('pointerdown',enableAvatarAudio/]
 ];
 let failed=0;
