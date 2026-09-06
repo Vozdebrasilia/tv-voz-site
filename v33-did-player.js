@@ -22,8 +22,9 @@
 })();
 
 /*
- * VITRINE DE ENTREVISTAS — TERUO FUJIOKA + CHAMADA COMERCIAL.
- * Mantém o restante da editoria intacto e apenas reposiciona/insere os dois cards solicitados.
+ * VITRINE DE ENTREVISTAS — TERUO FUJIOKA + PAULO OCTÁVIO + CHAMADA COMERCIAL.
+ * Teruo abre a editoria, Paulo Octávio ocupa o espaço livre da segunda linha
+ * e a chamada comercial assume a antiga posição de Paulo Octávio.
  */
 (()=>{
   function atualizarVitrineDeEntrevistas(){
@@ -42,14 +43,27 @@
     }
 
     const pauloOctavio=[...grid.querySelectorAll('a.media-card')].find(card=>card.href&&card.href.includes('m8s4ajix3vA'));
-    if(pauloOctavio&&!grid.querySelector('[data-voznews-legado-cta="true"]')){
-      const chamada=document.createElement('a');
-      chamada.className='media-card promo-card';
-      chamada.dataset.voznewsLegadoCta='true';
-      chamada.dataset.interest='Entrevista, história e legado';
-      chamada.href='#contato';
-      chamada.innerHTML=`<img alt="VOZ NEWS — sua história e seu legado" loading="lazy" src="./logo-voznews-oficial.png" style="background:linear-gradient(135deg,#071526,#12345b);object-fit:contain;padding:34px"/><div class="media-body"><span class="media-source">SUA HISTÓRIA NA VOZ NEWS</span><h3>SUA HISTÓRIA, SEU LEGADO VAI ESTAR AQUI. CHAME AGORA!</h3><p>Transforme sua trajetória em entrevista, conteúdo editorial e presença de autoridade na VOZ NEWS.</p><span class="real-link">Fale conosco →</span></div>`;
-      pauloOctavio.insertAdjacentElement('afterend',chamada);
+    const pastelaria=[...grid.querySelectorAll('a.media-card')].find(card=>card.href&&card.href.includes('GIoOUiQZ4Ao'));
+
+    if(pauloOctavio&&pastelaria){
+      const antigaProximaPosicao=pauloOctavio.nextElementSibling;
+      pastelaria.insertAdjacentElement('afterend',pauloOctavio);
+
+      let chamada=grid.querySelector('[data-voznews-legado-cta="true"]');
+      if(!chamada){
+        chamada=document.createElement('a');
+        chamada.className='media-card promo-card';
+        chamada.dataset.voznewsLegadoCta='true';
+        chamada.dataset.interest='Entrevista, história e legado';
+        chamada.href='#contato';
+        chamada.innerHTML=`<img alt="VOZ NEWS — sua história e seu legado" loading="lazy" src="./logo-voznews-oficial.png" style="background:linear-gradient(135deg,#071526,#12345b);object-fit:contain;padding:34px"/><div class="media-body"><span class="media-source">SUA HISTÓRIA NA VOZ NEWS</span><h3>SUA HISTÓRIA, SEU LEGADO VAI ESTAR AQUI. CHAME AGORA!</h3><p>Transforme sua trajetória em entrevista, conteúdo editorial e presença de autoridade na VOZ NEWS.</p><span class="real-link">Fale conosco →</span></div>`;
+      }
+
+      if(antigaProximaPosicao){
+        grid.insertBefore(chamada,antigaProximaPosicao);
+      }else{
+        grid.appendChild(chamada);
+      }
     }
   }
 
