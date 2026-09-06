@@ -109,3 +109,38 @@
     preencherEspacoPolitica();
   }
 })();
+
+/*
+ * EDITORIA INTERNACIONAL — CHAMADA PARA O PRÓXIMO ENTREVISTADO.
+ * Preenche o último espaço livre da grade e leva o público ao Fale Conosco.
+ */
+(()=>{
+  function preencherEspacoInternacional(){
+    const grid=document.querySelector('#internacional .media-grid');
+    if(!grid||grid.querySelector('[data-voznews-internacional-cta="true"]'))return;
+
+    const card=document.createElement('a');
+    card.className='media-card promo-card';
+    card.dataset.voznewsInternacionalCta='true';
+    card.dataset.interest='Sugestão de entrevista internacional';
+    card.href='#contato';
+    card.innerHTML=`
+      <div style="min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;background:radial-gradient(circle at 50% 24%,rgba(212,175,55,.22),transparent 34%),linear-gradient(135deg,#071526,#12345b);border-bottom:1px solid rgba(212,175,55,.35)">
+        <div aria-hidden="true" style="font-size:112px;line-height:.82;font-weight:1000;color:#d4af37;text-shadow:0 10px 30px rgba(0,0,0,.55)">?</div>
+        <img alt="VOZ NEWS" src="./logo-voznews-oficial.png" style="width:170px;max-width:72%;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.42))"/>
+      </div>
+      <div class="media-body">
+        <span class="media-source">PRÓXIMA ENTREVISTA INTERNACIONAL</span>
+        <h3>QUEM DEVE SER O PRÓXIMO CONVIDADO?</h3>
+        <p>Sugira um organismo internacional, embaixada, embaixador ou embaixadora para a próxima entrevista da VOZ NEWS.</p>
+        <span class="real-link">Deixe sua sugestão • Fale conosco →</span>
+      </div>`;
+    grid.appendChild(card);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',preencherEspacoInternacional,{once:true});
+  }else{
+    preencherEspacoInternacional();
+  }
+})();
