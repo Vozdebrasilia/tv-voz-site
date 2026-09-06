@@ -122,3 +122,57 @@
   #imoveis .cta-band .cta-note::after{font-size:17px!important}
 }
 @media(prefers-reduced-motion:reduce){#imoveis .cta-band .cta-note::before{animation:none!important}}
+
+/* MOBILIDADE — imagem forte e chamada comercial com aeronaves */
+#automoveis .visual-card.v23-featured > img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:16/9!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:saturate(1.12) contrast(1.08) brightness(1.04)!important;
+}
+#automoveis .visual-card.v23-featured .visual-body h3{
+  font-size:0!important;
+  line-height:1!important;
+}
+#automoveis .visual-card.v23-featured .visual-body h3::before{
+  content:"BARCOS, MOTOS, AERONAVES E MOBILIDADE: UM MERCADO INTEIRO PARA ANUNCIAR"!important;
+  display:block!important;
+  color:#fff!important;
+  font-size:26px!important;
+  line-height:1.08!important;
+  font-weight:1000!important;
+}
+#automoveis .visual-card.v23-featured .visual-body p{
+  font-size:0!important;
+  line-height:1!important;
+}
+#automoveis .visual-card.v23-featured .visual-body p::before{
+  content:"Concessionárias, revendas, locadoras, motos, bikes, náutica, aviação, oficinas, seguros, peças, acessórios e serviços em uma vitrine comercial de alto impacto."!important;
+  display:block!important;
+  color:var(--muted)!important;
+  font-size:16px!important;
+  line-height:1.55!important;
+}
+#automoveis .cta-band .cta-note{
+  font-size:0!important;
+  line-height:1!important;
+}
+#automoveis .cta-band .cta-note::before{
+  content:"Concessionárias, revendas, locadoras, oficinas, empresas náuticas, aviação, aeronaves e serviços do setor aéreo com apresentação editorial e espaço comercial."!important;
+  display:block!important;
+  color:inherit!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+}
+#automoveis .cta-band .cta-actions .btn{
+  font-size:0!important;
+}
+#automoveis .cta-band .cta-actions .btn::before{
+  content:"Anuncie sua empresa"!important;
+  font-size:16px!important;
+  line-height:1.2!important;
+  font-weight:900!important;
+}
