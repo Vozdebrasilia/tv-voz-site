@@ -147,7 +147,7 @@
 
 /*
  * MARCAS E LIDERANÇAS — FÁBIO ZUCCARATTO + CHAMADA PARA PRÓXIMA ENTREVISTA.
- * Recupera o frame correto do vídeo do acervo, corrige o nome e preenche o espaço livre.
+ * Mantém a pessoa real do acervo, melhora o enquadramento e preserva os demais cards.
  */
 (()=>{
   function atualizarEmpresas(){
@@ -161,15 +161,20 @@
       fabio.target='_blank';
       fabio.rel='noopener';
       fabio.dataset.voznewsCanonCorrigido='true';
+      fabio.style.setProperty('overflow','hidden','important');
       const img=fabio.querySelector('img');
       if(img){
         img.src='https://img.youtube.com/vi/aK34W2Ob6ms/maxresdefault.jpg';
         img.alt='Paulo Fayad entrevista Fábio Zuccaratto Migotto, da Canon do Brasil';
+        img.style.setProperty('display','block','important');
         img.style.setProperty('width','100%','important');
-        img.style.setProperty('height','330px','important');
+        img.style.setProperty('height','300px','important');
         img.style.setProperty('object-fit','cover','important');
-        img.style.setProperty('object-position','center center','important');
-        img.style.setProperty('filter','brightness(1.08) contrast(1.08) saturate(1.04)','important');
+        img.style.setProperty('object-position','62% 50%','important');
+        img.style.setProperty('filter','brightness(1.10) contrast(1.10) saturate(1.05)','important');
+        img.style.setProperty('image-rendering','auto','important');
+        img.style.setProperty('transform','scale(1.03)','important');
+        img.style.setProperty('transform-origin','62% 50%','important');
         img.onerror=()=>{img.onerror=null;img.src='https://img.youtube.com/vi/aK34W2Ob6ms/hqdefault.jpg';};
       }
       const h3=fabio.querySelector('h3');
