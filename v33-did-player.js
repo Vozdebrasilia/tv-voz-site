@@ -144,3 +144,65 @@
     preencherEspacoInternacional();
   }
 })();
+
+/*
+ * MARCAS E LIDERANÇAS — FÁBIO ZUCCARATTO + CHAMADA PARA PRÓXIMA ENTREVISTA.
+ * Recupera o frame correto do vídeo do acervo, corrige o nome e preenche o espaço livre.
+ */
+(()=>{
+  function atualizarEmpresas(){
+    const grid=document.querySelector('#empresas .visual-grid');
+    if(!grid)return;
+
+    const cards=[...grid.querySelectorAll('a.visual-card')];
+    const fabio=cards.find(card=>/F[ÁA]BIO\s+ZUCCARATTO/i.test(card.textContent||''));
+    if(fabio){
+      fabio.href='https://www.youtube.com/watch?v=aK34W2Ob6ms';
+      fabio.target='_blank';
+      fabio.rel='noopener';
+      fabio.dataset.voznewsCanonCorrigido='true';
+      const img=fabio.querySelector('img');
+      if(img){
+        img.src='https://img.youtube.com/vi/aK34W2Ob6ms/maxresdefault.jpg';
+        img.alt='Paulo Fayad entrevista Fábio Zuccaratto Migotto, da Canon do Brasil';
+        img.style.setProperty('width','100%','important');
+        img.style.setProperty('height','330px','important');
+        img.style.setProperty('object-fit','cover','important');
+        img.style.setProperty('object-position','center center','important');
+        img.style.setProperty('filter','brightness(1.08) contrast(1.08) saturate(1.04)','important');
+        img.onerror=()=>{img.onerror=null;img.src='https://img.youtube.com/vi/aK34W2Ob6ms/hqdefault.jpg';};
+      }
+      const h3=fabio.querySelector('h3');
+      if(h3)h3.textContent='FÁBIO ZUCCARATTO MIGOTTO | CANON DO BRASIL';
+      const p=fabio.querySelector('p');
+      if(p)p.textContent='Paulo Fayad entrevista Fábio Zuccaratto Migotto sobre tecnologia, fotografia, cinema, broadcast, inovação e a atuação da Canon do Brasil.';
+      const link=fabio.querySelector('.real-link');
+      if(link)link.textContent='▶ Assistir entrevista →';
+    }
+
+    if(!grid.querySelector('[data-voznews-empresas-cta="true"]')){
+      const chamada=document.createElement('a');
+      chamada.className='visual-card promo-card';
+      chamada.dataset.voznewsEmpresasCta='true';
+      chamada.dataset.interest='Próxima entrevista empresarial';
+      chamada.href='#contato';
+      chamada.innerHTML=`
+        <div style="min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px;background:radial-gradient(circle at 50% 28%,rgba(212,175,55,.22),transparent 34%),linear-gradient(135deg,#071526,#12345b);border-bottom:1px solid rgba(212,175,55,.35)">
+          <div aria-hidden="true" style="font-size:132px;line-height:.8;font-weight:1000;color:#d4af37;text-shadow:0 12px 34px rgba(0,0,0,.55)">?</div>
+          <img alt="VOZ NEWS" src="./logo-voznews-oficial.png" style="width:190px;max-width:72%;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.42))"/>
+        </div>
+        <div class="visual-body">
+          <h3>QUEM SERÁ O PRÓXIMO ENTREVISTADO?</h3>
+          <p>Sua empresa, sua liderança e sua história podem ocupar este espaço na VOZ NEWS.</p>
+          <span class="real-link">Fale conosco →</span>
+        </div>`;
+      grid.appendChild(chamada);
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',atualizarEmpresas,{once:true});
+  }else{
+    atualizarEmpresas();
+  }
+})();
