@@ -73,3 +73,39 @@
     atualizarVitrineDeEntrevistas();
   }
 })();
+
+/*
+ * EDITORIA POLÍTICA — CARD DE CHAMADA VOZ NEWS.
+ * Preenche o sexto espaço da grade com uma chamada comercial para o Fale Conosco.
+ */
+(()=>{
+  function preencherEspacoPolitica(){
+    const grid=document.querySelector('#politica .media-grid');
+    if(!grid||grid.querySelector('[data-voznews-politica-cta="true"]'))return;
+
+    const card=document.createElement('a');
+    card.className='media-card promo-card';
+    card.dataset.voznewsPoliticaCta='true';
+    card.dataset.interest='Publicidade, entrevistas e presença institucional';
+    card.href='#contato';
+    card.innerHTML=`
+      <div style="min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;background:radial-gradient(circle at 50% 30%,rgba(212,175,55,.20),transparent 34%),linear-gradient(135deg,#071526,#12345b);border-bottom:1px solid rgba(212,175,55,.35)">
+        <div aria-hidden="true" style="font-size:118px;line-height:.82;font-weight:1000;color:#d4af37;text-shadow:0 10px 30px rgba(0,0,0,.55)">?</div>
+        <img alt="VOZ NEWS" src="./logo-voznews-oficial.png" style="width:170px;max-width:72%;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.42))"/>
+      </div>
+      <div class="media-body">
+        <span class="media-source">VOCÊ NA FRENTE</span>
+        <h3>VOCÊ NA FRENTE</h3>
+        <p>Sua voz, sua história e sua marca podem ocupar este espaço de destaque na VOZ NEWS.</p>
+        <p style="margin-top:8px;font-weight:900;color:#fff">Contato VOZ NEWS</p>
+        <span class="real-link">Fale conosco →</span>
+      </div>`;
+    grid.appendChild(card);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',preencherEspacoPolitica,{once:true});
+  }else{
+    preencherEspacoPolitica();
+  }
+})();
