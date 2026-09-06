@@ -7,6 +7,10 @@
 
     studio.innerHTML=`
       <img class="vn-approved-image" src="/studio-voznews-final.png?v=20260905-hq-luzes" alt="Estúdio futurista VOZ NEWS com Deijanete Fayad e Paulo Fayad" fetchpriority="high" decoding="async">
+      <div class="vn-did-layer" aria-hidden="true">
+        <video id="vnDidDeijanete" class="vn-did-video vn-did-deijanete" playsinline preload="metadata"></video>
+        <video id="vnDidPaulo" class="vn-did-video vn-did-paulo" playsinline preload="metadata"></video>
+      </div>
       <div class="vn-lightfx" aria-hidden="true"><span class="vn-ray vn-ray-a"></span><span class="vn-ray vn-ray-b"></span><span class="vn-ray vn-ray-c"></span></div>
       <div class="vn-image-status" aria-live="polite">Carregando estúdio VOZ NEWS…</div>
       <div class="vn-market" aria-label="Mercado e clima">
@@ -26,6 +30,11 @@
 #tv-ao-vivo::before,#tv-ao-vivo::after{content:none!important;display:none!important}
 #tv-ao-vivo>*{box-sizing:border-box}
 .vn-approved-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;display:block!important;visibility:visible!important;opacity:1!important;z-index:1!important;object-fit:cover!important;object-position:center center!important;background:#04142b!important;image-rendering:auto!important}
+.vn-did-layer{position:absolute;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+.vn-did-video{position:absolute!important;display:block!important;visibility:hidden!important;opacity:0!important;object-fit:fill!important;object-position:center!important;background:transparent!important;border:0!important;box-shadow:none!important;pointer-events:none!important;transition:opacity .12s ease!important;transform:none!important}
+.vn-did-video.active{visibility:visible!important;opacity:1!important}
+.vn-did-deijanete{left:17.94%!important;top:19.66%!important;width:29.31%!important;height:61.11%!important;-webkit-mask:url('/studio-deijanete-regions-mask.png') center/100% 100% no-repeat!important;mask:url('/studio-deijanete-regions-mask.png') center/100% 100% no-repeat!important}
+.vn-did-paulo{left:51.14%!important;top:18.07%!important;width:30.50%!important;height:62.70%!important;-webkit-mask:url('/studio-paulo-regions-mask.png') center/100% 100% no-repeat!important;mask:url('/studio-paulo-regions-mask.png') center/100% 100% no-repeat!important}
 .vn-lightfx{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;mix-blend-mode:screen}
 .vn-lightfx::before{content:"";position:absolute;inset:-8%;pointer-events:none;background:radial-gradient(circle at 7% 5%,rgba(87,205,255,.52),transparent 4.5%),radial-gradient(circle at 15% 3%,rgba(180,239,255,.58),transparent 4.5%),radial-gradient(circle at 24% 5%,rgba(72,180,255,.48),transparent 4%),radial-gradient(circle at 34% 2%,rgba(216,248,255,.60),transparent 4.5%),radial-gradient(circle at 44% 4%,rgba(75,191,255,.48),transparent 4%),radial-gradient(circle at 55% 2%,rgba(205,246,255,.58),transparent 4.5%),radial-gradient(circle at 65% 4%,rgba(77,187,255,.48),transparent 4%),radial-gradient(circle at 76% 3%,rgba(206,247,255,.58),transparent 4.5%),radial-gradient(circle at 86% 5%,rgba(70,180,255,.48),transparent 4%),radial-gradient(circle at 95% 4%,rgba(163,232,255,.54),transparent 4.5%),radial-gradient(circle at 7% 28%,rgba(55,165,255,.28),transparent 3.5%),radial-gradient(circle at 18% 24%,rgba(82,203,255,.32),transparent 3.5%),radial-gradient(circle at 83% 24%,rgba(82,203,255,.32),transparent 3.5%),radial-gradient(circle at 94% 28%,rgba(55,165,255,.28),transparent 3.5%);animation:vnPulse 3.8s ease-in-out infinite alternate}
 .vn-lightfx::after{content:none!important;display:none!important;animation:none!important}
@@ -65,6 +74,35 @@
         imageLayer.src=`data:image/webp;base64,${data}`;
       })
       .catch(err=>{console.error('VOZ NEWS Studio latest:',err);document.documentElement.dataset.voznewsStudio='fallback'});
+
+    const didPlaylist=[
+      {presenter:'paulo',src:'/assets/v33-did/01-paulo.mp4'},
+      {presenter:'deijanete',src:'/assets/v33-did/02-deijanete.mp4'},
+      {presenter:'paulo',src:'/assets/v33-did/03-paulo.mp4'},
+      {presenter:'deijanete',src:'/assets/v33-did/10-deijanete.mp4'}
+    ];
+    const didVideos={deijanete:document.getElementById('vnDidDeijanete'),paulo:document.getElementById('vnDidPaulo')};
+    Object.values(didVideos).forEach(video=>{video.muted=false;video.playsInline=true;video.controls=false;});
+    let didRunning=false,didIndex=0;
+    function resetDidVideo(video){if(!video)return;try{video.pause();video.currentTime=0;video.removeAttribute('src');video.load()}catch(e){}video.classList.remove('active')}
+    function resetDid(){resetDidVideo(didVideos.deijanete);resetDidVideo(didVideos.paulo)}
+    function finishDid(){didRunning=false;didIndex=0;resetDid();document.documentElement.dataset.voznewsAvatares='ready'}
+    function playDidCurrent(){
+      if(!didRunning)return;
+      if(didIndex>=didPlaylist.length){finishDid();return}
+      const item=didPlaylist[didIndex],video=didVideos[item.presenter],other=didVideos[item.presenter==='paulo'?'deijanete':'paulo'];
+      resetDidVideo(other);resetDidVideo(video);
+      video.src=item.src;video.currentTime=0;video.classList.add('active');
+      video.onended=()=>{resetDidVideo(video);didIndex+=1;setTimeout(playDidCurrent,260)};
+      video.onerror=()=>{console.error('VOZ NEWS D-ID indisponível:',item.src);finishDid();document.documentElement.dataset.voznewsAvatares='error'};
+      const playback=video.play();
+      if(playback&&typeof playback.catch==='function')playback.catch(()=>{resetDidVideo(video);didRunning=false;document.documentElement.dataset.voznewsAvatares='awaiting-click'});
+    }
+    function startDidSequence(){if(didRunning)return;resetDid();didRunning=true;didIndex=0;document.documentElement.dataset.voznewsAvatares='playing';playDidCurrent()}
+    studio.addEventListener('click',startDidSequence);
+    window.startV33DidSequence=startDidSequence;
+    window.stopV33DidSequence=()=>{didRunning=false;didIndex=0;resetDid();document.documentElement.dataset.voznewsAvatares='stopped'};
+    document.documentElement.dataset.voznewsAvatares='awaiting-click';
 
     const marketInfo=document.getElementById('marketInfo'),marketInfoClone=document.getElementById('marketInfoClone'),ticker=document.getElementById('visibleNewsTicker'),tickerClone=document.getElementById('visibleNewsTickerClone');
     const money=v=>Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
