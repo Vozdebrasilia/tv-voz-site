@@ -211,3 +211,39 @@
     atualizarEmpresas();
   }
 })();
+
+/*
+ * CINEMA & PRÉ-ESTREIAS — CHAMADA PARA O PRÓXIMO LANÇAMENTO.
+ * Preenche o sexto espaço livre da grade sem alterar os cards existentes.
+ */
+(()=>{
+  function preencherProximoLancamento(){
+    const heading=[...document.querySelectorAll('h2')].find(h=>/Programação dos cinemas e oportunidades de cobertura/i.test(h.textContent||''));
+    const bloco=heading&&heading.parentElement&&heading.parentElement.parentElement;
+    const grid=bloco&&bloco.querySelector('.visual-grid');
+    if(!grid||grid.querySelector('[data-voznews-cinema-cta="true"]'))return;
+
+    const card=document.createElement('a');
+    card.className='visual-card promo-card';
+    card.dataset.voznewsCinemaCta='true';
+    card.dataset.interest='Próximo lançamento, pré-estreia e cobertura de cinema';
+    card.href='#contato';
+    card.innerHTML=`
+      <div style="min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;background:radial-gradient(circle at 50% 25%,rgba(212,175,55,.24),transparent 34%),linear-gradient(135deg,#071526,#12345b);border-bottom:1px solid rgba(212,175,55,.35)">
+        <div aria-hidden="true" style="font-size:78px;line-height:1;font-weight:1000;color:#d4af37;text-shadow:0 10px 30px rgba(0,0,0,.55)">🎬</div>
+        <img alt="VOZ NEWS" src="./logo-voznews-oficial.png" style="width:150px;max-width:68%;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.42))"/>
+      </div>
+      <div class="visual-body">
+        <h3>QUAL SERÁ O PRÓXIMO LANÇAMENTO?</h3>
+        <p>Pré-estreia, lançamento, coletiva ou sessão especial: sua produção pode ganhar destaque e cobertura na VOZ NEWS.</p>
+        <span class="real-link">Fale conosco →</span>
+      </div>`;
+    grid.appendChild(card);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',preencherProximoLancamento,{once:true});
+  }else{
+    preencherProximoLancamento();
+  }
+})();
