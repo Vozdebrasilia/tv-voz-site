@@ -247,3 +247,38 @@
     preencherProximoLancamento();
   }
 })();
+
+/*
+ * SAÚDE E PREVENÇÃO — CHAMADA COMERCIAL NO ESPAÇO VAZIO DA GRADE.
+ * Não altera os cards existentes; apenas ocupa o próximo espaço livre.
+ */
+(()=>{
+  function preencherEspacoSaude(){
+    const grid=document.querySelector('#saude .visual-grid');
+    if(!grid||grid.querySelector('[data-voznews-saude-cta="true"]'))return;
+
+    const card=document.createElement('a');
+    card.className='visual-card promo-card';
+    card.dataset.voznewsSaudeCta='true';
+    card.dataset.interest='Clínicas, hospitais e laboratórios';
+    card.href='#contato';
+    card.innerHTML=`
+      <div style="min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:26px;background:radial-gradient(circle at 50% 26%,rgba(105,184,255,.28),transparent 36%),linear-gradient(135deg,#071526,#12345b);border-bottom:1px solid rgba(212,175,55,.35)">
+        <div aria-hidden="true" style="font-size:94px;line-height:.9;font-weight:1000;color:#d4af37;text-shadow:0 10px 30px rgba(0,0,0,.55)">+</div>
+        <img alt="VOZ NEWS" src="./logo-voznews-oficial.png" style="width:170px;max-width:72%;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.42))"/>
+      </div>
+      <div class="visual-body">
+        <span class="brand-mark">SAÚDE • VISIBILIDADE</span>
+        <h3>CLÍNICAS, HOSPITAIS, LABORATÓRIOS: SEU ESPAÇO É AQUI</h3>
+        <p>Apresente sua marca, estrutura, especialidades e serviços ao público da VOZ NEWS.</p>
+        <span class="real-link">Fale conosco →</span>
+      </div>`;
+    grid.appendChild(card);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',preencherEspacoSaude,{once:true});
+  }else{
+    preencherEspacoSaude();
+  }
+})();
