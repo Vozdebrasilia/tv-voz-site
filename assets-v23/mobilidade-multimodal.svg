@@ -1,6 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Mobilidade Multimodal">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl(107 62% 18%)"/><stop offset=".58" stop-color="#0f4c81"/><stop offset="1" stop-color="#061423"/></linearGradient><radialGradient id="o"><stop stop-color="#fff"/><stop offset=".2" stop-color="#d4af37"/><stop offset=".48" stop-color="#2b75aa"/><stop offset="1" stop-color="#07111c"/></radialGradient></defs>
-<rect width="960" height="540" rx="38" fill="url(#g)"/><circle cx="780" cy="115" r="150" fill="#d4af37" opacity=".09"/><circle cx="165" cy="160" r="86" fill="url(#o)"/>
-<text x="165" y="154" fill="#fff" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="29">VOZ</text><text x="165" y="183" fill="#d4af37" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="24">NEWS</text>
-<text x="90" y="330" fill="#d4af37" font-family="Arial,sans-serif" font-weight="900" font-size="28" letter-spacing="4">PORTAL ESPECIALIZADO</text><text x="90" y="394" fill="#fff" font-family="Arial,sans-serif" font-weight="900" font-size="42">Mobilidade Multimodal</text><text x="90" y="448" fill="#dce7f5" font-family="Arial,sans-serif" font-size="24">Informação • Autoridade • Negócios</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Mobilidade premium com automóvel, motocicleta, embarcação e aeronave">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061421"/><stop offset=".46" stop-color="#0a3155"/><stop offset="1" stop-color="#07101b"/></linearGradient>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#164f82"/><stop offset="1" stop-color="#07182a"/></linearGradient>
+  <linearGradient id="road" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1d2834"/><stop offset="1" stop-color="#05090e"/></linearGradient>
+  <linearGradient id="water" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0b6fa1"/><stop offset="1" stop-color="#073b64"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff2a6"/><stop offset=".38" stop-color="#d4af37"/><stop offset="1" stop-color="#8e6914"/></linearGradient>
+  <linearGradient id="car" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3f6fb"/><stop offset=".35" stop-color="#8998aa"/><stop offset="1" stop-color="#222c38"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".6"/></filter>
+</defs>
+<rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+<rect width="1200" height="390" rx="34" fill="url(#sky)" opacity=".94"/>
+<circle cx="1000" cy="110" r="125" fill="#d4af37" opacity=".12" filter="url(#glow)"/>
+<path d="M0 454 L1200 368 L1200 675 L0 675 Z" fill="url(#road)"/>
+<path d="M690 427 C830 390 1010 390 1200 405 L1200 675 L760 675 Z" fill="url(#water)" opacity=".92"/>
+<path d="M0 548 L605 454" stroke="#d4af37" stroke-width="5" opacity=".7"/><path d="M130 675 L650 468" stroke="#fff" stroke-width="3" opacity=".28"/>
+<!-- Aeronave -->
+<g transform="translate(704 90) rotate(-8)" filter="url(#shadow)">
+  <path d="M0 88 L205 60 L315 8 L350 12 L279 67 L412 77 L427 94 L272 99 L340 168 L306 174 L199 104 L0 113 Z" fill="#f3f6fb"/>
+  <path d="M136 80 L204 21 L232 18 L204 85 Z" fill="#c8d4df"/>
+  <path d="M301 77 L348 54 L370 57 L347 82 Z" fill="#d4af37"/>
+  <circle cx="83" cy="98" r="5" fill="#0d3354"/><circle cx="103" cy="95" r="5" fill="#0d3354"/><circle cx="123" cy="92" r="5" fill="#0d3354"/>
+</g>
+<!-- Barco / iate -->
+<g transform="translate(805 346)" filter="url(#shadow)">
+  <path d="M18 110 H350 L303 172 H70 Z" fill="#eef4f9"/>
+  <path d="M72 86 H272 L330 110 H37 Z" fill="#cad6df"/>
+  <path d="M124 22 H223 L269 84 H93 Z" fill="#f7fbff"/>
+  <path d="M143 37 H210 L239 77 H116 Z" fill="#0b3758" opacity=".9"/>
+  <path d="M54 157 H313" stroke="#d4af37" stroke-width="8"/>
+  <path d="M71 182 C127 199 220 199 304 181" stroke="#8cd8ff" stroke-width="10" fill="none" opacity=".75"/>
+</g>
+<!-- Motocicleta -->
+<g transform="translate(78 377)" filter="url(#shadow)">
+  <circle cx="81" cy="154" r="51" fill="#070b10" stroke="#8796a6" stroke-width="8"/><circle cx="81" cy="154" r="19" fill="#d4af37"/>
+  <circle cx="318" cy="154" r="51" fill="#070b10" stroke="#8796a6" stroke-width="8"/><circle cx="318" cy="154" r="19" fill="#d4af37"/>
+  <path d="M81 153 L153 83 L229 151 L318 154 M153 83 L192 154 L81 153 M152 83 L232 76 L262 108" stroke="#f2f5f8" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M143 74 Q197 43 249 66 L225 96 H160 Z" fill="#d4af37"/>
+  <path d="M238 74 L292 45" stroke="#e9edf2" stroke-width="11" stroke-linecap="round"/><path d="M286 43 L315 44" stroke="#d4af37" stroke-width="9" stroke-linecap="round"/>
+</g>
+<!-- Automóvel -->
+<g transform="translate(346 392)" filter="url(#shadow)">
+  <path d="M36 131 Q75 78 130 54 H324 Q373 63 422 123 L475 145 L469 205 H18 L10 163 Z" fill="url(#car)" stroke="#edf4fb" stroke-width="4"/>
+  <path d="M137 67 H302 Q333 72 366 118 H91 Q111 82 137 67 Z" fill="#0b2439" stroke="#6689a6" stroke-width="3"/>
+  <path d="M226 69 V118" stroke="#72899d" stroke-width="3"/>
+  <path d="M39 139 H98" stroke="#ffd84d" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M409 139 H451" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="117" cy="201" r="50" fill="#070a0e" stroke="#6e7f8e" stroke-width="8"/><circle cx="117" cy="201" r="20" fill="#d4af37"/>
+  <circle cx="385" cy="201" r="50" fill="#070a0e" stroke="#6e7f8e" stroke-width="8"/><circle cx="385" cy="201" r="20" fill="#d4af37"/>
+</g>
+<!-- Chamada visual -->
+<g transform="translate(62 58)">
+  <rect width="420" height="112" rx="24" fill="#05111e" opacity=".82" stroke="#d4af37" stroke-width="2"/>
+  <text x="28" y="43" fill="#d4af37" font-family="Arial,sans-serif" font-weight="900" font-size="20" letter-spacing="3">MOBILIDADE PREMIUM</text>
+  <text x="28" y="82" fill="#fff" font-family="Arial,sans-serif" font-weight="900" font-size="28">TERRA • ÁGUA • AR</text>
+</g>
+<text x="60" y="635" fill="url(#gold)" font-family="Arial,sans-serif" font-weight="900" font-size="23" letter-spacing="2">AUTOMÓVEIS • MOTOS • NÁUTICA • AERONAVES</text>
 </svg>
