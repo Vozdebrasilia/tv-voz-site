@@ -164,7 +164,7 @@
       fabio.style.setProperty('overflow','hidden','important');
       const img=fabio.querySelector('img');
       if(img){
-        img.src='https://img.youtube.com/vi/aK34W2Ob6ms/maxresdefault.jpg';
+        img.src='./fabio-paulo-canon-aprovada.jpg';
         img.alt='Paulo Fayad entrevista Fábio Zuccaratto Migotto, da Canon do Brasil';
         img.style.setProperty('display','block','important');
         img.style.setProperty('width','100%','important');
