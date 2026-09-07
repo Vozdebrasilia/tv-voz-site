@@ -282,3 +282,13 @@
     preencherEspacoSaude();
   }
 })();
+
+/* PORTAL NOTA 10 — carrega a nova arquitetura de 10 grandes módulos. */
+(()=>{
+  if(document.getElementById('voznews-top10-runtime'))return;
+  const s=document.createElement('script');
+  s.id='voznews-top10-runtime';
+  s.src='/top10-runtime.js?v=20260906-top10';
+  s.async=false;
+  document.head.appendChild(s);
+})();
