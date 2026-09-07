@@ -75,7 +75,7 @@
       .top10-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:36px}
       .top10-card{appearance:none;width:100%;padding:0;text-align:left;color:#fff;background:linear-gradient(145deg,#0b233d,#0d2f50);border:1px solid rgba(212,175,55,.48);border-radius:28px;overflow:hidden;cursor:pointer;box-shadow:0 24px 70px rgba(0,0,0,.34);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;font:inherit}
       .top10-card:hover{transform:translateY(-7px);box-shadow:0 34px 90px rgba(0,0,0,.48),0 0 28px rgba(212,175,55,.16);border-color:rgba(255,215,0,.82)}
-      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background-color:#e9f4ff;background-image:url('/assets-v23/top10-sprite-cards.webp?v=20260906-fix3');background-repeat:no-repeat;background-size:100% 1000%;background-position:center var(--top10-pos);filter:brightness(1.08) saturate(1.05) contrast(1.01)}
+      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background-color:#e9f4ff;background-image:url('/assets-v23/top10-sprite-cards.webp?v=20260906-fix3');background-repeat:no-repeat;background-size:100% 1000%;background-position:center var(--top10-pos);filter:brightness(1.08) saturate(1.05) contrast(1.01)}
       .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-body{padding:22px 24px 26px}
       .top10-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}
@@ -134,6 +134,26 @@
     setTimeout(()=>modal.querySelector('.top10-close')?.focus(),0);
   }
 
+  async function instalarImagensClaras(){
+    try{
+      const urls=[
+        '/assets-v23/top10-bright-data/part-01.txt?v=20260907-bright',
+        '/assets-v23/top10-bright-data/part-02.txt?v=20260907-bright'
+      ];
+      const partes=await Promise.all(urls.map(async url=>{
+        const r=await fetch(url,{cache:'force-cache'});
+        if(!r.ok)throw new Error('TOP 10 '+r.status);
+        return (await r.text()).trim();
+      }));
+      const spriteClaro='data:image/avif;base64,'+partes.join('');
+      document.querySelectorAll('.top10-visual').forEach(el=>{
+        el.style.backgroundImage=`url("${spriteClaro}")`;
+      });
+    }catch(err){
+      console.error('VOZ NEWS TOP 10: imagens claras',err);
+    }
+  }
+
   function transformarEcossistema(){
     const sec=document.getElementById('ecossistema');
     if(!sec||sec.dataset.voznewsTop10==='true')return;
@@ -152,6 +172,7 @@
 
     grid.className='top10-grid';
     grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-pos:${g.pos}"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
+    instalarImagensClaras();
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
