@@ -1,36 +1,35 @@
 /* VOZ NEWS BRASIL — PORTAL NOTA 10 */
 (()=>{
-  const sprite='/assets-v23/top10-sprite.webp';
   const grupos=[
-    {rank:'TOP 01',title:'PODER, JUSTIÇA & CIDADANIA',subtitle:'Política, Justiça, Segurança e Cidadania',fallback:'/assets-v23/portal-poder.svg',items:[
+    {rank:'TOP 01',title:'PODER, JUSTIÇA & CIDADANIA',subtitle:'Política, Justiça, Segurança e Cidadania',pos:'0%',items:[
       {name:'Poder, República e Esplanada',href:'./portais/poder.html'},
       {name:'Justiça e Constituição',href:'./portais/justica.html'},
       {name:'Segurança, Defesa e Cidadania',href:'./portais/seguranca.html'},
       {name:'Instituto Brazil Just — Ação Social',href:'./portais/ibj-acao-social.html'}
     ]},
-    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',fallback:'/assets-v23/portal-bancos.svg',items:[
+    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',pos:'11.111111%',items:[
       {name:'Bancos, Fintechs e Mercado',href:'./portais/bancos.html'},
       {name:'Empreendedorismo e Pequenos Negócios',href:'./portais/empreendedorismo.html'},
       {name:'Seguros, Consórcios e Proteção',href:'./portais/seguros.html'},
       {name:'Supermercados, Atacarejo e Consumo',href:'./portais/varejo.html'}
     ]},
-    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',fallback:'/assets-v23/portal-energia.svg',items:[
+    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',pos:'22.222222%',items:[
       {name:'Energia, Petróleo e Transição Energética',href:'./portais/energia.html'},
       {name:'Agronegócio e Alimentos',href:'./portais/agro.html'},
       {name:'Sustentabilidade, ESG e Meio Ambiente',href:'./portais/esg.html'}
     ]},
-    {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',fallback:'/assets-v23/mobilidade-multimodal.svg',items:[
+    {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',pos:'33.333333%',items:[
       {name:'Aeroportos, Aviação e Mobilidade',href:'./portais/aviacao.html'},
       {name:'Automóveis, Indústria e Mobilidade',href:'./portais/automoveis.html'},
       {name:'Logística, Cargas e Transportes',href:'./portais/logistica.html'},
       {name:'Motos, Bikes e Mobilidade Urbana',href:'./portais/motos.html'}
     ]},
-    {rank:'TOP 05',title:'TECNOLOGIA, IA & MÍDIA',subtitle:'Inovação, Conteúdo, Inteligência Artificial e Imagem',fallback:'/assets-v23/portal-tecnologia.svg',items:[
+    {rank:'TOP 05',title:'TECNOLOGIA, IA & MÍDIA',subtitle:'Inovação, Conteúdo, Inteligência Artificial e Imagem',pos:'44.444444%',items:[
       {name:'Tecnologia, Inovação e IA',href:'./portais/tecnologia.html'},
       {name:'Computadores, Informática e Games',href:'./portais/computadores.html'},
       {name:'Fotografia, Vídeo e Produção',href:'./portais/fotografia.html'}
     ]},
-    {rank:'TOP 06',title:'SAÚDE & BEM-ESTAR',subtitle:'Clínicas, Hospitais, Especialidades e Qualidade de Vida',fallback:'/assets-v23/portal-saude-bem-estar.svg',items:[
+    {rank:'TOP 06',title:'SAÚDE & BEM-ESTAR',subtitle:'Clínicas, Hospitais, Especialidades e Qualidade de Vida',pos:'55.555556%',items:[
       {name:'Saúde e Bem-Estar',href:'./portais/saude-bem-estar.html'},
       {name:'Saúde, Farma e Medicamentos',href:'./portais/farma.html'},
       {name:'Drogarias, Farmácias e Cuidados',href:'./portais/drogarias.html'},
@@ -38,24 +37,24 @@
       {name:'Odontologia e Sorriso',href:'./portais/odontologia.html'},
       {name:'Academias, Fitness e Vida Ativa',href:'./portais/fitness.html'}
     ]},
-    {rank:'TOP 07',title:'IMÓVEIS, CASA & CONSTRUÇÃO',subtitle:'Mercado Imobiliário, Arquitetura, Reforma e Moradia',fallback:'/assets-v23/portal-imoveis.svg',items:[
+    {rank:'TOP 07',title:'IMÓVEIS, CASA & CONSTRUÇÃO',subtitle:'Mercado Imobiliário, Arquitetura, Reforma e Moradia',pos:'66.666667%',items:[
       {name:'Construção, Imóveis e Cidades',href:'./portais/imoveis.html'},
       {name:'Casa, Móveis e Decoração',href:'./portais/casa.html'},
       {name:'Construção, Reforma e Materiais',href:'./portais/reforma.html'},
       {name:'Condomínios e Serviços Residenciais',href:'./portais/condominios.html'}
     ]},
-    {rank:'TOP 08',title:'TURISMO, HOTELARIA & GASTRONOMIA',subtitle:'Destinos, Hotéis, Restaurantes e Experiências',fallback:'/assets-v23/portal-turismo.svg',items:[
+    {rank:'TOP 08',title:'TURISMO, HOTELARIA & GASTRONOMIA',subtitle:'Destinos, Hotéis, Restaurantes e Experiências',pos:'77.777778%',items:[
       {name:'Turismo, Voos e Destinos',href:'./portais/turismo.html'},
       {name:'Hotéis, Resorts e Eventos',href:'./portais/hoteis.html'},
       {name:'Gastronomia e Restaurantes',href:'./portais/gastronomia-negocios.html'},
       {name:'Adegas, Vinhos e Bebidas',href:'./portais/adegas.html'}
     ]},
-    {rank:'TOP 09',title:'EDUCAÇÃO, CARREIRAS & CULTURA',subtitle:'Ensino, Oportunidades, Conhecimento e Cultura',fallback:'/assets-v23/portal-educacao.svg',items:[
+    {rank:'TOP 09',title:'EDUCAÇÃO, CARREIRAS & CULTURA',subtitle:'Ensino, Oportunidades, Conhecimento e Cultura',pos:'88.888889%',items:[
       {name:'Educação, Ensino e Carreiras',href:'./portais/educacao.html'},
       {name:'Cursos, Escolas e Idiomas',href:'./portais/cursos.html'},
       {name:'Cultura, Arte e Entretenimento',href:'./portais/cultura.html'}
     ]},
-    {rank:'TOP 10',title:'ESTILO, ESPORTE & EXPERIÊNCIAS',subtitle:'Moda, Beleza, Esporte, Eventos e Lifestyle',fallback:'/assets-v23/portal-esportes.svg',items:[
+    {rank:'TOP 10',title:'ESTILO, ESPORTE & EXPERIÊNCIAS',subtitle:'Moda, Beleza, Esporte, Eventos e Lifestyle',pos:'100%',items:[
       {name:'Moda, Calçados e Acessórios',href:'./portais/moda.html'},
       {name:'Beleza, Estética e Salões',href:'./portais/beleza.html'},
       {name:'Pet, Veterinária e Mundo Animal',href:'./portais/pet.html'},
@@ -74,13 +73,11 @@
       #ecossistema .section-head h2{font-size:clamp(38px,5.2vw,72px);letter-spacing:-1.8px}
       #ecossistema .section-head p{max-width:900px;margin-left:auto;margin-right:auto;font-size:20px}
       .top10-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:36px}
-      .top10-card{appearance:none;width:100%;padding:0;text-align:left;color:#fff;background:linear-gradient(145deg,#0b233d,#0d2f50);border:1px solid rgba(212,175,55,.48);border-radius:28px;overflow:hidden;cursor:pointer;box-shadow:0 24px 70px rgba(0,0,0,.34);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;font:inherit;contain:content}
+      .top10-card{appearance:none;width:100%;padding:0;text-align:left;color:#fff;background:linear-gradient(145deg,#0b233d,#0d2f50);border:1px solid rgba(212,175,55,.48);border-radius:28px;overflow:hidden;cursor:pointer;box-shadow:0 24px 70px rgba(0,0,0,.34);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;font:inherit}
       .top10-card:hover{transform:translateY(-7px);box-shadow:0 34px 90px rgba(0,0,0,.48),0 0 28px rgba(212,175,55,.16);border-color:rgba(255,215,0,.82)}
-      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:#dcecff}
-      .top10-sprite{position:absolute;left:0;width:100%;height:1000%;max-width:none!important;object-fit:fill;display:block;top:calc(var(--top10-index) * -100%);filter:brightness(1.08) saturate(1.05) contrast(1.01)}
-      .top10-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;background:#dcecff}
-      .top10-visual:after{content:"";position:absolute;z-index:2;inset:auto 0 0;height:11%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.18));pointer-events:none}
-      .top10-body{display:block;padding:22px 24px 26px}
+      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background-color:#e9f4ff;background-image:url('/assets-v23/top10-sprite-cards.webp?v=20260906-fix3');background-repeat:no-repeat;background-size:100% 1000%;background-position:center var(--top10-pos);filter:brightness(1.08) saturate(1.05) contrast(1.01)}
+      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
+      .top10-body{padding:22px 24px 26px}
       .top10-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}
       .top10-rank{display:inline-flex;padding:8px 13px;border-radius:999px;background:linear-gradient(135deg,#ffe36a,#c89600);color:#071526;font-size:13px;font-weight:1000;letter-spacing:1px}
       .top10-count{font-size:13px;color:#bcd8f4;font-weight:900}
@@ -137,16 +134,6 @@
     setTimeout(()=>modal.querySelector('.top10-close')?.focus(),0);
   }
 
-  function prepararImagens(grid){
-    grid.querySelectorAll('.top10-sprite').forEach(img=>{
-      img.addEventListener('error',()=>{
-        img.style.display='none';
-        const fallback=img.parentElement?.querySelector('.top10-fallback');
-        if(fallback)fallback.style.display='block';
-      },{once:true});
-    });
-  }
-
   function transformarEcossistema(){
     const sec=document.getElementById('ecossistema');
     if(!sec||sec.dataset.voznewsTop10==='true')return;
@@ -160,22 +147,21 @@
     const h2=head.querySelector('h2');
     const p=head.querySelector('p');
     if(badge)badge.textContent='PORTAL NOTA 10';
-    if(h2)h2.innerHTML='VOZ NEWS BRASIL — <span class="gold">O PORTAL NOTA 10</span>';
-    if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade. Os 40 mercados especializados continuam preservados e organizados dentro dos módulos TOP 10.';
+    if(h2)h2.innerHTML='VOZ NEWS BRASIL — <span class="gold">PORTAL NOTA 10</span>';
+    if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade.';
 
     grid.className='top10-grid';
-    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}"><img class="top10-sprite" src="${sprite}" alt="" aria-hidden="true" loading="lazy" decoding="async" style="--top10-index:${i}"/><img class="top10-fallback" src="${g.fallback}" alt="${g.title}" loading="lazy" decoding="async"/></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
-    prepararImagens(grid);
+    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-pos:${g.pos}"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
     if(disclaimer){
       disclaimer.className='top10-note';
-      disclaimer.innerHTML='<strong>PORTAL NOTA 10:</strong> os 40 conteúdos e páginas continuam disponíveis. Agora o visitante entra por 10 grandes verticais e encontra, dentro de cada uma, todas as editorias relacionadas.';
+      disclaimer.innerHTML='<strong>PORTAL NOTA 10:</strong> 10 grandes verticais organizam todas as editorias do ecossistema VOZ NEWS BRASIL.';
     }
 
     const meta=document.querySelector('meta[property="og:description"]');
-    if(meta)meta.setAttribute('content','VOZ NEWS BRASIL — Portal Nota 10: 10 grandes verticais reunindo 40 mercados especializados.');
+    if(meta)meta.setAttribute('content','VOZ NEWS BRASIL — Portal Nota 10 com 10 grandes verticais de informação, negócios e visibilidade.');
     const desc=document.querySelector('meta[name="description"]');
     if(desc)desc.setAttribute('content','VOZ NEWS BRASIL — Portal Nota 10 com 10 grandes verticais de informação, negócios, autoridade e visibilidade.');
   }
