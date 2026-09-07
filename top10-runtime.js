@@ -1,35 +1,35 @@
 /* VOZ NEWS BRASIL — PORTAL NOTA 10 */
 (()=>{
   const grupos=[
-    {rank:'TOP 01',title:'PODER, JUSTIÇA & CIDADANIA',subtitle:'Política, Justiça, Segurança e Cidadania',image:'/assets-v23/top10-hq/top-01.webp',items:[
+    {rank:'TOP 01',title:'PODER, JUSTIÇA & CIDADANIA',subtitle:'Política, Justiça, Segurança e Cidadania',image:'/assets-v23/top10-hq/top-01.webp',siteHref:'/poder-justica-cidadania/',items:[
       {name:'Poder, República e Esplanada',href:'./portais/poder.html'},
       {name:'Justiça e Constituição',href:'./portais/justica.html'},
       {name:'Segurança, Defesa e Cidadania',href:'./portais/seguranca.html'},
       {name:'Instituto Brazil Just — Ação Social',href:'./portais/ibj-acao-social.html'}
     ]},
-    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',image:'/assets-v23/top10-hq/top-02.webp',items:[
+    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',image:'/assets-v23/top10-hq/top-02.webp',siteHref:'/economia-negocios-consumo/',items:[
       {name:'Bancos, Fintechs e Mercado',href:'./portais/bancos.html'},
       {name:'Empreendedorismo e Pequenos Negócios',href:'./portais/empreendedorismo.html'},
       {name:'Seguros, Consórcios e Proteção',href:'./portais/seguros.html'},
       {name:'Supermercados, Atacarejo e Consumo',href:'./portais/varejo.html'}
     ]},
-    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',image:'/assets-v23/top10-hq/top-03.webp',items:[
+    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',image:'/assets-v23/top10-hq/top-03.webp',siteHref:'/energia/',items:[
       {name:'Energia, Petróleo e Transição Energética',href:'./portais/energia.html'},
       {name:'Agronegócio e Alimentos',href:'./portais/agro.html'},
       {name:'Sustentabilidade, ESG e Meio Ambiente',href:'./portais/esg.html'}
     ]},
-    {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',image:'/assets-v23/top10-hq/top-04.webp',items:[
+    {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',image:'/assets-v23/top10-hq/top-04.webp',siteHref:'/mobilidade/',items:[
       {name:'Aeroportos, Aviação e Mobilidade',href:'./portais/aviacao.html'},
       {name:'Automóveis, Indústria e Mobilidade',href:'./portais/automoveis.html'},
       {name:'Logística, Cargas e Transportes',href:'./portais/logistica.html'},
       {name:'Motos, Bikes e Mobilidade Urbana',href:'./portais/motos.html'}
     ]},
-    {rank:'TOP 05',title:'TECNOLOGIA, IA & MÍDIA',subtitle:'Inovação, Conteúdo, Inteligência Artificial e Imagem',image:'/assets-v23/top10-hq/top-05.webp',items:[
+    {rank:'TOP 05',title:'TECNOLOGIA, IA & MÍDIA',subtitle:'Inovação, Conteúdo, Inteligência Artificial e Imagem',image:'/assets-v23/top10-hq/top-05.webp',siteHref:'/tecnologia-ia-midia/',items:[
       {name:'Tecnologia, Inovação e IA',href:'./portais/tecnologia.html'},
       {name:'Computadores, Informática e Games',href:'./portais/computadores.html'},
       {name:'Fotografia, Vídeo e Produção',href:'./portais/fotografia.html'}
     ]},
-    {rank:'TOP 06',title:'SAÚDE & BEM-ESTAR',subtitle:'Clínicas, Hospitais, Especialidades e Qualidade de Vida',image:'/assets-v23/top10-hq/top-06.webp',items:[
+    {rank:'TOP 06',title:'SAÚDE & BEM-ESTAR',subtitle:'Clínicas, Hospitais, Especialidades e Qualidade de Vida',image:'/assets-v23/top10-hq/top-06.webp',siteHref:'/saude-beleza/',items:[
       {name:'Saúde e Bem-Estar',href:'./portais/saude-bem-estar.html'},
       {name:'Saúde, Farma e Medicamentos',href:'./portais/farma.html'},
       {name:'Drogarias, Farmácias e Cuidados',href:'./portais/drogarias.html'},
@@ -37,24 +37,24 @@
       {name:'Odontologia e Sorriso',href:'./portais/odontologia.html'},
       {name:'Academias, Fitness e Vida Ativa',href:'./portais/fitness.html'}
     ]},
-    {rank:'TOP 07',title:'IMÓVEIS, CASA & CONSTRUÇÃO',subtitle:'Mercado Imobiliário, Arquitetura, Reforma e Moradia',image:'/assets-v23/top10-hq/top-07.webp',items:[
+    {rank:'TOP 07',title:'IMÓVEIS, CASA & CONSTRUÇÃO',subtitle:'Mercado Imobiliário, Arquitetura, Reforma e Moradia',image:'/assets-v23/top10-hq/top-07.webp',siteHref:'/moveis-decoracao/',items:[
       {name:'Construção, Imóveis e Cidades',href:'./portais/imoveis.html'},
       {name:'Casa, Móveis e Decoração',href:'./portais/casa.html'},
       {name:'Construção, Reforma e Materiais',href:'./portais/reforma.html'},
       {name:'Condomínios e Serviços Residenciais',href:'./portais/condominios.html'}
     ]},
-    {rank:'TOP 08',title:'TURISMO, HOTELARIA & GASTRONOMIA',subtitle:'Destinos, Hotéis, Restaurantes e Experiências',image:'/assets-v23/top10-hq/top-08.webp',items:[
+    {rank:'TOP 08',title:'TURISMO, HOTELARIA & GASTRONOMIA',subtitle:'Destinos, Hotéis, Restaurantes e Experiências',image:'/assets-v23/top10-hq/top-08.webp',siteHref:'/gastronomia/',items:[
       {name:'Turismo, Voos e Destinos',href:'./portais/turismo.html'},
       {name:'Hotéis, Resorts e Eventos',href:'./portais/hoteis.html'},
       {name:'Gastronomia e Restaurantes',href:'./portais/gastronomia-negocios.html'},
       {name:'Adegas, Vinhos e Bebidas',href:'./portais/adegas.html'}
     ]},
-    {rank:'TOP 09',title:'EDUCAÇÃO, CARREIRAS & CULTURA',subtitle:'Ensino, Oportunidades, Conhecimento e Cultura',image:'/assets-v23/top10-hq/top-09.webp',items:[
+    {rank:'TOP 09',title:'EDUCAÇÃO, CARREIRAS & CULTURA',subtitle:'Ensino, Oportunidades, Conhecimento e Cultura',image:'/assets-v23/top10-hq/top-09.webp',siteHref:'/educacao-carreiras-cultura/',items:[
       {name:'Educação, Ensino e Carreiras',href:'./portais/educacao.html'},
       {name:'Cursos, Escolas e Idiomas',href:'./portais/cursos.html'},
       {name:'Cultura, Arte e Entretenimento',href:'./portais/cultura.html'}
     ]},
-    {rank:'TOP 10',title:'ESTILO, ESPORTE & EXPERIÊNCIAS',subtitle:'Moda, Beleza, Esporte, Eventos e Lifestyle',image:'/assets-v23/top10-hq/top-10.webp',items:[
+    {rank:'TOP 10',title:'ESTILO, ESPORTE & EXPERIÊNCIAS',subtitle:'Moda, Beleza, Esporte, Eventos e Lifestyle',image:'/assets-v23/top10-hq/top-10.webp',siteHref:'/estilo-esporte-experiencias/',items:[
       {name:'Moda, Calçados e Acessórios',href:'./portais/moda.html'},
       {name:'Beleza, Estética e Salões',href:'./portais/beleza.html'},
       {name:'Pet, Veterinária e Mundo Animal',href:'./portais/pet.html'},
@@ -126,6 +126,7 @@
   function abrirGrupo(index){
     const grupo=grupos[index];
     if(!grupo)return;
+    if(grupo.siteHref){location.href=grupo.siteHref;return;}
     const modal=criarModal();
     modal.querySelector('.top10-dialog-rank').textContent=grupo.rank;
     modal.querySelector('#voznews-top10-title').textContent=grupo.title;

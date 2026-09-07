@@ -41,5 +41,6 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.targ
 const search=document.getElementById('search'),filter=document.getElementById('filter'),cards=[...document.querySelectorAll('#cards .card')];function apply(){const q=search.value.toLowerCase().trim(),f=filter.value.toLowerCase();cards.forEach(c=>{const text=(c.textContent+' '+c.dataset.tags).toLowerCase();c.style.display=(!q||text.includes(q))&&(!f||text.includes(f))?'':'none'})}search.addEventListener('input',apply);filter.addEventListener('change',apply);
 document.getElementById('commercialForm').addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const subject='VOZ NEWS Saúde & Beleza — '+d.get('interesse');const body=`Nome: ${d.get('nome')}\nEmpresa/Agência: ${d.get('empresa')}\nE-mail: ${d.get('email')}\nInteresse: ${d.get('interesse')}\n\n${d.get('mensagem')||''}`;location.href=`mailto:paulofayad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`});
 </script>
+<script src="/top10-existing-portals.js" defer></script>
 </body>
 </html>

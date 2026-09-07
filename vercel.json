@@ -5,6 +5,16 @@
     { "source": "/tvvozdebrasiliafilmes/lunardi", "destination": "https://youtu.be/5zl9bu3rG-k", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/poder-justica-cidadania", "destination": "/poder-justica-cidadania/index.html" },
+    { "source": "/poder-justica-cidadania/", "destination": "/poder-justica-cidadania/index.html" },
+    { "source": "/economia-negocios-consumo", "destination": "/economia-negocios-consumo/index.html" },
+    { "source": "/economia-negocios-consumo/", "destination": "/economia-negocios-consumo/index.html" },
+    { "source": "/tecnologia-ia-midia", "destination": "/tecnologia-ia-midia/index.html" },
+    { "source": "/tecnologia-ia-midia/", "destination": "/tecnologia-ia-midia/index.html" },
+    { "source": "/educacao-carreiras-cultura", "destination": "/educacao-carreiras-cultura/index.html" },
+    { "source": "/educacao-carreiras-cultura/", "destination": "/educacao-carreiras-cultura/index.html" },
+    { "source": "/estilo-esporte-experiencias", "destination": "/estilo-esporte-experiencias/index.html" },
+    { "source": "/estilo-esporte-experiencias/", "destination": "/estilo-esporte-experiencias/index.html" },
     { "source": "/saude-beleza", "destination": "/saude-beleza/index.html" },
     { "source": "/saude-beleza/", "destination": "/saude-beleza/index.html" },
     { "source": "/moveis-decoracao", "destination": "/moveis-decoracao/index.html" },
