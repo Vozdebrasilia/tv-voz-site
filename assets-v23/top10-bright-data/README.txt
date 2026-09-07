@@ -1,0 +1,1 @@
+VOZ NEWS TOP 10 - imagens claras
