@@ -1,35 +1,35 @@
 /* VOZ NEWS BRASIL — PORTAL NOTA 10 */
 (()=>{
   const grupos=[
-    {rank:'TOP 01',title:'PODER, JUSTIÇA & CIDADANIA',subtitle:'Política, Justiça, Segurança e Cidadania',pos:'0%',items:[
+    {rank:'TOP 01',title:'PODER, JUSTIÇA & CIDADANIA',subtitle:'Política, Justiça, Segurança e Cidadania',image:'/assets-v23/top10-hq/top-01.webp',items:[
       {name:'Poder, República e Esplanada',href:'./portais/poder.html'},
       {name:'Justiça e Constituição',href:'./portais/justica.html'},
       {name:'Segurança, Defesa e Cidadania',href:'./portais/seguranca.html'},
       {name:'Instituto Brazil Just — Ação Social',href:'./portais/ibj-acao-social.html'}
     ]},
-    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',pos:'11.111111%',items:[
+    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',image:'/assets-v23/top10-hq/top-02.webp',items:[
       {name:'Bancos, Fintechs e Mercado',href:'./portais/bancos.html'},
       {name:'Empreendedorismo e Pequenos Negócios',href:'./portais/empreendedorismo.html'},
       {name:'Seguros, Consórcios e Proteção',href:'./portais/seguros.html'},
       {name:'Supermercados, Atacarejo e Consumo',href:'./portais/varejo.html'}
     ]},
-    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',pos:'22.222222%',items:[
+    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',image:'/assets-v23/top10-hq/top-03.webp',items:[
       {name:'Energia, Petróleo e Transição Energética',href:'./portais/energia.html'},
       {name:'Agronegócio e Alimentos',href:'./portais/agro.html'},
       {name:'Sustentabilidade, ESG e Meio Ambiente',href:'./portais/esg.html'}
     ]},
-    {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',pos:'33.333333%',items:[
+    {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',image:'/assets-v23/top10-hq/top-04.webp',items:[
       {name:'Aeroportos, Aviação e Mobilidade',href:'./portais/aviacao.html'},
       {name:'Automóveis, Indústria e Mobilidade',href:'./portais/automoveis.html'},
       {name:'Logística, Cargas e Transportes',href:'./portais/logistica.html'},
       {name:'Motos, Bikes e Mobilidade Urbana',href:'./portais/motos.html'}
     ]},
-    {rank:'TOP 05',title:'TECNOLOGIA, IA & MÍDIA',subtitle:'Inovação, Conteúdo, Inteligência Artificial e Imagem',pos:'44.444444%',items:[
+    {rank:'TOP 05',title:'TECNOLOGIA, IA & MÍDIA',subtitle:'Inovação, Conteúdo, Inteligência Artificial e Imagem',image:'/assets-v23/top10-hq/top-05.webp',items:[
       {name:'Tecnologia, Inovação e IA',href:'./portais/tecnologia.html'},
       {name:'Computadores, Informática e Games',href:'./portais/computadores.html'},
       {name:'Fotografia, Vídeo e Produção',href:'./portais/fotografia.html'}
     ]},
-    {rank:'TOP 06',title:'SAÚDE & BEM-ESTAR',subtitle:'Clínicas, Hospitais, Especialidades e Qualidade de Vida',pos:'55.555556%',items:[
+    {rank:'TOP 06',title:'SAÚDE & BEM-ESTAR',subtitle:'Clínicas, Hospitais, Especialidades e Qualidade de Vida',image:'/assets-v23/top10-hq/top-06.webp',items:[
       {name:'Saúde e Bem-Estar',href:'./portais/saude-bem-estar.html'},
       {name:'Saúde, Farma e Medicamentos',href:'./portais/farma.html'},
       {name:'Drogarias, Farmácias e Cuidados',href:'./portais/drogarias.html'},
@@ -37,24 +37,24 @@
       {name:'Odontologia e Sorriso',href:'./portais/odontologia.html'},
       {name:'Academias, Fitness e Vida Ativa',href:'./portais/fitness.html'}
     ]},
-    {rank:'TOP 07',title:'IMÓVEIS, CASA & CONSTRUÇÃO',subtitle:'Mercado Imobiliário, Arquitetura, Reforma e Moradia',pos:'66.666667%',items:[
+    {rank:'TOP 07',title:'IMÓVEIS, CASA & CONSTRUÇÃO',subtitle:'Mercado Imobiliário, Arquitetura, Reforma e Moradia',image:'/assets-v23/top10-hq/top-07.webp',items:[
       {name:'Construção, Imóveis e Cidades',href:'./portais/imoveis.html'},
       {name:'Casa, Móveis e Decoração',href:'./portais/casa.html'},
       {name:'Construção, Reforma e Materiais',href:'./portais/reforma.html'},
       {name:'Condomínios e Serviços Residenciais',href:'./portais/condominios.html'}
     ]},
-    {rank:'TOP 08',title:'TURISMO, HOTELARIA & GASTRONOMIA',subtitle:'Destinos, Hotéis, Restaurantes e Experiências',pos:'77.777778%',items:[
+    {rank:'TOP 08',title:'TURISMO, HOTELARIA & GASTRONOMIA',subtitle:'Destinos, Hotéis, Restaurantes e Experiências',image:'/assets-v23/top10-hq/top-08.webp',items:[
       {name:'Turismo, Voos e Destinos',href:'./portais/turismo.html'},
       {name:'Hotéis, Resorts e Eventos',href:'./portais/hoteis.html'},
       {name:'Gastronomia e Restaurantes',href:'./portais/gastronomia-negocios.html'},
       {name:'Adegas, Vinhos e Bebidas',href:'./portais/adegas.html'}
     ]},
-    {rank:'TOP 09',title:'EDUCAÇÃO, CARREIRAS & CULTURA',subtitle:'Ensino, Oportunidades, Conhecimento e Cultura',pos:'88.888889%',items:[
+    {rank:'TOP 09',title:'EDUCAÇÃO, CARREIRAS & CULTURA',subtitle:'Ensino, Oportunidades, Conhecimento e Cultura',image:'/assets-v23/top10-hq/top-09.webp',items:[
       {name:'Educação, Ensino e Carreiras',href:'./portais/educacao.html'},
       {name:'Cursos, Escolas e Idiomas',href:'./portais/cursos.html'},
       {name:'Cultura, Arte e Entretenimento',href:'./portais/cultura.html'}
     ]},
-    {rank:'TOP 10',title:'ESTILO, ESPORTE & EXPERIÊNCIAS',subtitle:'Moda, Beleza, Esporte, Eventos e Lifestyle',pos:'100%',items:[
+    {rank:'TOP 10',title:'ESTILO, ESPORTE & EXPERIÊNCIAS',subtitle:'Moda, Beleza, Esporte, Eventos e Lifestyle',image:'/assets-v23/top10-hq/top-10.webp',items:[
       {name:'Moda, Calçados e Acessórios',href:'./portais/moda.html'},
       {name:'Beleza, Estética e Salões',href:'./portais/beleza.html'},
       {name:'Pet, Veterinária e Mundo Animal',href:'./portais/pet.html'},
@@ -75,8 +75,11 @@
       .top10-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:36px}
       .top10-card{appearance:none;width:100%;padding:0;text-align:left;color:#fff;background:linear-gradient(145deg,#0b233d,#0d2f50);border:1px solid rgba(212,175,55,.48);border-radius:28px;overflow:hidden;cursor:pointer;box-shadow:0 24px 70px rgba(0,0,0,.34);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;font:inherit}
       .top10-card:hover{transform:translateY(-7px);box-shadow:0 34px 90px rgba(0,0,0,.48),0 0 28px rgba(212,175,55,.16);border-color:rgba(255,215,0,.82)}
-      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background-color:#e9f4ff;background-image:url('/assets-v23/top10-sprite-cards.webp?v=20260906-fix3');background-repeat:no-repeat;background-size:100% 1000%;background-position:center var(--top10-pos);filter:brightness(1.08) saturate(1.05) contrast(1.01)}
+      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background-color:#e9f4ff}
+      .top10-visual:before{content:"";position:absolute;inset:-4%;background-image:var(--top10-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:brightness(1.04) saturate(1.04) contrast(1.01);will-change:transform;animation:top10KenBurns 12s ease-in-out infinite alternate}
       .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
+      .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
+      @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
       .top10-body{padding:22px 24px 26px}
       .top10-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}
       .top10-rank{display:inline-flex;padding:8px 13px;border-radius:999px;background:linear-gradient(135deg,#ffe36a,#c89600);color:#071526;font-size:13px;font-weight:1000;letter-spacing:1px}
@@ -99,7 +102,7 @@
       .top10-link:hover{background:rgba(212,175,55,.15);border-color:rgba(255,215,0,.6);transform:translateY(-2px)}
       .top10-link span{display:block;margin-top:7px;color:#ffd74a;font-size:13px}
       @media(max-width:860px){.top10-grid,.top10-links{grid-template-columns:1fr}.top10-dialog{padding:24px}}
-      @media(prefers-reduced-motion:reduce){.top10-card,.top10-link{transition:none}.top10-card:hover,.top10-link:hover{transform:none}}
+      @media(prefers-reduced-motion:reduce){.top10-card,.top10-link{transition:none}.top10-card:hover,.top10-link:hover{transform:none}.top10-visual:before{animation-duration:28s}}
     `;
     document.head.appendChild(style);
   }
@@ -134,26 +137,6 @@
     setTimeout(()=>modal.querySelector('.top10-close')?.focus(),0);
   }
 
-  async function instalarImagensClaras(){
-    try{
-      const urls=[
-        '/assets-v23/top10-bright-data/part-01.txt?v=20260907-bright',
-        '/assets-v23/top10-bright-data/part-02.txt?v=20260907-bright'
-      ];
-      const partes=await Promise.all(urls.map(async url=>{
-        const r=await fetch(url,{cache:'force-cache'});
-        if(!r.ok)throw new Error('TOP 10 '+r.status);
-        return (await r.text()).trim();
-      }));
-      const spriteClaro='data:image/avif;base64,'+partes.join('');
-      document.querySelectorAll('.top10-visual').forEach(el=>{
-        el.style.backgroundImage=`url("${spriteClaro}")`;
-      });
-    }catch(err){
-      console.error('VOZ NEWS TOP 10: imagens claras',err);
-    }
-  }
-
   function transformarEcossistema(){
     const sec=document.getElementById('ecossistema');
     if(!sec||sec.dataset.voznewsTop10==='true')return;
@@ -171,8 +154,7 @@
     if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade.';
 
     grid.className='top10-grid';
-    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-pos:${g.pos}"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
-    instalarImagensClaras();
+    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20260907-hq-motion')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
