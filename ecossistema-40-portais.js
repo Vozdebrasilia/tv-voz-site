@@ -70,7 +70,7 @@
 
     const followerStat=[...document.querySelectorAll('.eco-stat')].find(el=>/seguidores no Instagram/i.test(el.textContent||''));
     const followerCount=followerStat?.querySelector('.count-up');
-    if(followerCount){followerCount.dataset.target='240';followerCount.textContent='240 mil+';}
+    if(followerCount){followerCount.dataset.target='250';followerCount.textContent='250 mil+';}
 
     if(!document.getElementById('eco-strong-photo-style')){
       const st=document.createElement('style');st.id='eco-strong-photo-style';st.textContent=`
