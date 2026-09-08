@@ -1,0 +1,27 @@
+name: Hub Energia Agro Sustentabilidade
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'energia-agro-sustentabilidade/index.html'
+      - 'tests/energia-agro-sustentabilidade-hub-visual-test.js'
+      - '.github/workflows/energia-agro-sustentabilidade-hub-visual.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'energia-agro-sustentabilidade/index.html'
+      - 'tests/energia-agro-sustentabilidade-hub-visual-test.js'
+
+jobs:
+  validar-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validar acabamento do hub
+        run: node tests/energia-agro-sustentabilidade-hub-visual-test.js
