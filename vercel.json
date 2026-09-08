@@ -27,6 +27,8 @@
     { "source": "/agronegocio/", "destination": "/agronegocio/index.html" },
     { "source": "/sustentabilidade", "destination": "/sustentabilidade/index.html" },
     { "source": "/sustentabilidade/", "destination": "/sustentabilidade/index.html" },
+    { "source": "/energia-agro-sustentabilidade", "destination": "/energia-agro-sustentabilidade/index.html" },
+    { "source": "/energia-agro-sustentabilidade/", "destination": "/energia-agro-sustentabilidade/index.html" },
     { "source": "/portais/poder.html", "destination": "/api/poder" },
     { "source": "/portais/:slug.html", "destination": "/portal.html" },
     { "source": "/clientes/:slug.html", "destination": "/cliente.html" },
