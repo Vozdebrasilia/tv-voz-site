@@ -27,7 +27,7 @@ const CLIENTES=[
 ];
 
 const AUTORES=['deijanete-fayad','paulo-fayad'];
-const FIXED=['/','/anunciantes.html','/ibj.html','/materias/roney-nemer-11111.html','/energia/','/agronegocio/','/sustentabilidade/','/mobilidade/','/saude-beleza/','/moveis-decoracao/','/gastronomia/','/poder-justica-cidadania/','/economia-negocios-consumo/','/tecnologia-ia-midia/','/educacao-carreiras-cultura/','/estilo-esporte-experiencias/'];
+const FIXED=['/','/anunciantes.html','/ibj.html','/materias/roney-nemer-11111.html','/energia-agro-sustentabilidade/','/energia/','/agronegocio/','/sustentabilidade/','/mobilidade/','/saude-beleza/','/moveis-decoracao/','/gastronomia/','/poder-justica-cidadania/','/economia-negocios-consumo/','/tecnologia-ia-midia/','/educacao-carreiras-cultura/','/estilo-esporte-experiencias/'];
 
 function decode(s=''){return String(s).replace(/<!\[CDATA\[|\]\]>/g,'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>')}
 function clean(t=''){return decode(t).replace(/\s+-\s+[^-]{2,90}$/,'').replace(/\s+/g,' ').trim()}
