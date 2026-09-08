@@ -27,4 +27,12 @@ if (!html.includes('.portal.sust h2') || !html.includes('.portal.agro h2')) {
   throw new Error('Tipografia dos títulos longos ainda não foi ajustada');
 }
 
-console.log('PASS: hub Energia, Agro e Sustentabilidade com texto, imagens fortes e movimento final');
+for (const href of ['/energia/', '/agronegocio/', '/sustentabilidade/']) {
+  const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const linkPattern = new RegExp(`<a[^>]*href=["']${escaped}["'][^>]*target=["']_blank["'][^>]*rel=["'][^"']*noopener[^"']*["']`, 'i');
+  if (!linkPattern.test(html)) {
+    throw new Error(`Portal ${href} deve abrir em nova aba com rel=noopener`);
+  }
+}
+
+console.log('PASS: hub Energia, Agro e Sustentabilidade com texto, imagens fortes, movimento e portais em nova aba');
