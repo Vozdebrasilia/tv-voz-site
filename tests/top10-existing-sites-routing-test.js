@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const source = fs.readFileSync('top10-runtime.js', 'utf8');
 const expectedRoutes = [
-  '/energia/',
+  '/energia-agro-sustentabilidade/',
   '/mobilidade/',
   '/saude-beleza/',
   '/moveis-decoracao/',
