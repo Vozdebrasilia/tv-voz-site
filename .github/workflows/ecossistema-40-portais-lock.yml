@@ -1,4 +1,4 @@
-name: Proteção dos 40 Portais VOZ NEWS
+name: Proteção do Portal Nota 10 VOZ NEWS
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  proteger-ecossistema:
+  proteger-top10:
     runs-on: ubuntu-latest
     steps:
       - name: Baixar código
@@ -16,5 +16,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verificar 40 temas e 40 imagens
-        run: node tests/ecossistema-40-portais-lock-test.js
+      - name: Verificar estrutura TOP 10
+        run: |
+          node tests/top10-existing-sites-routing-test.js
+          node tests/top10-existing-portals-contract-test.js
+          node tests/top10-new-portals-contract-test.js
