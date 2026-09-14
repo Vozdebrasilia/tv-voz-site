@@ -8,6 +8,7 @@ on:
       - "gastronomia/**"
       - "api/restaurants.js"
       - "tests/gastronomia-portal-test.js"
+      - "tests/restaurants-search-test.js"
       - "portais/gastronomia-negocios.html"
       - "sitemap.xml"
 
@@ -21,6 +22,8 @@ jobs:
           node-version: "20"
       - name: Acceptance test
         run: node tests/gastronomia-portal-test.js
+      - name: Restaurant search regression
+        run: node tests/restaurants-search-test.js
       - name: Check browser JavaScript syntax
         run: node --check gastronomia/gastronomia.js
       - name: Check API JavaScript syntax
