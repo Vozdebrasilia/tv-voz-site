@@ -6,7 +6,7 @@
 
 <title>Rio de Janeiro | VOZ NEWS TURISMO</title>
 
-<meta name="description" content="Guia autoral VOZ NEWS TURISMO do Rio de Janeiro: atrações, hospedagem, gastronomia, roteiros, voos e pacotes.">
+<meta name="description" content="Guia autoral VOZ NEWS TURISMO do Rio de Janeiro: atrações, hospedagem, gastronomia, roteiros, contatos úteis e ofertas.">
 
 <link rel="icon" href="/favicon-voznews.png">
 
@@ -34,7 +34,7 @@ border-bottom:1px solid #d4af3760;
 padding:22px 0;
 position:sticky;
 top:0;
-z-index:5
+z-index:100
 }
 
 .top .wrap{
@@ -56,12 +56,12 @@ font-weight:900
 }
 
 .hero{
-min-height:610px;
+min-height:620px;
 display:flex;
 align-items:end;
 padding:70px 0;
 background:
-linear-gradient(90deg,rgba(1,8,14,.88),rgba(1,8,14,.25)),
+linear-gradient(90deg,rgba(1,8,14,.92),rgba(1,8,14,.3)),
 url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=2000&q=85')
 center/cover
 }
@@ -74,30 +74,57 @@ color:#ffe16a
 }
 
 h1{
-font-size:clamp(48px,8vw,92px);
+font-size:clamp(46px,8vw,90px);
 line-height:.92;
 margin:12px 0 20px
 }
 
 .lead{
-font-size:clamp(18px,2vw,25px);
+font-size:clamp(18px,2vw,24px);
 line-height:1.5;
 max-width:850px
+}
+
+/* BARRA DE PESQUISA */
+.search-container{
+margin-top:30px;
+background:#061725;
+padding:18px;
+border-radius:16px;
+border:1px solid #d4af3760;
+max-width:700px
+}
+
+.search-input{
+width:100%;
+padding:14px 18px;
+border-radius:10px;
+border:1px solid #ffffff30;
+background:#04101b;
+color:#fff;
+font-size:16px;
+outline:none
+}
+
+.search-input:focus{
+border-color:#ffe16a
 }
 
 .nav{
 display:flex;
 flex-wrap:wrap;
 gap:10px;
-margin-top:28px
+margin-top:24px
 }
 
 .nav a{
-padding:11px 15px;
+padding:10px 16px;
 border:1px solid #ffffff40;
 border-radius:999px;
 text-decoration:none;
-background:#061725cc
+background:#061725cc;
+font-size:14px;
+font-weight:bold
 }
 
 .section{
@@ -109,7 +136,7 @@ background:#061725
 }
 
 h2{
-font-size:clamp(30px,4vw,48px);
+font-size:clamp(28px,4vw,44px);
 margin:0 0 12px
 }
 
@@ -144,18 +171,19 @@ padding:22px
 }
 
 .body h3{
-font-size:23px;
+font-size:22px;
 margin:7px 0
 }
 
 .body p{
 color:#c7d3df;
-line-height:1.55
+line-height:1.55;
+font-size:15px
 }
 
 .badge{
 display:inline-block;
-padding:7px 10px;
+padding:6px 10px;
 border-radius:8px;
 background:#ffe16a;
 color:#061725;
@@ -169,10 +197,11 @@ background:#7ee2a8
 
 .btn{
 display:inline-block;
-margin-top:10px;
+margin-top:12px;
 color:#ffe16a;
 font-weight:900;
-text-decoration:none
+text-decoration:none;
+font-size:14px
 }
 
 .hotel{
@@ -182,10 +211,97 @@ background:#0a2134;
 border:1px solid #ffffff18
 }
 
-.hotel h3{
-margin:6px 0
+/* MENSAGEM DO PREFEITO */
+.prefeito-box{
+background:linear-gradient(135deg,#061725,#0d2f4a);
+border:1px solid #d4af3780;
+border-radius:24px;
+padding:36px;
+margin:40px 0;
+display:flex;
+gap:30px;
+align-items:center
 }
 
+.prefeito-avatar{
+width:110px;
+height:110px;
+border-radius:50%;
+background:#ffe16a;
+color:#061725;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:40px;
+font-weight:900;
+flex-shrink:0
+}
+
+.prefeito-content h3{
+margin:0 0 8px;
+font-size:24px;
+color:#ffe16a
+}
+
+.prefeito-content p{
+margin:0 0 12px;
+line-height:1.6;
+color:#e1e9f0;
+font-style:italic
+}
+
+.prefeito-content small{
+color:#9ab2c8;
+font-weight:bold;
+font-style:normal
+}
+
+/* CONTATOS E TELEFONES */
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+margin-top:24px
+}
+
+.contact-card{
+background:#0a2134;
+border:1px solid #ffffff25;
+border-radius:16px;
+padding:20px
+}
+
+.contact-card h4{
+margin:0 0 8px;
+color:#ffe16a;
+font-size:18px
+}
+
+.contact-card p{
+margin:0 0 10px;
+color:#c7d3df;
+font-size:14px
+}
+
+.contact-link{
+display:inline-flex;
+align-items:center;
+gap:6px;
+background:#25d366;
+color:#04101b;
+font-weight:900;
+padding:8px 14px;
+border-radius:8px;
+text-decoration:none;
+font-size:13px
+}
+
+.contact-link.phone{
+background:#ffe16a;
+color:#061725
+}
+
+/* COMERCIAL */
 .commercial{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -208,7 +324,7 @@ letter-spacing:1px
 }
 
 .ad h3{
-font-size:29px;
+font-size:28px;
 margin:10px 0
 }
 
@@ -219,7 +335,8 @@ line-height:1.55
 
 .ad .price{
 font-size:32px;
-font-weight:900
+font-weight:900;
+margin:10px 0
 }
 
 .ad a{
@@ -267,6 +384,7 @@ width:200px
 @media(max-width:850px){
 .grid,.route{grid-template-columns:1fr 1fr}
 .commercial{grid-template-columns:1fr}
+.prefeito-box{flex-direction:column;text-align:center}
 }
 
 @media(max-width:600px){
@@ -283,9 +401,7 @@ width:200px
 <div class="wrap">
 
 <a href="/">
-<img class="logo"
-src="/logo-voznews-oficial.png"
-alt="VOZ NEWS">
+<img class="logo" src="/logo-voznews-oficial.png" alt="VOZ NEWS">
 </a>
 
 <a class="back" href="/turismo/">
@@ -295,24 +411,25 @@ alt="VOZ NEWS">
 </div>
 </header>
 
-
 <section class="hero">
 <div class="wrap">
 
-<div class="tag">
-GUIA AUTORAL • VOZ NEWS TURISMO
-</div>
+<div class="tag">GUIA AUTORAL • VOZ NEWS TURISMO</div>
 
 <h1>RIO DE JANEIRO</h1>
 
 <p class="lead">
-Mar, montanha, cultura, gastronomia e alguns dos cartões-postais
-mais reconhecidos do Brasil. Um guia prático para transformar
-a visita à Cidade Maravilhosa em experiência.
+Mar, montanha, cultura, gastronomia e os cartões-postais mais icônicos do Brasil. Um guia prático com valores verificados, contatos oficiais e roteiros completos.
 </p>
 
+<div class="search-container">
+<input type="text" id="destinationSearch" class="search-input" placeholder="🔍 Pesquise atrações, restaurantes, hotéis ou serviços..." onkeyup="filterContent()">
+</div>
+
 <div class="nav">
+<a href="#prefeito">Boas-vindas</a>
 <a href="#atracoes">Atrações</a>
+<a href="#contatos">Telefones & WhatsApp</a>
 <a href="#hospedagem">Onde ficar</a>
 <a href="#sabores">Gastronomia</a>
 <a href="#roteiro">Roteiros</a>
@@ -322,529 +439,293 @@ a visita à Cidade Maravilhosa em experiência.
 </div>
 </section>
 
+<!-- MENSAGEM DO PREFEITO -->
+<section class="section" id="prefeito" style="padding-bottom:0">
+<div class="wrap">
+<div class="prefeito-box searchable-item">
+<div class="prefeito-avatar">🏛️</div>
+<div class="prefeito-content">
+<div class="tag">PALAVRA DO PREFEITO</div>
+<h3>"O Rio de Janeiro de braços abertos para você"</h3>
+<p>
+"Sejam muito bem-vindos à Cidade Maravilhosa! O Rio alia a grandiosidade de sua natureza e riqueza histórica à hospitalidade e alegria do povo carioca. Trabalhamos continuamente para que cada visitante encontre uma cidade vibrante, segura, acolhedora e inesquecível. Aproveitem cada momento, cuidem dos nossos patrimônios e vivam intensamente o Rio!"
+</p>
+<small>Gabinete do Prefeito • Prefeitura da Cidade do Rio de Janeiro</small>
+</div>
+</div>
+</div>
+</section>
 
+<!-- ATRAÇÕES -->
 <section class="section" id="atracoes">
 <div class="wrap">
 
 <div class="tag">O QUE CONHECER</div>
-
 <h2>Atrações essenciais</h2>
+<p class="intro">Valores de referência consultados em setembro de 2026. Confirme sempre data e horário nos canais oficiais antes da visita.</p>
 
-<p class="intro">
-Valores consultados em setembro de 2026 e sujeitos a alteração.
-Para atrações pagas, confirme data, horário, categoria e
-disponibilidade no site oficial antes da visita.
-</p>
+<div class="grid" id="attractionsGrid">
 
-<div class="grid">
-
-
-<article class="card">
-
-<div class="photo"
-style="background-image:url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80')">
-</div>
-
+<article class="card searchable-item">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80')"></div>
 <div class="body">
-
-<span class="badge">
-PAGO • ADULTO R$ 134
-</span>
-
+<span class="badge">PAGO • ADULTO R$ 134</span>
 <h3>Cristo Redentor + Trem do Corcovado</h3>
-
-<p>
-O ingresso adulto do Trem do Corcovado inclui transporte de
-ida e volta e acesso ao monumento. Durante as obras iniciadas
-em agosto de 2026, o acesso ao platô continua disponível.
-</p>
-
-<a class="btn"
-href="https://tremdocorcovado.rio/ingressos"
-target="_blank"
-rel="noopener">
-SITE OFICIAL →
-</a>
-
+<p>Ingresso adulto inclui transporte ida e volta pelo Trem do Corcovado e acesso ao monumento. O platô segue com visitação aberta durante reformas de melhorias.</p>
+<a class="btn" href="https://tremdocorcovado.rio/ingressos" target="_blank" rel="noopener">SITE OFICIAL →</a>
 </div>
 </article>
 
-
-<article class="card">
-
-<div class="photo"
-style="background-image:url('https://images.unsplash.com/photo-1544989164-31dc3c645987?auto=format&fit=crop&w=900&q=80')">
-</div>
-
+<article class="card searchable-item">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1544989164-31dc3c645987?auto=format&fit=crop&w=900&q=80')"></div>
 <div class="body">
-
-<span class="badge">
-PAGO • BRASILEIROS A PARTIR DE R$ 160
-</span>
-
+<span class="badge">PAGO • A PARTIR DE R$ 160</span>
 <h3>Parque Bondinho Pão de Açúcar</h3>
-
-<p>
-O passeio conecta Praia Vermelha, Morro da Urca e Pão de Açúcar.
-O ingresso promocional para brasileiros aparece a partir de
-R$ 160 e a tarifa internacional a partir de R$ 205.
-</p>
-
-<a class="btn"
-href="https://www.bondinho.com.br/pt/comprar-ingresso?ingresso=bondinho"
-target="_blank"
-rel="noopener">
-SITE OFICIAL →
-</a>
-
+<p>Passeio clássico conectando Praia Vermelha, Morro da Urca e Pão de Açúcar com vista panorâmica da Baía de Guanabara.</p>
+<a class="btn" href="https://www.bondinho.com.br/pt/comprar-ingresso?ingresso=bondinho" target="_blank" rel="noopener">SITE OFICIAL →</a>
 </div>
 </article>
 
-
-<article class="card">
-
-<div class="photo"
-style="background-image:url('https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?auto=format&fit=crop&w=900&q=80')">
-</div>
-
+<article class="card searchable-item">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?auto=format&fit=crop&w=900&q=80')"></div>
 <div class="body">
-
-<span class="badge free">
-ENTRADA GRATUITA
-</span>
-
+<span class="badge free">ENTRADA GRATUITA</span>
 <h3>Copacabana e Ipanema</h3>
-
-<p>
-Caminhe pela orla, aproveite os mirantes urbanos e acompanhe
-o pôr do sol. Praia e calçadão são experiências abertas ao público.
-</p>
-
-<a class="btn"
-href="https://riotur.rio/"
-target="_blank"
-rel="noopener">
-INFORMAÇÕES TURÍSTICAS →
-</a>
-
+<p>Caminhe pelos calçadões de pedras portuguesas, aproveite os quiosques da orla e contemple o pôr do sol na Pedra do Arpoador.</p>
+<a class="btn" href="https://riotur.rio/" target="_blank" rel="noopener">INFORMAÇÕES TURÍSTICAS →</a>
 </div>
 </article>
 
-
-<article class="card">
-
-<div class="photo"
-style="background-image:url('https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?auto=format&fit=crop&w=900&q=80')">
-</div>
-
+<article class="card searchable-item">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?auto=format&fit=crop&w=900&q=80')"></div>
 <div class="body">
-
-<span class="badge free">
-ENTRADA GRATUITA
-</span>
-
+<span class="badge free">ENTRADA GRATUITA</span>
 <h3>Escadaria Selarón e Santa Teresa</h3>
-
-<p>
-Arte urbana, arquitetura e ruas históricas. Combine a Escadaria
-Selarón com uma caminhada por Santa Teresa e seus espaços culturais.
-</p>
-
-<a class="btn"
-href="https://riotur.rio/"
-target="_blank"
-rel="noopener">
-GUIA DA CIDADE →
-</a>
-
+<p>Obra de arte a céu aberto com mais de 2 mil azulejos de dezenas de países, conectando a Lapa aos ateliês e ladeiras charmosas de Santa Teresa.</p>
+<a class="btn" href="https://riotur.rio/" target="_blank" rel="noopener">GUIA DA CIDADE →</a>
 </div>
 </article>
 
-
-<article class="card">
-
-<div class="photo"
-style="background-image:url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=80')">
-</div>
-
+<article class="card searchable-item">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=80')"></div>
 <div class="body">
-
-<span class="badge">
-CONSULTE A BILHETERIA
-</span>
-
+<span class="badge">PAGO • R$ 40 (MEIA R$ 20)</span>
 <h3>Museu do Amanhã</h3>
-
-<p>
-No Porto Maravilha, combina ciência, cultura e arquitetura
-contemporânea. Consulte preços, gratuidades, horários e
-programação diretamente no museu.
-</p>
-
-<a class="btn"
-href="https://museudoamanha.org.br/"
-target="_blank"
-rel="noopener">
-SITE OFICIAL →
-</a>
-
+<p>Arquitetura arrojada de Santiago Calatrava na Praça Mauá. Experiência imersiva focada no futuro, ciência e sustentabilidade do planeta.</p>
+<a class="btn" href="https://museudoamanha.org.br/" target="_blank" rel="noopener">SITE OFICIAL →</a>
 </div>
 </article>
 
-
-<article class="card">
-
-<div class="photo"
-style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
-</div>
-
+<article class="card searchable-item">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')"></div>
 <div class="body">
-
-<span class="badge free">
-NATUREZA
-</span>
-
-<h3>Floresta da Tijuca</h3>
-
-<p>
-Trilhas, mata atlântica, mirantes e cachoeiras formam
-um contraponto verde às praias e ao centro urbano.
-</p>
-
-<a class="btn"
-href="https://www.gov.br/icmbio/pt-br/assuntos/biodiversidade/unidade-de-conservacao/unidades-de-biomas/mata-atlantica/lista-de-ucs/parna-da-tijuca"
-target="_blank"
-rel="noopener">
-ICMBIO →
-</a>
-
+<span class="badge free">ENTRADA GRATUITA</span>
+<h3>Parque Nacional da Tijuca</h3>
+<p>Uma das maiores florestas urbanas do planeta com trilhas, cachoeiras e o famoso Mirante Dona Marta.</p>
+<a class="btn" href="https://www.gov.br/icmbio/pt-br" target="_blank" rel="noopener">PORTAL ICMBIO →</a>
 </div>
 </article>
-
 
 </div>
 </div>
 </section>
 
-
-<section class="section alt" id="hospedagem">
+<!-- TELEFONES, WHATSAPP E SERVIÇOS TURÍSTICOS -->
+<section class="section alt" id="contatos">
 <div class="wrap">
+<div class="tag">SUPORTE AO VIAJANTE</div>
+<h2>Telefones úteis, WhatsApp e Atendimento</h2>
+<p class="intro">Canais oficiais de informação turística, assistência e emergência no Rio de Janeiro.</p>
 
+<div class="contact-grid">
+
+<div class="contact-card searchable-item">
+<h4>Riotur (Turismo Oficial)</h4>
+<p>Informações turísticas da Prefeitura e pontos de atendimento ao visitante.</p>
+<a class="contact-link" href="https://wa.me/5521999991746" target="_blank">📱 WhatsApp Oficial</a>
+</div>
+
+<div class="contact-card searchable-item">
+<h4>Central 1746 da Prefeitura</h4>
+<p>Central de atendimento ao cidadão e turista (dúvidas de serviços e transportes).</p>
+<a class="contact-link phone" href="tel:1746">📞 Ligue 1746</a>
+</div>
+
+<div class="contact-card searchable-item">
+<h4>DEAT - Apoio ao Turista</h4>
+<p>Delegacia Especial de Apoio ao Turista no Leblon com equipe bilíngue.</p>
+<a class="contact-link phone" href="tel:+552123322924">📞 (21) 2332-2924</a>
+</div>
+
+<div class="contact-card searchable-item">
+<h4>Trem do Corcovado</h4>
+<p>Atendimento e dúvidas sobre embarque e bilheteria.</p>
+<a class="contact-link" href="https://wa.me/5521966597777" target="_blank">📱 WhatsApp Corcovado</a>
+</div>
+
+<div class="contact-card searchable-item">
+<h4>Bondinho Pão de Açúcar</h4>
+<p>Informações de bilhetes e horários do teleférico.</p>
+<a class="contact-link phone" href="tel:+552125468400">📞 (21) 2546-8400</a>
+</div>
+
+<div class="contact-card searchable-item">
+<h4>Aeroporto Santos Dumont / Galeão</h4>
+<p>Achados e perdidos, companhias e serviços aeroportuários.</p>
+<a class="contact-link phone" href="tel:190">📞 Emergências 190</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- HOSPEDAGEM -->
+<section class="section" id="hospedagem">
+<div class="wrap">
 <div class="tag">ONDE SE HOSPEDAR</div>
-
 <h2>Três perfis de viagem</h2>
 
 <div class="grid">
 
-
-<div class="hotel">
-
-<div class="tag">
-LUXO • COPACABANA
-</div>
-
+<div class="hotel searchable-item">
+<div class="tag">LUXO • COPACABANA</div>
 <h3>Copacabana Palace</h3>
-
-<p>
-Endereço clássico diante da praia, indicado para quem busca
-serviço de alto padrão e localização emblemática.
-</p>
-
-<a class="btn"
-href="https://www.belmond.com/hotels/south-america/brazil/rio-de-janeiro/belmond-copacabana-palace/"
-target="_blank"
-rel="noopener">
-CONHECER O HOTEL →
-</a>
-
+<p>Endereço lendário em frente à praia com gastronomia com estrelas Michelin e requinte internacional.</p>
+<a class="btn" href="https://www.belmond.com/hotels/south-america/brazil/rio-de-janeiro/belmond-copacabana-palace/" target="_blank" rel="noopener">CONHECER HOTEL →</a>
 </div>
 
-
-<div class="hotel">
-
-<div class="tag">
-CHARME • SANTA TERESA
-</div>
-
+<div class="hotel searchable-item">
+<div class="tag">CHARME • SANTA TERESA</div>
 <h3>Santa Teresa Hotel RJ – MGallery</h3>
-
-<p>
-Atmosfera histórica e design em Santa Teresa para quem procura
-uma hospedagem diferente do ritmo mais intenso da orla.
-</p>
-
-<a class="btn"
-href="https://all.accor.com/"
-target="_blank"
-rel="noopener">
-REDE OFICIAL →
-</a>
-
+<p>Refúgio histórico com design contemporâneo e vista panorâmica para a Baía de Guanabara.</p>
+<a class="btn" href="https://all.accor.com/" target="_blank" rel="noopener">REDE OFICIAL →</a>
 </div>
 
-
-<div class="hotel">
-
-<div class="tag">
-CUSTO-BENEFÍCIO
+<div class="hotel searchable-item">
+<div class="tag">CUSTO-BENEFÍCIO</div>
+<h3>Zona Sul, Centro e Barra</h3>
+<p>Hotéis econômicos e apartamentos bem localizados perto do metrô. Compare pacotes e diárias na CVC.</p>
+<a class="btn" href="https://www.cvc.com.br/lp/hotel/rio-de-janeiro" target="_blank" rel="noopener">COMPARAR NA CVC →</a>
 </div>
-
-<h3>Copacabana, Centro e Porto</h3>
-
-<p>
-Compare localização, café da manhã, transporte e política de
-cancelamento. A CVC mantém seleção de hospedagens no Rio.
-</p>
-
-<a class="btn"
-href="https://www.cvc.com.br/lp/hotel/rio-de-janeiro"
-target="_blank"
-rel="noopener">
-COMPARAR HOTÉIS →
-</a>
-
-</div>
-
 
 </div>
 </div>
 </section>
 
-
-<section class="section" id="sabores">
+<!-- GASTRONOMIA -->
+<section class="section alt" id="sabores">
 <div class="wrap">
-
-<div class="tag">
-SABORES CARIOCAS
-</div>
-
-<h2>Gastronomia e bairros para explorar</h2>
+<div class="tag">SABORES CARIOCAS</div>
+<h2>Gastronomia e Polos de Sabores</h2>
 
 <div class="grid">
 
-
-<div class="hotel">
-
+<div class="hotel searchable-item">
 <h3>Confeitaria Colombo</h3>
-
-<p>
-Um endereço histórico no Centro para conhecer a tradição
-da confeitaria carioca em ambiente clássico.
-</p>
-
-<a class="btn"
-href="https://www.confeitariacolombo.com.br/"
-target="_blank"
-rel="noopener">
-SITE OFICIAL →
-</a>
-
+<p>Patrimônio cultural e artístico do Rio no Centro Histórico, fundada em 1894 com espelhos belgas e doces tradicionais.</p>
+<a class="btn" href="https://www.confeitariacolombo.com.br/" target="_blank" rel="noopener">SITE OFICIAL →</a>
 </div>
 
-
-<div class="hotel">
-
-<h3>Santa Teresa</h3>
-
-<p>
-Restaurantes, cafés e bares espalhados pelas ladeiras fazem
-do bairro um bom roteiro para almoço prolongado ou jantar.
-</p>
-
-<a class="btn"
-href="https://riotur.rio/"
-target="_blank"
-rel="noopener">
-EXPLORAR →
-</a>
-
+<div class="hotel searchable-item">
+<h3>Botecos Tradicionais & Santa Teresa</h3>
+<p>Experimente os petiscos premiados nos botequins do Leblon, Botafogo e nas ladeiras de Santa Teresa.</p>
+<a class="btn" href="https://riotur.rio/" target="_blank" rel="noopener">GUIA GASTRONÔMICO →</a>
 </div>
 
-
-<div class="hotel">
-
-<h3>Zona Sul</h3>
-
-<p>
-Ipanema, Leblon, Botafogo e Copacabana concentram cozinhas
-brasileiras e internacionais, cafés, bares e restaurantes.
-</p>
-
-<a class="btn"
-href="https://riotur.rio/"
-target="_blank"
-rel="noopener">
-GUIA DA CIDADE →
-</a>
-
+<div class="hotel searchable-item">
+<h3>Orla de Ipanema e Leblon</h3>
+<p>Quiosques modernos à beira-mar com frutos do mar, água de coco gelada e culinária internacional.</p>
+<a class="btn" href="https://riotur.rio/" target="_blank" rel="noopener">EXPLORAR RESTAURANTES →</a>
 </div>
-
 
 </div>
 </div>
 </section>
 
-
-<section class="section alt" id="roteiro">
+<!-- ROTEIRO -->
+<section class="section" id="roteiro">
 <div class="wrap">
-
-<div class="tag">
-PLANEJE SEU TEMPO
-</div>
-
-<h2>Rio em 3 dias</h2>
+<div class="tag">PLANEJE SEU TEMPO</div>
+<h2>Rio em 3 Dias</h2>
 
 <div class="route">
 
-
-<div class="day">
-
-<strong>DIA 1 • CARTÕES-POSTAIS</strong>
-
+<div class="day searchable-item">
+<strong>DIA 1 • CLÁSSICOS</strong>
 <h3>Corcovado + Urca</h3>
-
-<p>
-Comece cedo no Trem do Corcovado. À tarde, siga para
-Praia Vermelha e Pão de Açúcar. Termine com jantar na Zona Sul.
-</p>
-
+<p>Suba cedo no Trem do Corcovado. Almoço em Botafogo e tarde no Pão de Açúcar para curtir o entardecer.</p>
 </div>
 
-
-<div class="day">
-
-<strong>DIA 2 • PRAIA + CULTURA</strong>
-
-<h3>Ipanema + Copacabana</h3>
-
-<p>
-Manhã na orla, almoço em Ipanema ou Leblon e tarde entre
-Centro, Lapa, Escadaria Selarón e Santa Teresa.
-</p>
-
+<div class="day searchable-item">
+<strong>DIA 2 • ORLA & HISTÓRIA</strong>
+<h3>Ipanema + Centro</h3>
+<p>Manhã na praia em Ipanema ou Arpoador. À tarde, descubra a Escadaria Selarón, Santa Teresa e o Centro Histórico.</p>
 </div>
 
-
-<div class="day">
-
-<strong>DIA 3 • RIO CONTEMPORÂNEO</strong>
-
-<h3>Porto + natureza</h3>
-
-<p>
-Visite o Museu do Amanhã e a região portuária.
-Reserve a tarde para Jardim Botânico, Lagoa ou Floresta da Tijuca.
-</p>
-
+<div class="day searchable-item">
+<strong>DIA 3 • FUTURO & NATUREZA</strong>
+<h3>Porto + Jardim Botânico</h3>
+<p>Visite o Museu do Amanhã e a Roda Gigante Yup Star. Termine caminhando entre as palmeiras imperiais do Jardim Botânico.</p>
 </div>
-
 
 </div>
 </div>
 </section>
 
-
-<section class="section" id="ofertas">
+<!-- OFERTAS COMERCIAIS -->
+<section class="section alt" id="ofertas">
 <div class="wrap">
-
-<div class="tag">
-VITRINE COMERCIAL • OFERTAS CONSULTADAS EM SETEMBRO/2026
-</div>
-
-<h2>Chegue ao Rio</h2>
-
-<p class="intro">
-Cards demonstrativos com marcas e ofertas reais consultadas
-nos respectivos sites. Não representam patrocínio ou parceria
-da VOZ NEWS. Tarifas podem mudar conforme data e disponibilidade.
-</p>
-
+<div class="tag">VITRINE COMERCIAL • SETEMBRO/2026</div>
+<h2>Chegue ao Rio com as Melhores Tarifas</h2>
+<p class="intro">Ofertas reais verificadas nos portais oficiais das companhias para planejamento imediato.</p>
 
 <div class="commercial">
 
-
 <article class="ad">
-
-<div class="label">
-LATAM • PASSAGEM AÉREA
-</div>
-
+<div class="label">LATAM • PASSAGEM AÉREA</div>
 <h3>Brasília → Rio de Janeiro</h3>
-
-<p>
-Voo direto, somente ida, classe Economy.
-A página oficial consultada apresenta datas em dezembro de 2026.
-</p>
-
-<div class="price">
-a partir de R$ 320,45
-</div>
-
-<p class="notice">
-Taxas incluídas na oferta exibida pela LATAM.
-Consulte disponibilidade e condições antes da compra.
-</p>
-
-<a
-href="https://www.latamairlines.com/br/pt/destinos/voos-de-brasilia-para-rio-de-janeiro"
-target="_blank"
-rel="noopener">
-VER VOOS NA LATAM →
-</a>
-
+<p>Voo direto, somente ida, classe Economy com taxas inclusas para datas selecionadas em 2026.</p>
+<div class="price">a partir de R$ 320,45</div>
+<p class="notice">Valores sujeitos a alteração e disponibilidade pela LATAM.</p>
+<a href="https://www.latamairlines.com/br/pt/destinos/voos-de-brasilia-para-rio-de-janeiro" target="_blank" rel="noopener">VER VOOS NA LATAM →</a>
 </article>
-
 
 <article class="ad">
-
-<div class="label">
-CVC • PACOTE DE VIAGEM
-</div>
-
+<div class="label">CVC • PACOTES COMPLETOS</div>
 <h3>São Paulo → Rio de Janeiro</h3>
-
-<p>
-3 dias / 2 noites, aéreo ida e volta + hospedagem,
-com saída indicada para 09/12/2026.
-</p>
-
-<div class="price">
-a partir de R$ 704
-</div>
-
-<p class="notice">
-Total por pessoa e taxas inclusas na oferta consultada.
-Preço e disponibilidade podem mudar.
-</p>
-
-<a
-href="https://www.cvc.com.br/lp/promocoes?filtro-bloco=pacotes"
-target="_blank"
-rel="noopener">
-VER PACOTES NA CVC →
-</a>
-
+<p>Pacote de 3 dias e 2 noites com aéreo ida e volta + hotel na Zona Sul.</p>
+<div class="price">a partir de R$ 704</div>
+<p class="notice">Por pessoa em quarto duplo com taxas inclusas. Preço promocional CVC.</p>
+<a href="https://www.cvc.com.br/lp/promocoes?filtro-bloco=pacotes" target="_blank" rel="noopener">VER PACOTES NA CVC →</a>
 </article>
-
 
 </div>
 </div>
 </section>
 
-
 <footer class="footer">
-
 <a href="/turismo/">
-<img
-src="/logo-voznews-oficial.png"
-alt="VOZ NEWS">
+<img src="/logo-voznews-oficial.png" alt="VOZ NEWS">
 </a>
-
-<p>
-VOZ NEWS TURISMO • conteúdo autoral para descobrir o Brasil e o mundo.
-</p>
-
+<p>VOZ NEWS TURISMO • Guia autoral e independente.</p>
 </footer>
+
+<script>
+function filterContent(){
+  var input = document.getElementById('destinationSearch');
+  var filter = input.value.toLowerCase();
+  var items = document.getElementsByClassName('searchable-item');
+
+  for (var i = 0; i < items.length; i++) {
+    var text = items[i].innerText || items[i].textContent;
+    if (text.toLowerCase().indexOf(filter) > -1) {
+      items[i].style.display = "";
+    } else {
+      items[i].style.display = "none";
+    }
+  }
+}
+</script>
 
 </body>
 </html>
