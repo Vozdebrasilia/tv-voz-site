@@ -10,68 +10,248 @@
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#04101b;color:#fff;font-family:Arial,Helvetica,sans-serif}
-a{color:inherit}
-.wrap{width:min(1220px,94%);margin:auto}
 
-.top{min-height:110px;background:#050b10;display:flex;align-items:center;border-bottom:1px solid #d4af3760}
-.top .wrap{display:flex;align-items:center;justify-content:space-between}
-.logo{width:220px;max-width:48vw}
-.stamp,.tag{font-size:12px;font-weight:900;letter-spacing:1.2px;color:#ffe16a}
+body{
+margin:0;
+background:#04101b;
+color:#fff;
+font-family:Arial,Helvetica,sans-serif
+}
+
+a{color:inherit}
+
+.wrap{
+width:min(1220px,94%);
+margin:auto
+}
+
+.top{
+min-height:110px;
+background:#050b10;
+display:flex;
+align-items:center;
+border-bottom:1px solid #d4af3760
+}
+
+.top .wrap{
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.logo{
+width:220px;
+max-width:48vw
+}
+
+.stamp,.tag{
+font-size:12px;
+font-weight:900;
+letter-spacing:1.2px;
+color:#ffe16a
+}
 
 .hero{
-min-height:650px;display:flex;align-items:end;padding:70px 0;
-background:linear-gradient(90deg,rgba(2,10,17,.9),rgba(2,10,17,.35)),
+min-height:650px;
+display:flex;
+align-items:end;
+padding:70px 0;
+background:
+linear-gradient(90deg,rgba(2,10,17,.9),rgba(2,10,17,.35)),
 url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=85') center/cover
 }
-.heroBox{max-width:900px}
-h1{font-size:clamp(46px,7vw,88px);line-height:.95;margin:12px 0 20px;text-shadow:0 4px 25px #000}
-.lead{font-size:clamp(18px,2vw,25px);line-height:1.5}
 
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
-.kpi{padding:20px;border-radius:18px;background:#061725dd;border:1px solid #d4af3770}
-.kpi strong{display:block;font-size:30px;color:#ffe16a}
+.heroBox{
+max-width:900px
+}
 
-.section{padding:58px 0}
-.alt{background:#061725}
-.section h2{font-size:clamp(30px,4vw,48px);margin:0 0 10px}
-.copy{color:#c4d1de;line-height:1.6}
+h1{
+font-size:clamp(46px,7vw,88px);
+line-height:.95;
+margin:12px 0 20px;
+text-shadow:0 4px 25px #000
+}
 
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+.lead{
+font-size:clamp(18px,2vw,25px);
+line-height:1.5
+}
+
+.kpis{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-top:32px
+}
+
+.kpi{
+padding:20px;
+border-radius:18px;
+background:#061725dd;
+border:1px solid #d4af3770
+}
+
+.kpi strong{
+display:block;
+font-size:30px;
+color:#ffe16a
+}
+
+.section{
+padding:58px 0
+}
+
+.alt{
+background:#061725
+}
+
+.section h2{
+font-size:clamp(30px,4vw,48px);
+margin:0 0 10px
+}
+
+.copy{
+color:#c4d1de;
+line-height:1.6
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-top:28px
+}
 
 .destcard{
-min-height:300px;border-radius:20px;overflow:hidden;display:flex;align-items:end;
-background-size:cover;background-position:center;text-decoration:none;
-position:relative;border:1px solid #d4af3748;transition:.2s
+min-height:300px;
+border-radius:20px;
+overflow:hidden;
+display:flex;
+align-items:end;
+background-size:cover;
+background-position:center;
+text-decoration:none;
+position:relative;
+border:1px solid #d4af3748;
+transition:.2s
 }
-.destcard:hover{transform:translateY(-4px);border-color:#d4af37}
-.destcard:before{content:'';position:absolute;inset:0;background:linear-gradient(transparent 25%,rgba(0,0,0,.92))}
-.destcard span{position:relative;padding:20px;font-size:22px;font-weight:900}
 
-.guide{margin-top:32px;padding:30px;border-radius:22px;background:#0a2134;border:1px solid #d4af3755}
-.guide h3{font-size:32px;margin:7px 0 12px}
-.guide p{font-size:17px;line-height:1.7;color:#d4dee7}
+.destcard:hover{
+transform:translateY(-4px);
+border-color:#d4af37
+}
 
-.ads{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}
-.ad{background:#fff;color:#061725;padding:24px;border-radius:18px}
-.ad small{font-weight:900}
-.ad b{display:block;font-size:24px;margin-top:7px}
-.ad p{color:#334655}
-.cta{display:inline-block;margin-top:10px;padding:12px 17px;border-radius:8px;background:#ffe16a;color:#061725;text-decoration:none;font-weight:900}
+.destcard:before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(transparent 25%,rgba(0,0,0,.92))
+}
 
-.editorial{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}
-.box{padding:25px;border-radius:18px;background:#0a2134;border:1px solid #d4af3740}
-.box h3{font-size:24px}
-.box p{color:#c7d3df;line-height:1.6}
+.destcard span{
+position:relative;
+padding:20px;
+font-size:22px;
+font-weight:900
+}
 
-.footer{padding:42px 0;text-align:center;background:#02070b}
-.footer img{width:210px}
+.guide{
+margin-top:32px;
+padding:30px;
+border-radius:22px;
+background:#0a2134;
+border:1px solid #d4af3755
+}
+
+.guide h3{
+font-size:32px;
+margin:7px 0 12px
+}
+
+.guide p{
+font-size:17px;
+line-height:1.7;
+color:#d4dee7
+}
+
+.ads{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+margin-top:25px
+}
+
+.ad{
+background:#fff;
+color:#061725;
+padding:24px;
+border-radius:18px
+}
+
+.ad small{
+font-weight:900
+}
+
+.ad b{
+display:block;
+font-size:24px;
+margin-top:7px
+}
+
+.ad p{
+color:#334655
+}
+
+.cta{
+display:inline-block;
+margin-top:10px;
+padding:12px 17px;
+border-radius:8px;
+background:#ffe16a;
+color:#061725;
+text-decoration:none;
+font-weight:900
+}
+
+.editorial{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-top:25px
+}
+
+.box{
+padding:25px;
+border-radius:18px;
+background:#0a2134;
+border:1px solid #d4af3740
+}
+
+.box h3{
+font-size:24px
+}
+
+.box p{
+color:#c7d3df;
+line-height:1.6
+}
+
+.footer{
+padding:42px 0;
+text-align:center;
+background:#02070b
+}
+
+.footer img{
+width:210px
+}
 
 @media(max-width:900px){
 .grid{grid-template-columns:repeat(2,1fr)}
 .kpis{grid-template-columns:repeat(2,1fr)}
 .editorial{grid-template-columns:1fr}
 }
+
 @media(max-width:620px){
 .grid,.kpis,.ads{grid-template-columns:1fr}
 .stamp{display:none}
@@ -83,221 +263,199 @@ position:relative;border:1px solid #d4af3748;transition:.2s
 
 <header class="top">
 <div class="wrap">
-<a href="/"><img class="logo" src="/logo-voznews-oficial.png" alt="VOZ NEWS"></a>
-<div class="stamp">40 ANOS • JORNALISMO • VISIBILIDADE</div>
+<a href="/">
+<img class="logo" src="/logo-voznews-oficial.png" alt="VOZ NEWS">
+</a>
+<div class="stamp">
+40 ANOS • JORNALISMO • VISIBILIDADE
+</div>
 </div>
 </header>
 
 <section class="hero">
 <div class="wrap">
 <div class="heroBox">
-
 <div class="tag">VOZ NEWS • TURISMO & VIAGENS</div>
-
 <h1>O BRASIL E O MUNDO EM MOVIMENTO</h1>
-
 <p class="lead">
 Viagens que inspiram. Destinos, experiências, cultura, natureza,
 gastronomia, hotelaria e aviação em conteúdo editorial VOZ NEWS TURISMO.
 </p>
-
 <div class="kpis">
-<div class="kpi"><strong>260 mil+</strong>seguidores no Instagram</div>
-<div class="kpi"><strong>200 milhões+</strong>interações</div>
-<div class="kpi"><strong>1.000+</strong>entrevistas</div>
-<div class="kpi"><strong>10.000+</strong>horas de transmissão</div>
+<div class="kpi">
+<strong>260 mil+</strong>
+seguidores no Instagram
 </div>
-
+<div class="kpi">
+<strong>200 milhões+</strong>
+interações
+</div>
+<div class="kpi">
+<strong>1.000+</strong>
+entrevistas
+</div>
+<div class="kpi">
+<strong>10.000+</strong>
+horas de transmissão
+</div>
+</div>
 </div>
 </div>
 </section>
 
 <section class="section alt">
 <div class="wrap">
-
 <div class="tag">GUIAS AUTORAIS</div>
 <h2>Destinos para descobrir</h2>
-
 <p class="copy">
-Clique em qualquer destino. O conteúdo abre dentro da própria
-VOZ NEWS TURISMO, sem encaminhamento para páginas inexistentes.
+Clique em qualquer destino. O conteúdo abre dentro da própria VOZ NEWS TURISMO.
 </p>
 
 <div class="grid" id="destinos"></div>
 
 <div class="guide" id="guia">
-
 <div class="tag">GUIA VOZ NEWS TURISMO</div>
 <h3 id="tituloDestino">Rio de Janeiro</h3>
-
 <p id="textoDestino">
-Praias, paisagens, cultura, gastronomia e vida urbana formam
-uma experiência diversa para o viajante.
+Praias, paisagens, cultura, gastronomia e vida urbana formam uma experiência diversa para o viajante.
 </p>
-
 <p>
-A VOZ NEWS TURISMO reúne inspiração para passeios, experiências,
-hospedagem, gastronomia e planejamento da viagem.
+A VOZ NEWS TURISMO reúne inspiração para passeios, experiências, hospedagem, gastronomia e planejamento da viagem.
 </p>
-
 <div class="ads">
-
 <div class="ad">
 <small>PUBLICIDADE • COMPANHIA AÉREA</small>
 <b>Voos para este destino</b>
-<p>
-Espaço publicitário para uma companhia aérea apresentar
-rotas, serviços e oportunidades ao viajante.
-</p>
-<a class="cta"
-href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Companhia%20Aerea%20-%20VOZ%20NEWS%20Turismo">
-ANUNCIE AQUI
-</a>
+<p>Espaço publicitário para uma companhia aérea apresentar rotas, serviços e oportunidades ao viajante.</p>
+<a class="cta" href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Companhia%20Aerea%20-%20VOZ%20NEWS%20Turismo">ANUNCIE AQUI</a>
 </div>
-
 <div class="ad">
 <small>PUBLICIDADE • AGÊNCIA DE VIAGENS</small>
 <b>Pacotes e experiências</b>
-<p>
-Espaço publicitário para agência ou operadora apresentar
-pacotes, roteiros e experiências para este destino.
-</p>
-<a class="cta"
-href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Agencia%20de%20Viagens%20-%20VOZ%20NEWS%20Turismo">
-ANUNCIE AQUI
-</a>
+<p>Espaço publicitário para agência ou operadora apresentar pacotes, roteiros e experiências para este destino.</p>
+<a class="cta" href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Agencia%20de%20Viagens%20-%20VOZ%20NEWS%20Turismo">ANUNCIE AQUI</a>
+</div>
+</div>
 </div>
 
-</div>
-</div>
 </div>
 </section>
 
 <section class="section">
 <div class="wrap">
-
 <h2>Conteúdo VOZ NEWS TURISMO</h2>
-
 <div class="editorial">
-
 <div class="box">
 <div class="tag">BRASIL</div>
 <h3>Turismo nacional</h3>
 <p>Praias, cidades, cultura, natureza e gastronomia em diferentes regiões brasileiras.</p>
 </div>
-
 <div class="box">
 <div class="tag">NATUREZA</div>
 <h3>Ecoturismo</h3>
 <p>Florestas, rios, praias e paisagens para quem busca experiências junto à natureza.</p>
 </div>
-
 <div class="box">
 <div class="tag">MUNDO</div>
 <h3>Turismo internacional</h3>
 <p>Arquitetura, gastronomia, história e cultura em destinos internacionais.</p>
 </div>
-
 <div class="box">
 <div class="tag">HOTELARIA</div>
 <h3>Hotéis e resorts</h3>
 <p>Localização, conforto, serviços e hospitalidade como parte da experiência de viajar.</p>
 </div>
-
 <div class="box">
 <div class="tag">GASTRONOMIA</div>
 <h3>Sabores do mundo</h3>
 <p>Restaurantes, ingredientes, mercados e tradições que ajudam a contar a história de cada lugar.</p>
 </div>
-
 <div class="box">
 <div class="tag">AVIAÇÃO</div>
 <h3>Aviação e voos</h3>
 <p>Conectividade aérea aproximando cidades, pessoas, empresas e destinos.</p>
 </div>
-
 </div>
 </div>
 </section>
 
 <footer class="footer">
-<a href="/"><img src="/logo-voznews-oficial.png" alt="VOZ NEWS"></a>
+<a href="/">
+<img class="logo" src="/logo-voznews-oficial.png" alt="VOZ NEWS">
+</a>
 <p>Turismo • informação • inspiração • visibilidade • conexão</p>
 </footer>
 
 <script>
-
 const destinos = [
 {
 nome:"Rio de Janeiro",
 imagem:"https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80",
-texto:"Praias, paisagens, cultura, gastronomia e vida urbana formam uma experiência diversa para o viajante."
+texto:"Praias, paisagens, cultura, gastronomia e vida urbana formam uma experiência diversa para o viajante.",
+link:"/turismo/destinos/rio-de-janeiro/"
 },
 {
 nome:"Foz do Iguaçu",
 imagem:"https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf?auto=format&fit=crop&w=900&q=80",
-texto:"Grandes paisagens naturais fazem de Foz do Iguaçu um roteiro marcado pelo contato com a natureza."
+texto:"Grandes paisagens naturais fazem de Foz do Iguaçu um roteiro marcado pelo contato com a natureza.",
+link:"#guia"
 },
 {
 nome:"Fernando de Noronha",
 imagem:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
-texto:"Mar, paisagens insulares e natureza marcam a experiência de Fernando de Noronha."
+texto:"Mar, paisagens insulares e natureza marcam a experiência de Fernando de Noronha.",
+link:"#guia"
 },
 {
 nome:"Salvador",
 imagem:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-texto:"História, música, gastronomia e litoral se encontram na experiência de Salvador."
+texto:"História, música, gastronomia e litoral se encontram na experiência de Salvador.",
+link:"#guia"
 },
 {
 nome:"Paris",
 imagem:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80",
-texto:"Arte, arquitetura, gastronomia e passeios urbanos oferecem diferentes maneiras de descobrir Paris."
+texto:"Arte, arquitetura, gastronomia e passeios urbanos oferecem diferentes maneiras de descobrir Paris.",
+link:"#guia"
 },
 {
 nome:"Lisboa",
 imagem:"https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=900&q=80",
-texto:"Bairros históricos, miradouros, cultura e gastronomia compõem a experiência de Lisboa."
+texto:"Bairros históricos, miradouros, cultura e gastronomia compõem a experiência de Lisboa.",
+link:"#guia"
 },
 {
 nome:"Roma",
 imagem:"https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=80",
-texto:"Patrimônio histórico, praças e gastronomia fazem de Roma uma viagem entre passado e presente."
+texto:"Patrimônio histórico, praças e gastronomia fazem de Roma uma viagem entre passado e presente.",
+link:"#guia"
 },
 {
 nome:"Dubai",
 imagem:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80",
-texto:"Arquitetura contemporânea, hotelaria e experiências urbanas caracterizam Dubai."
+texto:"Arquitetura contemporânea, hotelaria e experiências urbanas caracterizam Dubai.",
+link:"#guia"
 }
 ];
 
-const area=document.getElementById("destinos");
+const area = document.getElementById("destinos");
 
-area.innerHTML=destinos.map((d,i)=>`
-<a
-class="destcard"
-href="#guia"
-data-indice="${i}"
-style="background-image:url('${d.imagem}')">
+area.innerHTML = destinos.map((d,i)=>`
+<a class="destcard" href="${d.link}" data-indice="${i}" style="background-image:url('${d.imagem}')">
 <span>${d.nome} →</span>
 </a>
 `).join("");
 
 document.querySelectorAll(".destcard").forEach(card=>{
-
 card.addEventListener("click",()=>{
-
-const d=destinos[Number(card.dataset.indice)];
-
-document.getElementById("tituloDestino").textContent=d.nome;
-
-document.getElementById("textoDestino").textContent=
-d.texto+
-" Conteúdo autoral VOZ NEWS TURISMO para inspirar o planejamento da viagem.";
-
+const d = destinos[Number(card.dataset.indice)];
+if(d.link !== "#guia"){
+return;
+}
+document.getElementById("tituloDestino").textContent = d.nome;
+document.getElementById("textoDestino").textContent = d.texto + " Conteúdo autoral VOZ NEWS TURISMO para inspirar o planejamento da viagem.";
 });
-
 });
-
 </script>
 
 </body>
