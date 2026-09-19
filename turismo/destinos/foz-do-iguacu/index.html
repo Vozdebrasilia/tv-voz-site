@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foz do Iguaçu | VOZ NEWS TURISMO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #0d9488;
+      --bg: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #f59e0b;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Header */
+    header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); padding: 18px 0; }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo span { color: var(--primary); }
+    .btn-back { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: 0.2s; font-weight: 600; }
+    .btn-back:hover { color: #fff; }
+
+    /* Hero */
+    .hero { position: relative; min-height: 520px; display: flex; align-items: center; padding: 60px 0; background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 30%, rgba(15, 23, 42, 0.4)), url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.6rem; font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .hero p { font-size: 1.2rem; color: #cbd5e1; max-width: 620px; margin-bottom: 28px; }
+
+    /* Ads */
+    .ad-banner { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 20px; text-align: center; margin: 40px 0; position: relative; }
+    .ad-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+    .ad-content { font-size: 1.05rem; font-weight: 600; color: #e2e8f0; }
+    .ad-content a { color: var(--primary); text-decoration: none; font-weight: 700; }
+
+    /* Authority Statement */
+    .authority-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px; display: grid; grid-template-columns: 140px 1fr; gap: 28px; align-items: center; margin: 40px 0; }
+    .auth-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); }
+    .auth-text blockquote { font-style: italic; color: #e2e8f0; margin-bottom: 12px; font-size: 1.05rem; }
+    .auth-name { font-weight: 700; color: #fff; }
+    .auth-role { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Search Bar */
+    .search-box { position: relative; max-width: 500px; margin: 30px 0 50px 0; }
+    .search-box input { width: 100%; padding: 14px 20px 14px 48px; border-radius: 30px; border: 1px solid var(--border); background: rgba(30, 41, 59, 0.9); color: #fff; font-size: 0.95rem; outline: none; }
+    .search-box input:focus { border-color: var(--primary); }
+    .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+    /* Cards Grid */
+    .section-title { font-size: 2rem; font-weight: 800; margin: 50px 0 24px 0; display: flex; align-items: center; gap: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+    .card-img { width: 100%; height: 210px; object-fit: cover; }
+    .card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; background: rgba(2, 132, 199, 0.15); color: var(--primary); padding: 4px 10px; border-radius: 6px; }
+    .price { font-weight: 700; color: var(--gold); font-size: 0.95rem; }
+    .card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; }
+    .card-footer { border-top: 1px solid var(--border); padding-top: 14px; font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 6px; }
+
+    /* Contacts */
+    .contacts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin: 30px 0 60px 0; }
+    .contact-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
+    .contact-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(2, 132, 199, 0.15); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); background: #0b1120; padding: 40px 0; margin-top: 60px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.4rem; }
+      .authority-card { grid-template-columns: 1fr; text-align: center; }
+      .auth-img { margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrap">
+      <a href="/turismo/" class="logo">VOZ NEWS <span>TURISMO</span></a>
+      <a href="/turismo/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar aos Destinos</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Foz do Iguaçu</h1>
+      <p>A força colossal da natureza em uma das Sete Maravilhas do Mundo. Trilhas, quedas d'água majestosas e a rica harmonia da Tríplice Fronteira.</p>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- VITRINE COMERCIAL 1: TOPO -->
+    <div class="ad-banner">
+      <div class="ad-tag">Espaço Publicitário Exclusivo</div>
+      <div class="ad-content">Viva a experiência completa das Cataratas com traslados e passeios VIP: <a href="https://wa.me/5561999999999?text=Anuncie%20no%20Voz%20News%20Turismo" target="_blank">Reserve ou Anuncie sua Marca Aqui</a></div>
+    </div>
+
+    <!-- MENSAGEM OFICIAL DE AUTORIDADE -->
+    <div class="authority-card">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Gestão de Turismo" class="auth-img">
+      <div class="auth-text">
+        <blockquote>"Foz do Iguaçu é um patrimônio vivo da humanidade. Nosso compromisso é receber cada visitante com sustentabilidade, segurança de padrão internacional e o calor fraterno da nossa gente."</blockquote>
+        <div class="auth-name">Secretaria Municipal de Turismo</div>
+        <div class="auth-role">Prefeitura Municipal de Foz do Iguaçu</div>
+      </div>
+    </div>
+
+    <!-- BUSCA INSTANTÂNEA -->
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Pesquise atrações, hotéis, restaurantes..." onkeyup="filterContent()">
+    </div>
+
+    <!-- ATRAÇÕES -->
+    <h2 class="section-title"><i class="fa-solid fa-map-location-dot" style="color: var(--primary);"></i> Atrações Imperdíveis</h2>
+    <div class="grid" id="attractionsGrid">
+      
+      <div class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=800&q=80" alt="Cataratas do Iguaçu" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="tag">Natureza / Parque</span>
+            <span class="price">R$ 91 a R$ 100</span>
+          </div>
+          <h3>Cataratas do Iguaçu (Lado Brasileiro)</h3>
+          <p>Passarelas panorâmicas sobre a Garganta do Diabo com elevador panorâmico e mirantes espetaculares.</p>
+          <div class="card-footer">
+            <div><i class="fa-solid fa-ticket"></i> Meia-entrada para estudantes, idosos e PCD. Isenção para menores de 6 anos.</div>
+            <div><i class="fa-solid fa-clock"></i> Diariamente, 09h às 16h</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=800&q=80" alt="Parque das Aves" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="tag">Fauna / Conservação</span>
+            <span class="price">R$ 80</span>
+          </div>
+          <h3>Parque das Aves</h3>
+          <p>Imersão em viveiros gigantes na Mata Atlântica dedicados à conservação de aves da Mata Atlântica e araras.</p>
+          <div class="card-footer">
+            <div><i class="fa-solid fa-ticket"></i> Meia-entrada conforme legislação federal. Isenção até 8 anos acompanhados.</div>
+            <div><i class="fa-solid fa-clock"></i> Terça a Domingo, 08h30 às 16h30</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80" alt="Usina de Itaipu" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="tag">Engenharia</span>
+            <span class="price">A partir de R$ 56</span>
+          </div>
+          <h3>Usina Hidrelétrica de Itaipu</h3>
+          <p>Uma das maiores obras de engenharia do planeta, com passeios panorâmicos e visitas técnicas profundas.</p>
+          <div class="card-footer">
+            <div><i class="fa-solid fa-ticket"></i> Desconto para lindeiros, estudantes e maiores de 60 anos.</div>
+            <div><i class="fa-solid fa-clock"></i> Quarta a Segunda, horários agendados</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VITRINE COMERCIAL 2: MEIO -->
+    <div class="ad-banner">
+      <div class="ad-tag">Publicidade Estratégica</div>
+      <div class="ad-content">A melhor gastronomia da Tríplice Fronteira em um ambiente inesquecível. <a href="https://wa.me/5561999999999?text=Anuncie%20no%20Voz%20News%20Turismo" target="_blank">Divulgue sua Operação Gastronômica</a></div>
+    </div>
+
+    <!-- HOSPEDAGEM E LOGOMARCAS -->
+    <h2 class="section-title"><i class="fa-solid fa-hotel" style="color: var(--primary);"></i> Onde se Hospedar</h2>
+    <div class="grid" id="hotelsGrid">
+
+      <div class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Hotel das Cataratas" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="tag">Luxo & Exclusividade</span>
+            <span class="price">Belmond</span>
+          </div>
+          <h3>Hotel das Cataratas, A Belmond Hotel</h3>
+          <p>O único hotel situado dentro do Parque Nacional. Acesso exclusivo aos mirantes das Cataratas ao nascer e pôr do sol.</p>
+          <div class="card-footer">
+            <div><i class="fa-solid fa-location-dot"></i> Parque Nacional do Iguaçu</div>
+            <div><i class="fa-solid fa-phone"></i> +55 (45) 2102-7000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Bourbon Cataratas" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="tag">Resort Familiar</span>
+            <span class="price">Bourbon</span>
+          </div>
+          <h3>Bourbon Cataratas do Iguaçu Resort</h3>
+          <p>Infraestrutura completa de lazer, gastronomia e contato com a natureza ideal para famílias e crianças.</p>
+          <div class="card-footer">
+            <div><i class="fa-solid fa-location-dot"></i> Av. das Cataratas, Km 2,5</div>
+            <div><i class="fa-solid fa-phone"></i> +55 (45) 3521-3900</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONTATOS E TELEFONES ÚTEIS -->
+    <h2 class="section-title"><i class="fa-solid fa-phone-volume" style="color: var(--primary);"></i> Telefones Úteis & Suporte</h2>
+    <div class="contacts-grid">
+      <a href="tel:190" class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <strong>Polícia Militar</strong>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Emergência: 190</p>
+        </div>
+      </a>
+      <a href="tel:192" class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-truck-medical"></i></div>
+        <div>
+          <strong>SAMU</strong>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Urgência Médica: 192</p>
+        </div>
+      </a>
+      <a href="https://wa.me/5545999999999" target="_blank" class="contact-item">
+        <div class="contact-icon" style="color: #22c55e;"><i class="fa-brands fa-whatsapp"></i></div>
+        <div>
+          <strong>Centro de Atendimento ao Turista</strong>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">WhatsApp de Atendimento</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- VITRINE COMERCIAL 3: RODAPÉ -->
+    <div class="ad-banner">
+      <div class="ad-tag">Parceiro Oficial VOZ NEWS</div>
+      <div class="ad-content">Conecte sua rede hoteleira, receptivo ou evento a milhares de leitores: <a href="https://wa.me/5561999999999?text=Comercial%20Voz%20News%20Turismo" target="_blank">Fale com Nossa Equipe Comercial</a></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 VOZ NEWS TURISMO — TV Voz de Brasília. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    function filterContent() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.item-filter');
+      items.forEach(el => {
+        const text = el.innerText.toLowerCase();
+        el.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
