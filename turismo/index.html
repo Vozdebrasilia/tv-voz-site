@@ -308,35 +308,10 @@ horas de transmissão
 <div class="tag">GUIAS AUTORAIS</div>
 <h2>Destinos para descobrir</h2>
 <p class="copy">
-Clique em qualquer destino. O conteúdo abre dentro da própria VOZ NEWS TURISMO.
+Clique em qualquer destino para abrir uma página exclusiva com o guia completo.
 </p>
 
 <div class="grid" id="destinos"></div>
-
-<div class="guide" id="guia">
-<div class="tag">GUIA VOZ NEWS TURISMO</div>
-<h3 id="tituloDestino">Rio de Janeiro</h3>
-<p id="textoDestino">
-Praias, paisagens, cultura, gastronomia e vida urbana formam uma experiência diversa para o viajante.
-</p>
-<p>
-A VOZ NEWS TURISMO reúne inspiração para passeios, experiências, hospedagem, gastronomia e planejamento da viagem.
-</p>
-<div class="ads">
-<div class="ad">
-<small>PUBLICIDADE • COMPANHIA AÉREA</small>
-<b>Voos para este destino</b>
-<p>Espaço publicitário para uma companhia aérea apresentar rotas, serviços e oportunidades ao viajante.</p>
-<a class="cta" href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Companhia%20Aerea%20-%20VOZ%20NEWS%20Turismo">ANUNCIE AQUI</a>
-</div>
-<div class="ad">
-<small>PUBLICIDADE • AGÊNCIA DE VIAGENS</small>
-<b>Pacotes e experiências</b>
-<p>Espaço publicitário para agência ou operadora apresentar pacotes, roteiros e experiências para este destino.</p>
-<a class="cta" href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Agencia%20de%20Viagens%20-%20VOZ%20NEWS%20Turismo">ANUNCIE AQUI</a>
-</div>
-</div>
-</div>
 
 </div>
 </section>
@@ -441,20 +416,10 @@ link:"/turismo/destinos/dubai/"
 const area = document.getElementById("destinos");
 
 area.innerHTML = destinos.map((d,i)=>`
-<a class="destcard" href="${d.link}" data-indice="${i}" style="background-image:url('${d.imagem}')">
+<a class="destcard" href="${d.link}" target="_self" style="background-image:url('${d.imagem}')">
 <span>${d.nome} →</span>
 </a>
 `).join("");
-
-document.querySelectorAll(".destcard").forEach(card=>{
-card.addEventListener("click",()=>{
-const d = destinos[Number(card.dataset.indice)];
-if(d.link !== "#guia"){
-return;
-}
-document.getElementById("tituloDestino").textContent = d.nome;
-document.getElementById("textoDestino").textContent = d.texto + " Conteúdo autoral VOZ NEWS TURISMO para inspirar o planejamento da viagem.";
-});
 });
 </script>
 
