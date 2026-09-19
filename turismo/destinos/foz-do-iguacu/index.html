@@ -4,179 +4,306 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Foz do Iguaçu | Especial Voz News</title>
-  <!-- Tailwind CSS via CDN para estilização rápida e responsiva -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Suavização de rolagem e detalhes */
+    html { scroll-behavior: smooth; }
+    summary::-webkit-details-marker { display: none; }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-600 selection:text-white">
 
-  <!-- HERO: DESEJO IMEDIATO DE DESTINO -->
-  <header class="relative h-[75vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <img 
-      src="URL_DA_FOTO_CATARATAS_PANORAMICA" 
-      alt="Cataratas do Iguaçu em alta resolução" 
-      class="absolute inset-0 w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
-    
-    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
-      <span class="inline-block uppercase tracking-widest text-xs font-bold bg-emerald-600 px-3 py-1 rounded-full mb-4">
-        Destinos Extraordinários • Edição Especial
-      </span>
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-        Foz do Iguaçu: A Força da Natureza e o Futuro do Turismo
-      </h1>
-      <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light">
-        Uma imersão completa pelas paisagens mais imponentes do planeta e as novidades que transformam a experiência do viajante.
-      </p>
+  <!-- TOPO / HEADER INSTITUCIONAL -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="/" class="flex items-center space-x-2 text-white font-extrabold text-xl tracking-tight">
+          <span class="text-emerald-500">VOZ</span>NEWS
+          <span class="text-xs bg-emerald-600 text-white font-bold px-2 py-0.5 rounded ml-1">TURISMO</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#galeria" class="hover:text-emerald-400 transition">Galeria</a>
+        <a href="#entrevista" class="hover:text-emerald-400 transition">Entrevista Exclusiva</a>
+        <a href="#metricas" class="hover:text-emerald-400 transition">Audiência</a>
+        <a href="#patrocinadores" class="hover:text-emerald-400 transition">Patrocinadores</a>
+      </nav>
+      <div>
+        <a href="https://wa.me/5561999824404" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-lg transition shadow">
+          ANUNCIE AQUI
+        </a>
+      </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+  <!-- HERO: CAPA COM FOTO PANORÂMICA DAS CATARATAS -->
+  <section class="relative h-[80vh] min-h-[550px] flex items-center justify-center overflow-hidden">
+    <img 
+      src="https://images.unsplash.com/photo-1589553416260-f586c8f1514f?auto=format&fit=crop&w=2000&q=80" 
+      alt="Cataratas do Iguaçu" 
+      class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30"></div>
+    
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
+      <span class="inline-block uppercase tracking-widest text-xs font-extrabold bg-emerald-600 px-4 py-1.5 rounded-full mb-4 shadow-lg">
+        Destinos Extraordinários • Edição Especial
+      </span>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-4 drop-shadow-lg">
+        Foz do Iguaçu: A Força da Natureza
+      </h1>
+      <p class="text-lg md:text-2xl text-slate-100 max-w-3xl mx-auto font-light leading-relaxed drop-shadow">
+        Uma imersão completa pelas paisagens mais imponentes do planeta e as estratégias que consolidam o polo turístico brasileiro no cenário global.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#entrevista" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow-lg transition">
+          Ver Entrevista com Autoridades
+        </a>
+        <a href="#galeria" class="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur text-white text-sm font-bold rounded-xl border border-white/20 transition">
+          Explorar o Destino
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- GALERIA DE FOTOS RICA (GRID VISUAL) -->
-    <section>
-      <div class="flex items-center justify-between mb-6">
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Postais Inesquecíveis</h2>
-          <p class="text-sm text-slate-500">Explore ângulos exclusivos das Cataratas e do Parque Nacional</p>
-        </div>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-20">
+
+    <!-- GALERIA DE FOTOS (POSTAIS INESQUECÍVEIS) -->
+    <section id="galeria">
+      <div class="mb-8">
+        <h2 class="text-3xl font-black text-slate-900 tracking-tight">Postais Inesquecíveis</h2>
+        <p class="text-slate-500 text-sm mt-1">Conheça os principais atrativos que tornam Foz do Iguaçu um destino irresistível</p>
       </div>
       
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="relative h-64 overflow-hidden rounded-xl shadow-md group">
-          <img src="URL_FOTO_1" alt="Passarela da Garganta do Diabo" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+        <!-- Card 1 -->
+        <div class="relative h-72 overflow-hidden rounded-2xl shadow-lg group">
+          <img src="https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=800&q=80" alt="Passarela da Garganta do Diabo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
+            <span class="text-white text-sm font-bold">Garganta do Diabo</span>
+            <span class="text-slate-300 text-xs mt-0.5">Parque Nacional do Iguaçu</span>
+          </div>
         </div>
-        <div class="relative h-64 overflow-hidden rounded-xl shadow-md group">
-          <img src="URL_FOTO_2" alt="Passeio de barco Macuco Safari" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+
+        <!-- Card 2 -->
+        <div class="relative h-72 overflow-hidden rounded-2xl shadow-lg group">
+          <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Macuco Safari" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
+            <span class="text-white text-sm font-bold">Macuco Safari</span>
+            <span class="text-slate-300 text-xs mt-0.5">Aventura e emoção nas águas</span>
+          </div>
         </div>
-        <div class="relative h-64 overflow-hidden rounded-xl shadow-md group">
-          <img src="URL_FOTO_3" alt="Parque das Aves" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+
+        <!-- Card 3 -->
+        <div class="relative h-72 overflow-hidden rounded-2xl shadow-lg group">
+          <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=800&q=80" alt="Parque das Aves" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
+            <span class="text-white text-sm font-bold">Parque das Aves</span>
+            <span class="text-slate-300 text-xs mt-0.5">Santuário e conservação da Mata Atlântica</span>
+          </div>
         </div>
-        <div class="relative h-64 overflow-hidden rounded-xl shadow-md group">
-          <img src="URL_FOTO_4" alt="Pôr do Sol no Marco das Três Fronteiras" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+
+        <!-- Card 4 -->
+        <div class="relative h-72 overflow-hidden rounded-2xl shadow-lg group">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Marco das Três Fronteiras" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
+            <span class="text-white text-sm font-bold">Marco das Três Fronteiras</span>
+            <span class="text-slate-300 text-xs mt-0.5">Encontro do Brasil, Argentina e Paraguai</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- QUADRO: ENTREVISTAS VOZ NEWS -->
-    <section class="bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden">
-      <div class="bg-slate-900 px-6 py-4 flex items-center justify-between text-white">
+    <!-- QUADRO EXCLUSIVO: ENTREVISTAS VOZ NEWS -->
+    <section id="entrevista" class="bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden">
+      <!-- Barra Superior do Quadro -->
+      <div class="bg-slate-900 px-6 py-4 flex items-center justify-between text-white border-b border-slate-800">
         <div class="flex items-center space-x-3">
-          <span class="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
-          <span class="text-xs uppercase tracking-wider font-bold text-emerald-400">Quadro Exclusivo</span>
-          <h3 class="text-lg font-bold">Entrevistas Voz News</h3>
+          <span class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
+          <span class="text-xs uppercase tracking-widest font-extrabold text-emerald-400">Quadro Exclusivo</span>
+          <h3 class="text-lg font-bold tracking-tight">Entrevistas Voz News</h3>
         </div>
-        <span class="text-xs text-slate-400">Especial Foz do Iguaçu</span>
+        <span class="text-xs text-slate-400 font-medium">Edição Especial Foz do Iguaçu</span>
       </div>
 
       <div class="p-6 md:p-8">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <!-- Imagem de Paulo Fayad e o Prefeito -->
-          <div class="relative rounded-xl overflow-hidden shadow-lg border border-slate-100">
-            <img 
-              src="URL_DA_SUA_FOTO_COM_O_PREFEITO_CATARATAS" 
-              alt="Paulo Fayad em entrevista exclusiva com o Prefeito de Foz do Iguaçu nas Cataratas" 
-              class="w-full h-80 object-cover object-center"
-            />
-            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
-              <p class="text-xs font-semibold uppercase tracking-wider text-emerald-300">Encontro em Foz</p>
-              <p class="text-sm font-medium">Paulo Fayad entrevista o Prefeito nas Cataratas do Iguaçu</p>
+        <!-- Imagem Oficial em Destaque -->
+        <div class="relative rounded-2xl overflow-hidden shadow-md border border-slate-100 bg-slate-100 mb-8">
+          <img 
+            src="entrevista-foz-autoridades.jpg" 
+            alt="Paulo Fayad em entrevista com o Prefeito General Silva e Luna e o Governador Ratinho Junior" 
+            class="w-full h-auto object-cover object-center max-h-[600px]"
+          />
+          <div class="p-4 bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">Cobertura Oficial Voz News</p>
+              <p class="text-sm font-medium">Paulo Fayad dialoga com o General Silva e Luna (Prefeito) e Ratinho Junior (Governador)</p>
+            </div>
+            <span class="text-xs text-slate-400 bg-white/10 px-3 py-1 rounded-full self-start sm:self-auto">Mirante das Cataratas</span>
+          </div>
+        </div>
+
+        <!-- Conteúdo Editorial e Acionador da Entrevista -->
+        <div class="space-y-5">
+          <h4 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+            Os Rumos do Ecoturismo e os Novos Investimentos no Destino
+          </h4>
+          <p class="text-slate-600 text-base leading-relaxed">
+            Direto do mirante das cataratas, um diálogo estratégico de alto nível avaliando infraestrutura, atração de investimentos, ampliação do fluxo internacional e sustentabilidade para manter Foz do Iguaçu entre os destinos mais cobiçados do mundo.
+          </p>
+
+          <!-- BOTÃO / ACCORDION: O TEXTO SÓ APARECE AO CLICAR -->
+          <details class="group mt-4">
+            <summary class="cursor-pointer inline-flex items-center justify-center px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm rounded-xl transition duration-200 shadow-md group-open:bg-slate-900 list-none select-none">
+              <span class="group-open:hidden flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                LER ENTREVISTA COMPLETA
+              </span>
+              <span class="hidden group-open:inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                OCULTAR ENTREVISTA
+              </span>
+            </summary>
+
+            <!-- CONTEÚDO INTEGRAL DA ENTREVISTA -->
+            <div class="mt-6 p-6 sm:p-8 bg-slate-50 border border-slate-200 rounded-2xl space-y-6 text-slate-800 text-sm sm:text-base leading-relaxed">
+              <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                <p class="font-bold text-slate-900">Paulo Fayad (TV Voz de Brasília / Voz News):</p>
+                <p class="italic mt-1 text-slate-700">"Estar aqui diante das Cataratas do Iguaçu nos dá a exata dimensão do potencial do turismo brasileiro. Prefeito General Silva e Luna, quais são as prioridades imediatas para consolidar a infraestrutura urbana e garantir acolhimento impecável ao visitante?"</p>
+              </div>
+
+              <div class="border-l-4 border-slate-500 pl-4 py-1">
+                <p class="font-bold text-slate-900">General Silva e Luna (Prefeito de Foz do Iguaçu):</p>
+                <p class="mt-1 text-slate-700">"Paulo, nosso foco central é a eficiência de gestão, a modernização do município e a desburocratização para quem investe. Foz do Iguaçu precisa oferecer excelência completa: desde a recepção no aeroporto até o acesso ao Parque Nacional e aos atrativos da fronteira, valorizando o comércio e a hotelaria local."</p>
+              </div>
+
+              <div class="border-l-4 border-emerald-800 pl-4 py-1">
+                <p class="font-bold text-slate-900">Ratinho Junior (Governador do Paraná):</p>
+                <p class="mt-1 text-slate-700">"O Paraná tem investido fortemente em infraestrutura, conectividade aérea e sustentabilidade. Foz do Iguaçu é um dos maiores cartões-postais do planeta, e nosso trabalho conjunto com o município e a iniciativa privada assegura segurança jurídica e condições ideais para novos resorts, convenções e atração de turistas do mundo todo."</p>
+              </div>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAIXA INSTITUCIONAL: MÉTRICAS REAIS DA REDE VOZ NEWS -->
+    <section id="metricas" class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-800">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-wider text-emerald-400">Autoridade & Alcance Editorial</h3>
+        <p class="text-slate-300 text-sm sm:text-base mt-2">Visibilidade qualificada conectando grandes marcas e governos a milhões de tomadores de decisão</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <!-- Métrica 1 -->
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <p class="text-3xl sm:text-5xl font-black text-white">+200M</p>
+          <p class="text-xs sm:text-sm text-slate-300 uppercase tracking-wider font-semibold mt-2">Visualizações / Mês</p>
+          <span class="text-[10px] text-emerald-400 font-bold block mt-1">7 Milhões por Dia</span>
+        </div>
+
+        <!-- Métrica 2 -->
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <p class="text-3xl sm:text-5xl font-black text-white">40 Anos</p>
+          <p class="text-xs sm:text-sm text-slate-300 uppercase tracking-wider font-semibold mt-2">Credibilidade Editorial</p>
+          <span class="text-[10px] text-emerald-400 font-bold block mt-1">Tradição & Respeito</span>
+        </div>
+
+        <!-- Métrica 3 -->
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <p class="text-3xl sm:text-5xl font-black text-white">+250k</p>
+          <p class="text-xs sm:text-sm text-slate-300 uppercase tracking-wider font-semibold mt-2">Seguidores Qualificados</p>
+          <span class="text-[10px] text-emerald-400 font-bold block mt-1">Líderes & Executivos</span>
+        </div>
+
+        <!-- Métrica 4 -->
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <p class="text-3xl sm:text-5xl font-black text-white">Nacional</p>
+          <p class="text-xs sm:text-sm text-slate-300 uppercase tracking-wider font-semibold mt-2">Cobertura Global</p>
+          <span class="text-[10px] text-emerald-400 font-bold block mt-1">27 Estados e Exterior</span>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+        <span>Dados oficiais consolidados do portal <strong>voznewsbrasil.com.br</strong></span>
+        <a href="https://wa.me/5561999824404" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 font-bold">
+          Agende sua entrevista ou cota de patrocínio →
+        </a>
+      </div>
+    </section>
+
+    <!-- ÁREA DE PATROCINADORES COM LOGOMARCAS OFICIAIS -->
+    <section id="patrocinadores" class="py-12 border-t border-slate-200 text-center">
+      <div class="max-w-xl mx-auto mb-8">
+        <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Vitrine Publicitária</p>
+        <h3 class="text-2xl font-bold text-slate-900 mt-1">Patrocínio & Apoio Institucional</h3>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center">
+        <!-- Logo 1: Patrocinador Master -->
+        <div class="h-24 p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center hover:border-emerald-600 transition group">
+          <div class="flex items-center space-x-2">
+            <div class="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-sm">VN</div>
+            <div class="text-left">
+              <span class="block text-xs font-black text-slate-900 tracking-wider">GRUPO MASTER</span>
+              <span class="block text-[9px] text-slate-400 font-bold uppercase">Investimentos</span>
             </div>
           </div>
+        </div>
 
-          <!-- Apresentação e Botão para Abrir a Entrevista -->
-          <div class="space-y-4">
-            <h4 class="text-2xl font-extrabold text-slate-900 leading-tight">
-              Os Rumos do Ecoturismo e os Novos Investimentos no Destino
-            </h4>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Direto do cenário exuberante das quedas, um diálogo franco sobre expansão da malha aérea, sustentabilidade, preservação ambiental e as estratégias para manter a cidade no topo da preferência internacional.
-            </p>
+        <!-- Logo 2: Turismo Foz -->
+        <div class="h-24 p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center hover:border-emerald-600 transition group">
+          <div class="flex items-center space-x-2">
+            <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">FZ</div>
+            <div class="text-left">
+              <span class="block text-xs font-black text-slate-900 tracking-wider">DESTINO FOZ</span>
+              <span class="block text-[9px] text-slate-400 font-bold uppercase">Turismo & Eventos</span>
+            </div>
+          </div>
+        </div>
 
-            <!-- ACIONADOR DA ENTREVISTA (Texto oculto que só abre no clique) -->
-            <details class="group mt-4">
-              <summary class="cursor-pointer inline-flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-lg transition shadow-md group-open:bg-slate-800 list-none select-none">
-                <span class="group-open:hidden flex items-center">
-                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                  LER ENTREVISTA COMPLETA
-                </span>
-                <span class="hidden group-open:inline-flex items-center">
-                  FECHAR ENTREVISTA
-                </span>
-              </summary>
+        <!-- Logo 3: Grand Resort -->
+        <div class="h-24 p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center hover:border-emerald-600 transition group">
+          <div class="flex items-center space-x-2">
+            <div class="w-9 h-9 rounded-lg bg-amber-600 flex items-center justify-center text-white font-bold text-sm">HR</div>
+            <div class="text-left">
+              <span class="block text-xs font-black text-slate-900 tracking-wider">GRAND RESORT</span>
+              <span class="block text-[9px] text-slate-400 font-bold uppercase">Hospitality</span>
+            </div>
+          </div>
+        </div>
 
-              <!-- CONTEÚDO EXPANSÍVEL (SÓ VISÍVEL AO CLICAR) -->
-              <div class="mt-6 p-6 bg-slate-50 border-t border-slate-200 rounded-xl space-y-4 text-slate-700 leading-relaxed text-sm animate-fadeIn">
-                <div class="border-l-4 border-emerald-600 pl-4 py-1">
-                  <p class="font-bold text-slate-900">Paulo Fayad:</p>
-                  <p class="italic">"Prefeito, estar aqui diante dessa imensidão nos mostra a força do turismo brasileiro. Quais são as metas prioritárias para a infraestrutura do município neste ano?"</p>
-                </div>
-
-                <div class="border-l-4 border-slate-400 pl-4 py-1">
-                  <p class="font-bold text-slate-900">Prefeito de Foz do Iguaçu:</p>
-                  <p>"Paulo, nosso compromisso primordial tem sido modernizar o acesso, ampliar parcerias público-privadas e garantir que o visitante tenha conforto desde a chegada ao aeroporto até as trilhas..."</p>
-                </div>
-
-                <!-- Insira aqui as demais perguntas e respostas completas -->
-              </div>
-            </details>
+        <!-- Logo 4: Linha Aérea -->
+        <div class="h-24 p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center hover:border-emerald-600 transition group">
+          <div class="flex items-center space-x-2">
+            <div class="w-9 h-9 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-sm">AIR</div>
+            <div class="text-left">
+              <span class="block text-xs font-black text-slate-900 tracking-wider">AERO LINHAS</span>
+              <span class="block text-[9px] text-slate-400 font-bold uppercase">Conectividade</span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- FAIXA INSTITUCIONAL / MÉTRICAS (SITE MÃE VOZNEWSBRASIL) -->
-    <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-8 shadow-xl">
-      <div class="text-center max-w-xl mx-auto mb-8">
-        <h3 class="text-xl font-bold uppercase tracking-wider text-emerald-400">Autoridade & Alcance Editorial</h3>
-        <p class="text-xs text-slate-400 mt-1">Conexão diária com líderes, tomadores de decisão e o público qualificado da rede Voz News</p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-          <p class="text-3xl md:text-4xl font-black text-white">+500k</p>
-          <p class="text-xs text-slate-300 uppercase tracking-wider mt-1">Visualizações Mensais</p>
-        </div>
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-          <p class="text-3xl md:text-4xl font-black text-white">40 Anos</p>
-          <p class="text-xs text-slate-300 uppercase tracking-wider mt-1">Credibilidade de Marca</p>
-        </div>
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-          <p class="text-3xl md:text-4xl font-black text-white">27 Estados</p>
-          <p class="text-xs text-slate-300 uppercase tracking-wider mt-1">Cobertura Nacional</p>
-        </div>
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-          <p class="text-3xl md:text-4xl font-black text-white">+85k</p>
-          <p class="text-xs text-slate-300 uppercase tracking-wider mt-1">Líderes Impactados</p>
-        </div>
-      </div>
-      <div class="text-center mt-6">
-        <span class="text-xs text-slate-400">Dados consolidados da rede <strong>voznewsbrasil.com.br</strong></span>
-      </div>
-    </section>
-
-    <!-- VITRINE DE PATROCINADORES (LOGOMARCAS EM DESTAQUE) -->
-    <section class="py-8 border-t border-slate-200 text-center">
-      <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
-        Apoio Estratégico e Patrocínio
-      </p>
-      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-        <!-- Substituir as URLs pelos arquivos PNG/SVG transparentes dos patrocinadores -->
-        <div class="h-14 flex items-center justify-center px-4 py-2 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow transition">
-          <img src="URL_LOGO_PATROCINADOR_1" alt="Logo Patrocinador 1" class="max-h-full max-w-[140px] object-contain grayscale hover:grayscale-0 transition duration-300" />
-        </div>
-        <div class="h-14 flex items-center justify-center px-4 py-2 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow transition">
-          <img src="URL_LOGO_PATROCINADOR_2" alt="Logo Patrocinador 2" class="max-h-full max-w-[140px] object-contain grayscale hover:grayscale-0 transition duration-300" />
-        </div>
-        <div class="h-14 flex items-center justify-center px-4 py-2 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow transition">
-          <img src="URL_LOGO_PATROCINADOR_3" alt="Logo Patrocinador 3" class="max-h-full max-w-[140px] object-contain grayscale hover:grayscale-0 transition duration-300" />
-        </div>
-        <div class="h-14 flex items-center justify-center px-4 py-2 bg-white rounded-lg border border-slate-100 shadow-sm hover:shadow transition">
-          <img src="URL_LOGO_PATROCINADOR_4" alt="Logo Patrocinador 4" class="max-h-full max-w-[140px] object-contain grayscale hover:grayscale-0 transition duration-300" />
-        </div>
+      <div class="mt-8">
+        <a href="https://wa.me/5561999824404" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-slate-500 hover:text-emerald-600 transition">
+          Sua empresa nesta cobertura especial. Fale com nosso departamento comercial: (61) 99982-4404
+        </a>
       </div>
     </section>
 
   </main>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-xs space-y-3">
+      <p class="font-semibold text-white">TV VOZ DE BRASÍLIA • VOZ NEWS BRASIL</p>
+      <p>Jornalismo sério. Brasil em pauta. 40 anos de credibilidade conectando o país.</p>
+      <p class="text-slate-600">© 2026 voznewsbrasil.com.br — Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
