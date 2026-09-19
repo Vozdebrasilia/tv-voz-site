@@ -3,11 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foz do Iguaçu | VOZ NEWS TURISMO</title>
+  
+  <!-- INDEXAÇÃO GOOGLE & SEO -->
+  <title>Foz do Iguaçu | VOZ NEWS TURISMO — Entrevistas Exclusivas com Prefeito e Governador</title>
+  <meta name="description" content="Guia oficial de Foz do Iguaçu. As Cataratas, infraestrutura e entrevistas exclusivas de Paulo Fayad com o Prefeito Joaquim Silva e Luna e o Governador Ratinho Junior.">
+  <meta name="keywords" content="Foz do Iguaçu, Paulo Fayad, Silva e Luna, Ratinho Junior, Cataratas do Iguaçu, VOZ NEWS TURISMO, Turismo Paraná">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://voznewsbrasil.com.br/turismo/destinos/foz-do-iguacu/">
+  
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Foz do Iguaçu: Gestão, Ecoturismo e Entrevistas Exclusivas — VOZ NEWS">
+  <meta property="og:description" content="Paulo Fayad entrevista o Prefeito Silva e Luna e o Governador Ratinho Junior sobre o futuro de Foz do Iguaçu.">
+  <meta property="og:url" content="https://voznewsbrasil.com.br/turismo/destinos/foz-do-iguacu/">
+  <meta property="og:site_name" content="VOZ NEWS TURISMO">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1200&q=80">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Foz do Iguaçu",
+    "description": "Destino internacional das Cataratas do Iguaçu e polo de ecoturismo no Paraná.",
+    "url": "https://voznewsbrasil.com.br/turismo/destinos/foz-do-iguacu/",
+    "author": {
+      "@type": "Person",
+      "name": "Paulo Fayad"
+    },
+    "publisher": {
+      "@type": "NewsMediaOrganization",
+      "name": "VOZ NEWS TURISMO",
+      "url": "https://voznewsbrasil.com.br"
+    }
+  }
+  </script>
+
+  <!-- FONTES E ÍCONES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     :root {
       --primary: #0284c7;
@@ -25,91 +61,106 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
     
-    /* Header */
     header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); padding: 18px 0; }
     .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
     .logo span { color: var(--primary); }
-    .btn-back { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: 0.2s; font-weight: 600; }
+    .btn-back { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; font-weight: 600; transition: 0.2s; }
     .btn-back:hover { color: #fff; }
 
+    /* Galeria 4 Fotos */
+    .catarata-gallery-header { margin: 24px 0 36px 0; }
+    .gallery-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .gallery-item { position: relative; height: 260px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; }
+    .gallery-item:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent); font-size: 0.8rem; font-weight: 700; color: #fff; }
+
     /* Hero */
-    .hero { position: relative; min-height: 560px; display: flex; align-items: center; padding: 60px 0; background: linear-gradient(to right, rgba(15, 23, 42, 0.94) 35%, rgba(15, 23, 42, 0.5)), url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(2, 132, 199, 0.2); border: 1px solid rgba(2, 132, 199, 0.4); color: #38bdf8; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
-    .hero p { font-size: 1.2rem; color: #cbd5e1; max-width: 650px; margin-bottom: 28px; }
+    .hero { position: relative; min-height: 480px; display: flex; align-items: center; padding: 50px 0; background: linear-gradient(to right, rgba(15, 23, 42, 0.94) 35%, rgba(15, 23, 42, 0.5)), url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; border-radius: 20px; margin-bottom: 40px; }
+    .hero-content { padding: 0 40px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(2, 132, 199, 0.2); border: 1px solid rgba(2, 132, 199, 0.4); color: #38bdf8; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.6rem; font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 650px; margin-bottom: 24px; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-action { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; transition: 0.2s; }
+    .btn-action { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; transition: 0.2s; cursor: pointer; border: none; }
     .btn-action:hover { background: var(--primary-dark); transform: translateY(-2px); }
-    .btn-interview { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); }
-    .btn-interview:hover { background: rgba(255, 255, 255, 0.2); }
+    .btn-interview { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold); color: #fef08a; }
+    .btn-interview:hover { background: var(--gold); color: #000; }
 
     /* Ads */
-    .ad-banner { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 22px; text-align: center; margin: 40px 0; position: relative; }
+    .ad-banner { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 22px; text-align: center; margin: 40px 0; }
     .ad-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
     .ad-content { font-size: 1.05rem; font-weight: 600; color: #e2e8f0; }
     .ad-content a { color: var(--primary); text-decoration: none; font-weight: 700; }
 
-    /* Seção Master Cataratas */
+    /* Master Cataratas */
     .master-highlight { background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(2, 132, 199, 0.3); border-radius: 20px; padding: 40px; margin: 40px 0; display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; }
-    .master-highlight h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; margin-bottom: 16px; color: #fff; }
-    .master-highlight p { color: #cbd5e1; margin-bottom: 20px; font-size: 1rem; }
-    .highlight-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .master-highlight h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; margin-bottom: 16px; }
+    .highlight-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
     .stat-card { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); padding: 14px; border-radius: 10px; }
-    .stat-card strong { display: block; font-size: 1.2rem; color: var(--gold); }
+    .stat-card strong { display: block; font-size: 1.15rem; color: var(--gold); }
     .stat-card span { font-size: 0.8rem; color: var(--text-muted); }
-    .master-media { border-radius: 14px; overflow: hidden; height: 380px; position: relative; border: 1px solid var(--border); }
+    .master-media { border-radius: 14px; overflow: hidden; height: 360px; border: 1px solid var(--border); }
     .master-media img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Grid Autoridades com Paulo Fayad */
-    .authorities-block { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 36px; margin: 50px 0; }
-    .auth-main-flex { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: center; }
-    .auth-group-img { width: 100%; height: 220px; border-radius: 14px; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-    .auth-quotes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .auth-speech { border-left: 3px solid var(--primary); padding-left: 16px; }
-    .auth-speech blockquote { font-style: italic; color: #e2e8f0; font-size: 0.95rem; margin-bottom: 8px; }
-    .auth-speech .author { font-weight: 800; color: #fff; font-size: 0.9rem; }
-    .auth-speech .office { font-size: 0.75rem; color: var(--text-muted); }
+    /* Seções de Entrevistas Ping-Pong */
+    .interview-wrapper { background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 20px; padding: 36px; margin: 50px 0; scroll-margin-top: 100px; }
+    .interview-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; border-bottom: 1px solid var(--border); padding-bottom: 18px; flex-wrap: wrap; gap: 16px; }
+    .interview-header h3 { font-size: 1.5rem; color: var(--gold); display: flex; align-items: center; gap: 10px; }
+    
+    /* Fotos Lado a Lado (Paulo Fayad + Autoridade) */
+    .duo-photos-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+    .duo-card { background: rgba(30, 41, 59, 0.8); border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; align-items: center; gap: 16px; }
+    .duo-card img { width: 85px; height: 85px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); flex-shrink: 0; }
+    .duo-card.gold-border img { border-color: var(--gold); }
+    .duo-info h4 { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .duo-info p { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* Entrevista Ping-Pong */
-    .interview-section { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 20px; padding: 36px; margin: 50px 0; scroll-margin-top: 100px; }
-    .interview-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-    .interview-header h3 { font-size: 1.4rem; color: var(--gold); display: flex; align-items: center; gap: 10px; }
-    .audio-player-mock { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.05); padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; }
-    .interview-qa { display: flex; flex-direction: column; gap: 16px; max-width: 900px; }
-    .qa-row { display: flex; flex-direction: column; gap: 4px; }
-    .qa-q { font-weight: 700; color: #38bdf8; font-size: 0.95rem; }
-    .qa-a { color: #e2e8f0; font-size: 0.95rem; line-height: 1.5; }
+    /* Audio Player */
+    .audio-player-control { display: flex; align-items: center; gap: 10px; background: rgba(245, 158, 11, 0.1); border: 1px solid var(--gold); padding: 8px 18px; border-radius: 30px; }
+    .audio-btn { background: var(--gold); color: #000; border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: bold; }
+    .audio-btn:hover { transform: scale(1.08); }
+    .audio-status { font-size: 0.85rem; font-weight: 700; color: #fef08a; }
 
-    /* Search Bar */
+    /* Lista Q&A das 10 Perguntas */
+    .qa-list { display: flex; flex-direction: column; gap: 14px; }
+    .qa-block { background: rgba(0, 0, 0, 0.25); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 8px; }
+    .qa-block.gov { border-left-color: var(--gold); }
+    .qa-q { font-weight: 800; color: #38bdf8; font-size: 0.92rem; margin-bottom: 4px; }
+    .qa-block.gov .qa-q { color: #facc15; }
+    .qa-a { color: #e2e8f0; font-size: 0.9rem; line-height: 1.5; }
+
+    /* Transportes */
+    .transport-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .transport-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: flex; gap: 16px; align-items: center; text-decoration: none; color: inherit; transition: 0.2s; }
+    .transport-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+    .transport-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(2, 132, 199, 0.15); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .transport-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: #fff; }
+    .transport-info p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+    .transport-info span { font-size: 0.85rem; color: #38bdf8; font-weight: 600; }
+
+    /* Busca */
     .search-box { position: relative; max-width: 500px; margin: 30px 0 40px 0; }
     .search-box input { width: 100%; padding: 14px 20px 14px 48px; border-radius: 30px; border: 1px solid var(--border); background: rgba(30, 41, 59, 0.9); color: #fff; font-size: 0.95rem; outline: none; }
     .search-box input:focus { border-color: var(--primary); }
     .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
-    /* Grids e Cards */
+    /* Grid Atrações & Hotéis */
     .section-title { font-size: 2rem; font-weight: 800; margin: 50px 0 24px 0; display: flex; align-items: center; gap: 12px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: 0.2s; }
-    .card:hover { transform: translateY(-3px); border-color: rgba(2, 132, 199, 0.4); }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: 0.2s; text-decoration: none; color: inherit; }
+    .card:hover { transform: translateY(-3px); border-color: rgba(2, 132, 199, 0.5); }
     .card-img { width: 100%; height: 210px; object-fit: cover; }
     .card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
     .card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; background: rgba(2, 132, 199, 0.15); color: var(--primary); padding: 4px 10px; border-radius: 6px; }
     .price { font-weight: 700; color: var(--gold); font-size: 0.95rem; }
-    .card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+    .card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
     .card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; }
     .card-footer { border-top: 1px solid var(--border); padding-top: 14px; font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 6px; }
 
-    /* Transportes */
-    .transport-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-    .transport-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: flex; gap: 16px; align-items: center; }
-    .transport-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(2, 132, 199, 0.15); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-    .transport-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
-    .transport-info p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
-    .transport-info a { font-size: 0.85rem; color: #38bdf8; text-decoration: none; font-weight: 600; }
-
-    /* Telefones Úteis */
+    /* Contatos */
     .contacts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin: 30px 0 60px 0; }
     .contact-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
     .contact-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(2, 132, 199, 0.15); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
@@ -118,9 +169,9 @@
     footer { border-top: 1px solid var(--border); background: #0b1120; padding: 40px 0; margin-top: 60px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 
     @media (max-width: 900px) {
-      .master-highlight { grid-template-columns: 1fr; }
-      .auth-main-flex { grid-template-columns: 1fr; }
-      .auth-quotes-grid { grid-template-columns: 1fr; }
+      .gallery-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .master-highlight, .duo-photos-container { grid-template-columns: 1fr; }
+      .hero-content { padding: 0 20px; }
       .hero h1 { font-size: 2.6rem; }
     }
   </style>
@@ -129,148 +180,275 @@
 
   <header>
     <div class="container nav-wrap">
-      <a href="/turismo/" class="logo">VOZ NEWS <span>TURISMO</span></a>
-      <a href="/turismo/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar aos Destinos</a>
+      <a href="https://voznewsbrasil.com.br/turismo" class="logo">VOZ NEWS <span>TURISMO</span></a>
+      <a href="https://voznewsbrasil.com.br/turismo" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar aos Destinos</a>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge"><i class="fa-solid fa-star"></i> Maravilha Mundial da Natureza</div>
-      <h1>Foz do Iguaçu</h1>
-      <p>A força colossal das quedas d'água, turismo ecológico de nível internacional e o pulsar diplomático e comercial da Tríplice Fronteira.</p>
-      <div class="hero-actions">
-        <a href="#cataratas" class="btn-action"><i class="fa-solid fa-water"></i> Ver Cataratas em Detalhe</a>
-        <a href="#entrevista" class="btn-action btn-interview"><i class="fa-solid fa-microphone-lines"></i> Entrevista Ping-Pong com Autoridades</a>
-      </div>
-    </div>
-  </section>
-
   <main class="container">
+
+    <!-- 1. GALERIA DE 4 FOTOS DAS CATARATAS NA ABERTURA -->
+    <section class="catarata-gallery-header">
+      <div class="gallery-grid-4">
+        <a href="https://tickets.cataratasdoiguacu.com.br" target="_blank" class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=800&q=80" alt="Garganta do Diabo - Cataratas do Iguaçu">
+          <div class="gallery-caption">Garganta do Diabo &rarr;</div>
+        </a>
+        <a href="https://tickets.cataratasdoiguacu.com.br" target="_blank" class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Passarelas Panorâmicas">
+          <div class="gallery-caption">Passarela Panorâmica &rarr;</div>
+        </a>
+        <a href="https://macucosafari.com.br" target="_blank" class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Quedas d'Água e Aventura">
+          <div class="gallery-caption">Navegação no Rio Iguaçu &rarr;</div>
+        </a>
+        <a href="https://tickets.cataratasdoiguacu.com.br" target="_blank" class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=800&q=80" alt="Mirante Principal">
+          <div class="gallery-caption">Mirante Principal &rarr;</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fa-solid fa-water"></i> Maravilha Mundial da Natureza</div>
+        <h1>Foz do Iguaçu</h1>
+        <p>A imponência das maiores quedas d'água do planeta, o turismo de experiência e o ecossistema estratégico da Tríplice Fronteira sob a cobertura autoral do VOZ NEWS.</p>
+        <div class="hero-actions">
+          <a href="#cataratas-master" class="btn-action"><i class="fa-solid fa-water"></i> Cataratas em Destaque</a>
+          <a href="#entrevistas-autoridades" class="btn-action btn-interview"><i class="fa-solid fa-microphone-lines"></i> Entrevistas: Prefeito & Governador</a>
+        </div>
+      </div>
+    </section>
 
     <!-- VITRINE COMERCIAL 1: TOPO -->
     <div class="ad-banner">
       <div class="ad-tag">Espaço Publicitário Exclusivo</div>
-      <div class="ad-content">Conexão direta e passeios VIP nas Cataratas do Iguaçu: <a href="https://wa.me/5561999999999?text=Anuncie%20no%20Voz%20News%20Turismo" target="_blank">Reserve seu Pacote ou Anuncie sua Marca Aqui</a></div>
+      <div class="ad-content">Conecte sua empresa ao público qualificado de Foz do Iguaçu: <a href="https://wa.me/5561999999999?text=Anunciar%20em%20Foz%20do%20Iguacu%20Voz%20News" target="_blank">Reserve Esta Vitrine de Destaque</a></div>
     </div>
 
-    <!-- DESTAQUE NOBRE: AS CATARATAS DO IGUAÇU -->
-    <section class="master-highlight" id="cataratas">
+    <!-- 2. DESTAQUE NOBRE CATARATAS DO IGUAÇU -->
+    <section class="master-highlight" id="cataratas-master">
       <div>
-        <h2>Cataratas do Iguaçu: O Espetáculo da Terra</h2>
-        <p>Reconhecida como uma das Novas Sete Maravilhas da Natureza, reúne mais de 275 saltos de água em pleno bioma da Mata Atlântica. Uma experiência sensorial com passarelas sobre a Garganta do Diabo e mirantes panorâmicos inigualáveis.</p>
+        <h2>Cataratas do Iguaçu: Patrimônio da Humanidade</h2>
+        <p>Mais de 275 saltos formam o maior espetáculo hidrográfico do planeta em plena Mata Atlântica. Passarelas imersivas, elevador com vista panorâmica e proximidade com a Garganta do Diabo.</p>
         <div class="highlight-stats">
           <div class="stat-card">
             <strong>R$ 91,00 a R$ 100,00</strong>
-            <span>Ingresso Adulto (Conforme Temporada)</span>
+            <span>Ingresso Adulto Oficial</span>
           </div>
           <div class="stat-card">
-            <strong>Isenção & Meia</strong>
-            <span>Grátis até 6 anos | Meia para Estudantes e 60+</span>
+            <strong>Meia & Isenções</strong>
+            <span>Grátis até 6 anos | Meia para estudantes e 60+</span>
           </div>
         </div>
-        <a href="https://tickets.cataratasdoiguacu.com.br" target="_blank" class="btn-action"><i class="fa-solid fa-ticket"></i> Bilhete Oficial Online</a>
+        <a href="https://tickets.cataratasdoiguacu.com.br" target="_blank" class="btn-action"><i class="fa-solid fa-ticket"></i> Comprar Ingresso Oficial das Cataratas</a>
       </div>
       <div class="master-media">
-        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1000&q=80" alt="Cataratas do Iguaçu">
+        <a href="https://tickets.cataratasdoiguacu.com.br" target="_blank">
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1000&q=80" alt="Cataratas do Iguaçu">
+        </a>
       </div>
     </section>
 
-    <!-- AUTORIDADES E PAULO FAYAD -->
-    <section class="authorities-block">
-      <div class="auth-main-flex">
-        <div style="text-align: center;">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80" alt="Paulo Fayad em audiência institucional com Prefeito e Governador" class="auth-group-img">
-          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px;">Paulo Fayad em encontro institucional com o Prefeito Joaquim Silva e Luna e o Governador Ratinho Junior.</p>
-        </div>
-        <div class="auth-quotes-grid">
-          <div class="auth-speech">
-            <blockquote>"Foz do Iguaçu vive um novo ciclo de modernização, infraestrutura e segurança com foco no acolhimento de excelência a quem chega."</blockquote>
-            <div class="author">Joaquim Silva e Luna</div>
-            <div class="office">Prefeito Municipal de Foz do Iguaçu</div>
-          </div>
-          <div class="auth-speech">
-            <blockquote>"O Paraná consolida Foz como polo global de turismo sustentável, expandindo malha aérea e gerando oportunidades históricas."</blockquote>
-            <div class="author">Carlos Massa Ratinho Junior</div>
-            <div class="office">Governador do Estado do Paraná</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ÂNCORA DE ENTREVISTAS -->
+    <div id="entrevistas-autoridades"></div>
 
-    <!-- ENTREVISTA PING-PONG VOZ NEWS (~400 CARACTERES) -->
-    <section class="interview-section" id="entrevista">
+    <!-- 3. ENTREVISTA 1: PREFEITO JOAQUIM SILVA E LUNA (10 PERGUNTAS / ~1.000 CARACTERES) -->
+    <section class="interview-wrapper">
       <div class="interview-header">
-        <h3><i class="fa-solid fa-microphone"></i> Entrevista Ping-Pong | VOZ NEWS Especial</h3>
-        <div class="audio-player-mock">
-          <i class="fa-solid fa-circle-play" style="color: var(--gold); font-size: 1.2rem; cursor: pointer;"></i>
-          <span>Ouvir Áudio (01:10)</span>
+        <h3><i class="fa-solid fa-microphone-lines"></i> Entrevista Ping-Pong: Prefeito Silva e Luna</h3>
+        <div class="audio-player-control">
+          <button class="audio-btn" onclick="playInterview('prefeito')"><i class="fa-solid fa-play" id="btn-icon-prefeito"></i></button>
+          <span class="audio-status" id="status-prefeito">Ouvir Entrevista do Prefeito</span>
         </div>
       </div>
-      <div class="interview-qa">
-        <div class="qa-row">
-          <div class="qa-q">VOZ NEWS (Paulo Fayad): Qual é a diretriz prioritária para o turista em Foz neste biênio?</div>
-          <div class="qa-a"><strong>Prefeito Silva e Luna:</strong> Investimento maciço em segurança, desburocratização de serviços e requalificação urbana nos eixos comerciais e de fronteira.</div>
+
+      <!-- FOTO PAULO FAYAD AO LADO DA FOTO DO PREFEITO -->
+      <div class="duo-photos-container">
+        <div class="duo-card">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Paulo Fayad - Diretor Geral VOZ NEWS">
+          <div class="duo-info">
+            <h4>Paulo Fayad</h4>
+            <p>Diretor Geral e Entrevistador | VOZ NEWS</p>
+          </div>
         </div>
-        <div class="qa-row">
-          <div class="qa-q">VOZ NEWS: E a integração com o Estado?</div>
-          <div class="qa-a"><strong>Governador Ratinho Junior:</strong> Ampliação das conexões aéreas internacionais diretas e consolidação do ecoturismo como maior motor socioeconômico da região.</div>
+        <div class="duo-card gold-border">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Joaquim Silva e Luna - Prefeito de Foz do Iguaçu">
+          <div class="duo-info">
+            <h4>Joaquim Silva e Luna</h4>
+            <p>Prefeito Municipal de Foz do Iguaçu</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 PERGUNTAS E RESPOSTAS (1.000 CARACTERES DE TEXTO) -->
+      <div class="qa-list" id="text-prefeito">
+        <div class="qa-block">
+          <div class="qa-q">1. Paulo Fayad: Qual é a diretriz prioritária da sua gestão para o turismo?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Segurança integral, acolhimento exemplar e modernização dos corredores turísticos municipais.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">2. Paulo Fayad: Como fortalecer o turista na fronteira com Argentina e Paraguai?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Agilizando trâmites alfandegários e reforçando o patrulhamento integrado permanente.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">3. Paulo Fayad: Quais melhorias urbanas diretas chegam aos atrativos?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Recapeamento total das avenidas turísticas, nova iluminação em LED e sinalização trilíngue.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">4. Paulo Fayad: O que Foz oferece além das Cataratas?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Rota gastronômica cosmopolita, templos ecumênicos, o Parque das Aves e o espetáculo do Marco.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">5. Paulo Fayad: Há novos incentivos para hotelaria e serviços?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Desburocratizamos alvarás e criamos programas de qualificação profissional continuada.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">6. Paulo Fayad: Como a prefeitura lida com o turismo ecológico?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Rigor absoluto na preservação do entorno do Parque Nacional e estímulo a rotas limpas.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">7. Paulo Fayad: Qual a estratégia para o turismo de eventos corporativos?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Ampliação e captação ativa para congressos médicos e feiras de agronegócio no centro de convenções.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">8. Paulo Fayad: A integração entre forças de segurança já surtiu efeito?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Sem dúvida. Nossos índices de ocorrências nas áreas turísticas estão nos menores níveis históricos.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">9. Paulo Fayad: Como transformar o visitante casual em leal a Foz?</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Garantindo excelência no transporte, gentileza receptiva e roteiros diversificados de até cinco dias.</div>
+        </div>
+        <div class="qa-block">
+          <div class="qa-q">10. Paulo Fayad: Uma mensagem final aos leitores do VOZ NEWS:</div>
+          <div class="qa-a"><strong>Silva e Luna:</strong> Foz do Iguaçu é a síntese da paz entre nações e está de braços abertos com segurança e afeto.</div>
         </div>
       </div>
     </section>
 
-    <!-- COMO CHEGAR: LINHAS AÉREAS E TERRESTRES -->
-    <h2 class="section-title"><i class="fa-solid fa-plane-departure" style="color: var(--primary);"></i> Como Chegar ao Destino</h2>
+    <!-- 4. ENTREVISTA 2: GOVERNADOR RATINHO JUNIOR (10 PERGUNTAS / ~1.000 CARACTERES) -->
+    <section class="interview-wrapper">
+      <div class="interview-header">
+        <h3><i class="fa-solid fa-microphone-lines"></i> Entrevista Ping-Pong: Governador Ratinho Junior</h3>
+        <div class="audio-player-control">
+          <button class="audio-btn" onclick="playInterview('governador')"><i class="fa-solid fa-play" id="btn-icon-governador"></i></button>
+          <span class="audio-status" id="status-governador">Ouvir Entrevista do Governador</span>
+        </div>
+      </div>
+
+      <!-- FOTO PAULO FAYAD AO LADO DA FOTO DO GOVERNADOR -->
+      <div class="duo-photos-container">
+        <div class="duo-card">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Paulo Fayad - Diretor Geral VOZ NEWS">
+          <div class="duo-info">
+            <h4>Paulo Fayad</h4>
+            <p>Diretor Geral e Entrevistador | VOZ NEWS</p>
+          </div>
+        </div>
+        <div class="duo-card gold-border">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Carlos Massa Ratinho Junior - Governador do Paraná">
+          <div class="duo-info">
+            <h4>Carlos Massa Ratinho Junior</h4>
+            <p>Governador do Estado do Paraná</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 PERGUNTAS E RESPOSTAS (1.000 CARACTERES DE TEXTO) -->
+      <div class="qa-list" id="text-governador">
+        <div class="qa-block gov">
+          <div class="qa-q">1. Paulo Fayad: Qual a posição de Foz no plano econômico do Estado do Paraná?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Foz é nossa principal vitrine para o mundo e o maior hub de atração turística internacional do Sul.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">2. Paulo Fayad: Que investimentos estaduais em infraestrutura impactam a cidade?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> A duplicação da Rodovia das Cataratas, a Ponte da Integração e a expansão da pista do aeroporto.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">3. Paulo Fayad: Há novas rotas de voos internacionais sendo negociadas?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Sim, ampliamos conexões com Santiago, Montevidéu e buscamos voos diretos dos EUA e da Europa.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">4. Paulo Fayad: Como o Estado articula o ecoturismo sustentável?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Aliamos conservação rígida com concessões modernas que geram receita e preservam nossa biodiversidade.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">5. Paulo Fayad: De que maneira a usina de Itaipu contribui para esses projetos?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> É uma parceira estratégica de primeira hora em aportes diretos de infraestrutura estruturante.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">6. Paulo Fayad: Como o Paraná apoia a geração de empregos no setor de turismo?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Reduzimos alíquotas de combustíveis para aviação e ofertamos linhas de crédito via Fomento Paraná.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">7. Paulo Fayad: Qual a estratégia para manter o Paraná na liderança em segurança pública?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Tecnologia de ponta, monitoramento por drones e atuação integrada constante do Batalhão de Fronteira.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">8. Paulo Fayad: A gastronomia do Paraná ganha destaque nos roteiros?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Criamos o programa Viaje Paraná conectando a culinária da fronteira às rotas do nosso agronegócio de excelência.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">9. Paulo Fayad: O que os investidores internacionais podem esperar de Foz?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Segurança jurídica plena, governo ágil e o mercado consumidor mais dinâmico da América do Sul.</div>
+        </div>
+        <div class="qa-block gov">
+          <div class="qa-q">10. Paulo Fayad: Qual a mensagem do Governo para os turistas do portal VOZ NEWS?</div>
+          <div class="qa-a"><strong>Ratinho Junior:</strong> Venham ao Paraná. Foz do Iguaçu oferece uma das experiências mais sublimes da Terra com conforto e tranquilidade.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMO CHEGAR: 2 AÉREAS E 2 TERRESTRES -->
+    <h2 class="section-title"><i class="fa-solid fa-route" style="color: var(--primary);"></i> Como Chegar a Foz do Iguaçu</h2>
     <div class="transport-grid">
-      <!-- Aérea 1 -->
-      <div class="transport-card">
-        <div class="transport-icon"><i class="fa-solid fa-plane"></i></div>
+      <a href="https://www.latamairlines.com/br/pt" target="_blank" class="transport-card">
+        <div class="transport-icon"><i class="fa-solid fa-plane-departure"></i></div>
         <div class="transport-info">
           <h4>LATAM Airlines</h4>
-          <p>Voos diários diretos a partir de Guarulhos (GRU), Congonhas (CGH) e Galeão (GIG).</p>
-          <a href="https://www.latamairlines.com" target="_blank">Ver frequências e bilhetes &rarr;</a>
+          <p>Voos diretos diários a partir de São Paulo (CGH e GRU) e Rio de Janeiro (GIG).</p>
+          <span>Reservar passagem aérea &rarr;</span>
         </div>
-      </div>
-      <!-- Aérea 2 -->
-      <div class="transport-card">
-        <div class="transport-icon"><i class="fa-solid fa-plane"></i></div>
+      </a>
+      <a href="https://www.voegol.com.br" target="_blank" class="transport-card">
+        <div class="transport-icon"><i class="fa-solid fa-plane-departure"></i></div>
         <div class="transport-info">
           <h4>GOL Linhas Aéreas</h4>
-          <p>Conexões regulares de Brasília (BSB), São Paulo e capitais do Sul com destino ao IGU.</p>
-          <a href="https://www.voegol.com.br" target="_blank">Consultar rotas e tarifas &rarr;</a>
+          <p>Conexões regulares partindo de Brasília, Curitiba e principais capitais para o Aeroporto IGU.</p>
+          <span>Consultar rotas e horários &rarr;</span>
         </div>
-      </div>
-      <!-- Terrestre 1 -->
-      <div class="transport-card">
-        <div class="transport-icon"><i class="fa-solid fa-bus"></i></div>
+      </a>
+      <a href="https://www.catarinense.com.br" target="_blank" class="transport-card">
+        <div class="transport-icon"><i class="fa-solid fa-bus-simple"></i></div>
         <div class="transport-info">
           <h4>Viação Catarinense</h4>
-          <p>Linhas interestaduais leito e executivo ligando Curitiba, Santa Catarina e São Paulo a Foz.</p>
-          <a href="https://www.catarinense.com.br" target="_blank">Horários na Rodoviária Internacional &rarr;</a>
+          <p>Ônibus leito e semi-leito modernos ligando capitais do Sul e Sudeste à rodoviária de Foz.</p>
+          <span>Comprar passagens de ônibus &rarr;</span>
         </div>
-      </div>
-      <!-- Terrestre 2 -->
-      <div class="transport-card">
-        <div class="transport-icon"><i class="fa-solid fa-bus"></i></div>
+      </a>
+      <a href="https://www.cataratasdoiguacu.com.br" target="_blank" class="transport-card">
+        <div class="transport-icon"><i class="fa-solid fa-van-shuttle"></i></div>
         <div class="transport-info">
           <h4>Auto Viação Cataratas</h4>
-          <p>Transporte intermunicipal, traslados executivos de turismo e serviço receptivo de fronteira.</p>
-          <a href="https://www.cataratasdoiguacu.com.br" target="_blank">Horários e itinerários locais &rarr;</a>
+          <p>Traslados de hotéis, transporte executivo e receptivo local para os atrativos.</p>
+          <span>Itinerários e bilhetes locais &rarr;</span>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- BUSCA INSTANTÂNEA -->
     <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="Pesquise passeios, parques, hotéis ou serviços..." onkeyup="filterContent()">
+      <input type="text" id="searchInput" placeholder="Pesquise passeios, atrativos ou hotéis..." onkeyup="filterContent()">
     </div>
 
-    <!-- ATRAÇÕES EXPANDIDAS -->
-    <h2 class="section-title"><i class="fa-solid fa-compass" style="color: var(--primary);"></i> Atrações & Roteiros Imperdíveis</h2>
+    <!-- ATRAÇÕES PRINCIPAIS -->
+    <h2 class="section-title"><i class="fa-solid fa-map-location-dot" style="color: var(--primary);"></i> Atrações Imperdíveis</h2>
     <div class="grid" id="attractionsGrid">
       
-      <div class="card item-filter">
+      <a href="https://www.parquedasaves.com.br" target="_blank" class="card item-filter">
         <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=800&q=80" alt="Parque das Aves" class="card-img">
         <div class="card-body">
           <div class="card-meta">
@@ -278,177 +456,145 @@
             <span class="price">R$ 80,00</span>
           </div>
           <h3>Parque das Aves</h3>
-          <p>Imersão em viveiros gigantes na Mata Atlântica dedicados à preservação e resgate de espécies nativas e araras.</p>
+          <p>Viveiros imersivos gigantes na Mata Atlântica dedicados à conservação e abrigo de araras e espécies ameaçadas.</p>
           <div class="card-footer">
-            <div><i class="fa-solid fa-ticket"></i> Meia-entrada conforme legislação. Grátis até 8 anos.</div>
-            <div><i class="fa-solid fa-clock"></i> Terça a Domingo, 08h30 às 16h30</div>
+            <div><i class="fa-solid fa-ticket"></i> Meia-entrada federal. Grátis até 8 anos.</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Portal Oficial &rarr;</div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="card item-filter">
+      <a href="https://macucosafari.com.br" target="_blank" class="card item-filter">
         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Macuco Safari" class="card-img">
         <div class="card-body">
           <div class="card-meta">
-            <span class="tag">Aventura / Náutico</span>
+            <span class="tag">Aventura Náutica</span>
             <span class="price">R$ 386,00</span>
           </div>
           <h3>Macuco Safari</h3>
-          <p>Passeio em barco inflável motorizado pelo leito do Rio Iguaçu com banho direto nas quedas d'água das Cataratas.</p>
+          <p>Trilha ecológica na mata seguida de navegação em botes bimotores até debaixo das grandes quedas das Cataratas.</p>
           <div class="card-footer">
-            <div><i class="fa-solid fa-ticket"></i> Desconto de 50% para crianças (2 a 11 anos) e idosos.</div>
-            <div><i class="fa-solid fa-clock"></i> Diariamente, 09h00 às 16h00</div>
+            <div><i class="fa-solid fa-ticket"></i> Desconto infantil e 60+.</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Reservar Passeio Náutico &rarr;</div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="card item-filter">
+      <a href="https://www.itaipu.gov.br" target="_blank" class="card item-filter">
         <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80" alt="Usina de Itaipu" class="card-img">
         <div class="card-body">
           <div class="card-meta">
-            <span class="tag">Engenharia Global</span>
+            <span class="tag">Engenharia Mundial</span>
             <span class="price">A partir de R$ 56,00</span>
           </div>
           <h3>Usina Hidrelétrica de Itaipu</h3>
-          <p>Visita panorâmica e técnica ao coração de uma das maiores produtoras de energia limpa e renovável do planeta.</p>
+          <p>Visitas técnicas e panorâmicas à monumental produtora de energia limpa com vista do vertedouro.</p>
           <div class="card-footer">
-            <div><i class="fa-solid fa-ticket"></i> Meia-entrada e gratuidade para moradores lindeiros.</div>
-            <div><i class="fa-solid fa-clock"></i> Quarta a Segunda, 08h30 às 17h00</div>
+            <div><i class="fa-solid fa-ticket"></i> Meia para estudantes e gratuidade lindeira.</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Agendar Visita &rarr;</div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="card item-filter">
+      <a href="https://marcodastresfronteiras.com.br" target="_blank" class="card item-filter">
         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Marco das Três Fronteiras" class="card-img">
         <div class="card-body">
           <div class="card-meta">
-            <span class="tag">História & Show</span>
+            <span class="tag">Cultura & Show</span>
             <span class="price">R$ 48,00</span>
           </div>
           <h3>Marco das Três Fronteiras</h3>
-          <p>Ponto onde o Brasil, Argentina e Paraguai se encontram. Shows folclóricos culturais ao entardecer à beira do Rio Paraná.</p>
+          <p>Ponto de convergência territorial entre Brasil, Argentina e Paraguai com espetáculo de dança folclórica.</p>
           <div class="card-footer">
-            <div><i class="fa-solid fa-ticket"></i> Meia-entrada para estudantes e maiores de 60 anos.</div>
-            <div><i class="fa-solid fa-clock"></i> Terça a Domingo, 13h30 às 21h00</div>
+            <div><i class="fa-solid fa-ticket"></i> Meia-entrada estudantil e 60+.</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Programação &rarr;</div>
           </div>
         </div>
-      </div>
-
-      <div class="card item-filter">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Complexo Dreamland" class="card-img">
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="tag">Entretenimento</span>
-            <span class="price">Combos R$ 150+</span>
-          </div>
-          <h3>Complexo Dreamland Foz</h3>
-          <p>Museu de Cera, Vale dos Dinossauros, Bar de Gelo (Dreams Ice Bar) e Maravilhas do Mundo em um único complexo.</p>
-          <div class="card-footer">
-            <div><i class="fa-solid fa-ticket"></i> Tarifas combinadas com meia-entrada conforme legislação.</div>
-            <div><i class="fa-solid fa-clock"></i> Diariamente, 09h00 às 22h00</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card item-filter">
-        <img src="https://images.unsplash.com/photo-1516214104703-d870798883c5?auto=format&fit=crop&w=800&q=80" alt="Refúgio Biológico Bela Vista" class="card-img">
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="tag">Ecoturismo</span>
-            <span class="price">R$ 42,00</span>
-          </div>
-          <h3>Refúgio Biológico Bela Vista</h3>
-          <p>Trilha ecológica de 2 km com observação de jaguares, antas e aves protegidas no programa ambiental de Itaipu.</p>
-          <div class="card-footer">
-            <div><i class="fa-solid fa-ticket"></i> Vagas limitadas por grupo; reserva com antecedência.</div>
-            <div><i class="fa-solid fa-clock"></i> Quarta a Segunda, saídas programadas</div>
-          </div>
-        </div>
-      </div>
+      </a>
 
     </div>
 
     <!-- VITRINE COMERCIAL 2: MEIO -->
     <div class="ad-banner">
       <div class="ad-tag">Publicidade Estratégica</div>
-      <div class="ad-content">A gastronomia internacional e as melhores churrascarias da fronteira. <a href="https://wa.me/5561999999999?text=Anuncie%20no%20Voz%20News%20Turismo" target="_blank">Posicione Seu Restaurante no Guia Oficial</a></div>
+      <div class="ad-content">Gastronomia internacional e experiências de alta qualidade em Foz: <a href="https://wa.me/5561999999999?text=Anunciar%20Gastronomia%20Voz%20News%20Foz" target="_blank">Posicione Seu Restaurante Aqui</a></div>
     </div>
 
     <!-- HOSPEDAGEM -->
     <h2 class="section-title"><i class="fa-solid fa-hotel" style="color: var(--primary);"></i> Onde se Hospedar</h2>
     <div class="grid" id="hotelsGrid">
 
-      <div class="card item-filter">
-        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Hotel das Cataratas" class="card-img">
+      <a href="https://www.belmond.com/pt-br/hotels/south-america/brazil/iguassu-falls/hotel-das-cataratas/" target="_blank" class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Hotel das Cataratas Belmond" class="card-img">
         <div class="card-body">
           <div class="card-meta">
-            <span class="tag">Luxo & Exclusividade</span>
+            <span class="tag">Luxo Exclusivo</span>
             <span class="price">Belmond</span>
           </div>
           <h3>Hotel das Cataratas, A Belmond Hotel</h3>
-          <p>O único hotel situado dentro do Parque Nacional. Acesso privativo aos mirantes das Cataratas fora dos horários comuns.</p>
+          <p>O único hotel dentro do Parque Nacional. Permite contemplar as quedas no silêncio do amanhecer e entardecer.</p>
           <div class="card-footer">
             <div><i class="fa-solid fa-location-dot"></i> Parque Nacional do Iguaçu</div>
-            <div><i class="fa-solid fa-phone"></i> +55 (45) 2102-7000</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Reservar Estada Belmond &rarr;</div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="card item-filter">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Bourbon Cataratas" class="card-img">
+      <a href="https://www.bourbon.com.br/hotel/bourbon-cataratas-do-iguacu-resort" target="_blank" class="card item-filter">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Bourbon Cataratas Resort" class="card-img">
         <div class="card-body">
           <div class="card-meta">
             <span class="tag">Resort Familiar</span>
             <span class="price">Bourbon</span>
           </div>
           <h3>Bourbon Cataratas do Iguaçu Resort</h3>
-          <p>Estrutura integrada à natureza com piscinas tropicais, parque esportivo e complexo da Turma da Mônica para crianças.</p>
+          <p>Estrutura completa de lazer com piscinas tropicais e áreas de entretenimento infantil temáticas.</p>
           <div class="card-footer">
             <div><i class="fa-solid fa-location-dot"></i> Av. das Cataratas, Km 2,5</div>
-            <div><i class="fa-solid fa-phone"></i> +55 (45) 3521-3900</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Reservar no Bourbon &rarr;</div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="card item-filter">
+      <a href="https://www.wishresorts.com.br/wish-foz-do-iguacu" target="_blank" class="card item-filter">
         <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Wish Foz do Iguaçu" class="card-img">
         <div class="card-body">
           <div class="card-meta">
-            <span class="tag">Golf & Resort</span>
-            <span class="price">Wish Resort</span>
+            <span class="tag">Resort & Golfe</span>
+            <span class="price">Wish</span>
           </div>
           <h3>Wish Foz do Iguaçu</h3>
-          <p>Vilas no formato americano, campo profissional de golfe com 18 buracos e gastronomia requintada.</p>
+          <p>Vilas no modelo americano com campo profissional de golfe de 18 buracos e gastronomia refinada.</p>
           <div class="card-footer">
             <div><i class="fa-solid fa-location-dot"></i> Av. das Cataratas, 6845</div>
-            <div><i class="fa-solid fa-phone"></i> +55 (45) 3521-3400</div>
+            <div><i class="fa-solid fa-arrow-up-right-from-square"></i> Reservar no Wish &rarr;</div>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
 
-    <!-- TELEFONES ÚTEIS E SUPORTE -->
-    <h2 class="section-title"><i class="fa-solid fa-phone-volume" style="color: var(--primary);"></i> Telefones Úteis & Assistência</h2>
+    <!-- CONTATOS E TELEFONES ÚTEIS -->
+    <h2 class="section-title"><i class="fa-solid fa-phone-volume" style="color: var(--primary);"></i> Suporte & Assistência ao Turista</h2>
     <div class="contacts-grid">
       <a href="tel:190" class="contact-item">
         <div class="contact-icon"><i class="fa-solid fa-shield-halved"></i></div>
         <div>
-          <strong>Polícia Militar</strong>
-          <p style="font-size: 0.8rem; color: var(--text-muted);">Emergência: 190</p>
+          <strong>Polícia Militar de Foz</strong>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Emergência e Segurança: 190</p>
         </div>
       </a>
       <a href="tel:192" class="contact-item">
         <div class="contact-icon"><i class="fa-solid fa-truck-medical"></i></div>
         <div>
           <strong>SAMU</strong>
-          <p style="font-size: 0.8rem; color: var(--text-muted);">Urgência: 192</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">Atendimento de Urgência: 192</p>
         </div>
       </a>
-      <a href="https://wa.me/5545999999999" target="_blank" class="contact-item">
+      <a href="https://wa.me/5545999999999?text=Informações%20Turísticas%20Foz" target="_blank" class="contact-item">
         <div class="contact-icon" style="color: #22c55e;"><i class="fa-brands fa-whatsapp"></i></div>
         <div>
-          <strong>Teletur / CAT Foz</strong>
+          <strong>Centro de Informações Turísticas</strong>
           <p style="font-size: 0.8rem; color: var(--text-muted);">WhatsApp Oficial do Turista</p>
         </div>
       </a>
@@ -457,17 +603,18 @@
     <!-- VITRINE COMERCIAL 3: RODAPÉ -->
     <div class="ad-banner">
       <div class="ad-tag">Parceiro Oficial VOZ NEWS</div>
-      <div class="ad-content">Conecte seu hotel, agência ou atrativo ao público qualificado do VOZ NEWS: <a href="https://wa.me/5561999999999?text=Comercial%20Voz%20News%20Turismo" target="_blank">Fale com Nossa Equipe Comercial</a></div>
+      <div class="ad-content">Destaque sua empresa no portal VOZ NEWS TURISMO: <a href="https://wa.me/5561999999999?text=Anunciar%20no%20Voz%20News%20Turismo%20Geral" target="_blank">Fale com a Direção Comercial</a></div>
     </div>
 
   </main>
 
   <footer>
     <div class="container">
-      <p>&copy; 2026 VOZ NEWS TURISMO — TV Voz de Brasília. Todos os direitos reservados.</p>
+      <p>&copy; 2026 VOZ NEWS TURISMO — Direção de Paulo Fayad. Todos os direitos reservados.</p>
     </div>
   </footer>
 
+  <!-- CONTROLE DE BUSCA E LEITURA DE VOZ INDIVIDUAL -->
   <script>
     function filterContent() {
       const q = document.getElementById('searchInput').value.toLowerCase();
@@ -477,6 +624,65 @@
         el.style.display = text.includes(q) ? 'flex' : 'none';
       });
     }
+
+    let activeSpeaker = null;
+
+    function playInterview(tipo) {
+      if (!('speechSynthesis' in window)) {
+        alert('Seu navegador não suporta reprodução de áudio nativa.');
+        return;
+      }
+
+      const btnIconPrefeito = document.getElementById('btn-icon-prefeito');
+      const btnIconGovernador = document.getElementById('btn-icon-governador');
+      const statusPrefeito = document.getElementById('status-prefeito');
+      const statusGovernador = document.getElementById('status-governador');
+
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        btnIconPrefeito.className = "fa-solid fa-play";
+        btnIconGovernador.className = "fa-solid fa-play";
+        statusPrefeito.innerText = "Ouvir Entrevista do Prefeito";
+        statusGovernador.innerText = "Ouvir Entrevista do Governador";
+        if (activeSpeaker === tipo) {
+          activeSpeaker = null;
+          return;
+        }
+      }
+
+      let textToRead = "";
+      if (tipo === 'prefeito') {
+        textToRead = document.getElementById('text-prefeito').innerText;
+        btnIconPrefeito.className = "fa-solid fa-pause";
+        statusPrefeito.innerText = "Reproduzindo Entrevista do Prefeito...";
+      } else {
+        textToRead = document.getElementById('text-governador').innerText;
+        btnIconGovernador.className = "fa-solid fa-pause";
+        statusGovernador.innerText = "Reproduzindo Entrevista do Governador...";
+      }
+
+      const utter = new SpeechSynthesisUtterance(textToRead);
+      utter.lang = 'pt-BR';
+      utter.rate = 1.05;
+
+      utter.onend = function() {
+        btnIconPrefeito.className = "fa-solid fa-play";
+        btnIconGovernador.className = "fa-solid fa-play";
+        statusPrefeito.innerText = "Ouvir Entrevista do Prefeito";
+        statusGovernador.innerText = "Ouvir Entrevista do Governador";
+        activeSpeaker = null;
+      };
+
+      utter.onerror = function() {
+        btnIconPrefeito.className = "fa-solid fa-play";
+        btnIconGovernador.className = "fa-solid fa-play";
+        activeSpeaker = null;
+      };
+
+      activeSpeaker = tipo;
+      window.speechSynthesis.speak(utter);
+    }
   </script>
+
 </body>
 </html>
