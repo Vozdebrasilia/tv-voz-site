@@ -239,11 +239,25 @@ font-size:14px
 }
 
 .hotel{
-padding:24px;
+padding:0;
+overflow:hidden;
 border-radius:18px;
 background:#0a2134;
 border:1px solid #ffffff18
 }
+
+.hotel .thumb{width:100%;height:190px;object-fit:cover;display:block}
+.hotel .hotel-copy{padding:24px}
+.sector-search{margin-top:26px;padding:24px;border:1px solid #d4af3760;border-radius:18px;background:#071c2c}
+.sector-search h3{margin:0 0 8px;font-size:22px;color:#ffe16a}
+.sector-search input{width:100%;padding:14px 16px;border-radius:10px;border:1px solid #ffffff35;background:#04101b;color:#fff;font-size:16px}
+.company-results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.company{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid #ffffff22;border-radius:12px;background:#0a2134}
+.company img{width:42px;height:42px;border-radius:9px;background:#fff;object-fit:contain;padding:4px}
+.company b{display:block}.company small{color:#aebdca}
+.author-note{margin-top:12px;color:#91a9bc;font-size:12px}
+@media(max-width:850px){.company-results{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.company-results{grid-template-columns:1fr}}
 
 /* MENSAGEM DO PREFEITO */
 .prefeito-box{
@@ -503,12 +517,20 @@ Mar cristalino, praias preservadas, trilhas, mergulho e paisagens reconhecidas n
 <h2>Atrações essenciais</h2>
 <p class="intro">Fernando de Noronha é uma área ambientalmente protegida. Confirme taxas, agendamentos, condições do mar e regras de acesso nos canais oficiais antes da visita.</p>
 <div class="grid" id="attractionsGrid">
-<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Baia%20do%20Sancho%20-%20Fernando%20de%20Noronha.jpg')"></div><div class="body"><span class="badge">PARQUE NACIONAL MARINHO</span><h3>Baía do Sancho</h3><p>Praia cercada por falésias, água transparente e rica vida marinha. O acesso é controlado e pode exigir ingresso e agendamento.</p><a class="btn" href="https://www.parnanoronha.com.br/" target="_blank" rel="noopener">INFORMAÇÕES OFICIAIS →</a></div></article>
-<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Morro%20Dois%20Irmaos%20Fernando%20de%20Noronha.jpg')"></div><div class="body"><span class="badge free">PAISAGEM ICÔNICA</span><h3>Morro Dois Irmãos</h3><p>Um dos símbolos do arquipélago, contemplado de mirantes e praias. O pôr do sol rende uma das cenas mais marcantes da ilha.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">PORTAL OFICIAL →</a></div></article>
-<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Baia%20dos%20Porcos%20Fernando%20de%20Noronha.jpg')"></div><div class="body"><span class="badge">ACESSO CONTROLADO</span><h3>Baía dos Porcos</h3><p>Piscinas naturais, rochas vulcânicas e vista para o Morro Dois Irmãos. Respeite as orientações ambientais e a maré.</p><a class="btn" href="https://www.parnanoronha.com.br/" target="_blank" rel="noopener">REGRAS DE VISITAÇÃO →</a></div></article>
-<article class="card searchable-item"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')"></div><div class="body"><span class="badge">AGENDAMENTO</span><h3>Praia do Atalaia</h3><p>Berçário natural com visitação limitada. O acesso depende das condições ambientais, da maré e das normas vigentes.</p><a class="btn" href="https://www.parnanoronha.com.br/" target="_blank" rel="noopener">CONSULTAR ACESSO →</a></div></article>
-<article class="card searchable-item"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=900&q=80')"></div><div class="body"><span class="badge free">EDUCAÇÃO AMBIENTAL</span><h3>Projeto Tamar</h3><p>Espaço de educação ambiental com atividades sobre tartarugas marinhas e conservação do arquipélago.</p><a class="btn" href="https://www.tamar.org.br/" target="_blank" rel="noopener">SITE OFICIAL →</a></div></article>
-<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Forte%20de%20Nossa%20Senhora%20dos%20Remedios.jpg')"></div><div class="body"><span class="badge free">HISTÓRIA & PÔR DO SOL</span><h3>Forte dos Remédios</h3><p>Patrimônio histórico com vista para a Vila dos Remédios, o mar e o entardecer de Noronha.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">INFORMAÇÕES DA ILHA →</a></div></article>
+<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Baia%20do%20Sancho%20-%20Fernando%20de%20Noronha.jpg')"></div><div class="body"><span class="badge">PARQUE NACIONAL MARINHO</span><h3>Baía do Sancho</h3><p>Praia cercada por falésias, água transparente e rica vida marinha. O acesso é controlado e pode exigir ingresso e agendamento.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/atracoes/#baia-do-sancho" target="_blank" rel="noopener">LER CONTEÚDO AUTORAL →</a></div></article>
+<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Morro%20Dois%20Irmaos%20Fernando%20de%20Noronha.jpg')"></div><div class="body"><span class="badge free">PAISAGEM ICÔNICA</span><h3>Morro Dois Irmãos</h3><p>Um dos símbolos do arquipélago, contemplado de mirantes e praias. O pôr do sol rende uma das cenas mais marcantes da ilha.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/atracoes/#morro-dois-irmaos" target="_blank" rel="noopener">LER CONTEÚDO AUTORAL →</a></div></article>
+<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Baia%20dos%20Porcos%20Fernando%20de%20Noronha.jpg')"></div><div class="body"><span class="badge">ACESSO CONTROLADO</span><h3>Baía dos Porcos</h3><p>Piscinas naturais, rochas vulcânicas e vista para o Morro Dois Irmãos. Respeite as orientações ambientais e a maré.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/atracoes/#baia-dos-porcos" target="_blank" rel="noopener">LER CONTEÚDO AUTORAL →</a></div></article>
+<article class="card searchable-item"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')"></div><div class="body"><span class="badge">AGENDAMENTO</span><h3>Praia do Atalaia</h3><p>Berçário natural com visitação limitada. O acesso depende das condições ambientais, da maré e das normas vigentes.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/atracoes/#praia-do-atalaia" target="_blank" rel="noopener">LER CONTEÚDO AUTORAL →</a></div></article>
+<article class="card searchable-item"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=900&q=80')"></div><div class="body"><span class="badge free">EDUCAÇÃO AMBIENTAL</span><h3>Projeto Tamar</h3><p>Espaço de educação ambiental com atividades sobre tartarugas marinhas e conservação do arquipélago.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/atracoes/#projeto-tamar" target="_blank" rel="noopener">LER CONTEÚDO AUTORAL →</a></div></article>
+<article class="card searchable-item"><div class="photo" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Forte%20de%20Nossa%20Senhora%20dos%20Remedios.jpg')"></div><div class="body"><span class="badge free">HISTÓRIA & PÔR DO SOL</span><h3>Forte dos Remédios</h3><p>Patrimônio histórico com vista para a Vila dos Remédios, o mar e o entardecer de Noronha.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/atracoes/#forte-dos-remedios" target="_blank" rel="noopener">LER CONTEÚDO AUTORAL →</a></div></article>
+<div class="sector-search searchable-item" data-sector-search>
+<h3>Pesquisar atrações e empresas de passeios</h3>
+<input type="search" placeholder="Digite: mergulho, passeio, trilha, barco..." oninput="filterSector(this)">
+<div class="company-results">
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=atalaianoronha.com.br&sz=128" alt="Logo Atalaia Noronha"><div><b>Atalaia Noronha</b><small>Passeios e receptivo</small></div></div>
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=barcodosanjos.com.br&sz=128" alt="Logo Barco dos Anjos"><div><b>Barco dos Anjos</b><small>Passeios marítimos</small></div></div>
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=aguasclaras.com.br&sz=128" alt="Logo Águas Claras"><div><b>Águas Claras</b><small>Mergulho e experiências</small></div></div>
+</div><p class="author-note">Diretório editorial. A presença da marca não significa patrocínio ou recomendação comercial.</p></div>
 </div>
 </div>
 </section>
@@ -532,17 +554,27 @@ Mar cristalino, praias preservadas, trilhas, mergulho e paisagens reconhecidas n
 
 <!-- HOSPEDAGEM -->
 <section class="section" id="hospedagem"><div class="wrap"><div class="tag">ONDE SE HOSPEDAR</div><h2>Três perfis de viagem</h2><div class="grid">
-<div class="hotel searchable-item"><div class="tag">EXPERIÊNCIA PREMIUM</div><h3>Pousadas com vista e serviços completos</h3><p>Opções sofisticadas com gastronomia, piscina, traslados e experiências personalizadas. Compare localização e políticas ambientais.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">PLANEJAR NO PORTAL OFICIAL →</a></div>
-<div class="hotel searchable-item"><div class="tag">CHARME LOCAL</div><h3>Pousadas domiciliares</h3><p>Hospedagens integradas ao cotidiano da ilha, em áreas como Vila dos Remédios, Floresta Nova e Vila do Trinta.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">CONSULTAR INFORMAÇÕES →</a></div>
-<div class="hotel searchable-item"><div class="tag">CUSTO-BENEFÍCIO</div><h3>Reserve com antecedência</h3><p>Compare diárias, localização, café da manhã, traslado e cancelamento. Em alta temporada, a disponibilidade pode ser limitada.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">ORGANIZAR A VIAGEM →</a></div>
-</div></div></section>
+<div class="hotel searchable-item"><img class="thumb" src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80" alt="Pousada premium em destino de praia"><div class="hotel-copy"><div class="tag">EXPERIÊNCIA PREMIUM</div><h3>Pousadas com vista e serviços completos</h3><p>Opções sofisticadas com gastronomia, piscina, traslados e experiências personalizadas.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/hospedagem/#premium">LER GUIA AUTORAL →</a></div></div>
+<div class="hotel searchable-item"><img class="thumb" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=80" alt="Pousada de charme"><div class="hotel-copy"><div class="tag">CHARME LOCAL</div><h3>Pousadas domiciliares</h3><p>Hospedagens integradas ao cotidiano da ilha, próximas aos principais serviços.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/hospedagem/#charme">LER GUIA AUTORAL →</a></div></div>
+<div class="hotel searchable-item"><img class="thumb" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80" alt="Quarto de hospedagem"><div class="hotel-copy"><div class="tag">CUSTO-BENEFÍCIO</div><h3>Reserve com antecedência</h3><p>Compare diárias, localização, café da manhã, traslado e cancelamento.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/hospedagem/#custo-beneficio">LER GUIA AUTORAL →</a></div></div>
+</div>
+<div class="sector-search searchable-item" data-sector-search><h3>Pesquisar pousadas e hotéis</h3><input type="search" placeholder="Digite o nome, localização ou perfil..." oninput="filterSector(this)"><div class="company-results">
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=pousadazemaria.com.br&sz=128" alt="Logo Pousada Zé Maria"><div><b>Pousada Zé Maria</b><small>Hospedagem premium</small></div></div>
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=pousadamaravilha.com.br&sz=128" alt="Logo Pousada Maravilha"><div><b>Pousada Maravilha</b><small>Hospedagem premium</small></div></div>
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=dolphinhotel.com.br&sz=128" alt="Logo Dolphin Hotel"><div><b>Dolphin Hotel</b><small>Hotel e lazer</small></div></div>
+</div><p class="author-note">Diretório editorial. Logomarcas pertencem às respectivas empresas; presença não indica patrocínio.</p></div></div></section>
 
 <!-- GASTRONOMIA -->
 <section class="section alt" id="sabores"><div class="wrap"><div class="tag">SABORES DE NORONHA</div><h2>Gastronomia e experiências</h2><div class="grid">
-<div class="hotel searchable-item"><h3>Peixes e frutos do mar</h3><p>A culinária local valoriza pescados, ingredientes regionais e menus que combinam simplicidade com apresentação contemporânea.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">GUIA OFICIAL →</a></div>
-<div class="hotel searchable-item"><h3>Vila dos Remédios</h3><p>Região central com restaurantes, cafés e opções para diferentes horários, perto de atrações históricas.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">CONHECER A ILHA →</a></div>
-<div class="hotel searchable-item"><h3>Experiências ao entardecer</h3><p>Restaurantes e bares combinam gastronomia com a paisagem do pôr do sol. Reserve com antecedência nos períodos mais concorridos.</p><a class="btn" href="https://www.noronha.pe.gov.br/" target="_blank" rel="noopener">PLANEJAR →</a></div>
-</div></div></section>
+<div class="hotel searchable-item"><img class="thumb" src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1000&q=80" alt="Prato de peixe e frutos do mar"><div class="hotel-copy"><h3>Peixes e frutos do mar</h3><p>A culinária local valoriza pescados e ingredientes regionais.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/gastronomia/#frutos-do-mar">LER GUIA AUTORAL →</a></div></div>
+<div class="hotel searchable-item"><img class="thumb" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=80" alt="Restaurante acolhedor"><div class="hotel-copy"><h3>Vila dos Remédios</h3><p>Região central com restaurantes, cafés e opções para diferentes horários.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/gastronomia/#vila-dos-remedios">LER GUIA AUTORAL →</a></div></div>
+<div class="hotel searchable-item"><img class="thumb" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" alt="Restaurante para experiência ao entardecer"><div class="hotel-copy"><h3>Experiências ao entardecer</h3><p>Gastronomia combinada com a paisagem do pôr do sol.</p><a class="btn" href="/turismo/destinos/fernando-de-noronha/guias/gastronomia/#entardecer">LER GUIA AUTORAL →</a></div></div>
+</div>
+<div class="sector-search searchable-item" data-sector-search><h3>Pesquisar restaurantes e gastronomia</h3><input type="search" placeholder="Digite restaurante, culinária ou região..." oninput="filterSector(this)"><div class="company-results">
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=restaurantecacimba.com.br&sz=128" alt="Logo Restaurante Cacimba"><div><b>Cacimba Bistrô</b><small>Culinária regional</small></div></div>
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=restaurantevaranda.com.br&sz=128" alt="Logo Restaurante Varanda"><div><b>Restaurante Varanda</b><small>Peixes e frutos do mar</small></div></div>
+<div class="company"><img src="https://www.google.com/s2/favicons?domain=pousadazemaria.com.br&sz=128" alt="Logo Festival Gastronômico Zé Maria"><div><b>Festival Gastronômico Zé Maria</b><small>Experiência gastronômica</small></div></div>
+</div><p class="author-note">Diretório editorial. Logomarcas pertencem às respectivas empresas; presença não indica patrocínio.</p></div></div></section>
 
 <!-- ROTEIRO -->
 <section class="section" id="roteiro"><div class="wrap"><div class="tag">PLANEJE SEU TEMPO</div><h2>Fernando de Noronha em 3 dias</h2><div class="route">
@@ -553,8 +585,8 @@ Mar cristalino, praias preservadas, trilhas, mergulho e paisagens reconhecidas n
 
 <!-- OFERTAS COMERCIAIS -->
 <section class="section alt" id="ofertas"><div class="wrap"><div class="tag">PLANEJAMENTO DA VIAGEM</div><h2>Voos e experiências para Noronha</h2><p class="intro">Tarifas, rotas e disponibilidade mudam. Consulte diretamente as empresas antes de comprar.</p><div class="commercial">
-<article class="ad"><div class="label">COMPANHIAS AÉREAS • PASSAGENS</div><h3>Conexões para Fernando de Noronha</h3><p>Pesquise voos e conexões autorizadas para o arquipélago, verificando bagagem, taxas e regras da tarifa.</p><div class="price">Consulte a melhor data</div><p class="notice">Valores sujeitos a alteração e disponibilidade.</p><a href="https://www.voeazul.com.br/" target="_blank" rel="noopener">PESQUISAR VOOS →</a></article>
-<article class="ad"><div class="label">PUBLICIDADE • TURISMO</div><h3>Sua empresa neste destino</h3><p>Espaço para pousadas, restaurantes, companhias aéreas, receptivos, passeios e experiências de Fernando de Noronha.</p><div class="price">Cota comercial</div><p class="notice">Apresente sua marca ao público que já está planejando viajar.</p><a href="mailto:comercial@vozdebrasilia.com.br?subject=Publicidade%20Fernando%20de%20Noronha">ANUNCIAR NO GUIA →</a></article>
+<article class="ad"><div class="label">COMPANHIAS AÉREAS • PASSAGENS</div><h3>Conexões para Fernando de Noronha</h3><p>Pesquise voos e conexões autorizadas para o arquipélago, verificando bagagem, taxas e regras da tarifa.</p><div class="price">Consulte a melhor data</div><p class="notice">Valores sujeitos a alteração e disponibilidade.</p><a href="/turismo/destinos/fernando-de-noronha/guias/voos-e-pacotes/">PESQUISAR EMPRESAS →</a></article>
+<article class="ad"><div class="label">PUBLICIDADE • TURISMO</div><h3>Sua empresa neste destino</h3><p>Espaço para pousadas, restaurantes, companhias aéreas, receptivos, passeios e experiências de Fernando de Noronha.</p><div class="price">Cota comercial</div><p class="notice">Apresente sua marca ao público que já está planejando viajar.</p><a href="/turismo/destinos/fernando-de-noronha/guias/voos-e-pacotes/#anunciantes">VER EMPRESAS E ANUNCIANTES →</a></article>
 </div></div></section>
 
 <footer class="footer">
@@ -565,6 +597,15 @@ Mar cristalino, praias preservadas, trilhas, mergulho e paisagens reconhecidas n
 </footer>
 
 <script>
+function filterSector(input){
+  const box=input.closest('[data-sector-search]');
+  const term=input.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  box.querySelectorAll('.company').forEach(item=>{
+    const text=item.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    item.style.display=text.includes(term)?'flex':'none';
+  });
+}
+
 function filterContent(){
   var input = document.getElementById('destinationSearch');
   var filter = input.value.toLowerCase();
