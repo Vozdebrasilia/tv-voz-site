@@ -10,6 +10,12 @@
     /* Suavização de rolagem e detalhes */
     html { scroll-behavior: smooth; }
     summary::-webkit-details-marker { display: none; }
+    @keyframes cataratasMove{0%{transform:scale(1.04) translate3d(-1%,0,0)}100%{transform:scale(1.14) translate3d(1%,-1%,0)}}
+    .cataratas-hero{animation:cataratasMove 12s ease-in-out infinite alternate;will-change:transform}
+    @keyframes hornVibrate{0%,100%{transform:rotate(-5deg) scale(1)}25%{transform:rotate(5deg) scale(1.08)}50%{transform:rotate(-4deg) scale(1.03)}75%{transform:rotate(4deg) scale(1.1)}}
+    .horn-call{position:fixed;right:20px;bottom:20px;z-index:80;border:0;border-radius:999px;background:#059669;color:#fff;font-weight:900;padding:13px 18px;box-shadow:0 12px 36px #0008;cursor:pointer;display:flex;gap:10px;align-items:center}
+    .horn-icon{font-size:30px;display:inline-block;animation:hornVibrate .45s ease-in-out infinite}
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-600 selection:text-white">
@@ -42,7 +48,7 @@
     <img 
       src="https://images.unsplash.com/photo-1589553416260-f586c8f1514f?auto=format&fit=crop&w=2000&q=80" 
       alt="Cataratas do Iguaçu" 
-      class="absolute inset-0 w-full h-full object-cover object-center"
+      class="cataratas-hero absolute inset-0 w-full h-full object-cover object-center"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30"></div>
     
@@ -305,5 +311,11 @@
     </div>
   </footer>
 
-</body>
+<button id="somCataratas" class="horn-call" type="button" aria-label="Ativar som das Cataratas"><span class="horn-icon">📣</span><span>OUÇA A FORÇA DAS CATARATAS</span></button>
+<script>
+(()=>{const b=document.getElementById('somCataratas');let ctx,noise,gain,filter,on=false;
+function start(){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();const len=ctx.sampleRate*2,buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;noise=ctx.createBufferSource();noise.buffer=buf;noise.loop=true;filter=ctx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=850;gain=ctx.createGain();gain.gain.value=.34;noise.connect(filter).connect(gain).connect(ctx.destination);noise.start();on=true;b.querySelector('span:last-child').textContent='SOM DAS CATARATAS • LIGADO';}
+function stop(){if(noise){noise.stop();noise.disconnect();noise=null}on=false;b.querySelector('span:last-child').textContent='OUÇA A FORÇA DAS CATARATAS';}
+b.addEventListener('click',()=>on?stop():start());})();
+</script></body>
 </html>
