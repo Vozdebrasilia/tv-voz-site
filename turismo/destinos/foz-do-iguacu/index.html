@@ -45,11 +45,7 @@
 
   <!-- HERO: CAPA COM FOTO PANORÂMICA DAS CATARATAS -->
   <section class="relative h-[80vh] min-h-[550px] flex items-center justify-center overflow-hidden">
-    <img 
-      src="https://commons.wikimedia.org/wiki/Special:FilePath/Brazilian%20Waterfalls%20Foz%20do%20Igua%C3%A7u.jpg?width=3840" 
-      alt="Cataratas do Iguaçu" 
-      class="cataratas-hero absolute inset-0 w-full h-full object-cover object-center"
-    />
+    <video class="cataratas-hero absolute inset-0 w-full h-full object-cover object-center" autoplay muted loop playsinline preload="metadata" aria-label="Cataratas do Iguaçu em movimento"><source src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Cascadas_del_Iguaz%C3%BA_en_varios_pisos_escalonadas.webm" type="video/webm"></video>
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30"></div>
     
     <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
@@ -317,5 +313,6 @@
 function start(){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();const len=ctx.sampleRate*2,buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;noise=ctx.createBufferSource();noise.buffer=buf;noise.loop=true;filter=ctx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=850;gain=ctx.createGain();gain.gain.value=.34;noise.connect(filter).connect(gain).connect(ctx.destination);noise.start();on=true;b.querySelector('span:last-child').textContent='SOM DAS CATARATAS • LIGADO';}
 function stop(){if(noise){noise.stop();noise.disconnect();noise=null}on=false;b.querySelector('span:last-child').textContent='OUÇA A FORÇA DAS CATARATAS';}
 b.addEventListener('click',()=>on?stop():start());})();
-</script></body>
+</script><div class="sr-only">Vídeo: Cataratas do Iguaçu em vários níveis. Fonte: Wikimedia Commons; autores Brandon Antonio Segura Torres e Priscilla Vieto Bonilla; licença CC BY-SA 4.0.</div>
+</body>
 </html>
