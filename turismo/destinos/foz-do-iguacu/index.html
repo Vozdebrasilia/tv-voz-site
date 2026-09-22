@@ -80,10 +80,10 @@
       
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
         <a href="https://parquesnaturais.visitbrasil.com/parques/iguacu" target="_blank" rel="noopener noreferrer" class="group block bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
-          <div class="grid grid-cols-3 h-36 overflow-hidden">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Iguazu%20Falls%20-%20Devil%27s%20Throat.jpg?width=600" alt="Garganta do Diabo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Iguazu%20Falls%20from%20Brazil.jpg?width=600" alt="Cataratas do Iguaçu" class="w-full h-full object-cover">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Iguazu%20Falls%20walkway.jpg?width=600" alt="Passarela das Cataratas" class="w-full h-full object-cover">
+          <div class="h-36 overflow-hidden bg-black">
+            <video class="w-full h-full object-cover group-hover:scale-105 transition duration-500" autoplay muted loop playsinline preload="metadata" aria-label="Vídeo da Garganta do Diabo nas Cataratas do Iguaçu">
+              <source src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Iguazu%20Falls%2C%20Garganta%20del%20Diablo.webm" type="video/webm">
+            </video>
           </div>
           <div class="p-4"><h3 class="font-black text-slate-900">Garganta do Diabo</h3><p class="text-xs text-slate-600 mt-1">A queda mais emblemática do conjunto, vista de passarelas e mirantes do Parque Nacional do Iguaçu.</p><span class="inline-block mt-3 text-xs font-bold text-emerald-700">SAIBA O QUE É →</span></div>
         </a>
@@ -311,5 +311,6 @@ function start(){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)()
 function stop(){if(noise){noise.stop();noise.disconnect();noise=null}on=false;b.querySelector('span:last-child').textContent='OUÇA A FORÇA DAS CATARATAS';}
 b.addEventListener('click',()=>on?stop():start());})();
 </script><div class="sr-only">Vídeo: Cataratas do Iguaçu em vários níveis. Fonte: Wikimedia Commons; autores Brandon Antonio Segura Torres e Priscilla Vieto Bonilla; licença CC BY-SA 4.0.</div>
+<div class="sr-only">Vídeo Garganta do Diabo: Arian Zwegers, Wikimedia Commons, CC BY 2.0.</div>
 </body>
 </html>
