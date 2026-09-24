@@ -22,6 +22,19 @@ section{padding:64px 0}.section-blue{background:linear-gradient(180deg,#eef8ff,#
 .commercial{background:linear-gradient(135deg,#071f38,#0b4f68);color:#fff}.commercial .head h2,.commercial .head p{color:#fff}.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.pack{padding:25px;border-radius:22px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1)}.pack h3{font-size:25px;margin:10px 0}.pack p{color:#e5f0f4;line-height:1.5}.cta{padding:34px;border-radius:27px;background:linear-gradient(120deg,#ffe6a8,#fff8df);border:1px solid #ecd18a;display:flex;justify-content:space-between;align-items:center;gap:20px}.cta h2{margin:0;color:var(--navy)}footer{padding:40px 0;background:#fff;text-align:center;border-top:1px solid var(--line)}footer img{width:180px}
 @media(max-width:900px){.segments{grid-template-columns:repeat(3,1fr)}.videos,.packs,.history,.adgrid{grid-template-columns:1fr}}@media(max-width:600px){nav{display:none}.segments{grid-template-columns:repeat(2,1fr)}.search{flex-direction:column}.search button{min-height:48px}.hero h1{letter-spacing:-2px}.cta{flex-direction:column;align-items:flex-start}.hero{background-position:55% center}}
 </style>
+
+<style id="voznews-motion">
+@keyframes vozFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-5px) scale(1.012)}}
+@keyframes vozReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes vozImage{0%{transform:scale(1.01)}100%{transform:scale(1.07)}}
+main section,main article,.card{animation:vozReveal .7s ease both}
+main img{transition:transform .7s ease,filter .7s ease}
+main article:hover img,.card:hover img{transform:scale(1.045)}
+header img,section>img:first-child{animation:vozImage 10s ease-in-out infinite alternate}
+a,button{transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease}
+button:hover,a[class*="btn"]:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <header><div class="c"><a href="/"><img src="../logo-voznews-oficial.png" alt="VOZ NEWS"></a><nav><a href="#guia">BUSCAR</a><a href="#especialidades">ESPECIALIDADES</a><a href="#entrevistas">ENTREVISTAS</a><a href="#participar">ANUNCIAR</a><a href="/">PORTAL-MÃE</a></nav></div></header>
