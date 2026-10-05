@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.voznewsbrasil.com.br/sitemap.xml
+Sitemap: https://www.vozdebrasilia.com.br/sitemap.xml
