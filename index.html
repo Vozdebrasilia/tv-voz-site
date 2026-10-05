@@ -1498,7 +1498,7 @@
       <h2>O novo mapa político do Brasil: votos, bancadas e candidatos em gráficos.</h2>
       <p>Análise de Paulo Fayad com dados oficiais do TSE, gráficos de bolas, barras e curva, além de fotografias oficiais dos candidatos que lideram as disputas.</p>
     </div>
-    <a href="./noticias/analise-eleicoes-2026-paulo-fayad/" style="display:grid;grid-template-columns:1.2fr .8fr;gap:24px;text-decoration:none;border:2px solid rgba(212,175,55,.72);border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#07182b,#102c4b);box-shadow:0 24px 60px rgba(0,0,0,.32)">
+    <a id="election2026FeatureLink" href="./noticias/analise-eleicoes-2026-paulo-fayad/" style="display:grid;grid-template-columns:1.2fr .8fr;gap:24px;text-decoration:none;border:2px solid rgba(212,175,55,.72);border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#07182b,#102c4b);box-shadow:0 24px 60px rgba(0,0,0,.32)">
       <div style="padding:30px">
         <span style="display:inline-block;background:#d4af37;color:#071526;font-weight:900;border-radius:999px;padding:7px 11px;font-size:12px">ANÁLISE NACIONAL • PAULO FAYAD</span>
         <h3 style="font-size:clamp(29px,3.5vw,48px);line-height:1.02;margin:15px 0 12px;color:#fff">Direita soma 56,05% dos votos para deputado federal na classificação editorial do painel</h3>
@@ -1724,5 +1724,13 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
     },1250);
   });
 })();
-</script><script src="/daily-vertical-news.js" defer></script></body>
+</script><script src="/daily-vertical-news.js" defer></script><script>
+(function(){
+  const link=document.getElementById('election2026FeatureLink');
+  if(link && /(^|\.)vozdebrasilia\.com\.br$/i.test(location.hostname)){
+    link.href='/eleicoes/resultado-eleicoes-2026/';
+  }
+})();
+</script>
+</body>
 </html>
