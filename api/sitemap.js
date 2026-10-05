@@ -1,4 +1,4 @@
-const BASE='https://www.voznewsbrasil.com.br';
+const DEFAULT_BASE='https://www.voznewsbrasil.com.br';
 const FEEDS=[
 'https://news.google.com/rss/search?q=elei%C3%A7%C3%B5es+2026+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419',
 'https://news.google.com/rss/search?q=Bras%C3%ADlia+pol%C3%ADtica&hl=pt-BR&gl=BR&ceid=BR:pt-419',
