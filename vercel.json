@@ -2,6 +2,7 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/portais/energia.html", "destination": "/energia/", "permanent": false },
     { "source": "/tvvozdebrasiliafilmes/lunardi", "destination": "https://youtu.be/5zl9bu3rG-k", "permanent": false }
   ],
   "rewrites": [
