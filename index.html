@@ -1482,6 +1482,49 @@ main,main>section,.section,.hero{width:100%}
   #ecossistema .eco-portal-img{height:160px}
 }
 </style>
+
+<style>
+/* ===== CORREÇÃO DE CARDS COM VAZIOS — 09/10/2026 ===== */
+/* Corrige somente alturas/encaixe dos cards mostrados nos prints */
+.media-grid,.visual-grid{align-items:start!important;grid-auto-rows:auto!important}
+.media-grid>.media-card,.visual-grid>.visual-card{
+  height:auto!important;
+  min-height:0!important;
+  align-self:start!important;
+}
+.media-card,.visual-card{display:block!important}
+.media-card .media-body,.visual-card .visual-body{
+  display:block!important;
+  height:auto!important;
+  min-height:0!important;
+}
+.media-card .real-link,.visual-card .real-link{
+  margin-top:14px!important;
+}
+.media-card img,.visual-card img{
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+}
+/* Mantém proporção consistente das miniaturas comuns sem criar espaços vazios */
+.media-card>img:not(.magazine-cover-photo){
+  aspect-ratio:16/9!important;
+  object-fit:cover!important;
+}
+.visual-card>img{
+  aspect-ratio:16/9!important;
+  object-fit:cover!important;
+}
+/* Cards especiais preservam seu conteúdo, mas sem altura herdada da linha */
+.promo-card,.voice-featured,.v23-featured,.v24-hero-card,.deijanete-card{
+  height:auto!important;
+  min-height:0!important;
+}
+.hashtag-bank{margin-bottom:0!important}
+@media(max-width:980px){
+  .media-grid,.visual-grid{grid-template-columns:1fr!important}
+}
+</style>
 </head>
 <body>
 <header class="site-header">
