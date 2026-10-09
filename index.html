@@ -1425,7 +1425,64 @@
 #internacional .intl-preview:after{content:"▶ ENTREVISTA";position:absolute;right:10px;bottom:10px;background:rgba(3,19,38,.88);color:#fff;font-size:10px;font-weight:900;padding:7px 9px;border-radius:5px}
 #internacional .intl-click{position:absolute;inset:0;z-index:6}
 #internacional .media-body{position:relative;z-index:2;pointer-events:none}
-</style></head>
+</style>
+<style>
+/* ===== AJUSTE FINAL DE DIAGRAMAÇÃO — 09/10/2026 ===== */
+/* Somente diagramação: conteúdo, textos, imagens, links e ordem preservados */
+html,body{overflow-x:hidden}
+*,*:before,*:after{box-sizing:border-box}
+main,main>section,.section,.hero{width:100%}
+.section{padding:58px 0}
+.section-head{margin-bottom:26px}
+.section-head p{max-width:880px}
+
+/* Verticais logo abaixo dos números, sem grandes vazios */
+.hero{padding-bottom:46px}
+.hero>.container>#ecossistema{padding:34px 0 42px;margin:0;background:transparent}
+.hero>.container>#ecossistema>.container{width:100%;max-width:none;padding:0}
+#ecossistema .section-head{margin-bottom:24px}
+#ecossistema .eco-portal-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+#ecossistema .eco-portal{min-width:0;height:100%;min-height:0}
+#ecossistema .eco-portal-img{display:block;width:100%;height:138px;object-fit:cover}
+#ecossistema .eco-portal h3{min-height:48px}
+#ecossistema .eco-portal p{min-height:70px}
+
+/* Evita espaços irregulares entre blocos e cartões */
+.media-grid,.visual-grid,.logos-grid,.grid,.eco-regions{align-items:stretch}
+.media-card,.visual-card,.logo-card,.card,.ad-card{height:100%;min-width:0}
+.media-card,.visual-card{display:flex;flex-direction:column}
+.media-card .media-body,.visual-card .visual-body{display:flex;flex-direction:column;flex:1}
+.media-card .real-link,.visual-card .real-link{margin-top:auto}
+.media-card img,.visual-card img{display:block}
+
+/* Planilhas eleitorais alinhadas e sem áreas vazias */
+#planilhas-eleicoes-2026{padding-top:54px;padding-bottom:54px}
+#planilhas-eleicoes-2026 .section-head{margin-bottom:24px}
+#planilhas-eleicoes-2026 .container>div[style*="grid-template-columns"]{align-items:stretch}
+#planilhas-eleicoes-2026 a{height:100%;min-width:0}
+
+/* Blocos comerciais e contato */
+.cta-band{margin-top:24px}
+.contact-wrap{align-items:stretch}
+.contact-panel,.contact-form{height:100%}
+
+/* Responsivo sem cortes */
+@media(max-width:1050px){
+  #ecossistema .eco-portal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:820px){
+  .section{padding:48px 0}
+  .hero>.container>#ecossistema{padding:28px 0 34px}
+  #ecossistema .eco-portal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #ecossistema .eco-portal h3,#ecossistema .eco-portal p{min-height:0}
+}
+@media(max-width:560px){
+  .section{padding:40px 0}
+  #ecossistema .eco-portal-grid{grid-template-columns:1fr}
+  #ecossistema .eco-portal-img{height:160px}
+}
+</style>
+</head>
 <body>
 <header class="site-header">
 <div class="container header-inner">
