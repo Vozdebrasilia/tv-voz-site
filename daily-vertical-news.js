@@ -15,44 +15,45 @@ voznews:"/logo-voznews-oficial.png"
 /* Fallbacks externos escolhidos apenas entre arquivos marcados como domínio público no Wikimedia Commons. */
 const fallbackImgs={
   energia:[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Sun_symbol.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_bolt_symbol.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Bankersmith%20TX%20Wind%20Turbines.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Solar_panels_on_a_roof.jpg"
   ],
   "economia-negocios-consumo":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Dollar_sign.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Percent_sign.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/B3_Sao_Paulo_Stock_Exchange.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Shopping_mall_in_Brazil.jpg"
   ],
   "educacao-carreiras-cultura":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Book_icon_1.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Graduation_cap.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Students_in_a_classroom.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Books_on_a_shelf.jpg"
   ],
   "estilo-esporte-experiencias":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Olympic_pictogram_Running.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Star_symbol.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Athletics_competition.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Fashion_show.jpg"
   ],
   gastronomia:[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Fork_and_knife.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Restaurant_icon.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Brazilian_food.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Restaurant_table.jpg"
   ],
   mobilidade:[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Car_icon.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Bus_icon.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Traffic_in_Brasilia.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Bus_in_Brazil.jpg"
   ],
   "moveis-decoracao":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/House_icon.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Chair_icon.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Living_room_interior.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Modern_office_interior.jpg"
   ],
   "poder-justica-cidadania":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Brazil.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Scales_of_Justice.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Congresso%20Nacional%20Bras%C3%ADlia.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Congresso%20Nacional%20Bras%C3%ADlia%202015.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Brazil%20National%20Congress.jpg"
   ],
   "saude-beleza":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Medical_symbol.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Heart_symbol.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Hospital_room.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Doctor_and_patient.jpg"
   ],
   "tecnologia-ia-midia":[
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Computer_icon.svg",
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Gear_icon.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Computer_lab.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Artificial_intelligence_concept.jpg"
   ]
 };
 function fallbackImage(vertical,index){const a=fallbackImgs[vertical]||[];return a.length?a[index%a.length]:"";}
