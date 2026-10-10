@@ -7,16 +7,17 @@
       {name:'Segurança, Defesa e Cidadania',href:'./portais/seguranca.html'},
       {name:'Instituto Brazil Just — Ação Social',href:'./portais/ibj-acao-social.html'}
     ]},
-    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Empreendedorismo e Consumo',image:'/assets-v23/top10-hq/top-02.webp',siteHref:'/economia-negocios-consumo/',items:[
-      {name:'Bancos, Fintechs e Mercado',href:'./portais/bancos.html'},
-      {name:'Empreendedorismo e Pequenos Negócios',href:'./portais/empreendedorismo.html'},
-      {name:'Seguros, Consórcios e Proteção',href:'./portais/seguros.html'},
-      {name:'Supermercados, Atacarejo e Consumo',href:'./portais/varejo.html'}
+    {rank:'TOP 02',title:'ECONOMIA, NEGÓCIOS & CONSUMO',subtitle:'Empresas, Mercado, Agronegócio, Sustentabilidade e Consumo',image:'/assets-v23/top10-hq/top-02.webp',siteHref:'/economia-negocios-consumo/',items:[
+      {name:'Bancos, Fintechs e Mercado',href:'/economia-negocios-consumo/'},
+      {name:'Empreendedorismo e Pequenos Negócios',href:'/economia-negocios-consumo/'},
+      {name:'Agronegócio e Alimentos',href:'/economia-negocios-consumo/'},
+      {name:'Sustentabilidade, ESG e Meio Ambiente',href:'/economia-negocios-consumo/'}
     ]},
-    {rank:'TOP 03',title:'ENERGIA, AGRO & SUSTENTABILIDADE',subtitle:'Energia, Agronegócio, Meio Ambiente e Futuro',image:'/assets-v23/top10-hq/top-03.webp',siteHref:'/energia-agro-sustentabilidade/',items:[
-      {name:'Energia, Petróleo e Transição Energética',href:'./portais/energia.html'},
-      {name:'Agronegócio e Alimentos',href:'./portais/agro.html'},
-      {name:'Sustentabilidade, ESG e Meio Ambiente',href:'./portais/esg.html'}
+    {rank:'TOP 03',title:'ENERGIA',subtitle:'Energia, Petróleo, Eletricidade e Transição Energética',image:'/assets-v23/top10-hq/top-03.webp',siteHref:'/energia/',items:[
+      {name:'Energia, Petróleo e Transição Energética',href:'/energia/'},
+      {name:'Eletricidade, Geração e Transmissão',href:'/energia/'},
+      {name:'Petróleo, Gás e Combustíveis',href:'/energia/'},
+      {name:'Renováveis, Armazenamento e Inovação',href:'/energia/'}
     ]},
     {rank:'TOP 04',title:'MOBILIDADE, AVIAÇÃO & TRANSPORTES',subtitle:'Carros, Motos, Logística, Náutica e Aviação',image:'/assets-v23/top10-hq/top-04.webp',siteHref:'/mobilidade/',items:[
       {name:'Aeroportos, Aviação e Mobilidade',href:'./portais/aviacao.html'},
