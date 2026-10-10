@@ -214,16 +214,19 @@
   }
 
   function boot(doc, location) {
-    const config = PORTALS[location.pathname.replace(/index\.html$/, '')];
+    const rawPath=location.pathname.replace(/index\.html$/, '');
+    const normalizedPath=rawPath.endsWith('/')?rawPath:rawPath+'/';
+    const config = PORTALS[normalizedPath];
     if (!config || !doc.body) return;
     installStyles(doc);
     if (location.pathname.replace(/index\.html$/, '') !== '/energia/' && !doc.querySelector('.vn-energy-pattern')) {
-      const path = location.pathname.replace(/index\.html$/, '');
+      const path = normalizedPath;
       const header = doc.querySelector('header');
       const template = doc.createElement('template');
       template.innerHTML = buildEnergyPattern(config, path).trim();
       const node = template.content.firstElementChild;
-      if (header && header.parentNode) header.parentNode.insertBefore(node, header.nextSibling); else doc.body.insertBefore(node, doc.body.firstChild);
+      const main=doc.querySelector('main');
+      if(main) main.insertBefore(node, main.firstChild); else if (header && header.parentNode) header.parentNode.insertBefore(node, header.nextSibling); else doc.body.insertBefore(node, doc.body.firstChild);
     }
     const footer = doc.querySelector('footer');
     const anchor = footer || null;
