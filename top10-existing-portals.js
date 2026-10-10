@@ -7,7 +7,7 @@
 
   const PORTALS = {
     '/energia/': {
-      topic: 'Energia, Agro & Sustentabilidade',
+      topic: 'Energia, Petróleo & Transição Energética',
       interviews: [
         ['Marcelo Crivella — entrevista institucional', 'https://www.youtube.com/watch?v=6rW1U7YlZ-E'],
         ['Daniel Balaban — liderança e segurança alimentar', 'https://www.youtube.com/watch?v=5QWMLQjrV4c'],
