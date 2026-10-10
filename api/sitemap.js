@@ -1,4 +1,5 @@
 const DEFAULT_BASE='https://www.voznewsbrasil.com.br';
+const BASE=DEFAULT_BASE;
 const FEEDS=[
 'https://news.google.com/rss/search?q=elei%C3%A7%C3%B5es+2026+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419',
 'https://news.google.com/rss/search?q=Bras%C3%ADlia+pol%C3%ADtica&hl=pt-BR&gl=BR&ceid=BR:pt-419',
@@ -27,7 +28,21 @@ const CLIENTES=[
 ];
 
 const AUTORES=['deijanete-fayad','paulo-fayad'];
-const FIXED=['/','/anunciantes.html','/ibj.html','/materias/roney-nemer-11111.html','/energia-agro-sustentabilidade/','/energia/','/agronegocio/','/sustentabilidade/','/mobilidade/','/saude-beleza/','/moveis-decoracao/','/gastronomia/','/poder-justica-cidadania/','/economia-negocios-consumo/','/tecnologia-ia-midia/','/educacao-carreiras-cultura/','/estilo-esporte-experiencias/','/turismo/','/portais/turismo.html','/turismo/destinos/rio-de-janeiro/','/turismo/destinos/foz-do-iguacu/','/turismo/destinos/fernando-de-noronha/','/turismo/destinos/salvador/','/turismo/destinos/paris/','/turismo/destinos/lisboa/','/turismo/destinos/roma/','/turismo/destinos/dubai/'];
+const FIXED=[
+'/',
+'/anunciantes.html',
+'/ibj.html',
+'/energia/',
+'/poder-justica-cidadania/',
+'/economia-negocios-consumo/',
+'/mobilidade/',
+'/tecnologia-ia-midia/',
+'/saude-beleza/',
+'/moveis-decoracao/',
+'/gastronomia/',
+'/educacao-carreiras-cultura/',
+'/estilo-esporte-experiencias/'
+];
 
 function decode(s=''){return String(s).replace(/<!\[CDATA\[|\]\]>/g,'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>')}
 function clean(t=''){return decode(t).replace(/\s+-\s+[^-]{2,90}$/,'').replace(/\s+/g,' ').trim()}
@@ -52,7 +67,6 @@ module.exports=async function(req,res){
     const analyses=[...new Set(titles.map(t=>slug(t)))].filter(Boolean).map(s=>`/analises/${s}`);
     const paths=[
       ...FIXED,
-      ...PORTAIS.map(s=>`/portais/${s}.html`),
       ...TEMAS.map(s=>`/tema/${s}`),
       ...CLIENTES.map(s=>`/clientes/${s}.html`),
       ...AUTORES.map(s=>`/autor/${s}`),
