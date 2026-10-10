@@ -1591,6 +1591,24 @@ main,main>section,.section,.hero{width:100%}
   #seif-destaque-topo img{min-height:240px!important;max-height:320px!important}
   #seif-destaque-topo a>div:last-child{padding:24px!important}
 }
+</style><style>
+#backToTop{
+  position:fixed;right:22px;bottom:22px;z-index:1200;
+  display:flex;align-items:center;gap:9px;
+  padding:13px 17px;border-radius:999px;
+  border:1px solid rgba(212,175,55,.55);
+  background:linear-gradient(135deg,#0b2240,#071525);
+  color:#fff;font-weight:900;font-size:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.35),0 0 18px rgba(212,175,55,.12);
+  cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:.22s ease;
+}
+#backToTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+#backToTop:hover{border-color:#d4af37;transform:translateY(-2px)}
+#backToTop .arrow{color:#ffd84d;font-size:18px;line-height:1}
+@media(max-width:620px){
+  #backToTop{right:14px;bottom:14px;padding:11px 14px;font-size:12px}
+}
 </style></head>
 <body>
 <header class="site-header">
@@ -1931,5 +1949,15 @@ const menuToggle=document.getElementById('menuToggle');const siteMenu=document.g
   }
 })();
 </script>
-</body>
+<button id="backToTop" type="button" aria-label="Voltar ao topo"><span class="arrow">↑</span><span>Voltar ao topo</span></button>
+<script>
+(function(){
+  const b=document.getElementById('backToTop');
+  if(!b)return;
+  const toggle=()=>b.classList.toggle('show',window.scrollY>700);
+  window.addEventListener('scroll',toggle,{passive:true});
+  toggle();
+  b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+})();
+</script></body>
 </html>
