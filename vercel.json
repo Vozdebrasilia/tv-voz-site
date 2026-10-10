@@ -2,79 +2,195 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/portais/energia.html", "destination": "/energia/", "permanent": false },
-    { "source": "/tvvozdebrasiliafilmes/lunardi", "destination": "https://youtu.be/5zl9bu3rG-k", "permanent": false }
+    {
+      "source": "/portais/energia.html",
+      "destination": "/energia/",
+      "permanent": false
+    },
+    {
+      "source": "/tvvozdebrasiliafilmes/lunardi",
+      "destination": "https://youtu.be/5zl9bu3rG-k",
+      "permanent": false
+    },
+    {
+      "source": "/agronegocio",
+      "destination": "/economia-negocios-consumo/",
+      "permanent": false
+    },
+    {
+      "source": "/agronegocio/",
+      "destination": "/economia-negocios-consumo/",
+      "permanent": false
+    },
+    {
+      "source": "/sustentabilidade",
+      "destination": "/economia-negocios-consumo/",
+      "permanent": false
+    },
+    {
+      "source": "/sustentabilidade/",
+      "destination": "/economia-negocios-consumo/",
+      "permanent": false
+    },
+    {
+      "source": "/energia-agro-sustentabilidade",
+      "destination": "/energia/",
+      "permanent": false
+    },
+    {
+      "source": "/energia-agro-sustentabilidade/",
+      "destination": "/energia/",
+      "permanent": false
+    }
   ],
   "rewrites": [
-    { "source": "/poder-justica-cidadania", "destination": "/poder-justica-cidadania/index.html" },
-    { "source": "/poder-justica-cidadania/", "destination": "/poder-justica-cidadania/index.html" },
-    { "source": "/economia-negocios-consumo", "destination": "/economia-negocios-consumo/index.html" },
-    { "source": "/economia-negocios-consumo/", "destination": "/economia-negocios-consumo/index.html" },
-    { "source": "/tecnologia-ia-midia", "destination": "/tecnologia-ia-midia/index.html" },
-    { "source": "/tecnologia-ia-midia/", "destination": "/tecnologia-ia-midia/index.html" },
-    { "source": "/educacao-carreiras-cultura", "destination": "/educacao-carreiras-cultura/index.html" },
-    { "source": "/educacao-carreiras-cultura/", "destination": "/educacao-carreiras-cultura/index.html" },
-    { "source": "/estilo-esporte-experiencias", "destination": "/estilo-esporte-experiencias/index.html" },
-    { "source": "/estilo-esporte-experiencias/", "destination": "/estilo-esporte-experiencias/index.html" },
-    { "source": "/saude-beleza", "destination": "/saude-beleza/index.html" },
-    { "source": "/saude-beleza/", "destination": "/saude-beleza/index.html" },
-    { "source": "/moveis-decoracao", "destination": "/moveis-decoracao/index.html" },
-    { "source": "/moveis-decoracao/", "destination": "/moveis-decoracao/index.html" },
-    { "source": "/mobilidade", "destination": "/mobilidade/index.html" },
-    { "source": "/mobilidade/", "destination": "/mobilidade/index.html" },
-    { "source": "/energia", "destination": "/energia/index.html" },
-    { "source": "/energia/", "destination": "/energia/index.html" },
-    { "source": "/agronegocio", "destination": "/agronegocio/index.html" },
-    { "source": "/agronegocio/", "destination": "/agronegocio/index.html" },
-    { "source": "/sustentabilidade", "destination": "/sustentabilidade/index.html" },
-    { "source": "/sustentabilidade/", "destination": "/sustentabilidade/index.html" },
-    { "source": "/energia-agro-sustentabilidade", "destination": "/energia-agro-sustentabilidade/index.html" },
-    { "source": "/energia-agro-sustentabilidade/", "destination": "/energia-agro-sustentabilidade/index.html" },
-    { "source": "/portais/poder.html", "destination": "/api/poder" },
-    { "source": "/portais/:slug.html", "destination": "/portal.html" },
-    { "source": "/clientes/:slug.html", "destination": "/cliente.html" },
-    { "source": "/analises/:slug", "destination": "/api/analysis-page?slug=:slug" },
-    { "source": "/tema/:slug", "destination": "/api/seo-hub?type=tema&slug=:slug" },
-    { "source": "/autor/:slug", "destination": "/api/seo-hub?type=autor&slug=:slug" },
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
+    {
+      "source": "/poder-justica-cidadania",
+      "destination": "/poder-justica-cidadania/index.html"
+    },
+    {
+      "source": "/poder-justica-cidadania/",
+      "destination": "/poder-justica-cidadania/index.html"
+    },
+    {
+      "source": "/economia-negocios-consumo",
+      "destination": "/economia-negocios-consumo/index.html"
+    },
+    {
+      "source": "/economia-negocios-consumo/",
+      "destination": "/economia-negocios-consumo/index.html"
+    },
+    {
+      "source": "/tecnologia-ia-midia",
+      "destination": "/tecnologia-ia-midia/index.html"
+    },
+    {
+      "source": "/tecnologia-ia-midia/",
+      "destination": "/tecnologia-ia-midia/index.html"
+    },
+    {
+      "source": "/educacao-carreiras-cultura",
+      "destination": "/educacao-carreiras-cultura/index.html"
+    },
+    {
+      "source": "/educacao-carreiras-cultura/",
+      "destination": "/educacao-carreiras-cultura/index.html"
+    },
+    {
+      "source": "/estilo-esporte-experiencias",
+      "destination": "/estilo-esporte-experiencias/index.html"
+    },
+    {
+      "source": "/estilo-esporte-experiencias/",
+      "destination": "/estilo-esporte-experiencias/index.html"
+    },
+    {
+      "source": "/saude-beleza",
+      "destination": "/saude-beleza/index.html"
+    },
+    {
+      "source": "/saude-beleza/",
+      "destination": "/saude-beleza/index.html"
+    },
+    {
+      "source": "/moveis-decoracao",
+      "destination": "/moveis-decoracao/index.html"
+    },
+    {
+      "source": "/moveis-decoracao/",
+      "destination": "/moveis-decoracao/index.html"
+    },
+    {
+      "source": "/mobilidade",
+      "destination": "/mobilidade/index.html"
+    },
+    {
+      "source": "/mobilidade/",
+      "destination": "/mobilidade/index.html"
+    },
+    {
+      "source": "/energia",
+      "destination": "/energia/index.html"
+    },
+    {
+      "source": "/energia/",
+      "destination": "/energia/index.html"
+    },
+    {
+      "source": "/portais/poder.html",
+      "destination": "/api/poder"
+    },
+    {
+      "source": "/portais/:slug.html",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/clientes/:slug.html",
+      "destination": "/cliente.html"
+    },
+    {
+      "source": "/analises/:slug",
+      "destination": "/api/analysis-page?slug=:slug"
+    },
+    {
+      "source": "/tema/:slug",
+      "destination": "/api/seo-hub?type=tema&slug=:slug"
+    },
+    {
+      "source": "/autor/:slug",
+      "destination": "/api/seo-hub?type=autor&slug=:slug"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
-                "key": "X-Content-Type-Options",
-                "value": "nosniff"
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-                "key": "X-Frame-Options",
-                "value": "DENY"
+          "key": "X-Frame-Options",
+          "value": "DENY"
         },
         {
-                "key": "Referrer-Policy",
-                "value": "strict-origin-when-cross-origin"
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         },
         {
-                "key": "Permissions-Policy",
-                "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
         },
         {
-                "key": "Strict-Transport-Security",
-                "value": "max-age=63072000; includeSubDomains; preload"
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
         }
-]
+      ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Link", "value": "</mercia-mature.css>; rel=stylesheet" }
+        {
+          "key": "Link",
+          "value": "</mercia-mature.css>; rel=stylesheet"
+        }
       ]
     },
     {
       "source": "/assets/v33-original/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
       ]
     }
   ]
