@@ -169,6 +169,24 @@
     }
   };
 
+
+  const HEROES = {
+    '/poder-justica-cidadania/':'/assets-v23/top10-hq/top-01.webp',
+    '/economia-negocios-consumo/':'/assets-v23/top10-hq/top-02.webp',
+    '/mobilidade/':'/assets-v23/top10-hq/top-04.webp',
+    '/tecnologia-ia-midia/':'/assets-v23/top10-hq/top-05.webp',
+    '/saude-beleza/':'/assets-v23/top10-hq/top-06.webp',
+    '/moveis-decoracao/':'/assets-v23/top10-hq/top-07.webp',
+    '/gastronomia/':'/assets-v23/top10-hq/top-08.webp',
+    '/educacao-carreiras-cultura/':'/assets-v23/top10-hq/top-09.webp',
+    '/estilo-esporte-experiencias/':'/assets-v23/top10-hq/top-10.webp'
+  };
+
+  function buildEnergyPattern(config, path) {
+    const img = HEROES[path] || '/logo-voznews-oficial.png';
+    return `<section class="vn-energy-pattern" aria-label="${escapeHtml(config.topic)}"><div class="vn-energy-shell"><div class="vn-energy-copy"><span class="vn-energy-kicker">VOZ NEWS • VERTICAL ESPECIALIZADA</span><h1>${escapeHtml(config.topic)}</h1><p>Informação, entrevistas, empresas, oportunidades e conteúdo estratégico com o padrão visual da VOZ NEWS Energia.</p></div><div class="vn-energy-hero"><img src="${escapeHtml(img)}" alt="${escapeHtml(config.topic)}"></div></div><div class="vn-energy-metrics"><div><strong>260 mil+</strong><span>seguidores no Instagram</span></div><div><strong>200 milhões+</strong><span>visualizações por mês</span></div><div><strong>1.000+</strong><span>entrevistas</span></div><div><strong>10 mil+</strong><span>horas de transmissão</span></div></div></section>`;
+  }
+
   function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   }
@@ -191,7 +209,7 @@
     if (doc.getElementById('vn-contract-styles')) return;
     const style = doc.createElement('style');
     style.id = 'vn-contract-styles';
-    style.textContent = `.vn-contract-section{padding:72px 20px;background:#06162b;color:#fff}.vn-company-section{background:#eef4f9;color:#071526}.vn-contract-wrap{width:min(1180px,100%);margin:auto}.vn-contract-eyebrow{font-weight:900;letter-spacing:.13em;color:#d4af37}.vn-contract-section h2{font-size:clamp(30px,4vw,52px);line-height:1.05;margin:.25em 0}.vn-contract-section p{max-width:850px;line-height:1.6}.vn-contract-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.vn-contract-card,.vn-company-card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;text-decoration:none;background:#0c2a49;color:#fff;border:1px solid rgba(212,175,55,.45);box-shadow:0 15px 40px rgba(0,0,0,.12)}.vn-contract-card strong,.vn-company-card strong{font-size:19px}.vn-contract-card span:last-child,.vn-contract-kicker,.vn-company-card small{color:#f4ce4b;font-weight:800}.vn-company-card{background:#fff;color:#071526;border-color:#cad7e5}.vn-company-card small{color:#8b6500}.vn-company-search{display:flex;gap:12px;align-items:end;max-width:780px;margin-top:24px}.vn-company-search label{display:grid;gap:8px;flex:1;font-weight:800}.vn-company-search input{width:100%;padding:15px 16px;border:1px solid #aab8c8;border-radius:10px;font:inherit}.vn-company-search button,.vn-search-more{display:inline-flex;padding:15px 20px;border:0;border-radius:10px;background:#d4af37;color:#071526;font-weight:900;text-decoration:none;cursor:pointer}.vn-search-more{margin-top:22px}.vn-company-status{min-height:1.5em;font-weight:700}@media(max-width:820px){.vn-contract-grid{grid-template-columns:1fr}.vn-company-search{align-items:stretch;flex-direction:column}}`;
+    style.textContent = `.vn-energy-pattern{padding:28px 20px 42px;background:linear-gradient(135deg,#06131d,#0a2632);color:#fff}.vn-energy-shell{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center}.vn-energy-copy{padding:16px 0}.vn-energy-kicker{display:inline-block;color:#68ff3d;font-weight:900;letter-spacing:.13em;font-size:12px;margin-bottom:12px}.vn-energy-copy h1{font-size:clamp(36px,5vw,66px);line-height:1.02;margin:0 0 14px}.vn-energy-copy p{font-size:18px;line-height:1.55;color:#d7e0e8;max-width:620px}.vn-energy-hero{overflow:hidden;border-radius:18px;border:1px solid rgba(104,255,61,.28);background:#07131d;box-shadow:0 20px 50px rgba(0,0,0,.28)}.vn-energy-hero img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .7s ease}.vn-energy-hero:hover img{transform:scale(1.04)}.vn-energy-metrics{width:min(1180px,100%);margin:22px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.vn-energy-metrics>div{padding:20px;border-radius:16px;background:linear-gradient(135deg,#0d1918,#123027);border:1px solid #2f6f45}.vn-energy-metrics strong{display:block;font-size:30px;color:#68ff3d}.vn-energy-metrics span{display:block;margin-top:6px;font-weight:700;color:#fff}.vn-contract-section{padding:72px 20px;background:#06162b;color:#fff}.vn-company-section{background:#eef4f9;color:#071526}.vn-contract-wrap{width:min(1180px,100%);margin:auto}.vn-contract-eyebrow{font-weight:900;letter-spacing:.13em;color:#d4af37}.vn-contract-section h2{font-size:clamp(30px,4vw,52px);line-height:1.05;margin:.25em 0}.vn-contract-section p{max-width:850px;line-height:1.6}.vn-contract-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.vn-contract-card,.vn-company-card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;text-decoration:none;background:#0c2a49;color:#fff;border:1px solid rgba(212,175,55,.45);box-shadow:0 15px 40px rgba(0,0,0,.12)}.vn-contract-card strong,.vn-company-card strong{font-size:19px}.vn-contract-card span:last-child,.vn-contract-kicker,.vn-company-card small{color:#f4ce4b;font-weight:800}.vn-company-card{background:#fff;color:#071526;border-color:#cad7e5}.vn-company-card small{color:#8b6500}.vn-company-search{display:flex;gap:12px;align-items:end;max-width:780px;margin-top:24px}.vn-company-search label{display:grid;gap:8px;flex:1;font-weight:800}.vn-company-search input{width:100%;padding:15px 16px;border:1px solid #aab8c8;border-radius:10px;font:inherit}.vn-company-search button,.vn-search-more{display:inline-flex;padding:15px 20px;border:0;border-radius:10px;background:#d4af37;color:#071526;font-weight:900;text-decoration:none;cursor:pointer}.vn-search-more{margin-top:22px}.vn-company-status{min-height:1.5em;font-weight:700}@media(max-width:820px){.vn-energy-shell{grid-template-columns:1fr}.vn-energy-metrics{grid-template-columns:repeat(2,1fr)}.vn-contract-grid{grid-template-columns:1fr}.vn-company-search{align-items:stretch;flex-direction:column}}@media(max-width:520px){.vn-energy-metrics{grid-template-columns:1fr}}`;
     doc.head.appendChild(style);
   }
 
@@ -199,6 +217,14 @@
     const config = PORTALS[location.pathname.replace(/index\.html$/, '')];
     if (!config || !doc.body) return;
     installStyles(doc);
+    if (location.pathname.replace(/index\.html$/, '') !== '/energia/' && !doc.querySelector('.vn-energy-pattern')) {
+      const path = location.pathname.replace(/index\.html$/, '');
+      const header = doc.querySelector('header');
+      const template = doc.createElement('template');
+      template.innerHTML = buildEnergyPattern(config, path).trim();
+      const node = template.content.firstElementChild;
+      if (header && header.parentNode) header.parentNode.insertBefore(node, header.nextSibling); else doc.body.insertBefore(node, doc.body.firstChild);
+    }
     const footer = doc.querySelector('footer');
     const anchor = footer || null;
     const mount = html => {
