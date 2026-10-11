@@ -184,7 +184,12 @@
 
   function buildEnergyPattern(config, path) {
     const img = HEROES[path] || '/logo-voznews-oficial.png';
-    return `<section class="vn-energy-pattern" aria-label="${escapeHtml(config.topic)}"><div class="vn-energy-shell"><div class="vn-energy-copy"><span class="vn-energy-kicker">VOZ NEWS • VERTICAL ESPECIALIZADA</span><h1>${escapeHtml(config.topic)}</h1><p>Informação, entrevistas, empresas, oportunidades e conteúdo estratégico com o padrão visual da VOZ NEWS Energia.</p></div><div class="vn-energy-hero"><img src="${escapeHtml(img)}" alt="${escapeHtml(config.topic)}"></div></div><div class="vn-energy-metrics"><div><strong>260 mil+</strong><span>seguidores no Instagram</span></div><div><strong>200 milhões+</strong><span>visualizações por mês</span></div><div><strong>1.000+</strong><span>negócios e entrevistas</span></div><div><strong>10 mil+</strong><span>horas de transmissão</span></div></div></section>`;
+    return `<section class="vn-energy-pattern" aria-label="${escapeHtml(config.topic)}"><div class="vn-energy-shell"><div class="vn-energy-copy"><span class="vn-energy-kicker">VOZ NEWS • VERTICAL ESPECIALIZADA</span><h1>${escapeHtml(config.topic)}</h1><p>Informação, entrevistas, empresas, oportunidades e conteúdo estratégico com o padrão visual da VOZ NEWS Energia.</p></div><div class="vn-energy-hero"><img src="${escapeHtml(img)}" alt="${escapeHtml(config.topic)}"></div></div><div class="vn-energy-metrics">
+  <div><strong class="vn-counter" data-target="260" data-format="mil">0</strong><span>seguidores no Instagram</span></div>
+  <div><strong class="vn-counter" data-target="200" data-format="milhoes">0</strong><span>visualizações por mês</span></div>
+  <div><strong class="vn-counter" data-target="1000" data-format="numero">0</strong><span>negócios e entrevistas</span></div>
+  <div><strong class="vn-counter" data-target="10" data-format="mil">0</strong><span>horas de transmissão</span></div>
+</div></section>`;
   }
 
   function escapeHtml(value) {
@@ -209,7 +214,7 @@
     if (doc.getElementById('vn-contract-styles')) return;
     const style = doc.createElement('style');
     style.id = 'vn-contract-styles';
-    style.textContent = `.vn-energy-pattern{padding:28px 20px 42px;background:linear-gradient(135deg,#06131d,#0a2632);color:#fff}.vn-energy-shell{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center}.vn-energy-copy{padding:16px 0}.vn-energy-kicker{display:inline-block;color:#68ff3d;font-weight:900;letter-spacing:.13em;font-size:12px;margin-bottom:12px}.vn-energy-copy h1{font-size:clamp(36px,5vw,66px);line-height:1.02;margin:0 0 14px}.vn-energy-copy p{font-size:18px;line-height:1.55;color:#d7e0e8;max-width:620px}.vn-energy-hero{overflow:hidden;border-radius:18px;border:1px solid rgba(104,255,61,.28);background:#07131d;box-shadow:0 20px 50px rgba(0,0,0,.28)}.vn-energy-hero img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .7s ease}.vn-energy-hero:hover img{transform:scale(1.04)}.vn-energy-metrics{width:min(1180px,100%);margin:22px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.vn-energy-metrics>div{padding:20px;border-radius:16px;background:linear-gradient(135deg,#0d1918,#123027);border:1px solid #2f6f45}.vn-energy-metrics strong{display:block;font-size:30px;color:#68ff3d}.vn-energy-metrics span{display:block;margin-top:6px;font-weight:700;color:#fff}.vn-contract-section{padding:72px 20px;background:#06162b;color:#fff}.vn-company-section{background:#eef4f9;color:#071526}.vn-contract-wrap{width:min(1180px,100%);margin:auto}.vn-contract-eyebrow{font-weight:900;letter-spacing:.13em;color:#d4af37}.vn-contract-section h2{font-size:clamp(30px,4vw,52px);line-height:1.05;margin:.25em 0}.vn-contract-section p{max-width:850px;line-height:1.6}.vn-contract-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.vn-contract-card,.vn-company-card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;text-decoration:none;background:#0c2a49;color:#fff;border:1px solid rgba(212,175,55,.45);box-shadow:0 15px 40px rgba(0,0,0,.12)}.vn-contract-card strong,.vn-company-card strong{font-size:19px}.vn-contract-card span:last-child,.vn-contract-kicker,.vn-company-card small{color:#f4ce4b;font-weight:800}.vn-company-card{background:#fff;color:#071526;border-color:#cad7e5}.vn-company-card small{color:#8b6500}.vn-company-search{display:flex;gap:12px;align-items:end;max-width:780px;margin-top:24px}.vn-company-search label{display:grid;gap:8px;flex:1;font-weight:800}.vn-company-search input{width:100%;padding:15px 16px;border:1px solid #aab8c8;border-radius:10px;font:inherit}.vn-company-search button,.vn-search-more{display:inline-flex;padding:15px 20px;border:0;border-radius:10px;background:#d4af37;color:#071526;font-weight:900;text-decoration:none;cursor:pointer}.vn-search-more{margin-top:22px}.vn-company-status{min-height:1.5em;font-weight:700}@media(max-width:820px){.vn-energy-shell{grid-template-columns:1fr}.vn-energy-metrics{grid-template-columns:repeat(2,1fr)}.vn-contract-grid{grid-template-columns:1fr}.vn-company-search{align-items:stretch;flex-direction:column}}@media(max-width:520px){.vn-energy-metrics{grid-template-columns:1fr}}`;
+    style.textContent = `.vn-energy-pattern{padding:28px 20px 42px;background:linear-gradient(135deg,#06131d,#0a2632);color:#fff}.vn-energy-shell{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center}.vn-energy-copy{padding:16px 0}.vn-energy-kicker{display:inline-block;color:#68ff3d;font-weight:900;letter-spacing:.13em;font-size:12px;margin-bottom:12px}.vn-energy-copy h1{font-size:clamp(36px,5vw,66px);line-height:1.02;margin:0 0 14px}.vn-energy-copy p{font-size:18px;line-height:1.55;color:#d7e0e8;max-width:620px}.vn-energy-hero{overflow:hidden;border-radius:18px;border:1px solid rgba(104,255,61,.28);background:#07131d;box-shadow:0 20px 50px rgba(0,0,0,.28)}.vn-energy-hero img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .7s ease}.vn-energy-hero:hover img{transform:scale(1.04)}.vn-energy-metrics{width:min(1180px,100%);margin:22px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.vn-energy-metrics>div{position:relative;overflow:hidden;padding:20px;border-radius:16px;background:linear-gradient(135deg,#0d1918,#123027);border:1px solid #2f6f45;box-shadow:0 0 14px rgba(104,255,61,.16),0 0 28px rgba(104,255,61,.09),inset 0 0 16px rgba(104,255,61,.035);animation:vnMetricGlow 2.4s ease-in-out infinite alternate}.vn-energy-metrics>div:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 0%,rgba(255,255,255,.02) 35%,rgba(104,255,61,.12) 50%,rgba(255,255,255,.02) 65%,transparent 100%);transform:translateX(-130%);animation:vnMetricSweep 4s linear infinite;pointer-events:none}.vn-energy-metrics strong{position:relative;z-index:1;display:block;font-size:30px;color:#68ff3d;text-shadow:0 0 6px rgba(104,255,61,.55),0 0 14px rgba(104,255,61,.35),0 0 28px rgba(104,255,61,.18)}.vn-energy-metrics span{position:relative;z-index:1;display:block;margin-top:6px;font-weight:700;color:#fff}@keyframes vnMetricGlow{from{box-shadow:0 0 10px rgba(104,255,61,.12),0 0 20px rgba(104,255,61,.08),inset 0 0 12px rgba(104,255,61,.025)}to{box-shadow:0 0 18px rgba(104,255,61,.28),0 0 38px rgba(104,255,61,.16),inset 0 0 18px rgba(104,255,61,.06)}}@keyframes vnMetricSweep{0%{transform:translateX(-130%)}100%{transform:translateX(140%)}}.vn-contract-section{padding:72px 20px;background:#06162b;color:#fff}.vn-company-section{background:#eef4f9;color:#071526}.vn-contract-wrap{width:min(1180px,100%);margin:auto}.vn-contract-eyebrow{font-weight:900;letter-spacing:.13em;color:#d4af37}.vn-contract-section h2{font-size:clamp(30px,4vw,52px);line-height:1.05;margin:.25em 0}.vn-contract-section p{max-width:850px;line-height:1.6}.vn-contract-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.vn-contract-card,.vn-company-card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;text-decoration:none;background:#0c2a49;color:#fff;border:1px solid rgba(212,175,55,.45);box-shadow:0 15px 40px rgba(0,0,0,.12)}.vn-contract-card strong,.vn-company-card strong{font-size:19px}.vn-contract-card span:last-child,.vn-contract-kicker,.vn-company-card small{color:#f4ce4b;font-weight:800}.vn-company-card{background:#fff;color:#071526;border-color:#cad7e5}.vn-company-card small{color:#8b6500}.vn-company-search{display:flex;gap:12px;align-items:end;max-width:780px;margin-top:24px}.vn-company-search label{display:grid;gap:8px;flex:1;font-weight:800}.vn-company-search input{width:100%;padding:15px 16px;border:1px solid #aab8c8;border-radius:10px;font:inherit}.vn-company-search button,.vn-search-more{display:inline-flex;padding:15px 20px;border:0;border-radius:10px;background:#d4af37;color:#071526;font-weight:900;text-decoration:none;cursor:pointer}.vn-search-more{margin-top:22px}.vn-company-status{min-height:1.5em;font-weight:700}@media(max-width:820px){.vn-energy-shell{grid-template-columns:1fr}.vn-energy-metrics{grid-template-columns:repeat(2,1fr)}.vn-contract-grid{grid-template-columns:1fr}.vn-company-search{align-items:stretch;flex-direction:column}}@media(max-width:520px){.vn-energy-metrics{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){.vn-energy-metrics>div,.vn-energy-metrics>div:before{animation:none!important}}`;
     doc.head.appendChild(style);
   }
 
@@ -227,6 +232,41 @@
       const node = template.content.firstElementChild;
       const main=doc.querySelector('main');
       if(main) main.insertBefore(node, main.firstChild); else if (header && header.parentNode) header.parentNode.insertBefore(node, header.nextSibling); else doc.body.insertBefore(node, doc.body.firstChild);
+    }
+    const counters = [...doc.querySelectorAll('.vn-counter')];
+    if (counters.length) {
+      const formatValue = (value, format) => {
+        if (format === 'mil') return value.toLocaleString('pt-BR') + ' mil+';
+        if (format === 'milhoes') return value.toLocaleString('pt-BR') + ' milhões+';
+        return value.toLocaleString('pt-BR') + '+';
+      };
+      const animateCounter = el => {
+        if (el.dataset.animated === '1') return;
+        el.dataset.animated = '1';
+        const target = Number(el.dataset.target || 0);
+        const duration = 2200;
+        const start = performance.now();
+        const step = now => {
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const value = Math.round(target * eased);
+          el.textContent = formatValue(value, el.dataset.format);
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = formatValue(target, el.dataset.format);
+        };
+        requestAnimationFrame(step);
+      };
+      if ('IntersectionObserver' in root) {
+        const observer = new root.IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .35 });
+        counters.forEach(el => observer.observe(el));
+      } else counters.forEach(animateCounter);
     }
     const footer = doc.querySelector('footer');
     const anchor = footer || null;
