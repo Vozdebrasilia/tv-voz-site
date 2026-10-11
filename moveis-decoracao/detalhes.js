@@ -96,6 +96,7 @@
     },
     'casacor': {
       tipo:'Feira & evento', titulo:'CASACOR Brasília 2026', subtitulo:'Arquitetura, interiores, paisagismo e design',
+      foto:'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Mostra de arquitetura e interiores',
       corpo:[
         'A 34ª edição da CASACOR Brasília acontece na Casa do Candango, na Asa Sul, reunindo ambientes de arquitetura, design de interiores, arte e paisagismo.',
         'A temporada de 2026 vai de 12 de agosto a 12 de outubro e reforça a conexão entre Brasília, Cerrado, sustentabilidade, acessibilidade e novas formas de morar.'
@@ -105,6 +106,7 @@
     },
     'movelsul': {
       tipo:'Feira & evento', titulo:'Movelsul Brasil', subtitulo:'25ª edição realizada em Bento Gonçalves (RS)',
+      foto:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Feira e exposição de móveis',
       corpo:[
         'A Movelsul Brasil é uma das principais plataformas de negócios da cadeia moveleira latino-americana. A 25ª edição foi realizada de 17 a 20 de agosto de 2026 no Parque de Eventos de Bento Gonçalves.',
         'A edição reuniu 300 marcas expositoras de mais de 80 cidades e recebeu 17.238 visitantes, com participação internacional e forte agenda de negócios e exportação.'
@@ -114,28 +116,39 @@
     },
     'materia-corporativos': {
       tipo:'Matéria', titulo:'Escritórios mudam e mobiliário acompanha novas formas de trabalhar', subtitulo:'Móveis corporativos',
-      corpo:['Ambientes de trabalho mais flexíveis exigem mobiliário capaz de acompanhar diferentes tarefas, perfis e tempos de permanência. Ergonomia, acústica, mobilidade e conforto deixam de ser detalhes e passam a integrar o planejamento do espaço.','A tendência é combinar mesas, estações compartilhadas, salas de colaboração e áreas de concentração com soluções modulares. O resultado é um escritório que responde melhor às mudanças de equipe e de rotina.','Para fornecedores e arquitetos, esse movimento amplia o valor da consultoria: a escolha do móvel passa a ser parte de uma estratégia de produtividade, saúde ocupacional e experiência do usuário.']
+      foto:'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Ambiente de escritório contemporâneo',
+      corpo:['Ambientes de trabalho mais flexíveis exigem mobiliário capaz de acompanhar diferentes tarefas, perfis e tempos de permanência. Ergonomia, acústica, mobilidade e conforto deixam de ser detalhes e passam a integrar o planejamento do espaço.','A tendência é combinar mesas, estações compartilhadas, salas de colaboração e áreas de concentração com soluções modulares. O resultado é um escritório que responde melhor às mudanças de equipe e de rotina.','Para fornecedores e arquitetos, esse movimento amplia o valor da consultoria: a escolha do móvel passa a ser parte de uma estratégia de produtividade, saúde ocupacional e experiência do usuário.'],
+      links:[fonte('https://coreto.com.br/','CORETO — referência do setor'),fonte('https://www.youtube.com/watch?v=b5t8TEEJdiU','Entrevista com Fernando Rabelo')]
     },
     'materia-planejados': {
       tipo:'Matéria', titulo:'Planejados combinam aproveitamento de espaço e personalização', subtitulo:'Móveis planejados',
-      corpo:['Os móveis planejados avançam com soluções milimétricas para cozinhas, dormitórios, áreas sociais e home offices, integrando armazenamento, circulação e estética.','Ferragens, iluminação, automação e variedade de acabamentos aumentam a possibilidade de personalização e tornam o projeto mais aderente ao estilo de vida de cada família.','O diferencial está menos na quantidade de peças e mais na capacidade de resolver o espaço com precisão, acabamento e durabilidade.']
+      foto:'https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Cozinha planejada',
+      corpo:['Os móveis planejados avançam com soluções milimétricas para cozinhas, dormitórios, áreas sociais e home offices, integrando armazenamento, circulação e estética.','Ferragens, iluminação, automação e variedade de acabamentos aumentam a possibilidade de personalização e tornam o projeto mais aderente ao estilo de vida de cada família.','O diferencial está menos na quantidade de peças e mais na capacidade de resolver o espaço com precisão, acabamento e durabilidade.'],
+      links:[fonte('https://www.bontempo.com.br/','Bontempo — site oficial')]
     },
     'materia-casacor': {
       tipo:'Matéria', titulo:'Brasília mantém protagonismo em arquitetura e interiores', subtitulo:'CASACOR Brasília',
+      foto:'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Ambiente de arquitetura e interiores',
       corpo:['A capital federal mantém uma cena relevante de arquitetura e interiores, apoiada por profissionais, mostras, fornecedores e uma identidade urbana singular.','A CASACOR Brasília 2026, realizada na Casa do Candango, funciona como vitrine para novas leituras do morar, do design e da paisagem, aproximando criação autoral e mercado.','A mostra também amplia a visibilidade de marcas e profissionais locais, reforçando a conexão de Brasília com tendências nacionais.'],
       links:[fonte('https://casacor.abril.com.br/pt-BR/mostras/brasilia','CASACOR Brasília')]
     },
     'materia-industria': {
       tipo:'Matéria', titulo:'Cadeia moveleira reúne indústria, comércio, design e exportação', subtitulo:'Indústria moveleira',
-      corpo:['O setor de móveis conecta fabricantes, fornecedores de madeira e componentes, tecnologia, logística, varejo, arquitetos e designers. Essa diversidade exige articulação entre empresas e entidades.','Competitividade depende de produtividade, qualificação, inovação, sustentabilidade e acesso a mercados. Iniciativas de internacionalização também ajudam a posicionar o mobiliário brasileiro no exterior.','Entidades como ABIMÓVEL, SINDIMAM-DF, FIBRA, ABIMAD e ApexBrasil aparecem em diferentes etapas desse ecossistema.']
+      foto:'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Produção e indústria moveleira',
+      corpo:['O setor de móveis conecta fabricantes, fornecedores de madeira e componentes, tecnologia, logística, varejo, arquitetos e designers. Essa diversidade exige articulação entre empresas e entidades.','Competitividade depende de produtividade, qualificação, inovação, sustentabilidade e acesso a mercados. Iniciativas de internacionalização também ajudam a posicionar o mobiliário brasileiro no exterior.','Entidades como ABIMÓVEL, SINDIMAM-DF, FIBRA, ABIMAD e ApexBrasil aparecem em diferentes etapas desse ecossistema.'],
+      links:[fonte('https://abimovel.com/','ABIMÓVEL — setor moveleiro'),fonte('https://www.apexbrasil.com.br/','ApexBrasil — internacionalização')]
     },
     'materia-sustentabilidade': {
       tipo:'Matéria', titulo:'Madeira, rastreabilidade e circularidade ganham espaço no design', subtitulo:'Sustentabilidade',
-      corpo:['A origem dos materiais, a eficiência produtiva e a gestão de resíduos ganharam relevância na indústria e na especificação de interiores.','Madeira certificada, reaproveitamento, redução de perdas, durabilidade e possibilidade de manutenção são critérios que ajudam a aproximar design e responsabilidade ambiental.','Para o consumidor, transparência sobre materiais e processos torna-se parte do valor percebido do produto.']
+      foto:'https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Mobiliário em madeira',
+      corpo:['A origem dos materiais, a eficiência produtiva e a gestão de resíduos ganharam relevância na indústria e na especificação de interiores.','Madeira certificada, reaproveitamento, redução de perdas, durabilidade e possibilidade de manutenção são critérios que ajudam a aproximar design e responsabilidade ambiental.','Para o consumidor, transparência sobre materiais e processos torna-se parte do valor percebido do produto.'],
+      links:[fonte('https://abimovel.com/','ABIMÓVEL — indústria e sustentabilidade')]
     },
     'materia-design': {
       tipo:'Matéria', titulo:'Autoria e identidade brasileira valorizam produtos e ambientes', subtitulo:'Design brasileiro',
-      corpo:['O design brasileiro combina repertórios regionais, madeira, fibras, cerâmica, metal e técnicas artesanais com processos industriais contemporâneos.','A autoria agrega narrativa e diferenciação aos produtos, criando oportunidades para marcas que desejam competir por qualidade, identidade e valor agregado.','Quando indústria, artesanato e arquitetura dialogam, o resultado amplia a presença da economia criativa dentro da cadeia de móveis e decoração.']
+      foto:'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=86', fotoAlt:'Design contemporâneo e economia criativa',
+      corpo:['O design brasileiro combina repertórios regionais, madeira, fibras, cerâmica, metal e técnicas artesanais com processos industriais contemporâneos.','A autoria agrega narrativa e diferenciação aos produtos, criando oportunidades para marcas que desejam competir por qualidade, identidade e valor agregado.','Quando indústria, artesanato e arquitetura dialogam, o resultado amplia a presença da economia criativa dentro da cadeia de móveis e decoração.'],
+      links:[fonte('https://abimovel.com/','ABIMÓVEL — design e mobiliário'),fonte('https://www.apexbrasil.com.br/','ApexBrasil — promoção internacional')]
     }
   };
 
