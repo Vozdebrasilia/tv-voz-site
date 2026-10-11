@@ -184,7 +184,7 @@
 
   function buildEnergyPattern(config, path) {
     const img = HEROES[path] || '/logo-voznews-oficial.png';
-    return `<section class="vn-energy-pattern" aria-label="${escapeHtml(config.topic)}"><div class="vn-energy-shell"><div class="vn-energy-copy"><span class="vn-energy-kicker">VOZ NEWS • VERTICAL ESPECIALIZADA</span><h1>${escapeHtml(config.topic)}</h1><p>Informação, entrevistas, empresas, oportunidades e conteúdo estratégico com o padrão visual da VOZ NEWS Energia.</p></div><div class="vn-energy-hero"><img src="${escapeHtml(img)}" alt="${escapeHtml(config.topic)}"></div></div><div class="vn-energy-metrics"><div><strong>260 mil+</strong><span>seguidores no Instagram</span></div><div><strong>200 milhões+</strong><span>visualizações por mês</span></div><div><strong>1.000+</strong><span>entrevistas</span></div><div><strong>10 mil+</strong><span>horas de transmissão</span></div></div></section>`;
+    return `<section class="vn-energy-pattern" aria-label="${escapeHtml(config.topic)}"><div class="vn-energy-shell"><div class="vn-energy-copy"><span class="vn-energy-kicker">VOZ NEWS • VERTICAL ESPECIALIZADA</span><h1>${escapeHtml(config.topic)}</h1><p>Informação, entrevistas, empresas, oportunidades e conteúdo estratégico com o padrão visual da VOZ NEWS Energia.</p></div><div class="vn-energy-hero"><img src="${escapeHtml(img)}" alt="${escapeHtml(config.topic)}"></div></div><div class="vn-energy-metrics"><div><strong>260 mil+</strong><span>seguidores no Instagram</span></div><div><strong>200 milhões+</strong><span>visualizações por mês</span></div><div><strong>1.000+</strong><span>negócios e entrevistas</span></div><div><strong>10 mil+</strong><span>horas de transmissão</span></div></div></section>`;
   }
 
   function escapeHtml(value) {
