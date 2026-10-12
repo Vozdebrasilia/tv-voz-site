@@ -68,7 +68,7 @@
   // Ordem editorial aprovada: Energia e Casa nas duas primeiras posições.
   // Mantém os oito demais módulos e seus conteúdos sem alterações.
   const ordem=[grupos[2],grupos[6],grupos[0],grupos[1],grupos[3],grupos[4],grupos[5],grupos[7],grupos[8],grupos[9]];
-  ordem[0].image='/energia/hero-final.webp';
+  ordem[0].image='/energia/hero-energia-hq.jpg';
   ordem[1].title='CASA, MÓVEIS E DECORAÇÃO';
   ordem[1].subtitle='Design, Móveis, Ambientes, Decoração e Soluções para o Lar';
   ordem[1].image='/assets-v23/top10-hq/top-07.webp';
@@ -89,7 +89,7 @@
       .top10-card:hover{transform:translateY(-7px);box-shadow:0 34px 90px rgba(0,0,0,.48),0 0 28px rgba(212,175,55,.16);border-color:rgba(255,215,0,.82)}
       .top10-visual{display:block;position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background-color:#e9f4ff}
       .top10-visual:before{content:"";position:absolute;inset:-4%;background-image:var(--top10-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:brightness(1.04) saturate(1.04) contrast(1.01);will-change:transform;animation:top10KenBurns 12s ease-in-out infinite alternate}
-      .top10-card:nth-child(2) .top10-visual:before{background-position:center 43%;transform-origin:center center}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
+      .top10-card:nth-child(1) .top10-visual:before{background-position:center 50%}\n      .top10-card:nth-child(2) .top10-visual:before{background-position:center 43%;transform-origin:center center}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
       @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
       .top10-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
@@ -113,7 +113,7 @@
       .top10-link{display:block;padding:18px 19px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.23);font-weight:900;line-height:1.25;transition:.18s ease}
       .top10-link:hover{background:rgba(212,175,55,.15);border-color:rgba(255,215,0,.6);transform:translateY(-2px)}
       .top10-link span{display:block;margin-top:7px;color:#ffd74a;font-size:13px}
-      @media(max-width:860px){.top10-grid,.top10-links{grid-template-columns:1fr}.top10-dialog{padding:24px}}
+      @media(max-width:860px){.top10-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.top10-links{grid-template-columns:1fr}.top10-dialog{padding:24px}.top10-card{border-radius:19px}.top10-visual{aspect-ratio:4/3}.top10-body{padding:13px 11px 16px}.top10-meta{gap:5px;flex-wrap:wrap;margin-bottom:9px}.top10-rank{white-space:nowrap;font-size:12px;padding:8px 10px;letter-spacing:0}.top10-count{font-size:11px;white-space:nowrap}.top10-body h3{font-size:clamp(16px,4vw,24px);line-height:1.08;overflow-wrap:break-word}.top10-body p{font-size:clamp(12px,3.15vw,16px)!important;line-height:1.35!important}.top10-open{font-size:clamp(12px,3.1vw,16px);white-space:normal}}
       @media(prefers-reduced-motion:reduce){.top10-card,.top10-link{transition:none}.top10-card:hover,.top10-link:hover{transform:none}.top10-visual:before{animation-duration:28s}}
     `;
     document.head.appendChild(style);
@@ -167,7 +167,7 @@
     if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade.';
 
     grid.className='top10-grid';
-    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20261012-approved-top01-top02')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
+    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20261012-mobile-image-fix')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
