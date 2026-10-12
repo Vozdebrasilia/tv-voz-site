@@ -68,10 +68,10 @@
   // Ordem editorial aprovada: Energia e Casa nas duas primeiras posições.
   // Mantém os oito demais módulos e seus conteúdos sem alterações.
   const ordem=[grupos[2],grupos[6],grupos[0],grupos[1],grupos[3],grupos[4],grupos[5],grupos[7],grupos[8],grupos[9]];
-  ordem[0].image='/assets-v23/portal-energia.svg';
+  ordem[0].image='/assets-v23/top10-hq/top-03.webp';
   ordem[1].title='CASA, MÓVEIS E DECORAÇÃO';
   ordem[1].subtitle='Design, Móveis, Ambientes, Decoração e Soluções para o Lar';
-  ordem[1].image='/assets-v23/portal-casa.svg';
+  ordem[1].image='/assets-v23/top10-hq/top-07.webp';
   ordem.forEach((grupo,i)=>{grupo.rank='TOP '+String(i+1).padStart(2,'0');});
   grupos.splice(0,grupos.length,...ordem);
 
