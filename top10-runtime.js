@@ -68,7 +68,7 @@
   // Ordem editorial aprovada: Energia e Casa nas duas primeiras posições.
   // Mantém os oito demais módulos e seus conteúdos sem alterações.
   const ordem=[grupos[2],grupos[6],grupos[0],grupos[1],grupos[3],grupos[4],grupos[5],grupos[7],grupos[8],grupos[9]];
-  ordem[0].image='https://commons.wikimedia.org/wiki/Special:FilePath/Itaipu_Dam_Spillway.jpg?width=1200';
+  ordem[0].image='/energia/hero-final.webp';
   ordem[1].title='CASA, MÓVEIS E DECORAÇÃO';
   ordem[1].subtitle='Design, Móveis, Ambientes, Decoração e Soluções para o Lar';
   ordem[1].image='/assets-v23/top10-hq/top-07.webp';
@@ -85,20 +85,20 @@
       #ecossistema .section-head h2{font-size:clamp(38px,5.2vw,72px);letter-spacing:-1.8px}
       #ecossistema .section-head p{max-width:900px;margin-left:auto;margin-right:auto;font-size:20px}
       .top10-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:36px}
-      .top10-card{appearance:none;width:100%;padding:0;text-align:left;color:#fff;background:linear-gradient(145deg,#0b233d,#0d2f50);border:1px solid rgba(212,175,55,.48);border-radius:28px;overflow:hidden;cursor:pointer;box-shadow:0 24px 70px rgba(0,0,0,.34);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;font:inherit}
+      .top10-card{appearance:none;width:100%;display:flex;flex-direction:column;padding:0;text-align:left;color:#fff;background:linear-gradient(145deg,#0b233d,#0d2f50);border:1px solid rgba(212,175,55,.48);border-radius:28px;overflow:hidden;cursor:pointer;box-shadow:0 24px 70px rgba(0,0,0,.34);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;font:inherit}
       .top10-card:hover{transform:translateY(-7px);box-shadow:0 34px 90px rgba(0,0,0,.48),0 0 28px rgba(212,175,55,.16);border-color:rgba(255,215,0,.82)}
-      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background-color:#e9f4ff}
+      .top10-visual{display:block;position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background-color:#e9f4ff}
       .top10-visual:before{content:"";position:absolute;inset:-4%;background-image:var(--top10-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:brightness(1.04) saturate(1.04) contrast(1.01);will-change:transform;animation:top10KenBurns 12s ease-in-out infinite alternate}
-      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
+      .top10-card:nth-child(2) .top10-visual:before{background-position:center 43%;transform-origin:center center}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
       @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
-      .top10-body{padding:22px 24px 26px}
+      .top10-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
       .top10-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}
       .top10-rank{display:inline-flex;padding:8px 13px;border-radius:999px;background:linear-gradient(135deg,#ffe36a,#c89600);color:#071526;font-size:13px;font-weight:1000;letter-spacing:1px}
       .top10-count{font-size:13px;color:#bcd8f4;font-weight:900}
       .top10-body h3{font-size:clamp(24px,2.1vw,34px);line-height:1.04;margin:0 0 12px;color:#fff}
       .top10-body p{font-size:17px!important;line-height:1.45!important;margin:0 0 18px;color:#e9f2fb!important}
-      .top10-open{display:inline-flex;align-items:center;gap:8px;color:#ffd74a;font-weight:1000}
+      .top10-open{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:#ffd74a;font-weight:1000}
       .top10-note{margin-top:28px;padding:20px 22px;border:1px solid rgba(212,175,55,.36);border-radius:22px;background:rgba(255,255,255,.055);color:#dce7f5;line-height:1.5}
       .top10-note strong{color:#ffd74a}
       .top10-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(1,8,16,.82);backdrop-filter:blur(14px)}
@@ -167,7 +167,7 @@
     if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade.';
 
     grid.className='top10-grid';
-    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20260907-hq-motion')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
+    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20261012-approved-top01-top02')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
