@@ -219,6 +219,7 @@
   }
 
   function boot(doc, location) {
+    if (/^\/mobilidade(?:\/|$)/.test(location.pathname)) return;
     const rawPath=location.pathname.replace(/index\.html$/, '');
     const normalizedPath=rawPath.endsWith('/')?rawPath:rawPath+'/';
     const config = PORTALS[normalizedPath];
