@@ -100,7 +100,7 @@
       .top10-visual:before{content:"";position:absolute;inset:-4%;background-image:var(--top10-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:brightness(1.04) saturate(1.04) contrast(1.01);will-change:transform;animation:top10KenBurns 12s ease-in-out infinite alternate}
       .top10-card:nth-child(1) .top10-visual:before{background-position:center 50%}\n      .top10-card:nth-child(2) .top10-visual:before{background-position:center 50%;transform-origin:center center}
       /* Retira o TOP impresso na parte superior das imagens 03/04, sem retirar o selo correto do cartão. */
-      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:145% auto;background-position:center bottom;animation:none;transform:none;filter:brightness(1.03) saturate(1.04)}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
+      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:contain;background-position:center center;animation:none;transform:none;filter:brightness(1.03) saturate(1.04)}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
       @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
       .top10-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
@@ -110,8 +110,8 @@
       @keyframes top10Blink{0%,100%{opacity:1}50%{opacity:.2}}
       @media(prefers-reduced-motion:reduce){.top10-word{animation:none}}
       .top10-count{font-size:13px;color:#bcd8f4;font-weight:900}
-      .top10-body h3{font-size:clamp(24px,2.1vw,34px);line-height:1.04;margin:0 0 12px;color:#fff}
-      .top10-body p{font-size:17px!important;line-height:1.45!important;margin:0 0 18px;color:#e9f2fb!important}
+      .top10-body h3{font-size:clamp(23px,2.1vw,34px);line-height:1.18;margin:0 0 12px;color:#fff;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;display:block;max-height:none}
+      .top10-body p{font-size:17px!important;line-height:1.5!important;margin:0 0 18px;color:#e9f2fb!important;white-space:normal;overflow:visible;text-overflow:clip;display:block;max-height:none}
       .top10-open{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:#ffd74a;font-weight:1000}
       .top10-note{margin-top:28px;padding:20px 22px;border:1px solid rgba(212,175,55,.36);border-radius:22px;background:rgba(255,255,255,.055);color:#dce7f5;line-height:1.5}
       .top10-note strong{color:#ffd74a}
