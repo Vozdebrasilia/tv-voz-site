@@ -96,7 +96,9 @@
       .top10-card:hover{transform:translateY(-7px);box-shadow:0 34px 90px rgba(0,0,0,.48),0 0 28px rgba(212,175,55,.16);border-color:rgba(255,215,0,.82)}
       .top10-visual{display:block;position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background-color:#0c2e49}
       .top10-visual:before{content:"";position:absolute;inset:-4%;background-image:var(--top10-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:brightness(1.04) saturate(1.04) contrast(1.01);will-change:transform;animation:top10KenBurns 12s ease-in-out infinite alternate}
-      .top10-card:nth-child(1) .top10-visual:before{background-position:center 50%}\n      .top10-card:nth-child(2) .top10-visual:before{background-position:center 50%;transform-origin:center center}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
+      .top10-card:nth-child(1) .top10-visual:before{background-position:center 50%}\n      .top10-card:nth-child(2) .top10-visual:before{background-position:center 50%;transform-origin:center center}
+      /* Retira o TOP impresso na parte superior das imagens 03/04, sem retirar o selo correto do cartão. */
+      .top10-card:nth-child(3) .top10-visual:before,.top10-card:nth-child(4) .top10-visual:before{inset:0;background-size:125% auto;background-position:center bottom;animation:none;transform:none}\n      .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
       @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
       .top10-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
