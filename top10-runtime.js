@@ -192,7 +192,7 @@
     if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade.';
 
     grid.className='top10-grid';
-    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20261012-mobile-image-fix')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank"><span class="top10-word">TOP</span>&nbsp;${g.rank.slice(4)}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
+    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}${g.image.includes('?')?'&':'?'}v=20261014-clean-covers')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank"><span class="top10-word">TOP</span>&nbsp;${g.rank.slice(4)}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
