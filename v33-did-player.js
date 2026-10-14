@@ -288,7 +288,7 @@
   if(document.getElementById('voznews-top10-runtime'))return;
   const s=document.createElement('script');
   s.id='voznews-top10-runtime';
-  s.src='/top10-runtime.js?v=20261013-fixed-energy-casa';
+  s.src='/top10-runtime.js?v=20261013-top-blink-01-04';
   s.async=false;
   document.head.appendChild(s);
 })();
