@@ -77,10 +77,19 @@
   ordem[1].image='/assets-v23/casa_banner_final.jpg?v=20261013r';
   ordem[2].title='PODER, JUSTIÇA E CIDADANIA';
   ordem[2].siteHref='/justica-seguranca-cidadania/';
+  ordem[2].image='https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=85';
   ordem[3].title='ECONOMIA, NEGÓCIOS E CONSUMO';
   ordem[3].siteHref='/economia-negocios-consumo/';
+  ordem[3].image='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85';
   ordem[4].title='MOBILIDADE, AVIAÇÃO E TRANSPORTES';
   ordem[4].siteHref='/mobilidade/';
+  // Capas fotográficas limpas: imagens sem números e slogans antigos impressos.
+  ordem[4].image='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=85';
+  ordem[5].image='https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=85';
+  ordem[6].image='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=85';
+  ordem[7].image='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=85';
+  ordem[8].image='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=85';
+  ordem[9].image='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1400&q=85';
   ordem.forEach((grupo,i)=>{grupo.rank='TOP '+String(i+1).padStart(2,'0');});
   grupos.splice(0,grupos.length,...ordem);
 
@@ -99,10 +108,9 @@
       .top10-visual{display:block;position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background-color:#0c2e49}
       .top10-visual:before{content:"";position:absolute;inset:-4%;background-image:var(--top10-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:brightness(1.04) saturate(1.04) contrast(1.01);will-change:transform;animation:top10KenBurns 12s ease-in-out infinite alternate}
       .top10-card:nth-child(1) .top10-visual:before{background-position:center 50%}\n      .top10-card:nth-child(2) .top10-visual:before{background-position:center 50%;transform-origin:center center}
-      /* Retira o TOP impresso na parte superior das imagens 03/04, sem retirar o selo correto do cartão. */
-      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:contain;background-position:center center;animation:none;transform:none;filter:brightness(1.03) saturate(1.04)}\n      /* Capas aprovadas possuem frases impressas na base (01/02) e números antigos no topo (03+). Enquadrar sem expor essas regiões. */
+      /* Quatro primeiras capas com enquadramento uniforme. As duas aprovadas ficam sem faixa inferior de slogans. */
       .top10-card:nth-child(-n+2) .top10-visual:before{inset:0;background-size:145% auto;background-position:center top;animation:none;transform:none}
-      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:145% auto;background-position:center bottom;animation:none;transform:none}
+      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:cover;background-position:center center;animation:none;transform:none}
       .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
       @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
@@ -113,7 +121,7 @@
       @keyframes top10Blink{0%,100%{opacity:1}50%{opacity:.2}}
       @media(prefers-reduced-motion:reduce){.top10-word{animation:none}}
       .top10-count{font-size:13px;color:#bcd8f4;font-weight:900}
-      .top10-body h3{font-size:clamp(23px,2.1vw,34px);line-height:1.18;margin:0 0 12px;color:#fff;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;display:block;max-height:none}
+      .top10-body h3{font-size:clamp(22px,2vw,32px);line-height:1.18;margin:0 0 12px;color:#fff;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;display:block;max-height:none}
       .top10-body p{font-size:17px!important;line-height:1.5!important;margin:0 0 18px;color:#e9f2fb!important;white-space:normal;overflow:visible;text-overflow:clip;display:block;max-height:none}
       .top10-open{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:#ffd74a;font-weight:1000}
       .top10-note{margin-top:28px;padding:20px 22px;border:1px solid rgba(212,175,55,.36);border-radius:22px;background:rgba(255,255,255,.055);color:#dce7f5;line-height:1.5}
