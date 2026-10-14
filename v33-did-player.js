@@ -288,7 +288,7 @@
   if(document.getElementById('voznews-top10-runtime'))return;
   const s=document.createElement('script');
   s.id='voznews-top10-runtime';
-  s.src='/top10-runtime.js?v=20261014-capas-sem-textos-cortados';
+  s.src='/top10-runtime.js?v=20261014-clean-photo-cards';
   s.async=false;
   document.head.appendChild(s);
 })();
