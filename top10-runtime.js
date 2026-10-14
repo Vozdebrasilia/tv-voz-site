@@ -68,10 +68,17 @@
   // Ordem editorial aprovada: Energia e Casa nas duas primeiras posições.
   // Mantém os oito demais módulos e seus conteúdos sem alterações.
   const ordem=[grupos[2],grupos[6],grupos[0],grupos[1],grupos[3],grupos[4],grupos[5],grupos[7],grupos[8],grupos[9]];
+  ordem[0].title='ENERGIA';
+  ordem[0].siteHref='/energia/';
   ordem[0].image='/assets-v23/energia_banner_final.jpg?v=20261013r';
   ordem[1].title='CASA, MÓVEIS E DECORAÇÃO';
+  ordem[1].siteHref='/moveis-decoracao/';
   ordem[1].subtitle='Design, Móveis, Ambientes, Decoração e Soluções para o Lar';
   ordem[1].image='/assets-v23/casa_banner_final.jpg?v=20261013r';
+  ordem[2].title='PODER, JUSTIÇA E CIDADANIA';
+  ordem[2].siteHref='/justica-seguranca-cidadania/';
+  ordem[3].title='ECONOMIA, NEGÓCIOS E CONSUMO';
+  ordem[3].siteHref='/economia-negocios-consumo/';
   ordem.forEach((grupo,i)=>{grupo.rank='TOP '+String(i+1).padStart(2,'0');});
   grupos.splice(0,grupos.length,...ordem);
 
@@ -95,6 +102,9 @@
       .top10-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
       .top10-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}
       .top10-rank{display:inline-flex;padding:8px 13px;border-radius:999px;background:linear-gradient(135deg,#ffe36a,#c89600);color:#071526;font-size:13px;font-weight:1000;letter-spacing:1px}
+      .top10-word{display:inline-block;animation:top10Blink 1.35s ease-in-out infinite}
+      @keyframes top10Blink{0%,100%{opacity:1}50%{opacity:.2}}
+      @media(prefers-reduced-motion:reduce){.top10-word{animation:none}}
       .top10-count{font-size:13px;color:#bcd8f4;font-weight:900}
       .top10-body h3{font-size:clamp(24px,2.1vw,34px);line-height:1.04;margin:0 0 12px;color:#fff}
       .top10-body p{font-size:17px!important;line-height:1.45!important;margin:0 0 18px;color:#e9f2fb!important}
@@ -167,7 +177,7 @@
     if(p)p.innerHTML='<strong>10 grandes verticais.</strong> Um ecossistema completo de informação, negócios e visibilidade.';
 
     grid.className='top10-grid';
-    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20261012-mobile-image-fix')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank">${g.rank}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
+    grid.innerHTML=grupos.map((g,i)=>`<button class="top10-card" type="button" data-top10-index="${i}" aria-label="Abrir ${g.title}"><span class="top10-visual" role="img" aria-label="${g.title}" style="--top10-image:url('${g.image}?v=20261012-mobile-image-fix')"></span><span class="top10-body"><span class="top10-meta"><span class="top10-rank"><span class="top10-word">TOP</span>&nbsp;${g.rank.slice(4)}</span><span class="top10-count">${g.items.length} editorias</span></span><h3>${g.title}</h3><p>${g.subtitle}.</p><span class="top10-open">Explorar módulo →</span></span></button>`).join('');
     grid.querySelectorAll('[data-top10-index]').forEach(btn=>btn.addEventListener('click',()=>abrirGrupo(Number(btn.dataset.top10Index))));
 
     const disclaimer=sec.querySelector('.eco-disclaimer');
