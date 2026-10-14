@@ -288,7 +288,7 @@
   if(document.getElementById('voznews-top10-runtime'))return;
   const s=document.createElement('script');
   s.id='voznews-top10-runtime';
-  s.src='/top10-runtime.js?v=20261014-remove-old-top-images';
+  s.src='/top10-runtime.js?v=20261014-full-titles';
   s.async=false;
   document.head.appendChild(s);
 })();
