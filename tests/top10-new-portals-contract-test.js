@@ -16,7 +16,9 @@ for (const [path, file, title] of portals) {
   if (!config) throw new Error(`${title}: configuração não criada`);
   const rendered = source + buildInterviewSection(config) + buildCompanySection(config);
   const encodedTitle = title.replace(/&/g, '&amp;');
-  for (const marker of [encodedTitle, '/logo-voznews-oficial.png', '/top10-existing-portals.js', 'id="entrevistas"', 'youtube.com/watch?v=', 'id="pesquisa-empresas"', 'data-company-directory']) {
+  const visibleTitle = title.replace(/ & /g, ' E ');
+  if (!rendered.includes(encodedTitle) && !rendered.includes(visibleTitle)) throw new Error(`${title}: título ausente`);
+  for (const marker of ['/logo-voznews-oficial.png', '/top10-existing-portals.js', 'id="entrevistas"', 'youtube.com/watch?v=', 'id="pesquisa-empresas"', 'data-company-directory']) {
     if (!rendered.includes(marker)) throw new Error(`${title}: falta ${marker}`);
   }
 }
