@@ -110,7 +110,7 @@
       .top10-card:nth-child(1) .top10-visual:before{background-position:center 50%}\n      .top10-card:nth-child(2) .top10-visual:before{background-position:center 50%;transform-origin:center center}
       /* Quatro primeiras capas com enquadramento uniforme. As duas aprovadas ficam sem faixa inferior de slogans. */
       .top10-card:nth-child(-n+2) .top10-visual:before{inset:0;background-size:145% auto;background-position:center top;animation:none;transform:none}
-      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:cover;background-position:center center;animation:none;transform:none}
+      .top10-card:nth-child(n+3) .top10-visual:before{inset:0;background-size:cover;background-position:center center;animation:top10KenBurns 15s ease-in-out infinite alternate}
       .top10-visual:after{content:"";position:absolute;inset:auto 0 0;height:13%;background:linear-gradient(180deg,transparent,rgba(3,14,26,.22));pointer-events:none}
       .top10-card:nth-child(even) .top10-visual:before{animation-direction:alternate-reverse;animation-duration:14s}
       @keyframes top10KenBurns{0%{transform:scale(1.01) translate3d(-.8%,0,0)}100%{transform:scale(1.09) translate3d(.8%,-.6%,0)}}
