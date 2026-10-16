@@ -288,7 +288,7 @@
   if(document.getElementById('voznews-top10-runtime'))return;
   const s=document.createElement('script');
   s.id='voznews-top10-runtime';
-  s.src='/top10-runtime.js?v=20261014-clean-photo-cards';
+  s.src='/top10-runtime.js?v=20261015-humanas-verticais';
   s.async=false;
   document.head.appendChild(s);
 })();
