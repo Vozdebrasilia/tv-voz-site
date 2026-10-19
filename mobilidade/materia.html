@@ -21,4 +21,4 @@
  const theme=store.themes[a.theme];const related=(theme&&theme.articles||[]).filter(x=>x!==id).slice(0,3).map(x=>store.articles[x]).filter(Boolean);document.getElementById('related').innerHTML=related.map(r=>'<a class="card" href="/mobilidade/materia.html?id='+encodeURIComponent(r.id)+'"><img src="'+esc(r.image)+'" alt="'+esc(r.title)+'"><div><small>'+esc(r.kicker)+'</small><h3>'+esc(r.title)+'</h3></div></a>').join('');if(!related.length)document.getElementById('related-section').style.display='none';
 })();
 </script>
-</body></html>
+<script defer src="/detran-2026.js"></script></body></html>
