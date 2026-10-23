@@ -30,7 +30,7 @@ async function enrichItem(item){
   const validImage=(u='')=>{
     const s=String(u||'').trim();
     if(!/^https?:\/\//i.test(s))return '';
-    if(/news\.google\.|gstatic\.com\/.*news|google.*news.*logo|googlenews/i.test(s))return '';
+    if(/(?:google\.|gstatic\.com|googleusercontent\.com|googlenews)/i.test(s))return '';
     return s;
   };
   const rssImage=validImage(item.rssImage);
