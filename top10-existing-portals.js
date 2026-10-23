@@ -185,10 +185,10 @@
   function buildEnergyPattern(config, path) {
     const img = HEROES[path] || '/logo-voznews-oficial.png';
     return `<section class="vn-energy-pattern" aria-label="${escapeHtml(config.topic)}"><div class="vn-energy-shell"><div class="vn-energy-copy"><span class="vn-energy-kicker">VOZ NEWS • VERTICAL ESPECIALIZADA</span><h1>${escapeHtml(config.topic)}</h1><p>Informação, entrevistas, empresas, oportunidades e conteúdo estratégico com o padrão visual da VOZ NEWS Energia.</p></div><div class="vn-energy-hero"><img src="${escapeHtml(img)}" alt="${escapeHtml(config.topic)}"></div></div><div class="vn-energy-metrics">
-  <div><strong class="vn-counter" data-target="260" data-format="mil">0</strong><span>seguidores no Instagram</span></div>
-  <div><strong class="vn-counter" data-target="200" data-format="milhoes">0</strong><span>visualizações por mês</span></div>
-  <div><strong class="vn-counter" data-target="1000" data-format="numero">0</strong><span>negócios e entrevistas</span></div>
-  <div><strong class="vn-counter" data-target="10" data-format="mil">0</strong><span>horas de transmissão</span></div>
+  <div><strong class="vn-counter" data-target="260" data-format="mil">260 mil+</strong><span>seguidores no Instagram</span></div>
+  <div><strong class="vn-counter" data-target="200" data-format="milhoes">200 milhões+</strong><span>visualizações por mês</span></div>
+  <div><strong class="vn-counter" data-target="1000" data-format="numero">1.000+</strong><span>negócios e entrevistas</span></div>
+  <div><strong class="vn-counter" data-target="10" data-format="mil">10 mil+</strong><span>horas de transmissão</span></div>
 </div></section>`;
   }
 
@@ -241,33 +241,9 @@
         if (format === 'milhoes') return value.toLocaleString('pt-BR') + ' milhões+';
         return value.toLocaleString('pt-BR') + '+';
       };
-      const animateCounter = el => {
-        if (el.dataset.animated === '1') return;
-        el.dataset.animated = '1';
-        const target = Number(el.dataset.target || 0);
-        const duration = 2200;
-        const start = performance.now();
-        const step = now => {
-          const p = Math.min(1, (now - start) / duration);
-          const eased = 1 - Math.pow(1 - p, 3);
-          const value = Math.round(target * eased);
-          el.textContent = formatValue(value, el.dataset.format);
-          if (p < 1) requestAnimationFrame(step);
-          else el.textContent = formatValue(target, el.dataset.format);
-        };
-        requestAnimationFrame(step);
-      };
-      if ('IntersectionObserver' in root) {
-        const observer = new root.IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: .35 });
-        counters.forEach(el => observer.observe(el));
-      } else counters.forEach(animateCounter);
+      counters.forEach(el => {
+        el.textContent = formatValue(Number(el.dataset.target || 0), el.dataset.format);
+      });
     }
     const footer = doc.querySelector('footer');
     const anchor = footer || null;
