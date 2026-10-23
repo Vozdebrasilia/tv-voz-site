@@ -234,7 +234,7 @@
       const main=doc.querySelector('main');
       if(main) main.insertBefore(node, main.firstChild); else if (header && header.parentNode) header.parentNode.insertBefore(node, header.nextSibling); else doc.body.insertBefore(node, doc.body.firstChild);
     }
-    const counters = [...doc.querySelectorAll('.vn-counter')];
+    const counters = location.pathname.startsWith('/educacao-carreiras-cultura') ? [] : [...doc.querySelectorAll('.vn-counter')];
     if (counters.length) {
       const formatValue = (value, format) => {
         if (format === 'mil') return value.toLocaleString('pt-BR') + ' mil+';
