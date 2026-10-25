@@ -70,26 +70,26 @@
   const ordem=[grupos[2],grupos[6],grupos[0],grupos[1],grupos[3],grupos[4],grupos[5],grupos[7],grupos[8],grupos[9]];
   ordem[0].title='ENERGIA';
   ordem[0].siteHref='/energia/';
-  ordem[0].image='/assets-v23/energia_banner_final.jpg?v=20261013r';
+  ordem[0].image='/assets/verticais-2026-10/energia.jpg';
   ordem[1].title='CASA, MÓVEIS E DECORAÇÃO';
   ordem[1].siteHref='/moveis-decoracao/';
   ordem[1].subtitle='Design, Móveis, Ambientes, Decoração e Soluções para o Lar';
-  ordem[1].image='/assets-v23/casa_banner_final.jpg?v=20261013r';
+  ordem[1].image='/assets/verticais-2026-10/casa.jpg';
   ordem[2].title='PODER, JUSTIÇA E CIDADANIA';
   ordem[2].siteHref='/justica-seguranca-cidadania/';
-  ordem[2].image='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=85';
+  ordem[2].image='/assets/verticais-2026-10/poder.jpg';
   ordem[3].title='ECONOMIA, NEGÓCIOS E CONSUMO';
   ordem[3].siteHref='/economia-negocios-consumo/';
-  ordem[3].image='https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=85';
+  ordem[3].image='/assets/verticais-2026-10/economia.jpg';
   ordem[4].title='MOBILIDADE, AVIAÇÃO E TRANSPORTES';
   ordem[4].siteHref='/mobilidade/';
   // Capas fotográficas limpas: imagens sem números e slogans antigos impressos.
-  ordem[4].image='https://images.unsplash.com/photo-1540339832862-474599807836?auto=format&fit=crop&w=1400&q=85';
-  ordem[5].image='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85';
-  ordem[6].image='https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1400&q=85';
-  ordem[7].image='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85';
-  ordem[8].image='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=85';
-  ordem[9].image='https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1400&q=85';
+  ordem[4].image='/assets/verticais-2026-10/mobilidade.jpg';
+  ordem[5].image='/assets/verticais-2026-10/tecnologia.jpg';
+  ordem[6].image='/assets/verticais-2026-10/saude.jpg';
+  ordem[7].image='/assets/verticais-2026-10/turismo.jpg';
+  ordem[8].image='/assets/verticais-2026-10/educacao.jpg';
+  ordem[9].image='/assets/verticais-2026-10/estilo.jpg';
   ordem.forEach((grupo,i)=>{grupo.rank='TOP '+String(i+1).padStart(2,'0');});
   grupos.splice(0,grupos.length,...ordem);
 
