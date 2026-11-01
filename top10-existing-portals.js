@@ -55,7 +55,7 @@
       ]
     },
     '/moveis-decoracao/': {
-      topic: 'Imóveis, Casa & Construção',
+      topic: 'Casa, Móveis e Decoração',
       interviews: [
         ['Fernando Rabelo — Coreto', 'https://www.youtube.com/watch?v=b5t8TEEJdiU'],
         ['Paulo Octávio — construção e cidades', 'https://www.youtube.com/watch?v=m8s4ajix3vA'],
