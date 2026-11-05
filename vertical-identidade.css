@@ -1,0 +1,26 @@
+.vertical-identidade {
+  display: grid;
+  align-items: center;
+  min-height: 15rem;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  color: white;
+  background: linear-gradient(90deg, var(--vertical-base) 10%, transparent 100%),
+    var(--vertical-foto) center / cover;
+  background-color: var(--vertical-base);
+  border-bottom: 4px solid var(--vertical-acento);
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+.vertical-identidade__marca { color: var(--vertical-acento); font-weight: 800; letter-spacing: .12em; }
+.vertical-identidade__titulo {
+  max-width: 20ch;
+  margin: .35rem 0;
+  color: white;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  line-height: 1.05;
+}
+.vertical-identidade__linha { max-width: 38ch; margin: .8rem 0 0; }
+@media (max-width: 640px) {
+  .vertical-identidade {
+    background-image: linear-gradient(90deg, var(--vertical-base) 22%, #0008), var(--vertical-foto);
+  }
+}
