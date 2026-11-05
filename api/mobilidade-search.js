@@ -90,6 +90,61 @@ async function searchBounded(fields, geo) {
   return Array.isArray(data) ? data : [];
 }
 
+
+const OVERPASS = 'https://overpass-api.de/api/interpreter';
+function automotiveType(fields) {
+  const words = [fields.category, fields.service, fields.term].filter(Boolean).join(' ').toLowerCase();
+  if (/oficina|mec[aâ]nic|revis[aã]o|car.repair|manuten[cç][aã]o|bosch car service/.test(words)) return 'car_repair';
+  if (/locadora|aluguel|rent.a.car|localiza|movida|unidas|foco rent|hertz|avis/.test(words)) return 'car_rental';
+  if (/concession|seminov|revenda|carros|autom[oó]ve|ve[ií]culo|loja/.test(words)) return 'car';
+  return '';
+}
+function overpassNameFilter(term) {
+  const name = safeText(term, 50);
+  if (!name || /^(oficina|mec[aâ]nica|revis[aã]o|loja|lojas|concession[aá]ria|concession[aá]rias|locadora|locadoras|carro|carros|autom[oó]veis|seminovos|aluguel|manuten[cç][aã]o)$/i.test(name)) return '';
+  const escaped = name.replace(/[.*+?^$()|[\]{}\\]/g, '\\function websiteValue(extra) {').replace(/["\\]/g, '');
+  return '["name"~"' + escaped + '",i]';
+}
+async function searchAutomotivePlaces(fields, geo) {
+  const type = automotiveType(fields);
+  if (!type) return null;
+  const lat = Number(geo.lat), lon = Number(geo.lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return [];
+  const filter = type === 'car_rental' ? '["amenity"="car_rental"]' : '["shop"="' + type + '"]';
+  const named = overpassNameFilter(fields.term);
+  const q = '[out:json][timeout:9];nwr' + filter + named + '(around:22000,' + lat.toFixed(6) + ',' + lon.toFixed(6) + ');out center 75;';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 7500);
+  try {
+    const response = await fetch(OVERPASS, {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8','User-Agent':USER_AGENT,'Accept':'application/json'},
+      body: new URLSearchParams({data:q}).toString()
+    });
+    if (!response.ok) throw new Error('Overpass HTTP ' + response.status);
+    const body = await response.json();
+    if (!body || !Array.isArray(body.elements)) return [];
+    const rows = body.elements.map(item => normalizeOverpassPlace(item, geo)).filter(Boolean);
+    return dedupeResults(rows).slice(0,30);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+function normalizeOverpassPlace(item, geo) {
+  const tags = item.tags || {};
+  const name = safeText(tags.name || tags.brand || tags.operator || '', 100);
+  if (!name) return null;
+  const lat = Number(item.lat ?? (item.center && item.center.lat));
+  const lon = Number(item.lon ?? (item.center && item.center.lon));
+  const place = [tags['addr:street'],tags['addr:housenumber']].filter(Boolean).join(', ');
+  const city = tags['addr:city'] || geo.address.city || geo.address.town || geo.address.municipality || '';
+  const state = tags['addr:state'] || geo.address.state || '';
+  const country = geo.address.country || 'Brasil';
+  const mapUrl = Number.isFinite(lat) && Number.isFinite(lon) ? 'https://www.openstreetmap.org/?mlat=' + encodeURIComponent(lat) + '&mlon=' + encodeURIComponent(lon) + '#map=17/' + lat + '/' + lon : '';
+  return {name,category:tags.shop === 'car_repair' ? 'Oficina mecânica' : tags.amenity === 'car_rental' ? 'Locadora de veículos' : 'Concessionária ou revenda',address:[place,city,state].filter(Boolean).join(' • ') || geo.displayName,city,state,country,phone:tags.phone || tags['contact:phone'] || '',site:websiteValue(tags),lat,lon,mapUrl,source:'OpenStreetMap'};
+}
+
 function websiteValue(extra) {
   const raw = extra.website || extra['contact:website'] || extra.url || '';
   if (!raw) return '';
@@ -174,15 +229,35 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const data = await searchBounded(fields, geo);
-    const results = dedupeResults(data.map(item => normalizeNominatimPlace(item, geo))).slice(0, 30);
+    let results = [];
+    let externalStatus = 'ok';
+    const autoType = automotiveType(fields);
+    if (autoType) {
+      try {
+        results = await searchAutomotivePlaces(fields, geo);
+      } catch (e) {
+        console.error('[automotive-overpass]', e && e.message ? e.message : e);
+        externalStatus = 'degraded';
+      }
+      if (!results.length && fields.term && !/^(oficina|oficinas|locadora|locadoras|concession[aá]rias?|seminovos|lojas?)$/i.test(fields.term)) {
+        try {
+          const data = await searchBounded(fields, geo);
+          results = dedupeResults(data.map(item => normalizeNominatimPlace(item, geo))).slice(0, 30);
+        } catch (e) {
+          externalStatus = 'degraded';
+        }
+      }
+    } else {
+      const data = await searchBounded(fields, geo);
+      results = dedupeResults(data.map(item => normalizeNominatimPlace(item, geo))).slice(0, 30);
+    }
 
     return res.status(200).json({
       query,
       resolvedLocation: geo.displayName,
       source: 'OpenStreetMap',
       results,
-      externalStatus: 'ok',
+      externalStatus,
       locationStatus: 'resolved'
     });
   } catch (error) {
@@ -202,5 +277,8 @@ module.exports._test = {
   localSearchTerm,
   buildViewbox,
   normalizeNominatimPlace,
-  dedupeResults
+  dedupeResults,
+  automotiveType,
+  overpassNameFilter,
+  normalizeOverpassPlace
 };
