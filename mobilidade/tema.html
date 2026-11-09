@@ -11,9 +11,9 @@
 <body>
 <header class="header"><div class="wrap header-in"><a href="/mobilidade/"><img src="../logo-voznews-oficial.png" alt="VOZ NEWS"></a><a class="back" href="/mobilidade/">← VOLTAR À MOBILIDADE</a></div></header>
 <section class="hero"><div class="wrap"><span class="tag" id="tag">VOZ NEWS MOBILIDADE</span><h1 id="title">Mobilidade</h1><p class="lead" id="lead"></p><img class="hero-img" id="hero" alt="Mobilidade"></div></section>
-<main class="wrap"><div class="metrics"><div class="metric"><strong>240K+</strong><span>seguidores</span></div><div class="metric"><strong>200M+</strong><span>interações/mês</span></div><div class="metric"><strong>1.000+</strong><span>entrevistas</span></div><div class="metric"><strong>10.000+</strong><span>horas</span></div><div class="metric"><strong>40 anos</strong><span>credibilidade</span></div></div>
+<main class="wrap"><div class="metrics"><div class="metric"><strong>260K+</strong><span>seguidores</span></div><div class="metric"><strong>200M+</strong><span>interações/mês</span></div><div class="metric"><strong>1.000+</strong><span>entrevistas</span></div><div class="metric"><strong>10.000+</strong><span>horas</span></div><div class="metric"><strong>40 anos</strong><span>credibilidade</span></div></div>
 <section class="section"><h2>Matérias desta editoria</h2><p class="section-intro">Cada assunto abre uma matéria própria, com contexto, serviço e leitura editorial do VOZ NEWS Mobilidade.</p><div class="article-grid" id="article-grid"></div></section></main>
-<section class="awards"><div class="wrap"><h2>Premiações e reconhecimentos</h2><div class="award-grid"><img src="../assets/awards/card-01.jpg" alt="Premiação VOZ NEWS 1"><img src="../assets/awards/card-02.jpg" alt="Premiação VOZ NEWS 2"><img src="../assets/awards/card-03.jpg" alt="Premiação VOZ NEWS 3"><img src="../assets/awards/card-04.jpg" alt="Premiação VOZ NEWS 4"><img src="../assets/awards/card-05.jpg" alt="Premiação VOZ NEWS 5"><img src="../assets/awards/card-06.jpg" alt="Premiação VOZ NEWS 6"></div></div></section>
+
 <footer class="footer"><img src="../logo-voznews-oficial.png" alt="VOZ NEWS"><p>VOZ NEWS MOBILIDADE • Brasília • Brasil • Mundo</p></footer>
 <script>
 (function(){
@@ -23,7 +23,7 @@
  const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  document.title=theme.title+' • VOZ NEWS Mobilidade';document.getElementById('tag').textContent=theme.tag;document.getElementById('title').textContent=theme.title;document.getElementById('lead').textContent=theme.lead;document.getElementById('hero').src=theme.hero;document.getElementById('hero').alt=theme.title;
  const list=(theme.articles||[]).map(id=>store.articles[id]).filter(Boolean);
- document.getElementById('article-grid').innerHTML=list.length?list.map(a=>`<a class="story" href="/mobilidade/materia.html?id=${encodeURIComponent(a.id)}"><img src="${esc(a.image)}" alt="${esc(a.title)}"><div class="story-body"><small>${esc(a.kicker)}</small><h3>${esc(a.title)}</h3><p>${esc(a.summary)}</p><span class="read">LEIA A MATÉRIA →</span></div></a>`).join(''):'<div class="empty">Novas matérias estão sendo preparadas para esta editoria.</div>';
+ document.getElementById('article-grid').innerHTML=list.length?list.map(a=>`<a class="story" href="/mobilidade/materia.html?id=${encodeURIComponent(a.id)}"><img src="${esc(a.image)}" alt="Imagem ilustrativa da reportagem: ${esc(a.title)}"><div class="story-body"><small>${esc(a.kicker)}</small><h3>${esc(a.title)}</h3><p>${esc(a.summary)}</p><span class="read">LEIA A MATÉRIA →</span></div></a>`).join(''):'<div class="empty">Novas matérias estão sendo preparadas para esta editoria.</div>';
 })();
 </script>
 <script defer src="/detran-2026.js"></script></body></html>
