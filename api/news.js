@@ -20,7 +20,41 @@ async function latest(p){
     return title?{title,summary:`Acompanhe a atualização mais recente sobre ${p.name} na cobertura diária do VOZ NEWS.`,source:p.source,link,image:`/api/instagram-photo?handle=${encodeURIComponent(p.handle)}`,instagram:`https://www.instagram.com/${p.handle}/`}:null;
   }catch(e){return null}
 }
+
+// Feed editorial por vertical: títulos, datas e links provenientes de RSS; sem atribuir data de hoje a matérias antigas.
+const editorias=[
+ ['Energia','energia elétrica transição energética Brasil'],
+ ['Casa, Móveis e Decoração','arquitetura decoração móveis Brasil'],
+ ['Poder, Justiça e Cidadania','justiça cidadania governo Brasil'],
+ ['Mobilidade, Aviação e Transporte','mobilidade aviação transporte Brasil'],
+ ['Tecnologia e IA, Mídia','inteligência artificial tecnologia mídia Brasil'],
+ ['Saúde e Bem-Estar','saúde bem-estar pesquisa Brasil'],
+ ['Economia, Negócios e Consumo','economia negócios consumo Brasil'],
+ ['Turismo, Hotelaria e Gastronomia','turismo hotelaria gastronomia Brasil'],
+ ['Educação, Carreiras e Cultura','educação carreira cultura Brasil'],
+ ['Estilo, Esporte e Experiências','esporte estilo de vida experiências Brasil']
+];
+async function verticalFeed([category,query]){
+ try{
+  const url='https://news.google.com/rss/search?q='+encodeURIComponent(query)+'&hl=pt-BR&gl=BR&ceid=BR:pt-419';
+  const response=await fetch(url,{headers:{'user-agent':'VOZNEWS/1.0'},signal:AbortSignal.timeout(9000)});
+  if(!response.ok)throw Error('RSS indisponível');
+  const xml=await response.text();
+  const entries=[...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0,5).map(m=>{
+   const raw=m[1],field=(tag)=>clean((raw.match(new RegExp('<'+tag+'(?:\\s[^>]*)?>([\\s\\S]*?)<\\/'+tag+'>'))||[])[1]||'');
+   const title=field('title'),link=field('link'),published=field('pubDate');
+   return {title,link,publishedAt:published?new Date(published).toISOString():null};
+  }).filter(x=>x.title&&/^https:\/\//.test(x.link));
+  return {category,items:entries};
+ }catch(e){return {category,items:[],error:'Fonte temporariamente indisponível'};}
+}
+
 export default async function handler(req,res){
+  if(req.method==='GET' && req.query?.verticais==='1'){
+    const sections=await Promise.all(editorias.map(verticalFeed));
+    res.setHeader('Cache-Control','s-maxage=900, stale-while-revalidate=1800');
+    return res.status(200).json({checkedAt:new Date().toISOString(),sections});
+  }
   if(req.method==='POST' && req.query?.clube==='1') return cadastroPermuta(req,res);
   const rows=await Promise.all(people.map(latest));
   const items=rows.filter(Boolean);
