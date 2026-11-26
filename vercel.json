@@ -44,10 +44,10 @@
     }
   ],
   "rewrites": [
-    { "source": "/entrevistas", "destination": "/api/entrevistas" },
-    { "source": "/entrevistas/", "destination": "/api/entrevistas" },
-    { "source": "/entrevistas/:slug", "destination": "/api/entrevistas?slug=:slug" },
-    { "source": "/entrevistas/:slug/", "destination": "/api/entrevistas?slug=:slug" },
+    { "source": "/entrevistas", "destination": "/api/seo-hub?type=entrevistas" },
+    { "source": "/entrevistas/", "destination": "/api/seo-hub?type=entrevistas" },
+    { "source": "/entrevistas/:slug", "destination": "/api/seo-hub?type=entrevistas&slug=:slug" },
+    { "source": "/entrevistas/:slug/", "destination": "/api/seo-hub?type=entrevistas&slug=:slug" },
     {
       "source": "/poder-justica-cidadania",
       "destination": "/poder-justica-cidadania/index.html"
