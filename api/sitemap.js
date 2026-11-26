@@ -28,8 +28,10 @@ const CLIENTES=[
 ];
 
 const AUTORES=['deijanete-fayad','paulo-fayad'];
+const INTERVIEW_SLUGS=require('./entrevistas').interviewSlugs;
 const FIXED=[
 '/',
+'/entrevistas/',
 '/anunciantes.html',
 '/ibj.html',
 '/energia/',
@@ -70,6 +72,7 @@ module.exports=async function(req,res){
       ...TEMAS.map(s=>`/tema/${s}`),
       ...CLIENTES.map(s=>`/clientes/${s}.html`),
       ...AUTORES.map(s=>`/autor/${s}`),
+      ...INTERVIEW_SLUGS.map(s=>`/entrevistas/${s}`),
       ...analyses
     ];
     const unique=[...new Set(paths)];
