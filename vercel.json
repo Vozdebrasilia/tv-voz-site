@@ -44,6 +44,10 @@
     }
   ],
   "rewrites": [
+    { "source": "/entrevistas", "destination": "/api/entrevistas" },
+    { "source": "/entrevistas/", "destination": "/api/entrevistas" },
+    { "source": "/entrevistas/:slug", "destination": "/api/entrevistas?slug=:slug" },
+    { "source": "/entrevistas/:slug/", "destination": "/api/entrevistas?slug=:slug" },
     {
       "source": "/poder-justica-cidadania",
       "destination": "/poder-justica-cidadania/index.html"
