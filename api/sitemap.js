@@ -28,7 +28,7 @@ const CLIENTES=[
 ];
 
 const AUTORES=['deijanete-fayad','paulo-fayad'];
-const INTERVIEW_SLUGS=require('./entrevistas').interviewSlugs;
+const INTERVIEW_SLUGS=require('./seo-hub').interviewSlugs;
 const FIXED=[
 '/',
 '/entrevistas/',
